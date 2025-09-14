@@ -1,0 +1,98 @@
+{
+  "navigation": {
+    "home": "Home",
+    "ecosystem": "Ecosystem",
+    "dapps": "Dapps List",
+    "tutorials": "Interactive Tutorials",
+    "developer_support": "Developer Support",
+    "docs": "Development Docs",
+    "guides": "Development Guide",
+    "example_code": "Example Code",
+    "community_activities": "Community Activities",
+    "hackathon": "Hackathon",
+    "workshop": "Workshop",
+    "ama": "AMA",
+    "meetup": "Community Meetup",
+    "posts": "Community Posts",
+    "official_resources": "Official Resources",
+    "blog": "Blog",
+    "about_us": "About Us",
+    "about": "About Us",
+    "annual_report": "Annual Report",
+    "merchandise": "Merchandise Store",
+    "partners": "Partners",
+    "forum": "Community Forum",
+    "mobile_menu": "Navigation Menu"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "traditional_chinese": "繁體中文",
+    "simplified_chinese": "简体中文",
+    "english": "English"
+  },
+  "mobile": {
+    "testnet": "Learn Testnet"
+  },
+  "homepage": {
+    "hero": {
+      "title": "KaiYuanShe",
+      "subtitle": "Rooted in China, contributing globally, promoting open source as a new era lifestyle.",
+      "learnMore": "Learn About DevPlaza",
+      "joinCommunity": "Join Community"
+    },
+    "features": {
+      "title": "Core Features",
+      "description": "DevPlaza provides developers with an efficient one-stop experience by integrating Web3 multi-chain data, events, and community content",
+      "multiChain": {
+        "title": "Multi-chain Aggregation",
+        "description": "Unified integration of activities, articles, blogs, and community dynamics from multiple Web3 chains such as Ethereum"
+      },
+      "analytics": {
+        "title": "Developer Analytics",
+        "description": "Real-time collection and statistics of developer data to help discover ecosystem trends and activity"
+      },
+      "content": {
+        "title": "Content Aggregation",
+        "description": "Cross-platform integration of the latest Web3 news and quality articles to reduce information fragmentation"
+      },
+      "ecosystem": {
+        "title": "Ecosystem Navigation",
+        "description": "Panoramic display of ecosystem DApps and projects for developers to quickly understand and participate"
+      }
+    },
+    "resources": {
+      "title": "Learning Resources",
+      "description": "Help developers quickly transition from Web2 to Web3 through tutorials, articles, and documentation",
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Learn systematically how to build Web3 applications from scratch"
+      },
+      "codeExamples": {
+        "title": "Code Examples",
+        "description": "Reference open source projects and quickly master best practices"
+      },
+      "ecosystemGuide": {
+        "title": "Ecosystem Guide",
+        "description": "Comprehensive understanding of the latest Web3 developments and projects"
+      }
+    },
+    "milestones": {
+      "title": "DevPlaza Milestones"
+    },
+    "cta": {
+      "title": "Join DevPlaza · Witness Your Web3 Growth Journey",
+      "description": "Whether you are a Web2 developer or already committed to Web3, DevPlaza provides you with the most comprehensive resources and platform.",
+      "getStarted": "Get Started",
+      "joinTelegram": "Join Telegram",
+      "followX": "Follow X"
+    }
+  },
+  "footer": {
+    "title": "KaiYuanShe",
+    "description": "KaiYuanShe is a one-stop plaza that aggregates Web3 events, communities, articles, and developer data.",
+    "copyright": "&copy; 2025 KaiYuanShe. All rights reserved"
+  },
+  "errors": {
+    "fetchDapps": "Failed to get DApps list:"
+  }
+}

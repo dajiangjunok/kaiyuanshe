@@ -19,9 +19,11 @@ import { SiTelegram, SiX } from 'react-icons/si'
 import { Image } from 'antd'
 import EventSection from './events/section'
 import { getDapps } from './api/dapp'
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function Home() {
   const router = useRouter()
+  const { t } = useTranslation()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
   const [dapps, setDapps] = useState<any[]>([])
@@ -68,7 +70,7 @@ export default function Home() {
           setDapps(result.data.dapps)
         }
       } catch (error) {
-        console.error('获取 DApps 列表失败:', error)
+        console.error(t('errors.fetchDapps'), error)
       }
     }
     fetchDapps()
@@ -119,23 +121,23 @@ export default function Home() {
   const features = [
     {
       icon: <Zap className={styles.featureIcon} />,
-      title: '多链聚合',
-      description: '统一整合以太坊等多条 Web3 链上的活动、文章、博客和社区动态'
+      title: t('homepage.features.multiChain.title'),
+      description: t('homepage.features.multiChain.description')
     },
     {
       icon: <Shield className={styles.featureIcon} />,
-      title: '开发者分析',
-      description: '实时采集并统计开发者数据，帮助发现生态趋势与活跃度'
+      title: t('homepage.features.analytics.title'),
+      description: t('homepage.features.analytics.description')
     },
     {
       icon: <Cpu className={styles.featureIcon} />,
-      title: '内容聚合',
-      description: '跨平台整合 Web3 最新资讯与优质文章，减少信息碎片化'
+      title: t('homepage.features.content.title'),
+      description: t('homepage.features.content.description')
     },
     {
       icon: <Database className={styles.featureIcon} />,
-      title: '生态导航',
-      description: '全景化展示生态 DApps 与项目，便于开发者快速了解与参与'
+      title: t('homepage.features.ecosystem.title'),
+      description: t('homepage.features.ecosystem.description')
     }
   ]
 
@@ -158,7 +160,7 @@ export default function Home() {
             className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}
           >
             <h1 className={styles.heroTitle}>
-              <span className={styles.heroTitleSecondary}>開源社</span>
+              <span className={styles.heroTitleSecondary}>{t('homepage.hero.title')}</span>
             </h1>
 
             <div className={styles.titleDecoration}>
@@ -167,7 +169,7 @@ export default function Home() {
             </div>
             <p className={styles.heroSubtitle}>
               <span className={styles.heroHighlight}>
-                聚合 Web3 活动 · 社区 · 文章 · 数据 —— 开发者的一站式广场
+                {t('homepage.hero.subtitle')}
               </span>
             </p>
 
@@ -246,11 +248,11 @@ export default function Home() {
             <div className={styles.heroButtons}>
               <Link href="/about" className={styles.heroPrimaryButton}>
                 <Globe className={styles.buttonIcon} />
-                了解 DevPlaza
+                {t('homepage.hero.learnMore')}
               </Link>
               <Link href="/events" className={styles.heroSecondaryButton}>
                 <Users className={styles.buttonIcon} />
-                加入社区
+                {t('homepage.hero.joinCommunity')}
               </Link>
             </div>
           </div>
@@ -264,7 +266,7 @@ export default function Home() {
       <section className={styles.milestones}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>DevPlaza 里程碑</h2>
+            <h2 className={styles.sectionTitle}>{t('homepage.milestones.title')}</h2>
           </div>
         </div>
       </section>
@@ -273,10 +275,9 @@ export default function Home() {
       <section className={styles.features}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>核心功能</h2>
+            <h2 className={styles.sectionTitle}>{t('homepage.features.title')}</h2>
             <p className={styles.sectionDescription}>
-              DevPlaza 通过整合 Web3
-              多链数据、活动与社区内容，为开发者提供高效的一站式体验
+              {t('homepage.features.description')}
             </p>
           </div>
           <div className={styles.featuresGrid}>
@@ -302,31 +303,31 @@ export default function Home() {
       <section className={styles.resources}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>学习资源</h2>
+            <h2 className={styles.sectionTitle}>{t('homepage.resources.title')}</h2>
             <p className={styles.sectionDescription}>
-              通过教程、文章和文档，帮助开发者从 Web2 快速转型 Web3
+              {t('homepage.resources.description')}
             </p>
           </div>
           <div className={styles.resourcesGrid}>
             <div className={styles.resourceCard}>
               <BookOpen className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>教程</h3>
+              <h3 className={styles.resourceTitle}>{t('homepage.resources.tutorials.title')}</h3>
               <p className={styles.resourceDesc}>
-                系统学习如何从零开始构建 Web3 应用
+                {t('homepage.resources.tutorials.description')}
               </p>
             </div>
             <div className={styles.resourceCard}>
               <Code className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>代码示例</h3>
+              <h3 className={styles.resourceTitle}>{t('homepage.resources.codeExamples.title')}</h3>
               <p className={styles.resourceDesc}>
-                参考开源项目，快速掌握最佳实践
+                {t('homepage.resources.codeExamples.description')}
               </p>
             </div>
             <div className={styles.resourceCard}>
               <Globe className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>生态导航</h3>
+              <h3 className={styles.resourceTitle}>{t('homepage.resources.ecosystemGuide.title')}</h3>
               <p className={styles.resourceDesc}>
-                全景化了解最新的 Web3 发展与项目
+                {t('homepage.resources.ecosystemGuide.description')}
               </p>
             </div>
           </div>
@@ -340,27 +341,26 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>
-              加入 DevPlaza · 见证你的 Web3 成长之路
+              {t('homepage.cta.title')}
             </h2>
             <p className={styles.ctaDesc}>
-              无论你是 Web2 开发者，还是已经投身 Web3， DevPlaza
-              都为你提供最全面的资源与舞台。
+              {t('homepage.cta.description')}
             </p>
             <div className={styles.ctaButtons}>
               <Link href="/signup" className={styles.ctaPrimaryButton}>
                 <Rocket className={styles.buttonIcon} />
-                立即开始
+                {t('homepage.cta.getStarted')}
               </Link>
               <Link href="/community" className={styles.ctaSecondaryButton}>
                 <SiTelegram className={styles.buttonIcon} />
-                加入 Telegram
+                {t('homepage.cta.joinTelegram')}
               </Link>
               <Link
                 href="https://x.com/devplaza"
                 className={styles.ctaSecondaryButton}
               >
                 <SiX className={styles.buttonIcon} />
-                关注 X
+                {t('homepage.cta.followX')}
               </Link>
             </div>
           </div>

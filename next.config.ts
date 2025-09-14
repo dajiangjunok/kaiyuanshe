@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
     'rc-table',
     'rc-input',
   ],
+  i18n: {
+    locales: ['zh-TW', 'zh-CN', 'en'],
+    defaultLocale: 'zh-TW',
+  },
   images: {
     remotePatterns: [
       {

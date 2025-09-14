@@ -1,0 +1,86 @@
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.languageSwitcher:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #6366f1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.globeIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.languageSwitcher:hover .globeIcon {
+  transform: rotate(15deg);
+}
+
+.currentLanguage {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.languageItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+.languageText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.activeIndicator {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .globeIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .currentLanguage {
+    font-size: 12px;
+  }
+  
+  .languageItem {
+    padding: 6px 10px;
+    min-width: 100px;
+  }
+  
+  .languageText {
+    font-size: 13px;
+  }
+}

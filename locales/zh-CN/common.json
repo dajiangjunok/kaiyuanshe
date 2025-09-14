@@ -1,0 +1,98 @@
+{
+  "navigation": {
+    "home": "首页",
+    "ecosystem": "生态系统",
+    "dapps": "Dapps 列表",
+    "tutorials": "交互教程",
+    "developer_support": "开发者支持",
+    "docs": "开发文档",
+    "guides": "开发指南",
+    "example_code": "示例代码",
+    "community_activities": "社区活动",
+    "hackathon": "黑客松",
+    "workshop": "Workshop",
+    "ama": "AMA",
+    "meetup": "社区聚会",
+    "posts": "社区帖子",
+    "official_resources": "官方资源",
+    "blog": "博客",
+    "about_us": "关于我们",
+    "about": "关于我们",
+    "annual_report": "开源社年度报告",
+    "merchandise": "开源社文创商店",
+    "partners": "合作伙伴",
+    "forum": "开源社论坛",
+    "mobile_menu": "导航菜单"
+  },
+  "language": {
+    "switch": "切换语言",
+    "traditional_chinese": "繁體中文",
+    "simplified_chinese": "简体中文",
+    "english": "English"
+  },
+  "mobile": {
+    "testnet": "了解测试网"
+  },
+  "homepage": {
+    "hero": {
+      "title": "开源社",
+      "subtitle": "立足中国，贡献全球，推动开源成为新时代生活方式",
+      "learnMore": "了解 DevPlaza",
+      "joinCommunity": "加入社区"
+    },
+    "features": {
+      "title": "核心功能",
+      "description": "DevPlaza 通过整合 Web3 多链数据、活动与社区内容，为开发者提供高效的一站式体验",
+      "multiChain": {
+        "title": "多链聚合",
+        "description": "统一整合以太坊等多条 Web3 链上的活动、文章、博客和社区动态"
+      },
+      "analytics": {
+        "title": "开发者分析",
+        "description": "实时采集并统计开发者数据，帮助发现生态趋势与活跃度"
+      },
+      "content": {
+        "title": "内容聚合",
+        "description": "跨平台整合 Web3 最新资讯与优质文章，减少信息碎片化"
+      },
+      "ecosystem": {
+        "title": "生态导航",
+        "description": "全景化展示生态 DApps 与项目，便于开发者快速了解与参与"
+      }
+    },
+    "resources": {
+      "title": "学习资源",
+      "description": "通过教程、文章和文档，帮助开发者从 Web2 快速转型 Web3",
+      "tutorials": {
+        "title": "教程",
+        "description": "系统学习如何从零开始构建 Web3 应用"
+      },
+      "codeExamples": {
+        "title": "代码示例",
+        "description": "参考开源项目，快速掌握最佳实践"
+      },
+      "ecosystemGuide": {
+        "title": "生态导航",
+        "description": "全景化了解最新的 Web3 发展与项目"
+      }
+    },
+    "milestones": {
+      "title": "DevPlaza 里程碑"
+    },
+    "cta": {
+      "title": "加入 DevPlaza · 见证你的 Web3 成长之路",
+      "description": "无论你是 Web2 开发者，还是已经投身 Web3， DevPlaza 都为你提供最全面的资源与舞台。",
+      "getStarted": "立即开始",
+      "joinTelegram": "加入 Telegram",
+      "followX": "关注 X"
+    }
+  },
+  "footer": {
+    "title": "開源社",
+    "description": "開源社 是一个聚合 Web3 活动、社区、文章和开发者数据的一站式广场。",
+    "copyright": "&copy; 2025 開源社. 保留所有权利"
+  },
+  "errors": {
+    "fetchDapps": "获取 DApps 列表失败:"
+  }
+}
