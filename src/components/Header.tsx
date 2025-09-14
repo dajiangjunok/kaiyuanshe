@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Dropdown } from 'antd';
 import Auth from './Auth';
 import { useState, useMemo, useEffect } from 'react';
-// import { SiWechat, SiX } from 'react-icons/si';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,20 +61,6 @@ export default function Header() {
     }
   }, [mobileMenuOpen, mounted]);
 
-  // const [showNewsBanner, setShowNewsBanner] = useState(true);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollY = window.scrollY
-  //     setShowNewsBanner(scrollY < 50) // 滚动超过50px时隐藏新闻栏
-  //   }
-
-  //   window.addEventListener("scroll", handleScroll)
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll)
-  //   }
-  // }, [])
-
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -83,7 +68,7 @@ export default function Header() {
           <Link href="/" passHref>
             <div className={styles.logoInfo} style={{ cursor: 'pointer' }}>
               <Image preview={false} width={30} src="/logo.png" className={styles.logo} />
-              <span className={styles.logoTitle}>DevPlaza</span>
+              <span className={styles.logoTitle}>開源社</span>
             </div>
           </Link>
           <nav className={styles.nav}>

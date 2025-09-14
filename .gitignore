@@ -3,6 +3,7 @@ package-lock.json
 .vitepress/cache
 ansible.sh
 pnpm-lock.yaml
+CLAUDE.md
 
 # Next.js 构建输出
 .next/
