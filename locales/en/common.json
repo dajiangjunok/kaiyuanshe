@@ -1,37 +1,64 @@
 {
   "navigation": {
-    "home": "Home",
-    "ecosystem": "Ecosystem",
-    "dapps": "Dapps List",
-    "tutorials": "Interactive Tutorials",
-    "developer_support": "Developer Support",
-    "docs": "Development Docs",
-    "guides": "Development Guide",
-    "example_code": "Example Code",
-    "community_activities": "Community Activities",
-    "hackathon": "Hackathon",
-    "workshop": "Workshop",
-    "ama": "AMA",
-    "meetup": "Community Meetup",
-    "posts": "Community Posts",
-    "official_resources": "Official Resources",
-    "blog": "Blog",
     "about_us": "About Us",
     "about": "About Us",
     "annual_report": "Annual Report",
     "merchandise": "Merchandise Store",
     "partners": "Partners",
     "forum": "Community Forum",
-    "mobile_menu": "Navigation Menu"
+    "mobile_menu": "Navigation Menu",
+    "governance": {
+      "title": "Community Governance",
+      "governance_overview": "Governance Overview",
+      "board": "Board of Directors",
+      "advisory": "Advisory Committee",
+      "legal": "Legal Advisory Committee",
+      "kcc": "KaiYuanShe City Community (KCC)",
+      "formal_members": "Formal Members",
+      "election": "Election",
+      "calendar": "Meeting Calendar",
+      "suggestion_box": "Suggestion Box",
+      "proposal_library": "Proposal Library"
+    },
+    "honors": {
+      "title": "Community Honors",
+      "open_source_star": "Open Source Star",
+      "annual_volunteer": "Annual Outstanding Volunteer",
+      "coscon_star": "COSCon Star",
+      "community_cooperation_star": "Community Cooperation Star",
+      "china_open_source_pioneer": "China Open Source Pioneer",
+      "china_open_source_power_list": "China Open Source Power List"
+    },
+    "knowledge": {
+      "title": "Knowledge Resources",
+      "open_source_library": "Open Source Library",
+      "cosc": "China Open Source Conference (COSC)",
+      "kcc_library": "KaiYuanShe City Community (KCC)",
+      "reading_club": "Open Source Reading Club",
+      "original_articles": "Original Articles",
+      "translation_articles": "Translation Articles",
+      "all_articles": "All Articles",
+      "archived_articles": "Archived Articles",
+      "china_open_source_annual_report": "China Open Source Annual Report",
+      "china_open_source_map": "China Open Source Map",
+      "china_public_welfare_map": "China Public Welfare Map"
+    },
+    "activities": {
+      "title": "Activities & Projects",
+      "wonderful_activities": "Wonderful Activities",
+      "hosted_activities": "Hosted Activities",
+      "activity_calendar": "Activity Calendar",
+      "open_source_projects": "Open Source Projects",
+      "open_source_toolbox": "Open Source Toolbox",
+      "open_hackathon_platform": "Open Hackathon Platform",
+      "xiaoyuan_qa_bot": "XiaoYuan Q&A Bot"
+    }
   },
   "language": {
     "switch": "Switch Language",
     "traditional_chinese": "繁體中文",
     "simplified_chinese": "简体中文",
     "english": "English"
-  },
-  "mobile": {
-    "testnet": "Learn Testnet"
   },
   "homepage": {
     "hero": {

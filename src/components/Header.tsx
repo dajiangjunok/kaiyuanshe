@@ -8,6 +8,21 @@ import LanguageSwitcher from './LanguageSwitcher'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from '../hooks/useTranslation'
 
+interface MenuItem {
+  key: string
+  label: string
+  href?: string
+  target?: string
+  icon?: string
+  children?: MenuItem[]
+}
+
+interface MenuSection {
+  key: string
+  title: string
+  items: MenuItem[]
+}
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -15,6 +30,143 @@ export default function Header() {
 
   // 使用 useMemo 确保 Auth 组件只创建一次，避免重复渲染
   const authComponent = useMemo(() => <Auth />, [])
+
+  // 菜单数据配置
+  const menuSections: MenuSection[] = useMemo(() => [
+    {
+      key: 'governance',
+      title: t('navigation.governance.title'),
+      items: [
+        { key: 'governance-overview', label: t('navigation.governance.governance_overview'), href: '/', icon: '🏛️' },
+        { key: 'board', label: t('navigation.governance.board'), href: '/', icon: '👥' },
+        { key: 'advisory', label: t('navigation.governance.advisory'), href: '/', icon: '💡' },
+        { key: 'legal', label: t('navigation.governance.legal'), href: '/', icon: '⚖️' },
+        { key: 'kcc', label: t('navigation.governance.kcc'), href: '/', icon: '🏙️' },
+        { key: 'formal-members', label: t('navigation.governance.formal_members'), href: '/' },
+        { key: 'election', label: t('navigation.governance.election'), href: '/' },
+        { key: 'calendar', label: t('navigation.governance.calendar'), href: '/' },
+        { key: 'suggestion-box', label: t('navigation.governance.suggestion_box'), href: '/' },
+        { key: 'proposal-library', label: t('navigation.governance.proposal_library'), href: '/' }
+      ]
+    },
+    {
+      key: 'honors',
+      title: t('navigation.honors.title'),
+      items: [
+        { key: 'open-source-star', label: t('navigation.honors.open_source_star'), href: '/', icon: '⭐' },
+        { key: 'annual-volunteer', label: t('navigation.honors.annual_volunteer'), href: '/', icon: '🏆' },
+        { key: 'coscon-star', label: t('navigation.honors.coscon_star'), href: '/', icon: '🌟' },
+        { key: 'community-cooperation-star', label: t('navigation.honors.community_cooperation_star'), href: '/', icon: '🤝' },
+        { key: 'china-open-source-pioneer', label: t('navigation.honors.china_open_source_pioneer'), href: '/' },
+        { key: 'china-open-source-power-list', label: t('navigation.honors.china_open_source_power_list'), href: '/' }
+      ]
+    },
+    {
+      key: 'knowledge',
+      title: t('navigation.knowledge.title'),
+      items: [
+        {
+          key: 'open-source-library',
+          label: t('navigation.knowledge.open_source_library'),
+          icon: '📚',
+          children: [
+            { key: 'cosc', label: t('navigation.knowledge.cosc'), href: '/' },
+            { key: 'kcc-library', label: t('navigation.knowledge.kcc_library'), href: '/' },
+            { key: 'reading-club', label: t('navigation.knowledge.reading_club'), href: '/' },
+            { key: 'original-articles', label: t('navigation.knowledge.original_articles'), href: '/' },
+            { key: 'translation-articles', label: t('navigation.knowledge.translation_articles'), href: '/' },
+            { key: 'all-articles', label: t('navigation.knowledge.all_articles'), href: '/' },
+            { key: 'archived-articles', label: t('navigation.knowledge.archived_articles'), href: '/' }
+          ]
+        },
+        { key: 'china-open-source-annual-report', label: t('navigation.knowledge.china_open_source_annual_report'), href: '/', icon: '📊' },
+        { key: 'china-open-source-map', label: t('navigation.knowledge.china_open_source_map'), href: '/', icon: '🗺️' },
+        { key: 'china-public-welfare-map', label: t('navigation.knowledge.china_public_welfare_map'), href: '/', icon: '❤️' }
+      ]
+    },
+    {
+      key: 'activities',
+      title: t('navigation.activities.title'),
+      items: [
+        {
+          key: 'wonderful-activities',
+          label: t('navigation.activities.wonderful_activities'),
+          icon: '🎉',
+          children: [
+            { key: 'hosted-activities', label: t('navigation.activities.hosted_activities'), href: '/' },
+            { key: 'activity-calendar', label: t('navigation.activities.activity_calendar'), href: '/' }
+          ]
+        },
+        {
+          key: 'open-source-projects',
+          label: t('navigation.activities.open_source_projects'),
+          icon: '🚀',
+          children: [
+            { key: 'open-source-toolbox', label: t('navigation.activities.open_source_toolbox'), href: '/' },
+            { key: 'open-hackathon-platform', label: t('navigation.activities.open_hackathon_platform'), href: '/' },
+            { key: 'xiaoyuan-qa-bot', label: t('navigation.activities.xiaoyuan_qa_bot'), href: '/' }
+          ]
+        }
+      ]
+    },
+    {
+      key: 'about',
+      title: t('navigation.about_us'),
+      items: [
+        {
+          key: 'about',
+          label: t('navigation.about'),
+          href: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+          target: '_blank',
+          icon: '🏢'
+        },
+        {
+          key: 'annual-report',
+          label: t('navigation.annual_report'),
+          href: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
+          target: '_blank',
+          icon: '📊'
+        },
+        {
+          key: 'merchandise',
+          label: t('navigation.merchandise'),
+          href: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
+          target: '_blank',
+          icon: '🛍️'
+        },
+        { key: 'partners', label: t('navigation.partners'), href: '/partners', icon: '🤝' },
+        {
+          key: 'forum',
+          label: t('navigation.forum'),
+          href: 'https://github.com/orgs/kaiyuanshe/discussions',
+          target: '_blank',
+          icon: '💬'
+        }
+      ]
+    }
+  ], [t])
+
+  // 渲染菜单项的辅助函数
+  const renderMenuItem = (item: MenuItem): React.ReactNode => {
+    return (
+      <Link
+        key={item.key}
+        href={item.href || '/'}
+        target={item.target}
+      >
+        {item.label}
+      </Link>
+    )
+  }
+
+  // 转换为 Ant Design Dropdown 格式
+  const getDropdownItems = (items: MenuItem[]): Array<{key: string, label: React.ReactNode, children?: Array<{key: string, label: React.ReactNode}>}> => {
+    return items.map(item => ({
+      key: item.key,
+      label: renderMenuItem(item),
+      children: item.children ? getDropdownItems(item.children) : undefined
+    }))
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -82,160 +234,21 @@ export default function Header() {
             </div>
           </Link>
           <nav className={styles.nav}>
-            <Dropdown
-              menu={{
-                items: [
-                  {
-                    key: 'dapps',
-                    label: <Link href="/ecosystem/dapps">{t('navigation.dapps')}</Link>
-                  },
-                  {
-                    key: 'tutorials',
-                    label: <Link href="/ecosystem/tutorials">{t('navigation.tutorials')}</Link>
-                  }
-                ]
-              }}
-              placement="bottom"
-              trigger={['hover']}
-            >
-              <div className={styles.navItem}>
-                <span>{t('navigation.ecosystem')}</span>
-                <ChevronDown className={styles.navIcon} />
-              </div>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: [
-                  { key: 'docs', label: <Link href="/docs">{t('navigation.docs')}</Link> },
-                  {
-                    key: 'guides',
-                    label: (
-                      <Link href="" target="_blank">
-                        {t('navigation.guides')}
-                      </Link>
-                    )
-                  },
-                  {
-                    key: 'codes',
-                    label: (
-                      <Link href="" target="_blank">
-                        {t('navigation.example_code')}
-                      </Link>
-                    )
-                  }
-                ]
-              }}
-              placement="bottom"
-              trigger={['hover']}
-            >
-              <div className={styles.navItem}>
-                <span>{t('navigation.developer_support')}</span>
-                <ChevronDown className={styles.navIcon} />
-              </div>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: [
-                  {
-                    key: 'hackathon',
-                    label: <Link href="/events?type=hackathon">{t('navigation.hackathon')}</Link>
-                  },
-                  {
-                    key: 'workshop',
-                    label: <Link href="/events?type=workshop">{t('navigation.workshop')}</Link>
-                  },
-                  {
-                    key: 'ama',
-                    label: <Link href="/events?type=ama">{t('navigation.ama')}</Link>
-                  },
-                  {
-                    key: 'meetup',
-                    label: <Link href="/events?type=meetup">{t('navigation.meetup')}</Link>
-                  },
-                  { key: 'posts', label: <Link href="/posts">{t('navigation.posts')}</Link> }
-                ]
-              }}
-              placement="bottom"
-              trigger={['hover']}
-            >
-              <div className={styles.navItem}>
-                <span>{t('navigation.community_activities')}</span>
-                <ChevronDown className={styles.navIcon} />
-              </div>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: [{ key: 'blog', label: <Link href="/blogs">{t('navigation.blog')}</Link> }]
-              }}
-              placement="bottom"
-              trigger={['hover']}
-            >
-              <div className={styles.navItem}>
-                <span>{t('navigation.official_resources')}</span>
-                <ChevronDown className={styles.navIcon} />
-              </div>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: [
-                  {
-                    key: 'about',
-                    label: (
-                      <Link
-                        target="_blank"
-                        href="https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db"
-                      >
-                        {t('navigation.about')}
-                      </Link>
-                    )
-                  },
-                  {
-                    key: 'annual-report',
-                    label: (
-                      <Link
-                        target="_blank"
-                        href="https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc"
-                      >
-                        {t('navigation.annual_report')}
-                      </Link>
-                    )
-                  },
-                  {
-                    key: 'merchandise',
-                    label: (
-                      <Link
-                        target="_blank"
-                        href="https://www.xiaohongshu.com/user/profile/6528f512000000002a018253"
-                      >
-                        {t('navigation.merchandise')}
-                      </Link>
-                    )
-                  },
-                  {
-                    key: 'partners',
-                    label: <Link href="/partners">{t('navigation.partners')}</Link>
-                  },
-                  {
-                    key: 'forum',
-                    label: (
-                      <Link
-                        target="_blank"
-                        href="https://github.com/orgs/kaiyuanshe/discussions"
-                      >
-                        {t('navigation.forum')}
-                      </Link>
-                    )
-                  }
-                ]
-              }}
-              placement="bottom"
-              trigger={['hover']}
-            >
-              <div className={styles.navItem}>
-                <span>{t('navigation.about_us')}</span>
-                <ChevronDown className={styles.navIcon} />
-              </div>
-            </Dropdown>
+            {menuSections.map(section => (
+              <Dropdown
+                key={section.key}
+                menu={{
+                  items: getDropdownItems(section.items)
+                }}
+                placement="bottom"
+                trigger={['hover']}
+              >
+                <div className={styles.navItem}>
+                  <span>{section.title}</span>
+                  <ChevronDown className={styles.navIcon} />
+                </div>
+              </Dropdown>
+            ))}
             <LanguageSwitcher />
             {authComponent}
           </nav>
@@ -280,169 +293,34 @@ export default function Header() {
         }}
       >
         <div className={styles.mobileMenuContent}>
-          <div className={styles.mobileMenuSection}>
-            <h3 className={styles.mobileMenuSectionTitle}>{t('navigation.ecosystem')}</h3>
-            <div className={styles.mobileMenuLinks}>
-              <Link
-                href="/testnet"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>🧪</span>
-                <span>{t('mobile.testnet')}</span>
-              </Link>
-              <Link
-                href="/ecosystem/dapps"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>🏗️</span>
-                <span>{t('navigation.dapps')}</span>
-              </Link>
-              <Link
-                href="/ecosystem/tutorials"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>📚</span>
-                <span>{t('navigation.tutorials')}</span>
-              </Link>
-            </div>
-          </div>
+          {menuSections.map(section => {
+            // 为移动端筛选显示的菜单项（排除嵌套子菜单）
+            const displayItems = section.items.filter(item => 
+              !item.children || section.key === 'knowledge' || section.key === 'activities'
+            ).slice(0, section.key === 'governance' ? 5 : section.key === 'honors' ? 4 : undefined)
 
-          <div className={styles.mobileMenuSection}>
-            <h3 className={styles.mobileMenuSectionTitle}>{t('navigation.developer_support')}</h3>
-            <div className={styles.mobileMenuLinks}>
-              <Link
-                href="/docs"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>📖</span>
-                <span>{t('navigation.docs')}</span>
-              </Link>
-              <Link
-                href=""
-                target="_blank"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>⚙️</span>
-                <span>{t('navigation.guides')}</span>
-              </Link>
-              <Link
-                href=""
-                target="_blank"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>💻</span>
-                <span>{t('navigation.example_code')}</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className={styles.mobileMenuSection}>
-            <h3 className={styles.mobileMenuSectionTitle}>{t('navigation.community_activities')}</h3>
-            <div className={styles.mobileMenuLinks}>
-              <Link
-                href="/events?type=hackathon"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>🏆</span>
-                <span>{t('navigation.hackathon')}</span>
-              </Link>
-              <Link
-                href="/events?type=workshop"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>🎯</span>
-                <span>{t('navigation.workshop')}</span>
-              </Link>
-              <Link
-                href="/events?type=ama"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>💬</span>
-                <span>{t('navigation.ama')}</span>
-              </Link>
-
-              <Link
-                href="/events?type=meetup"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>🤝</span>
-                <span>{t('navigation.meetup')}</span>
-              </Link>
-              <Link
-                href="/posts"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>{t('navigation.posts')}</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className={styles.mobileMenuSection}>
-            <h3 className={styles.mobileMenuSectionTitle}>{t('navigation.official_resources')}</h3>
-            <div className={styles.mobileMenuLinks}>
-              <Link
-                href="/blogs"
-                className={styles.mobileMenuLink}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>📝</span>
-                <span>{t('navigation.blog')}</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className={styles.mobileMenuSection}>
-            <h3 className={styles.mobileMenuSectionTitle}>{t('navigation.about_us')}</h3>
-            <div className={styles.mobileMenuLinks}>
-              <Link
-                target="_blank"
-                href="https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db"
-                className={styles.mobileMenuLink}
-              >
-                <span>🏢</span>
-                <span>{t('navigation.about')}</span>
-              </Link>
-              <Link
-                className={styles.mobileMenuLink}
-                target="_blank"
-                href="https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc"
-              >
-                <span>📊</span>
-                <span>{t('navigation.annual_report')}</span>
-              </Link>
-              <Link
-                className={styles.mobileMenuLink}
-                target="_blank"
-                href="https://www.xiaohongshu.com/user/profile/6528f512000000002a018253"
-              >
-                <span>🛍️</span>
-                <span>{t('navigation.merchandise')}</span>
-              </Link>
-              <Link href="/partners" className={styles.mobileMenuLink}>
-                <span>🤝</span>
-                <span>{t('navigation.partners')}</span>
-              </Link>
-              <Link
-                className={styles.mobileMenuLink}
-                target="_blank"
-                href="https://github.com/orgs/kaiyuanshe/discussions"
-              >
-                <span>💬</span>
-                <span>{t('navigation.forum')}</span>
-              </Link>
-            </div>
-          </div>
+            return (
+              <div key={section.key} className={styles.mobileMenuSection}>
+                <h3 className={styles.mobileMenuSectionTitle}>
+                  {section.title}
+                </h3>
+                <div className={styles.mobileMenuLinks}>
+                  {displayItems.map(item => (
+                    <Link
+                      key={item.key}
+                      href={item.href || '/'}
+                      target={item.target}
+                      className={styles.mobileMenuLink}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.icon && <span>{item.icon}</span>}
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
         </div>
       </Drawer>
     </header>

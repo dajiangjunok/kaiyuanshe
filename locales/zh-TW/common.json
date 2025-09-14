@@ -1,37 +1,64 @@
 {
   "navigation": {
-    "home": "首頁",
-    "ecosystem": "生態系統",
-    "dapps": "Dapps 列表",
-    "tutorials": "互動教程",
-    "developer_support": "開發者支持",
-    "docs": "開發文檔",
-    "guides": "開發指南",
-    "example_code": "示例代碼",
-    "community_activities": "社群活動",
-    "hackathon": "黑客松",
-    "workshop": "Workshop",
-    "ama": "AMA",
-    "meetup": "社群聚會",
-    "posts": "社群帖子",
-    "official_resources": "官方資源",
-    "blog": "部落格",
     "about_us": "關於我們",
     "about": "關於我們",
-    "annual_report": "開源社年度報告",
-    "merchandise": "開源社文創商店",
+    "annual_report": "年度報告",
+    "merchandise": "周邊商店",
     "partners": "合作夥伴",
-    "forum": "開源社論壇",
-    "mobile_menu": "導航選單"
+    "forum": "社群論壇",
+    "mobile_menu": "導航選單",
+    "governance": {
+      "title": "社群治理",
+      "governance_overview": "組織架構全景圖",
+      "board": "理事會",
+      "advisory": "顧問委員會",
+      "legal": "法律咨詢委員會",
+      "kcc": "開源社城市社群(KCC)",
+      "formal_members": "正式成員",
+      "election": "換屆選舉",
+      "calendar": "會議日曆",
+      "suggestion_box": "意見箱",
+      "proposal_library": "提案庫"
+    },
+    "honors": {
+      "title": "社群榮譽",
+      "open_source_star": "開源之星",
+      "annual_volunteer": "年度優秀志願者",
+      "coscon_star": "COSCon 之星",
+      "community_cooperation_star": "社群合作之星",
+      "china_open_source_pioneer": "中國開源先鋒",
+      "china_open_source_power_list": "中國開源碼力榜"
+    },
+    "knowledge": {
+      "title": "知識資源",
+      "open_source_library": "開源文庫",
+      "cosc": "中國開源年會(COSC)",
+      "kcc_library": "開源社城市社群(KCC)",
+      "reading_club": "開源讀書會",
+      "original_articles": "原創文章",
+      "translation_articles": "翻譯文章",
+      "all_articles": "全部文章",
+      "archived_articles": "歸檔文章",
+      "china_open_source_annual_report": "中國開源年度報告",
+      "china_open_source_map": "中國開源地圖",
+      "china_public_welfare_map": "中國公益地圖"
+    },
+    "activities": {
+      "title": "活動項目",
+      "wonderful_activities": "精彩活動",
+      "hosted_activities": "主辦活動",
+      "activity_calendar": "活動日曆",
+      "open_source_projects": "開源項目",
+      "open_source_toolbox": "開源百寶箱",
+      "open_hackathon_platform": "開放黑客松平台",
+      "xiaoyuan_qa_bot": "小源問答機器人"
+    }
   },
   "language": {
     "switch": "切換語言",
     "traditional_chinese": "繁體中文",
     "simplified_chinese": "简体中文", 
     "english": "English"
-  },
-  "mobile": {
-    "testnet": "了解測試網"
   },
   "homepage": {
     "hero": {
