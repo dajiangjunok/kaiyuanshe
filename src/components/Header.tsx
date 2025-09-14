@@ -93,8 +93,8 @@ export default function Header() {
           label: t('navigation.activities.wonderful_activities'),
           icon: '🎉',
           children: [
-            { key: 'hosted-activities', label: t('navigation.activities.hosted_activities'), href: '/' },
-            { key: 'activity-calendar', label: t('navigation.activities.activity_calendar'), href: '/' }
+            { key: 'hosted-activities', label: t('navigation.activities.hosted_activities'), href: '/events' },
+            { key: 'activity-calendar', label: t('navigation.activities.activity_calendar'), href: '/events/calendar' }
           ]
         },
         {

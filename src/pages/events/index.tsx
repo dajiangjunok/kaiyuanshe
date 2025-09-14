@@ -303,7 +303,7 @@ export default function EventsPage() {
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.titleSection}>
-            <h1 className={styles.title}>社区活动</h1>
+            <h1 className={styles.title}>精彩活动</h1>
             <p className={styles.subtitle}>发现精彩活动，连接志同道合的人</p>
           </div>
         </div>
