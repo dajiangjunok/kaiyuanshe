@@ -1,13 +1,13 @@
 /* 覆盖 Ant Design Upload 样式 */
 .imageUpload {
-  border: 2px dashed #d1d5db !important;
+  border: 2px dashed var(--border-light) !important;
   border-radius: 0.5rem !important;
-  background-color: #f9fafb !important;
+  background-color: var(--background-tertiary) !important;
   transition: all 0.2s !important;
 }
 
 .imageUpload:hover {
-  border-color: #6366F1 !important;
+  border-color: var(--primary-600) !important;
   background-color: #faf5ff !important;
 }
 
@@ -22,19 +22,19 @@
 .uploadIconSvg {
   width: 3rem;
   height: 3rem;
-  color: #6366F1;
+  color: var(--primary-600);
 }
 
 .uploadText {
   font-size: 1rem !important;
   font-weight: 500 !important;
-  color: #374151 !important;
+  color: var(--foreground-secondary) !important;
   margin-bottom: 0.5rem !important;
 }
 
 .uploadHint {
   font-size: 0.875rem !important;
-  color: #6b7280 !important;
+  color: var(--foreground-muted) !important;
   margin: 0 !important;
 }
 
@@ -45,7 +45,7 @@
 
 .imageUpload .ant-upload-list-item {
   border-radius: 0.5rem !important;
-  border: 1px solid #e5e7eb !important;
+  border: 1px solid var(--border) !important;
 }
 
 .imageUpload .ant-upload-list-item-thumbnail img {
@@ -57,13 +57,13 @@
   position: relative;
   border-radius: 0.75rem;
   overflow: hidden;
-  background-color: #f9fafb;
-  border: 2px solid #e5e7eb;
+  background-color: var(--background-tertiary);
+  border: 2px solid var(--border);
   transition: all 0.2s;
 }
 
 .imagePreviewContainer:hover {
-  border-color: #6366F1;
+  border-color: var(--primary-600);
 }
 
 .previewImage {
@@ -133,7 +133,7 @@
 .imageActionIcon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
 }
 
 .imageActionButton.removeButton:hover .imageActionIcon {
@@ -158,20 +158,20 @@
 .imageIcon {
   width: 2rem;
   height: 2rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   margin-bottom: 0.5rem;
 }
 
 .imageText {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--foreground-secondary);
   margin: 0;
 }
 
 .imageHint {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   margin: 0.25rem 0 0 0;
   line-height: 1.4;
 }
@@ -180,14 +180,14 @@
   width: 2rem;
   height: 2rem;
   border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid #6366F1;
+  border-top: 3px solid var(--primary-600);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 0.5rem;
 }
 
 .loadingText {
-  color: #6366F1;
+  color: var(--primary-600);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -225,14 +225,14 @@
   height: 200px !important;
   /* border: 2px dashed #d1d5db !important; */
   border-radius: 0.5rem !important;
-  background-color: #f9fafb !important;
+  background-color: var(--background-tertiary) !important;
   cursor: pointer !important;
   transition: all 0.2s !important;
   padding: 1rem !important;
 }
 
 .imagePreview:hover {
-  border-color: #6366F1 !important;
+  border-color: var(--primary-600) !important;
   background-color: #faf5ff !important;
 }
 
@@ -247,7 +247,7 @@
 .imageIcon {
   width: 2rem;
   height: 2rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   margin-bottom: 0.5rem;
 }
 

@@ -79,7 +79,7 @@
 }
 
 .prose blockquote {
-  border-left: 4px solid #8b5cf6;
+  border-left: 4px solid var(--primary-500);
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;
@@ -115,12 +115,12 @@
 }
 
 .prose a {
-  color: #8b5cf6;
+  color: var(--primary-500);
   text-decoration: none;
 }
 
 .prose a:hover {
-  color: #1d4ed8;
+  color: var(--primary-700);
   text-decoration: underline;
 }
 

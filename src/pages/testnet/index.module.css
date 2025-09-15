@@ -66,7 +66,7 @@
 }
 
 .titleGradient {
-    background: linear-gradient(135deg, #6366F1 0%, #6E54FF 100%);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -88,7 +88,7 @@
 }
 
 .primaryButton {
-    background: linear-gradient(135deg, #6366F1 0%, #6E54FF 100%) !important;
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary) 100%) !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
     transition: all 0.3s ease !important;
@@ -107,8 +107,8 @@
 }
 
 .secondaryButton:hover {
-    border-color: #6366F1;
-    color: #6366F1;
+    border-color: var(--primary-600);
+    color: var(--primary-600);
     background: rgba(139, 92, 246, 0.05);
 }
 
@@ -142,7 +142,7 @@
     }
 
     .externalIcon:hover {
-        color: #6366F1;
+        color: var(--primary-600);
     }
 }
 
@@ -155,7 +155,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #6366F1, #6E54FF);
+    background: linear-gradient(90deg, var(--primary-600), var(--primary));
 }
 
 .statusCard:hover {
@@ -168,7 +168,7 @@
 }
 
 .statusCardPurple::before {
-    background: linear-gradient(90deg, #6366F1, #6E54FF);
+    background: linear-gradient(90deg, var(--primary-600), var(--primary));
 }
 
 .statusCardBlue::before {
@@ -198,7 +198,7 @@
     align-items: center;
     justify-content: center;
     background: rgba(139, 92, 246, 0.1);
-    color: #6366F1;
+    color: var(--primary-600);
     position: relative;
     z-index: 2;
 }
@@ -219,8 +219,8 @@
 }
 
 .validatorTag {
-    border-color: #6366F1;
-    color: #6366F1;
+    border-color: var(--primary-600);
+    color: var(--primary-600);
     font-size: 10px;
 }
 
@@ -285,7 +285,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #6366F1, #6E54FF);
+    background: linear-gradient(135deg, var(--primary-600), var(--primary));
     color: white;
 }
 
@@ -301,7 +301,7 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 12px;
-    color: #6366F1;
+    color: var(--primary-600);
 }
 
 .phaseText {
@@ -309,7 +309,7 @@
 }
 
 .phaseTime {
-    color: #6366F1;
+    color: var(--primary-600);
 }
 
 .launchInfo {
@@ -321,7 +321,7 @@
 .launchDate {
     font-size: 16px;
     font-weight: 600;
-    color: #6366F1;
+    color: var(--primary-600);
 }
 
 .phaseTag {
@@ -396,12 +396,12 @@
 }
 
 .copyButton:hover {
-    border-color: #6366F1;
-    color: #6366F1;
+    border-color: var(--primary-600);
+    color: var(--primary-600);
 }
 
 .walletButton {
-    background: linear-gradient(135deg, #6366F1 0%, #6E54FF 100%) !important;
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary) 100%) !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
     transition: all 0.3s ease !important;
@@ -428,7 +428,7 @@
 }
 
 .faucetItem:hover {
-    border-color: #6366F1;
+    border-color: var(--primary-600);
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
     transform: translateY(-2px);
 }
@@ -463,8 +463,8 @@
     border-radius: 12px;
     font-size: 10px;
     font-weight: 500;
-    color: #6366F1;
-    border-color: #6366F1;
+    color: var(--primary-600);
+    border-color: var(--primary-600);
 }
 
 .communityTag,
@@ -475,7 +475,7 @@
 }
 
 .faucetButton {
-    background: #6366F1 !important;
+    background: var(--primary-600) !important;
     border: none !important;
     margin-top: 10px;
     border-radius: 8px !important;
@@ -493,8 +493,8 @@
 }
 
 .faucetButtonSecondary:hover {
-    border-color: #6366F1;
-    color: #6366F1;
+    border-color: var(--primary-600);
+    color: var(--primary-600);
 }
 
 .ecosystemCard {
@@ -512,7 +512,7 @@
 }
 
 .projectCard:hover {
-    border-color: #6366F1;
+    border-color: var(--primary-600);
     box-shadow: 0 6px 25px rgba(139, 92, 246, 0.15);
     transform: translateY(-4px);
 }
@@ -572,12 +572,12 @@
     font-size: 11px;
     padding: 0;
     height: auto;
-    color: #6366F1;
+    color: var(--primary-600);
 }
 
 .ctaSection {
     margin: 60px calc(-50vw + 50%) 0 calc(-50vw + 50%);
-    background: linear-gradient(135deg, #6366F1 0%, #6E54FF 50%, #4338CA 100%);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary) 50%, #4338CA 100%);
     padding: 80px 24px;
     position: relative;
     overflow: hidden;
@@ -676,7 +676,7 @@
 .ctaWhiteButton {
     background: white !important;
     border: none !important;
-    color: #6366F1 !important;
+    color: var(--primary-600) !important;
     font-weight: 500 !important;
     padding: 0 32px !important;
     height: 48px !important;
@@ -687,7 +687,7 @@
 
 .ctaWhiteButton:hover {
     background: #f8fafc !important;
-    color: #6E54FF !important;
+    color: var(--primary) !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
 }
@@ -946,12 +946,12 @@
 .tutorialsButton {
     font-size: 12px;
     font-weight: 500;
-    color: #6366F1;
+    color: var(--primary-600);
     text-decoration: none;
 }
 
 .tutorialsButton:hover {
-    color: #6366F1;
+    color: var(--primary-600);
 }
 
 .cardHeaderWithButton {
@@ -971,15 +971,15 @@
 .viewMoreButton {
     font-size: 14px;
     font-weight: 500;
-    color: #6366F1;
+    color: var(--primary-600);
     text-decoration: none;
     padding: 6px 12px;
-    border: 1px solid #6366F1;
+    border: 1px solid var(--primary-600);
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .viewMoreButton:hover {
-    background: #6366F1;
+    background: var(--primary-600);
     color: #fff;
 }

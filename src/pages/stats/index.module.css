@@ -25,7 +25,7 @@
 .titleIcon {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: #8b5cf6;
+  background-color: var(--primary-500);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -228,13 +228,13 @@
 }
 
 .dayButtonToday {
-  background-color: #ede9fe;
-  color: #7c3aed;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
   font-weight: 600;
 }
 
 .dayButtonSelected {
-  background-color: #8b5cf6;
+  background-color: var(--primary-500);
   color: #fff;
 }
 
@@ -556,7 +556,7 @@
   width: 3rem;
   height: 3rem;
   border: 2px solid #e5e7eb;
-  border-top: 2px solid #8b5cf6;
+  border-top: 2px solid var(--primary-500);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
@@ -579,7 +579,7 @@
 
 .retryButton {
   padding: 0.5rem 1rem;
-  background-color: #8b5cf6;
+  background-color: var(--primary-500);
   color: #fff;
   border: none;
   border-radius: 0.5rem;
@@ -588,7 +588,7 @@
 }
 
 .retryButton:hover {
-  background-color: #7c3aed;
+  background-color: var(--primary-700);
 }
 
 /* 空状态 */

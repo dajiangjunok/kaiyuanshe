@@ -25,7 +25,7 @@
 }
 
 .backBtn {
-  color: #8b5cf6 !important;
+  color: var(--primary-500) !important;
   border: none !important;
   padding: 0.5rem 1rem;
   display: flex;
@@ -38,7 +38,7 @@
 
 .backBtn:hover {
   background-color: #f3f4f6 !important;
-  color: #7c3aed !important;
+  color: var(--primary-700) !important;
 }
 
 /* 活动信息概览 */
@@ -106,7 +106,7 @@
 }
 
 .metaItem svg {
-  color: #8b5cf6;
+  color: var(--primary-500);
 }
 
 /* 表单标题 */
@@ -174,7 +174,7 @@
 }
 
 .textarea:focus {
-  border-color: #8b5cf6 !important;
+  border-color: var(--primary-500) !important;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
 }
 
@@ -186,12 +186,12 @@
 }
 
 .input:focus {
-  border-color: #8b5cf6 !important;
+  border-color: var(--primary-500) !important;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
 }
 
 .ant-input-prefix {
-  color: #8b5cf6;
+  color: var(--primary-500);
 }
 
 /* 媒体提示 */
@@ -230,7 +230,7 @@
 }
 
 .submitButton {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700)) !important;
   border: none !important;
   border-radius: 0.5rem !important;
   height: 3rem !important;
@@ -244,7 +244,7 @@
 }
 
 .submitButton:hover {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  background: linear-gradient(135deg, var(--primary-700), #6d28d9) !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3) !important;
 }

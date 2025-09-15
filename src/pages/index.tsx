@@ -81,7 +81,7 @@ export default function Home() {
     const scrollContainer = scrollRef.current
 
     const scroll = () => {
-      if (scrollContainer  ) {
+      if (scrollContainer) {
         scrollContainer.scrollLeft += 0.5
         if (
           scrollContainer.scrollLeft >=
@@ -159,20 +159,6 @@ export default function Home() {
           <div
             className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}
           >
-            <h1 className={styles.heroTitle}>
-              <span className={styles.heroTitleSecondary}>{t('homepage.hero.title')}</span>
-            </h1>
-
-            <div className={styles.titleDecoration}>
-              <div className={styles.decorationGradient}></div>
-              <div className={styles.decorationLine}></div>
-            </div>
-            <p className={styles.heroSubtitle}>
-              <span className={styles.heroHighlight}>
-                {t('homepage.hero.subtitle')}
-              </span>
-            </p>
-
             <div className={styles.heroGallery}>
               <button
                 className={`${styles.galleryNavigation} ${styles.galleryNavPrev}`}
@@ -183,13 +169,12 @@ export default function Home() {
               </button>
 
               <div className={styles.galleryContainer}>
-                {/* 示例图片，可替换为 DevPlaza 相关活动图 */}
                 <div className={styles.galleryImage}>
                   <Image
                     src="/img/rotation/activity1.png"
                     alt="Dev"
-                    width={300}
-                    height={195}
+                    width={500}
+                    height={325}
                     style={{ borderRadius: '14px' }}
                     preview={{ mask: false }}
                   />
@@ -198,8 +183,8 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity2.png"
                     alt="中国开源年会2024"
-                    width={300}
-                    height={195}
+                    width={500}
+                    height={325}
                     style={{ borderRadius: '14px' }}
                     preview={{ mask: false }}
                   />
@@ -208,8 +193,8 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity3.png"
                     alt="2024第八届中国开源年会"
-                    width={300}
-                    height={195}
+                    width={500}
+                    height={325}
                     style={{ borderRadius: '14px' }}
                     preview={{ mask: false }}
                   />
@@ -218,8 +203,8 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity4.png"
                     alt="中国开运啊"
-                    width={300}
-                    height={195}
+                    width={500}
+                    height={325}
                     style={{ borderRadius: '14px' }}
                     preview={{ mask: false }}
                   />
@@ -228,8 +213,8 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity5.png"
                     alt="coscup2024大陆讲师团"
-                    width={300}
-                    height={195}
+                    width={500}
+                    height={325}
                     style={{ borderRadius: '14px' }}
                     preview={{ mask: false }}
                   />
@@ -245,15 +230,12 @@ export default function Home() {
               </button>
             </div>
 
-            <div className={styles.heroButtons}>
-              <Link href="/about" className={styles.heroPrimaryButton}>
-                <Globe className={styles.buttonIcon} />
-                {t('homepage.hero.learnMore')}
-              </Link>
-              <Link href="/events" className={styles.heroSecondaryButton}>
-                <Users className={styles.buttonIcon} />
-                {t('homepage.hero.joinCommunity')}
-              </Link>
+            <div>
+              <p className={styles.heroSubtitle}>
+                <span className={styles.heroHighlight}>
+                  {t('homepage.hero.subtitle')}
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -266,7 +248,9 @@ export default function Home() {
       <section className={styles.milestones}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{t('homepage.milestones.title')}</h2>
+            <h2 className={styles.sectionTitle}>
+              {t('homepage.milestones.title')}
+            </h2>
           </div>
         </div>
       </section>
@@ -275,7 +259,9 @@ export default function Home() {
       <section className={styles.features}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{t('homepage.features.title')}</h2>
+            <h2 className={styles.sectionTitle}>
+              {t('homepage.features.title')}
+            </h2>
             <p className={styles.sectionDescription}>
               {t('homepage.features.description')}
             </p>
@@ -303,7 +289,9 @@ export default function Home() {
       <section className={styles.resources}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{t('homepage.resources.title')}</h2>
+            <h2 className={styles.sectionTitle}>
+              {t('homepage.resources.title')}
+            </h2>
             <p className={styles.sectionDescription}>
               {t('homepage.resources.description')}
             </p>
@@ -311,21 +299,27 @@ export default function Home() {
           <div className={styles.resourcesGrid}>
             <div className={styles.resourceCard}>
               <BookOpen className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>{t('homepage.resources.tutorials.title')}</h3>
+              <h3 className={styles.resourceTitle}>
+                {t('homepage.resources.tutorials.title')}
+              </h3>
               <p className={styles.resourceDesc}>
                 {t('homepage.resources.tutorials.description')}
               </p>
             </div>
             <div className={styles.resourceCard}>
               <Code className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>{t('homepage.resources.codeExamples.title')}</h3>
+              <h3 className={styles.resourceTitle}>
+                {t('homepage.resources.codeExamples.title')}
+              </h3>
               <p className={styles.resourceDesc}>
                 {t('homepage.resources.codeExamples.description')}
               </p>
             </div>
             <div className={styles.resourceCard}>
               <Globe className={styles.resourceIcon} />
-              <h3 className={styles.resourceTitle}>{t('homepage.resources.ecosystemGuide.title')}</h3>
+              <h3 className={styles.resourceTitle}>
+                {t('homepage.resources.ecosystemGuide.title')}
+              </h3>
               <p className={styles.resourceDesc}>
                 {t('homepage.resources.ecosystemGuide.description')}
               </p>
@@ -340,12 +334,8 @@ export default function Home() {
       <section className={styles.cta}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>
-              {t('homepage.cta.title')}
-            </h2>
-            <p className={styles.ctaDesc}>
-              {t('homepage.cta.description')}
-            </p>
+            <h2 className={styles.ctaTitle}>{t('homepage.cta.title')}</h2>
+            <p className={styles.ctaDesc}>{t('homepage.cta.description')}</p>
             <div className={styles.ctaButtons}>
               <Link href="/signup" className={styles.ctaPrimaryButton}>
                 <Rocket className={styles.buttonIcon} />

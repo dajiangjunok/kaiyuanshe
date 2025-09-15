@@ -159,8 +159,8 @@
 
 .emptyState p {
   font-size: 14px;
-  color: #6E54FF;
-  border-color: #6E54FF;
+  color: var(--primary);
+  border-color: var(--primary);
   border-radius: 12px;
   padding: 1rem;
   margin-top: 20px;
@@ -343,7 +343,7 @@
 
 .postDescription a {
   pointer-events: none;
-  color: #8b5cf6;
+  color: var(--primary-500);
   cursor: default;
 }
 

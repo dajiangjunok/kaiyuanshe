@@ -60,7 +60,7 @@
 .activityCard:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    border-color: rgba(99, 102, 241, 0.2);
+    border-color: rgba(30, 58, 138, 0.2);
 }
 
 .activityCardHeader {
@@ -140,7 +140,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #6E54FF;
+    color: var(--primary);
     font-size: 0.875rem;
     margin-bottom: 0.75rem;
 }
@@ -163,7 +163,7 @@
 
 .activityButton {
     width: 100%;
-    background: #6E54FF;
+    background: var(--primary);
     color: white;
     border: none;
     padding: 0.75rem 1rem;
@@ -174,15 +174,15 @@
 }
 
 .activityButton:hover {
-    background: #5b47d1;
+    background: var(--primary-700);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(110, 84, 255, 0.3);
+    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
 }
 
 .moreButton {
     background: transparent;
-    color: #6366F1;
-    border: 1px solid #6366F1;
+    color: var(--primary-600);
+    border: 1px solid var(--primary-600);
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 500;
@@ -194,10 +194,10 @@
 }
 
 .moreButton:hover {
-    background: #6366F1;
+    background: var(--primary-600);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
 }
 
 .sectionFooter {

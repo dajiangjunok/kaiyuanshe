@@ -5,7 +5,7 @@
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #6366f1 0%, #6366f1 50%, #c084fc 100%);
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-600) 50%, var(--primary-400) 100%);
   padding: 4rem 0;
   color: white;
 }
@@ -170,8 +170,8 @@
 
 .searchInput:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
 
 .categoryFilters {
@@ -194,14 +194,14 @@
 }
 
 .categoryButton:hover {
-  border-color: var(--category-color, #6366f1);
-  color: var(--category-color, #6366f1);
+  border-color: var(--category-color, var(--primary-600));
+  color: var(--category-color, var(--primary-600));
   transform: translateY(-1px);
 }
 
 .categoryButton.active {
-  background: var(--category-color, #6366f1);
-  border-color: var(--category-color, #6366f1);
+  background: var(--category-color, var(--primary-600));
+  border-color: var(--category-color, var(--primary-600));
   color: white;
 }
 
@@ -337,9 +337,9 @@
 }
 
 .tag {
-  color: #6366f1;
+  color: var(--primary-600);
   padding: 2px 6px;
-  border-color: #6366f1;
+  border-color: var(--primary-600);
   border-radius: 4px;
   font-size: 12px;
   line-height: 1;
@@ -364,12 +364,12 @@
 .tutorialsButton {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #6366f1;
+  color: var(--primary-600);
   text-decoration: none;
 }
 
 .tutorialsButton:hover {
-  color: #6366f1;
+  color: var(--primary-600);
   font-size: 0.9rem;
 }
 
@@ -412,7 +412,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #f3f4f6;
-  border-top: 3px solid #6366f1;
+  border-top: 3px solid var(--primary-600);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

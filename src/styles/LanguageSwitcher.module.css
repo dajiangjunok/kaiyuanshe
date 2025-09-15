@@ -15,11 +15,11 @@
 }
 
 .languageSwitcher:hover {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
-  color: #6366f1;
+  background: rgba(30, 58, 138, 0.1);
+  border-color: rgba(30, 58, 138, 0.3);
+  color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
 }
 
 .globeIcon {
@@ -50,7 +50,7 @@
 .languageText {
   font-size: 14px;
   font-weight: 500;
-  color: #374151;
+  color: var(--foreground-secondary);
 }
 
 .activeIndicator {

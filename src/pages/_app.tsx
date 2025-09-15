@@ -16,7 +16,7 @@ dayjs.locale('zh-cn');
 
 const customTheme = {
   token: {
-    colorPrimary: '#6E54FF',
+    colorPrimary: '#1E3A8A',
   },
 };
 

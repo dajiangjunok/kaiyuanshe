@@ -32,7 +32,7 @@
 }
 
 .titleIcon {
-  color: #6366f1;
+  color: var(--primary-600);
 }
 
 .subtitle {
@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #8b5cf6;
+  background-color: var(--primary-500);
   color: white;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -57,7 +57,7 @@
 }
 
 .addTutorialButton:hover {
-  background-color: #7c3aed;
+  background-color: var(--primary-700);
   color: white;
   transform: translateY(-1px);
 }
@@ -99,7 +99,7 @@
 }
 
 .filterIcon {
-  color: #6366f1;
+  color: var(--primary-600);
 }
 
 .filterLabel {
@@ -210,7 +210,7 @@
 }
 
 .dappName {
-  color: #6366f1;
+  color: var(--primary-600);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -375,8 +375,8 @@
 
 .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper-focused {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
 
 .ant-select-selector {
@@ -386,8 +386,8 @@
 }
 
 .ant-select-focused .ant-select-selector {
-  border-color: #6366f1 !important;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+  border-color: var(--primary-600) !important;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1) !important;
 }
 
 /* 分页器样式 */
@@ -405,12 +405,12 @@
 }
 
 .ant-pagination-item:hover {
-  border-color: #6366f1 !important;
+  border-color: var(--primary-600) !important;
 }
 
 .ant-pagination-item-active {
-  background-color: #6366f1 !important;
-  border-color: #6366f1 !important;
+  background-color: var(--primary-600) !important;
+  border-color: var(--primary-600) !important;
 }
 
 .ant-pagination-item-active a {
@@ -426,7 +426,7 @@
 
 .ant-pagination-prev:hover,
 .ant-pagination-next:hover {
-  border-color: #6366f1 !important;
+  border-color: var(--primary-600) !important;
 }
 
 .ant-pagination-total-text {

@@ -1,8 +1,8 @@
 /* 基础布局 */
 .homepage {
   min-height: 100vh;
-  background: #f8fafc;
-  color: #1f2937;
+  background: var(--background-secondary);
+  color: var(--foreground);
   position: relative;
   overflow-x: hidden;
 }
@@ -44,7 +44,7 @@
   position: relative;
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@
 .logoGlow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   border-radius: 0.75rem;
   filter: blur(10px);
   opacity: 0.5;
@@ -71,7 +71,7 @@
 .logoTitle {
   font-size: 1.5rem;
   font-weight: bold;
-  background: linear-gradient(135deg, #1f2937, #6E54FF);
+  background: linear-gradient(135deg, var(--foreground), var(--primary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -87,13 +87,13 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #374151;
+  color: var(--foreground-secondary);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .navItem:hover {
-  color: #6E54FF;
+  color: var(--primary);
   transform: scale(1.05);
 }
 
@@ -103,7 +103,7 @@
 }
 
 .navButton {
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -128,7 +128,7 @@
   right: 0;
   background: transparent;
   /* 完全透明背景 */
-  color: #1f2937;
+  color: var(--foreground);
   padding: 0.75rem 0;
   z-index: 90;
   /* 确保在header下面但在其他内容上面 */
@@ -162,7 +162,7 @@
 }
 
 .newsBadge {
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   color: white;
   border: 1px solid rgba(124, 58, 237, 0.3);
   padding: 0.25rem 0.75rem;
@@ -177,7 +177,7 @@
 .newsText {
   font-size: 0.875rem;
   flex-shrink: 0;
-  color: #1f2937;
+  color: var(--foreground);
   font-weight: 600;
   /* 增加字重以提高可读性 */
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
@@ -297,7 +297,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: #6366F1;
+  background: var(--primary-600);
   border-radius: 50%;
   opacity: 0.2;
   animation: pulse 2s infinite;
@@ -325,7 +325,7 @@
   display: inline-block;
   background: rgba(110, 84, 255, 0.15);
   border: 1px solid rgba(110, 84, 255, 0.3);
-  color: #6E54FF;
+  color: var(--primary);
   padding: 0.5rem 1rem;
   border-radius: 16px;
   font-size: 0.875rem;
@@ -378,7 +378,7 @@
 
 
 .heroTitlePrimary {
-  background: linear-gradient(135deg, #1f2937, #6E54FF, #3b82f6);
+  background: linear-gradient(135deg, var(--foreground), var(--primary), #3b82f6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -408,7 +408,7 @@
   height: 80px;
   left: 0;
   top: 0;
-  background: linear-gradient(180deg, rgba(110, 84, 255, 0) 0%, #6E54FF 100%);
+  background: linear-gradient(180deg, rgba(30, 58, 138, 0) 0%, var(--primary) 100%);
   opacity: 0.5;
 }
 
@@ -418,7 +418,7 @@
   height: 8px;
   left: 0;
   top: 72px;
-  background: #6E54FF;
+  background: var(--primary);
 }
 
 .heroSubtitle {
@@ -455,7 +455,7 @@
 }
 
 .heroPrimaryButton {
-  background: #6E54FF;
+  background: var(--primary);
   color: white !important;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -473,7 +473,7 @@
 }
 
 .heroPrimaryButton:hover {
-  background: #5b47d1;
+  background: var(--primary-700);
   color: white !important;
   box-shadow: 0 6px 16px rgba(110, 84, 255, 0.4);
   transform: translateY(-1px);
@@ -483,7 +483,7 @@
 
 .heroSecondaryButton {
   background: rgba(255, 255, 255, 0.9);
-  color: #6E54FF;
+  color: var(--primary);
   border: 1px solid rgba(110, 84, 255, 0.2);
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
@@ -500,10 +500,10 @@
 
 .heroSecondaryButton:hover {
   background: rgba(255, 255, 255, 1);
-  border-color: #6E54FF;
+  border-color: var(--primary);
   box-shadow: 0 6px 16px rgba(110, 84, 255, 0.25);
   transform: translateY(-1px);
-  color: #5b47d1;
+  color: var(--primary-700);
 }
 
 .buttonIcon {
@@ -529,11 +529,11 @@
 }
 
 .heroSecondaryButton .buttonIcon {
-  color: #6E54FF;
+  color: var(--primary);
 }
 
 .heroSecondaryButton:hover .buttonIcon {
-  color: #5b47d1;
+  color: var(--primary-700);
 }
 
 /* Hero Gallery */
@@ -612,14 +612,14 @@
   }
 
   .galleryImage {
-    min-width: 280px;
+    min-width: 480px;
   }
 
   .galleryImage img,
   .galleryImage :global(.ant-image),
   .galleryImage :global(.ant-image img) {
-    width: 280px;
-    height: 182px;
+    width: 100%;
+    height: 312px;
   }
 
   .heroButtons {
@@ -670,12 +670,12 @@
 .galleryNavIcon {
   width: 20px;
   height: 20px;
-  color: #6E54FF;
+  color: var(--primary);
   transition: all 0.3s ease;
 }
 
 .galleryNavigation:hover .galleryNavIcon {
-  color: #5b47d1;
+  color: var(--primary-700);
 }
 
 /* 在触摸设备上隐藏导航按钮 */
@@ -697,7 +697,7 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   position: relative;
   opacity: 1;
-  min-width: 300px;
+  min-width: 500px;
 }
 
 .galleryImage:hover {
@@ -710,8 +710,8 @@
 .galleryImage img,
 .galleryImage :global(.ant-image),
 .galleryImage :global(.ant-image img) {
-  width: 300px;
-  height: 195px;
+    width: 100%;
+  height: 325px;
   object-fit: cover;
   display: block;
   border-radius: 14px;
@@ -828,14 +828,14 @@
   }
 
   .galleryImage {
-    min-width: 200px;
+    min-width: 334px;
   }
 
   .galleryImage img,
   .galleryImage :global(.ant-image),
   .galleryImage :global(.ant-image img) {
-    width: 200px;
-    height: 130px;
+    width: 334px;
+    height: 217px;
   }
 
 
@@ -909,14 +909,14 @@
   }
 
   .galleryImage {
-    min-width: 160px;
+    min-width: 267px;
   }
 
   .galleryImage img,
   .galleryImage :global(.ant-image),
   .galleryImage :global(.ant-image img) {
-    width: 100%;
-    height: 104px;
+    width: 267px;
+    height: 173px;
   }
 
   .heroButtons {
@@ -981,7 +981,7 @@
   padding: 0.75rem;
   border-radius: 50%;
   background: #f3e8ff;
-  color: #6E54FF;
+  color: var(--primary);
   transition: transform 0.3s ease;
 }
 
@@ -997,17 +997,17 @@
 .statValue {
   font-size: 1.875rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
 }
 
 .statItem:hover .statValue {
-  color: #6E54FF;
+  color: var(--primary);
 }
 
 .statLabel {
-  color: #6b7280;
+  color: var(--foreground-muted);
 }
 
 /* Section Headers */
@@ -1019,13 +1019,13 @@
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 1rem;
 }
 
 .sectionDescription {
   font-size: 1.25rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   max-width: 48rem;
   margin: 0 auto;
   line-height: 1.6;
@@ -1039,7 +1039,7 @@
 /* Features Section */
 .features {
   padding: 5rem 1rem;
-  background: #f8fafc;
+  background: var(--background-secondary);
 }
 
 .featuresGrid {
@@ -1091,7 +1091,7 @@
   padding: 1rem;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(110, 84, 255, 0.1), rgba(99, 102, 241, 0.08));
-  color: #6E54FF;
+  color: var(--primary);
   margin-bottom: 1rem;
   transition: all 0.3s ease;
 }
@@ -1109,12 +1109,12 @@
 .featureTitle {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 0.5rem;
 }
 
 .featureDescription {
-  color: #6b7280;
+  color: var(--foreground-muted);
   line-height: 1.6;
 }
 
@@ -1192,15 +1192,15 @@
 
 .activityBadgeInactive {
   background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  color: var(--foreground-secondary);
+  border: 1px solid var(--border-light);
 }
 
 .activityParticipants {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   font-size: 0.875rem;
 }
 
@@ -1212,12 +1212,12 @@
 .activityTitle {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 0.5rem;
 }
 
 .activityDescription {
-  color: #6b7280;
+  color: var(--foreground-muted);
   line-height: 1.6;
 }
 
@@ -1233,14 +1233,14 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   font-size: 0.875rem;
   margin-bottom: 0.75rem;
 }
 
 .activityButton {
   width: 100%;
-  background: #374151;
+  background: var(--foreground-secondary);
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -1251,14 +1251,14 @@
 }
 
 .activityButton:hover {
-  background: #374151;
+  background: var(--foreground-secondary);
   transform: translateY(-1px);
 }
 
 .moreButton {
   background: transparent;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  color: var(--foreground-secondary);
+  border: 1px solid var(--border-light);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 500;
@@ -1277,7 +1277,7 @@
 /* Milestones Section */
 .milestones {
   padding: 5rem 1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background) 100%);
 }
 
 .timeline {
@@ -1293,8 +1293,8 @@
   bottom: 0;
   width: 5px;
   background: linear-gradient(to bottom,
-      #6E54FF 0%,
-      #6366F1 35%,
+      var(--primary) 0%,
+      var(--primary-600) 35%,
       #8B5CF6 65%,
       #a78bfa 100%);
   border-radius: 3px;
@@ -1370,7 +1370,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #6E54FF;
+  color: var(--primary);
   font-weight: 600;
   font-size: 0.875rem;
   background: linear-gradient(135deg, rgba(110, 84, 255, 0.08), rgba(99, 102, 241, 0.06));
@@ -1390,7 +1390,7 @@
 .milestoneTitle {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 0.8rem;
   transition: all 0.3s ease;
   letter-spacing: -0.01em;
@@ -1400,15 +1400,15 @@
 }
 
 .milestoneContent:hover .milestoneTitle {
-  color: #6E54FF;
+  color: var(--primary);
 }
 
 .milestoneContent:hover .milestoneDescription {
-  color: #374151;
+  color: var(--foreground-secondary);
 }
 
 .milestoneDescription {
-  color: #6b7280;
+  color: var(--foreground-muted);
   line-height: 1.65;
   font-size: 1rem;
   max-width: 420px;
@@ -1439,7 +1439,7 @@
   width: 4.2rem;
   height: 4.2rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6E54FF 0%, #6366F1 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 50%, var(--primary-500) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1473,7 +1473,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6E54FF, #a78bfa);
+  background: linear-gradient(135deg, var(--primary), var(--primary-400));
   filter: blur(10px);
   opacity: 0.5;
   animation: pulse 3s infinite;
@@ -1532,7 +1532,7 @@
 /* Resources Section */
 .resources {
   padding: 5rem 1rem;
-  background: #f8fafc;
+  background: var(--background-secondary);
 }
 
 .resourcesGrid {
@@ -1584,7 +1584,7 @@
   padding: 1rem;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(110, 84, 255, 0.1), rgba(99, 102, 241, 0.08));
-  color: #6E54FF;
+  color: var(--primary);
   margin-bottom: 1rem;
   transition: all 0.3s ease;
 }
@@ -1602,12 +1602,12 @@
 .resourceTitle {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 0.5rem;
 }
 
 .resourceDescription {
-  color: #6b7280;
+  color: var(--foreground-muted);
   line-height: 1.6;
 }
 
@@ -1617,7 +1617,7 @@
 
 .resourceButton {
   width: 100%;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -1628,7 +1628,7 @@
 }
 
 .resourceButton:hover {
-  background: linear-gradient(135deg, #5b47d1, #4f46e5);
+  background: linear-gradient(135deg, var(--primary-700), var(--primary-600));
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(110, 84, 255, 0.2);
 }
@@ -1636,7 +1636,7 @@
 /* Members Section */
 .members {
   padding: 5rem 1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background) 100%);
 }
 
 .membersContainer {
@@ -1650,7 +1650,7 @@
   top: 0;
   bottom: 0;
   width: 5rem;
-  background: linear-gradient(to right, #f8fafc, transparent);
+  background: linear-gradient(to right, var(--background-secondary), transparent);
   z-index: 10;
 }
 
@@ -1660,7 +1660,7 @@
   top: 0;
   bottom: 0;
   width: 5rem;
-  background: linear-gradient(to left, #f8fafc, transparent);
+  background: linear-gradient(to left, var(--background-secondary), transparent);
   z-index: 10;
 }
 
@@ -1701,7 +1701,7 @@
   overflow: hidden;
   border-radius: 50%;
   cursor: pointer;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border);
   /* 更细更浅的灰色边框 */
   background: #fff;
   box-shadow: none;
@@ -1711,7 +1711,7 @@
 }
 
 .avatar:hover {
-  border-color: #d1d5db;
+  border-color: var(--border-light);
   box-shadow:
     0 4px 16px rgba(100, 116, 139, 0.15),
     0 2px 8px rgba(31, 41, 55, 0.08);
@@ -1726,7 +1726,7 @@
 }
 
 .memberName {
-  color: #1f2937;
+  color: var(--foreground);
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
@@ -1734,7 +1734,7 @@
 
 .memberTwitter {
   margin-top: 10px;
-  color: #6b7280;
+  color: var(--foreground-muted);
   font-size: 1rem;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1742,17 +1742,17 @@
 }
 
 .memberItem:hover .memberName {
-  color: #6E54FF;
+  color: var(--primary);
 }
 
 .memberItem:hover .memberTwitter {
-  color: #6366F1;
+  color: var(--primary-600);
 }
 
 /* CTA Section */
 .cta {
   padding: 5rem 1rem;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   color: white;
   position: relative;
   overflow: hidden;
@@ -1821,7 +1821,7 @@
 
 .ctaPrimaryButton {
   background: white;
-  color: #6E54FF;
+  color: var(--primary);
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
@@ -1835,7 +1835,7 @@
 
 .ctaPrimaryButton:hover {
   background: #f3f4f6;
-  color: #6E54FF;
+  color: var(--primary);
   transform: scale(1.1);
 }
 
@@ -1861,7 +1861,7 @@
 
 /* Footer */
 .footer {
-  background: #1f2937;
+  background: var(--foreground);
   color: white;
   padding: 4rem 1rem;
 }
@@ -1888,7 +1888,7 @@
   position: relative;
   width: 2rem;
   height: 2rem;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -1904,7 +1904,7 @@
 .footerLogoGlow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   border-radius: 0.5rem;
   filter: blur(10px);
   opacity: 0.5;
@@ -1952,7 +1952,7 @@
 
 .socialButton {
   background: transparent;
-  border: 1px solid #4b5563;
+  border: 1px solid var(--foreground-secondary);
   color: #9ca3af;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -1961,7 +1961,7 @@
 }
 
 .socialButton:hover {
-  background: #374151;
+  background: var(--foreground-secondary);
   color: white;
   transform: scale(1.1);
 }
@@ -1972,7 +1972,7 @@
 }
 
 .footerBottom {
-  border-top: 1px solid #374151;
+  border-top: 1px solid var(--foreground-secondary);
   padding-top: 2rem;
   text-align: center;
 }
@@ -2110,7 +2110,7 @@
 .dappCard {
   flex: 0 0 auto;
   width: 300px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
@@ -2153,7 +2153,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--background);
   background: rgba(0, 0, 0, 0.4);
   padding: 4px;
   border-radius: 6px;
@@ -2222,9 +2222,9 @@
 }
 
 .tag {
-  color: #6366F1;
+  color: var(--primary-600);
   padding: 2px 6px;
-  border-color: #6366F1;
+  border-color: var(--primary-600);
   border-radius: 4px;
   font-size: 12px;
 }
@@ -2234,7 +2234,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
 }
 
 .viewMoreWrapper {
@@ -2244,7 +2244,7 @@
 
 .viewMoreButton {
   display: inline-block;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%);
   color: #fff;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
@@ -2255,7 +2255,7 @@
 }
 
 .viewMoreButton:hover {
-  background: linear-gradient(135deg, #5b47d1 0%, #6E54FF 100%);
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary) 100%);
   color: #fff;
   box-shadow: 0 4px 12px rgba(110, 84, 255, 0.3);
   transform: translateY(-1px);

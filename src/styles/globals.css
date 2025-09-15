@@ -2,21 +2,158 @@
 @import url(./markedContainer.css);
 
 :root {
+  /* 背景颜色 */
   --background: #ffffff;
+  --background-secondary: #f8fafc;
+  --background-tertiary: #f1f5f9;
+  
+  /* 前景颜色 */
   --foreground: #171717;
-  --primary: #6e54ff;
-  --primary-light: #6366f1;
-  --primary-dark: #4338ca;
-  --selection-bg: rgba(110, 84, 255, 0.2);
+  --foreground-secondary: #475569;
+  --foreground-muted: #64748b;
+  
+  /* 主色调 - 以 #1E3A8A 为基础 */
+  --primary: #1e3a8a;
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+  --primary-950: #172554;
+  
+  /* 辅助色调 */
+  --secondary: #475569;
+  --secondary-light: #64748b;
+  --secondary-dark: #334155;
+  
+  /* 成功色 */
+  --success: #059669;
+  --success-light: #10b981;
+  --success-dark: #047857;
+  --success-bg: #d1fae5;
+  
+  /* 警告色 */
+  --warning: #d97706;
+  --warning-light: #f59e0b;
+  --warning-dark: #b45309;
+  --warning-bg: #fef3c7;
+  
+  /* 危险色 */
+  --danger: #dc2626;
+  --danger-light: #ef4444;
+  --danger-dark: #b91c1c;
+  --danger-bg: #fecaca;
+  
+  /* 信息色 */
+  --info: #0891b2;
+  --info-light: #06b6d4;
+  --info-dark: #0e7490;
+  --info-bg: #cffafe;
+  
+  /* 边框颜色 */
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --border-dark: #cbd5e1;
+  
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* 选择颜色 */
+  --selection-bg: rgba(30, 58, 138, 0.2);
   --selection-color: #171717;
+  
+  /* 卡片颜色 */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  
+  /* 输入框颜色 */
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-border-focus: #1e3a8a;
+  
+  /* 按钮颜色 */
+  --button-primary-bg: #1e3a8a;
+  --button-primary-hover: #1d4ed8;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #f8fafc;
+  --button-secondary-hover: #f1f5f9;
+  --button-secondary-text: #374151;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* 暗色模式背景 */
     --background: #0a0a0a;
+    --background-secondary: #111827;
+    --background-tertiary: #1f2937;
+    
+    /* 暗色模式前景 */
     --foreground: #ededed;
-    --selection-bg: rgba(99, 102, 241, 0.4);
+    --foreground-secondary: #d1d5db;
+    --foreground-muted: #9ca3af;
+    
+    /* 暗色模式主色调 */
+    --primary: #3b82f6;
+    --primary-50: #1e293b;
+    --primary-100: #334155;
+    --primary-200: #475569;
+    --primary-300: #64748b;
+    --primary-400: #94a3b8;
+    --primary-500: #cbd5e1;
+    --primary-600: #e2e8f0;
+    --primary-700: #f1f5f9;
+    --primary-800: #f8fafc;
+    --primary-900: #ffffff;
+    --primary-950: #ffffff;
+    
+    /* 暗色模式辅助色 */
+    --secondary: #6b7280;
+    --secondary-light: #9ca3af;
+    --secondary-dark: #4b5563;
+    
+    /* 暗色模式状态色 */
+    --success: #10b981;
+    --success-bg: #064e3b;
+    --warning: #f59e0b;
+    --warning-bg: #78350f;
+    --danger: #ef4444;
+    --danger-bg: #7f1d1d;
+    --info: #06b6d4;
+    --info-bg: #164e63;
+    
+    /* 暗色模式边框 */
+    --border: #374151;
+    --border-light: #4b5563;
+    --border-dark: #1f2937;
+    
+    /* 暗色模式选择 */
+    --selection-bg: rgba(59, 130, 246, 0.4);
     --selection-color: #ffffff;
+    
+    /* 暗色模式卡片 */
+    --card-bg: #111827;
+    --card-border: #374151;
+    
+    /* 暗色模式输入框 */
+    --input-bg: #1f2937;
+    --input-border: #4b5563;
+    --input-border-focus: #3b82f6;
+    
+    /* 暗色模式按钮 */
+    --button-primary-bg: #3b82f6;
+    --button-primary-hover: #2563eb;
+    --button-primary-text: #ffffff;
+    --button-secondary-bg: #374151;
+    --button-secondary-hover: #4b5563;
+    --button-secondary-text: #e5e7eb;
   }
 }
 

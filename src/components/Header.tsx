@@ -272,7 +272,7 @@ export default function Header() {
         title={
           <div
             style={{
-              background: 'linear-gradient(135deg, #1f2937, #6E54FF)',
+              background: 'linear-gradient(135deg, #1f2937, var(--primary))',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               color: 'transparent',

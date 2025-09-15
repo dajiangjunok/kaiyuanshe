@@ -4,6 +4,8 @@ package-lock.json
 ansible.sh
 pnpm-lock.yaml
 CLAUDE.md
+.claude
+
 
 # Next.js 构建输出
 .next/

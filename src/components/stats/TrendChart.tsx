@@ -27,7 +27,7 @@ export function TrendChart({ data }: TrendChartProps) {
 
     // 数据处理
     const metrics = ['users', 'blogs', 'tutorials', 'events', 'posts'];
-    const colors = ['#8b5cf6', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];
+    const colors = ['var(--primary-500)', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];
 
     // 计算最大值用于缩放
     const maxValues = metrics.map((metric) =>
@@ -133,7 +133,7 @@ export function TrendChart({ data }: TrendChartProps) {
                 className={styles.legendColor}
                 style={{
                   backgroundColor: [
-                    '#8b5cf6',
+                    'var(--primary-500)',
                     '#06b6d4',
                     '#10b981',
                     '#f59e0b',

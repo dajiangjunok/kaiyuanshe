@@ -33,7 +33,7 @@
 
 .headerContent:hover {
   background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0px 6px 16px rgba(110, 84, 255, 0.15);
+  box-shadow: 0px 6px 16px rgba(30, 58, 138, 0.15);
   transform: translateY(-1px);
 }
 
@@ -47,7 +47,7 @@
 .logoTitle {
   font-size: 1.4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #1f2937 0%, #6E54FF 100%);
+  background: linear-gradient(135deg, var(--foreground) 0%, var(--primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #4b5563;
+  color: var(--foreground-secondary);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -80,8 +80,8 @@
 }
 
 .navItem:hover {
-  color: #6E54FF;
-  background: rgba(110, 84, 255, 0.1);
+  color: var(--primary);
+  background: rgba(30, 58, 138, 0.1);
 }
 
 .navIcon {
@@ -90,14 +90,14 @@
 }
 
 .navButton {
-  background: #6E54FF;
+  background: var(--primary);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   font-size: 0.95rem;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(110, 84, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
   white-space: nowrap;
@@ -106,8 +106,8 @@
 }
 
 .navButton:hover {
-  background: #5b47d1;
-  box-shadow: 0 4px 12px rgba(110, 84, 255, 0.4);
+  background: var(--primary-700);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
   transform: translateY(-1px);
 }
 
@@ -127,7 +127,7 @@
   left: 0;
   right: 0;
   background: transparent;
-  color: #1f2937;
+  color: var(--foreground);
   padding: 0.75rem 0;
   z-index: 90;
   overflow: hidden;
@@ -158,7 +158,7 @@
 }
 
 .newsBadge {
-  background: linear-gradient(135deg, #6E54FF, #6366F1);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
   color: white;
   border: 1px solid rgba(124, 58, 237, 0.3);
   padding: 0.25rem 0.75rem;
@@ -172,7 +172,7 @@
 .newsText {
   font-size: 0.875rem;
   flex-shrink: 0;
-  color: #1f2937;
+  color: var(--foreground);
   font-weight: 600;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
@@ -226,7 +226,7 @@
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -234,7 +234,7 @@
 
 .mobileMenuButton:hover {
   background: #f3f4f6;
-  border-color: #6E54FF;
+  border-color: var(--primary);
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15);
 }
 
@@ -245,7 +245,7 @@
 .mobileMenuIcon {
   width: 20px;
   height: 20px;
-  color: #374151;
+  color: var(--foreground-secondary);
 }
 
 /* 移动端菜单内容样式 */
@@ -261,7 +261,7 @@
 
 .mobileMenuSectionTitle {
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--foreground);
   font-weight: 600;
   font-size: 1rem;
   position: relative;
@@ -275,7 +275,7 @@
   left: 0;
   width: 2rem;
   height: 2px;
-  background: linear-gradient(90deg, #6366F1, #6E54FF);
+  background: linear-gradient(90deg, var(--primary-600), var(--primary));
   border-radius: 1px;
 }
 
@@ -290,7 +290,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  color: #374151;
+  color: var(--foreground-secondary);
   text-decoration: none;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
@@ -299,9 +299,9 @@
 }
 
 .mobileMenuLink:hover {
-  background: rgba(139, 92, 246, 0.05);
-  border-color: rgba(139, 92, 246, 0.2);
-  color: #6E54FF;
+  background: rgba(30, 58, 138, 0.05);
+  border-color: rgba(30, 58, 138, 0.2);
+  color: var(--primary);
   transform: translateX(4px);
 }
 
