@@ -20,6 +20,7 @@ import { Image } from 'antd'
 import EventSection from './events/section'
 import { getDapps } from './api/dapp'
 import { useTranslation } from '../hooks/useTranslation'
+ 
 
 export default function Home() {
   const router = useRouter()
@@ -220,7 +221,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-
+ 
               <button
                 className={`${styles.galleryNavigation} ${styles.galleryNavNext}`}
                 onClick={() => scrollGallery('right')}
@@ -229,6 +230,7 @@ export default function Home() {
                 <ChevronRight className={styles.galleryNavIcon} />
               </button>
             </div>
+         
 
             <div>
               <p className={styles.heroSubtitle}>
