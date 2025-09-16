@@ -13,11 +13,13 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Galaxy from '@/components/bitsUI/galaxy/Galaxy'
  
 import styles from './index.module.css'
 import { SiTelegram, SiX } from 'react-icons/si'
 import { Image } from 'antd'
 import EventSection from './events/section'
+import MissionSection from './mission'
 import { getDapps } from './api/dapp'
 import { useTranslation } from '../hooks/useTranslation'
  
@@ -104,7 +106,7 @@ export default function Home() {
       }
     }
     fetchDapps()
-  }, [])
+  }, [t])
 
   useEffect(() => {
     let animationFrame: number
@@ -191,6 +193,11 @@ export default function Home() {
 
   return (
     <div className={styles.homepage}>
+      {/* Galaxy Background */}
+      <div className={styles.galaxyBackground}>
+        <Galaxy />
+      </div>
+      
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
@@ -308,6 +315,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Mission Section */}
+      <MissionSection />
+
       {/* Activities Section */}
       <EventSection />
 
@@ -423,6 +433,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+     
     </div>
   )
 }

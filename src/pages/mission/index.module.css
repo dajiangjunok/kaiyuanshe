@@ -1,0 +1,341 @@
+.missionSection {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.missionSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
+}
+
+.missionBlock {
+  margin-bottom: 8rem;
+}
+
+.missionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.missionCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.missionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.missionCard:hover::before {
+  opacity: 1;
+}
+
+.missionCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(59, 130, 246, 0.2);
+}
+
+.missionIconWrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.missionIconWrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: all 0.6s ease;
+  animation: rotate 3s linear infinite;
+}
+
+.missionCard:hover .missionIconWrapper::before {
+  opacity: 1;
+}
+
+.missionIcon {
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+  z-index: 2;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.missionCard:hover .missionIcon {
+  transform: scale(1.1);
+}
+
+.missionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.missionDesc {
+  font-size: 1rem;
+  color: #a1a1aa;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.missionCard:hover .missionDesc {
+  color: #d1d5db;
+}
+
+.principlesBlock {
+  margin-top: 4rem;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.principleCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.principleCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(244, 114, 182, 0.1));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.principleCard:hover::before {
+  opacity: 1;
+}
+
+.principleCard:hover {
+  transform: translateY(-16px) scale(1.03);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    0 0 80px rgba(139, 92, 246, 0.25);
+}
+
+.principleIconWrapper {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 2.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #f472b6);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.principleIconWrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0;
+  transition: all 0.7s ease;
+  animation: rotate 4s linear infinite;
+}
+
+.principleCard:hover .principleIconWrapper::before {
+  opacity: 1;
+}
+
+.principleIcon {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  z-index: 2;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.principleCard:hover .principleIcon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.principleTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.principleDesc {
+  font-size: 1.1rem;
+  color: #9ca3af;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease;
+}
+
+.principleCard:hover .principleDesc {
+  color: #e5e7eb;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .missionSection {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .missionGrid,
+  .principlesGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .missionCard,
+  .principleCard {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .missionBlock {
+    margin-bottom: 6rem;
+  }
+  
+  .principlesBlock {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .missionCard,
+  .principleCard {
+    padding: 2rem 1rem;
+  }
+  
+  .missionIconWrapper {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .principleIconWrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+  }
+  
+  .missionIcon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .principleIcon {
+    width: 36px;
+    height: 36px;
+  }
+}
