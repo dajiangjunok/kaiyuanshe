@@ -1,5 +1,5 @@
 import {
-  Users,
+ 
   Zap,
   Code,
   Shield,
@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+ 
 import styles from './index.module.css'
 import { SiTelegram, SiX } from 'react-icons/si'
 import { Image } from 'antd'
@@ -23,34 +23,63 @@ import { useTranslation } from '../hooks/useTranslation'
  
 
 export default function Home() {
-  const router = useRouter()
+ 
   const { t } = useTranslation()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
-  const [dapps, setDapps] = useState<any[]>([])
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+ 
   const pageSize = 20
   const scrollRef = useRef<HTMLDivElement>(null)
+  const galleryImages = [
+    '/img/rotation/activity1.png',
+    '/img/rotation/activity2.png', 
+    '/img/rotation/activity3.png',
+    '/img/rotation/activity4.png',
+    '/img/rotation/activity5.png'
+  ]
 
   const scrollGallery = (direction: 'left' | 'right') => {
     const container = document.querySelector(
       `.${styles.galleryContainer}`
     ) as HTMLElement
     if (container) {
-      const scrollAmount = 312 // Width of one image (280px) plus gap (32px)
+      const scrollAmount = window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
       const currentScroll = container.scrollLeft
 
       let targetScroll
+      let newSlideIndex
       if (direction === 'left') {
         if (currentScroll <= scrollAmount) {
           targetScroll = 0
+          newSlideIndex = 0
         } else {
           targetScroll = currentScroll - scrollAmount
+          newSlideIndex = Math.max(0, currentSlide - 1)
         }
       } else {
         const maxScroll = container.scrollWidth - container.clientWidth
         targetScroll = Math.min(maxScroll, currentScroll + scrollAmount)
+        newSlideIndex = Math.min(galleryImages.length - 1, currentSlide + 1)
       }
 
+      setCurrentSlide(newSlideIndex)
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const goToSlide = (index: number) => {
+    const container = document.querySelector(
+      `.${styles.galleryContainer}`
+    ) as HTMLElement
+    if (container) {
+      const scrollAmount = window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
+      const targetScroll = index * scrollAmount
+      setCurrentSlide(index)
       container.scrollTo({
         left: targetScroll,
         behavior: 'smooth'
@@ -68,7 +97,7 @@ export default function Home() {
         }
         const result = await getDapps(params)
         if (result.success && result.data && Array.isArray(result.data.dapps)) {
-          setDapps(result.data.dapps)
+     
         }
       } catch (error) {
         console.error(t('errors.fetchDapps'), error)
@@ -99,6 +128,29 @@ export default function Home() {
     return () => cancelAnimationFrame(animationFrame)
   }, [])
 
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => {
+        const nextSlide = (prev + 1) % galleryImages.length
+        goToSlide(nextSlide)
+        return nextSlide
+      })
+    }, 4000) // Change slide every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, galleryImages.length])
+
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false)
+  }
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true)
+  }
+
   useEffect(() => {
     setIsVisible(true)
     const handleMouseMove = (e: MouseEvent) => {
@@ -107,12 +159,7 @@ export default function Home() {
 
     window.addEventListener('mousemove', handleMouseMove)
 
-    const styles = [...Array(30)].map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 3}s`,
-      animationDuration: `${2 + Math.random() * 3}s`
-    }))
+ 
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
@@ -160,7 +207,11 @@ export default function Home() {
           <div
             className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}
           >
-            <div className={styles.heroGallery}>
+            <div 
+              className={styles.heroGallery}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <button
                 className={`${styles.galleryNavigation} ${styles.galleryNavPrev}`}
                 onClick={() => scrollGallery('left')}
@@ -174,9 +225,7 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity1.png"
                     alt="Dev"
-                    width={500}
-                    height={325}
-                    style={{ borderRadius: '14px' }}
+                    style={{ borderRadius: '0.875rem' }}
                     preview={{ mask: false }}
                   />
                 </div>
@@ -184,9 +233,7 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity2.png"
                     alt="中国开源年会2024"
-                    width={500}
-                    height={325}
-                    style={{ borderRadius: '14px' }}
+                    style={{ borderRadius: '0.875rem' }}
                     preview={{ mask: false }}
                   />
                 </div>
@@ -194,9 +241,7 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity3.png"
                     alt="2024第八届中国开源年会"
-                    width={500}
-                    height={325}
-                    style={{ borderRadius: '14px' }}
+                    style={{ borderRadius: '0.875rem' }}
                     preview={{ mask: false }}
                   />
                 </div>
@@ -204,9 +249,7 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity4.png"
                     alt="中国开运啊"
-                    width={500}
-                    height={325}
-                    style={{ borderRadius: '14px' }}
+                    style={{ borderRadius: '0.875rem' }}
                     preview={{ mask: false }}
                   />
                 </div>
@@ -214,9 +257,7 @@ export default function Home() {
                   <Image
                     src="/img/rotation/activity5.png"
                     alt="coscup2024大陆讲师团"
-                    width={500}
-                    height={325}
-                    style={{ borderRadius: '14px' }}
+                    style={{ borderRadius: '0.875rem' }}
                     preview={{ mask: false }}
                   />
                 </div>
@@ -229,6 +270,30 @@ export default function Home() {
               >
                 <ChevronRight className={styles.galleryNavIcon} />
               </button>
+            </div>
+            
+            {/* Gallery Indicators */}
+            <div className={styles.galleryIndicators}>
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`${styles.indicator} ${
+                    index === currentSlide ? styles.indicatorActive : ''
+                  }`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            
+            {/* Progress Bar */}
+            <div className={styles.progressContainer}>
+              <div 
+                className={styles.progressBar}
+                style={{
+                  width: `${((currentSlide + 1) / galleryImages.length) * 100}%`
+                }}
+              />
             </div>
          
 
