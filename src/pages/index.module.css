@@ -56,7 +56,7 @@
   position: relative;
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background:  var(--primary);
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
 .logoGlow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   border-radius: 0.75rem;
   filter: blur(10px);
   opacity: 0.5;
@@ -115,7 +115,7 @@
 }
 
 .navButton {
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background:var(--primary);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -174,7 +174,7 @@
 }
 
 .newsBadge {
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background:var(--primary);
   color: white;
   border: 1px solid rgba(124, 58, 237, 0.3);
   padding: 0.25rem 0.75rem;
@@ -765,7 +765,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   transform: scale(0);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -806,7 +806,7 @@
 
 .progressBar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   border-radius: 2px;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -1820,7 +1820,7 @@
 
 .resourceButton {
   width: 100%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -1831,7 +1831,7 @@
 }
 
 .resourceButton:hover {
-  background: linear-gradient(135deg, var(--primary-700), var(--primary-600));
+  background: var(--primary);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(110, 84, 255, 0.2);
 }
@@ -1966,7 +1966,7 @@
 /* CTA Section */
 .cta {
   padding: 5rem 1rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background:var(--primary);
   color: white;
   position: relative;
   overflow: hidden;
@@ -2103,7 +2103,7 @@
   position: relative;
   width: 2rem;
   height: 2rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -2119,7 +2119,7 @@
 .footerLogoGlow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  background: var(--primary);
   border-radius: 0.5rem;
   filter: blur(10px);
   opacity: 0.5;

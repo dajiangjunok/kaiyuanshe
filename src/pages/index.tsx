@@ -11,6 +11,7 @@ import Hero from '@/components/home/hero/Hero'
 import MissionSection from '@/components/home/mission/Mission'
 import EventSection from '@/components/home/events/Events'
 import NewsSection from '@/components/home/news/New'
+import CarouselSession from '@/components/home/carousel/Carousel'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -61,12 +62,11 @@ export default function Home() {
     <div className={styles.homepage}>
       {/* session1 */}
       <Hero />
-
+     <CarouselSession />
       {/* Activities Section */}
       <EventSection />
 
       <NewsSection />
-
        {/* Mission Section */}
       <MissionSection />
 

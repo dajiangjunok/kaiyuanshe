@@ -1,0 +1,21 @@
+/* Carousel Section */
+.carousel {
+  padding: 4rem 0;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(110, 84, 255, 0.1), transparent);
+  pointer-events: none;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 800px;
+}
