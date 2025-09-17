@@ -107,8 +107,8 @@
       "title": "DevPlaza 里程碑"
     },
     "cta": {
-      "title": "加入 DevPlaza · 見證你的 Web3 成長之路",
-      "description": "無論你是 Web2 開發者，還是已經投身 Web3， DevPlaza 都為你提供最全面的資源與舞台。",
+      "title": "加入 開源社· 見證你的 開源 成長之路",
+      "description": "无论你是 热衷于開源 開发者，还是已经投身 开源， 开源社 都为你提供最全面的资源与舞台。",
       "getStarted": "立即開始",
       "joinTelegram": "加入 Telegram",
       "followX": "關注 X"
@@ -116,7 +116,7 @@
   },
   "footer": {
     "title": "開源社",
-    "description": "開源社 是一個聚合 Web3 活動、社區、文章和開發者數據的一站式廣場。",
+    "description": "開源社 是一個聚合 开源 活動、社區、文章和開發者數據的一站式廣場。",
     "copyright": "&copy; 2025 開源社. 保留所有權利"
   },
   "errors": {

@@ -77,7 +77,7 @@ export default function EventSection() {
         <section className={styles.activities}>
             <div className={styles.container}>
                 <div className={styles.sectionHeader}>
-                    <h2 className={styles.sectionTitle}>精彩活动</h2>
+                    <h2 className={styles.sectionTitle}>最新活动</h2>
                     <p className={styles.sectionDescription}>
                         发现精彩活动，链接开源
                     </p>

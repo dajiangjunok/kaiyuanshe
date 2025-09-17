@@ -1,4 +1,4 @@
-import { Zap, Shield, Cpu, Database, Rocket } from 'lucide-react'
+import {   Rocket } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
@@ -10,6 +10,7 @@ import { useTranslation } from '../hooks/useTranslation'
 import Hero from '@/components/home/hero/Hero'
 import MissionSection from '@/components/home/mission/Mission'
 import EventSection from '@/components/home/events/Events'
+import NewsSection from '@/components/home/news/New'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -63,6 +64,8 @@ export default function Home() {
 
       {/* Activities Section */}
       <EventSection />
+
+      <NewsSection />
 
        {/* Mission Section */}
       <MissionSection />

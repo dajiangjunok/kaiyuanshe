@@ -11,10 +11,22 @@
   --foreground: #171717;
   --foreground-secondary: #475569;
   --foreground-muted: #64748b;
+/* #1e3a8a;
+#eff6ff;
+#dbeafe;
+#bfdbfe;
+#93c5fd;
+#60a5fa;
+#3b82f6;
+#2563eb;
+#1d4ed8;
+#1e40af;
+#1e3a8a;
+#172554; */
   
   /* 主色调 - 以 #1E3A8A 为基础 */
-  --primary: #1e3a8a;
-  --primary-50: #eff6ff;
+  --primary:     #1e3a8a;
+  --primary-50:  #eff6ff;
   --primary-100: #dbeafe;
   --primary-200: #bfdbfe;
   --primary-300: #93c5fd;
