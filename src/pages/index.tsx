@@ -8,7 +8,8 @@ import {
   Globe,
   Rocket,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Users
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
@@ -24,8 +25,6 @@ import { useTranslation } from '../hooks/useTranslation'
 
 export default function Home() {
   const { t } = useTranslation()
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isVisible, setIsVisible] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
@@ -151,19 +150,6 @@ export default function Home() {
     setIsAutoPlaying(true)
   }
 
-  useEffect(() => {
-    setIsVisible(true)
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [])
-
   const features = [
     {
       icon: <Zap className={styles.featureIcon} />,
@@ -189,133 +175,135 @@ export default function Home() {
 
   return (
     <div className={styles.homepage}>
-      <LightRays
-        raysOrigin="top-center"
-        raysColor="#000"
-        raysSpeed={1.5}
-        lightSpread={0.8}
-        rayLength={1.2}
-        followMouse={true}
-        mouseInfluence={0.1}
-        noiseAmount={0.1}
-        distortion={0.05}
-        className="custom-rays"
-      />
-
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
-          <div className={styles.heroGradient}></div>
-          <div
-            className={styles.mouseGradient}
-            style={{
-              background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 51, 234, 0.15), transparent 40%)`
-            }}
-          ></div>
-        </div>
+          {/* <div ></div> */}
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#fff"
+            raysSpeed={1.5}
+            lightSpread={2}
+            rayLength={3}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className={styles.heroGradient}
+          />
 
-        <div className={styles.container}>
-          <div
-            className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}
-          >
-            <div
-              className={styles.heroGallery}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                className={`${styles.galleryNavigation} ${styles.galleryNavPrev}`}
-                onClick={() => scrollGallery('left')}
-                aria-label="Previous images"
-              >
-                <ChevronLeft className={styles.galleryNavIcon} />
-              </button>
+          <p className={styles.heroSubtitle}>
+            <p>
+              <p className={styles.heroHighlight}>立足中國，貢獻全球，</p>
+              <p>推動開源成為新時代生活方式。</p>
+            </p>
+          </p>
 
-              <div className={styles.galleryContainer}>
-                <div className={styles.galleryImage}>
-                  <Image
-                    src="/img/rotation/activity1.png"
-                    alt="Dev"
-                    style={{ borderRadius: '0.875rem' }}
-                    preview={{ mask: false }}
-                  />
-                </div>
-                <div className={styles.galleryImage}>
-                  <Image
-                    src="/img/rotation/activity2.png"
-                    alt="中国开源年会2024"
-                    style={{ borderRadius: '0.875rem' }}
-                    preview={{ mask: false }}
-                  />
-                </div>
-                <div className={styles.galleryImage}>
-                  <Image
-                    src="/img/rotation/activity3.png"
-                    alt="2024第八届中国开源年会"
-                    style={{ borderRadius: '0.875rem' }}
-                    preview={{ mask: false }}
-                  />
-                </div>
-                <div className={styles.galleryImage}>
-                  <Image
-                    src="/img/rotation/activity4.png"
-                    alt="中国开运啊"
-                    style={{ borderRadius: '0.875rem' }}
-                    preview={{ mask: false }}
-                  />
-                </div>
-                <div className={styles.galleryImage}>
-                  <Image
-                    src="/img/rotation/activity5.png"
-                    alt="coscup2024大陆讲师团"
-                    style={{ borderRadius: '0.875rem' }}
-                    preview={{ mask: false }}
-                  />
-                </div>
-              </div>
-
-              <button
-                className={`${styles.galleryNavigation} ${styles.galleryNavNext}`}
-                onClick={() => scrollGallery('right')}
-                aria-label="Next images"
-              >
-                <ChevronRight className={styles.galleryNavIcon} />
-              </button>
-            </div>
-
-            {/* Gallery Indicators */}
-            <div className={styles.galleryIndicators}>
-              {galleryImages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.indicator} ${
-                    index === currentSlide ? styles.indicatorActive : ''
-                  }`}
-                  onClick={() => goToSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Progress Bar */}
-            <div className={styles.progressContainer}>
-              <div
-                className={styles.progressBar}
-                style={{
-                  width: `${((currentSlide + 1) / galleryImages.length) * 100}%`
-                }}
-              />
-            </div>
-
-            <div>
-              <p className={styles.heroSubtitle}>
-                <span className={styles.heroHighlight}>
-                  {t('homepage.hero.subtitle')}
-                </span>
-              </p>
-            </div>
+          <div className={styles.heroButtons}>
+            <Link href="/monad" className={styles.heroPrimaryButton}>
+              <Globe className={styles.buttonIcon} />
+              了解 开源社
+            </Link>
+            <Link href="/events" className={styles.heroSecondaryButton}>
+              <Users className={styles.buttonIcon} />
+              加入社区
+            </Link>
           </div>
         </div>
       </section>
+
+      <div className={styles.container}>
+        <div className={`${styles.heroContent}  }`}>
+          <div
+            className={styles.heroGallery}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              className={`${styles.galleryNavigation} ${styles.galleryNavPrev}`}
+              onClick={() => scrollGallery('left')}
+              aria-label="Previous images"
+            >
+              <ChevronLeft className={styles.galleryNavIcon} />
+            </button>
+
+            <div className={styles.galleryContainer}>
+              <div className={styles.galleryImage}>
+                <Image
+                  src="/img/rotation/activity1.png"
+                  alt="Dev"
+                  style={{ borderRadius: '0.875rem' }}
+                  preview={{ mask: false }}
+                />
+              </div>
+              <div className={styles.galleryImage}>
+                <Image
+                  src="/img/rotation/activity2.png"
+                  alt="中国开源年会2024"
+                  style={{ borderRadius: '0.875rem' }}
+                  preview={{ mask: false }}
+                />
+              </div>
+              <div className={styles.galleryImage}>
+                <Image
+                  src="/img/rotation/activity3.png"
+                  alt="2024第八届中国开源年会"
+                  style={{ borderRadius: '0.875rem' }}
+                  preview={{ mask: false }}
+                />
+              </div>
+              <div className={styles.galleryImage}>
+                <Image
+                  src="/img/rotation/activity4.png"
+                  alt="中国开运啊"
+                  style={{ borderRadius: '0.875rem' }}
+                  preview={{ mask: false }}
+                />
+              </div>
+              <div className={styles.galleryImage}>
+                <Image
+                  src="/img/rotation/activity5.png"
+                  alt="coscup2024大陆讲师团"
+                  style={{ borderRadius: '0.875rem' }}
+                  preview={{ mask: false }}
+                />
+              </div>
+            </div>
+
+            <button
+              className={`${styles.galleryNavigation} ${styles.galleryNavNext}`}
+              onClick={() => scrollGallery('right')}
+              aria-label="Next images"
+            >
+              <ChevronRight className={styles.galleryNavIcon} />
+            </button>
+          </div>
+
+          {/* Gallery Indicators */}
+          <div className={styles.galleryIndicators}>
+            {galleryImages.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.indicator} ${
+                  index === currentSlide ? styles.indicatorActive : ''
+                }`}
+                onClick={() => goToSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Progress Bar */}
+          <div className={styles.progressContainer}>
+            <div
+              className={styles.progressBar}
+              style={{
+                width: `${((currentSlide + 1) / galleryImages.length) * 100}%`
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Mission Section */}
       <MissionSection />
       {/* Activities Section */}
