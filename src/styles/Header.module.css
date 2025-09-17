@@ -22,18 +22,45 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 2px 4px rgba(226, 226, 226, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0px 4px 20px rgba(0, 0, 0, 0.1),
+    0px 1px 0px rgba(255, 255, 255, 0.4) inset,
+    0px -1px 0px rgba(255, 255, 255, 0.2) inset;
   border-radius: 72px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   min-height: 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .headerContent:hover {
-  background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0px 6px 16px rgba(30, 58, 138, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  box-shadow: 
+    0px 8px 32px rgba(0, 0, 0, 0.15),
+    0px 1px 0px rgba(255, 255, 255, 0.5) inset,
+    0px -1px 0px rgba(255, 255, 255, 0.3) inset;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
 }
 

@@ -1,6 +1,6 @@
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import { useEffect, useRef } from 'react';
-import styles from './Galaxy.module.css';
+import styles from '../style.module.css';
 
 const vertexShader = `
 attribute vec2 uv;

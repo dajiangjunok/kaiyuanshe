@@ -4,6 +4,7 @@
   color: var(--foreground);
   position: relative;
   overflow-x: hidden;
+  /* background-color: #000; */
 }
 
 /* Galaxy背景样式 */

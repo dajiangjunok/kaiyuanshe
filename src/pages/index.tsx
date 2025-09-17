@@ -1,5 +1,4 @@
 import {
- 
   Zap,
   Code,
   Shield,
@@ -13,8 +12,8 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Galaxy from '@/components/bitsUI/galaxy/Galaxy'
- 
+import LightRays from '@/components/bitsUI/lightRays/LightRays'
+
 import styles from './index.module.css'
 import { SiTelegram, SiX } from 'react-icons/si'
 import { Image } from 'antd'
@@ -22,21 +21,19 @@ import EventSection from './events/section'
 import MissionSection from './mission'
 import { getDapps } from './api/dapp'
 import { useTranslation } from '../hooks/useTranslation'
- 
 
 export default function Home() {
- 
   const { t } = useTranslation()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
- 
+
   const pageSize = 20
   const scrollRef = useRef<HTMLDivElement>(null)
   const galleryImages = [
     '/img/rotation/activity1.png',
-    '/img/rotation/activity2.png', 
+    '/img/rotation/activity2.png',
     '/img/rotation/activity3.png',
     '/img/rotation/activity4.png',
     '/img/rotation/activity5.png'
@@ -47,7 +44,8 @@ export default function Home() {
       `.${styles.galleryContainer}`
     ) as HTMLElement
     if (container) {
-      const scrollAmount = window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
+      const scrollAmount =
+        window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
       const currentScroll = container.scrollLeft
 
       let targetScroll
@@ -79,7 +77,8 @@ export default function Home() {
       `.${styles.galleryContainer}`
     ) as HTMLElement
     if (container) {
-      const scrollAmount = window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
+      const scrollAmount =
+        window.innerWidth >= 1024 ? 512 : window.innerWidth >= 768 ? 358 : 291 // Responsive scroll amount in pixels
       const targetScroll = index * scrollAmount
       setCurrentSlide(index)
       container.scrollTo({
@@ -99,7 +98,6 @@ export default function Home() {
         }
         const result = await getDapps(params)
         if (result.success && result.data && Array.isArray(result.data.dapps)) {
-     
         }
       } catch (error) {
         console.error(t('errors.fetchDapps'), error)
@@ -135,7 +133,7 @@ export default function Home() {
     if (!isAutoPlaying) return
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
+      setCurrentSlide(prev => {
         const nextSlide = (prev + 1) % galleryImages.length
         goToSlide(nextSlide)
         return nextSlide
@@ -160,8 +158,6 @@ export default function Home() {
     }
 
     window.addEventListener('mousemove', handleMouseMove)
-
- 
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
@@ -193,12 +189,19 @@ export default function Home() {
 
   return (
     <div className={styles.homepage}>
-      {/* Galaxy Background */}
-      <div className={styles.galaxyBackground}>
-        <Galaxy />
-      </div>
-      
-      {/* Hero Section */}
+      <LightRays
+        raysOrigin="top-center"
+        raysColor="#000"
+        raysSpeed={1.5}
+        lightSpread={0.8}
+        rayLength={1.2}
+        followMouse={true}
+        mouseInfluence={0.1}
+        noiseAmount={0.1}
+        distortion={0.05}
+        className="custom-rays"
+      />
+
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
           <div className={styles.heroGradient}></div>
@@ -214,7 +217,7 @@ export default function Home() {
           <div
             className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}
           >
-            <div 
+            <div
               className={styles.heroGallery}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -269,7 +272,7 @@ export default function Home() {
                   />
                 </div>
               </div>
- 
+
               <button
                 className={`${styles.galleryNavigation} ${styles.galleryNavNext}`}
                 onClick={() => scrollGallery('right')}
@@ -278,7 +281,7 @@ export default function Home() {
                 <ChevronRight className={styles.galleryNavIcon} />
               </button>
             </div>
-            
+
             {/* Gallery Indicators */}
             <div className={styles.galleryIndicators}>
               {galleryImages.map((_, index) => (
@@ -292,17 +295,16 @@ export default function Home() {
                 />
               ))}
             </div>
-            
+
             {/* Progress Bar */}
             <div className={styles.progressContainer}>
-              <div 
+              <div
                 className={styles.progressBar}
                 style={{
                   width: `${((currentSlide + 1) / galleryImages.length) * 100}%`
                 }}
               />
             </div>
-         
 
             <div>
               <p className={styles.heroSubtitle}>
@@ -314,13 +316,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Mission Section */}
       <MissionSection />
-
       {/* Activities Section */}
       <EventSection />
-
       {/* Milestones Section */}
       <section className={styles.milestones}>
         <div className={styles.container}>
@@ -331,7 +330,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Features Section */}
       <section className={styles.features}>
         <div className={styles.container}>
@@ -361,7 +359,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Resources Section */}
       <section className={styles.resources}>
         <div className={styles.container}>
@@ -404,9 +401,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Members Section */}
-
       {/* CTA Section */}
       <section className={styles.cta}>
         <div className={styles.container}>
@@ -433,7 +428,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-     
     </div>
   )
 }

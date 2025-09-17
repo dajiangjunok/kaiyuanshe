@@ -27,7 +27,6 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { t } = useTranslation()
-
   // 使用 useMemo 确保 Auth 组件只创建一次，避免重复渲染
   const authComponent = useMemo(() => <Auth />, [])
 
