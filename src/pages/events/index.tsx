@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import {
   Pagination,
@@ -18,7 +19,6 @@ import {
   MapPin,
   Plus,
   Edit,
-  Eye,
   Trash2,
   Star,
   Share2,
@@ -26,16 +26,17 @@ import {
   LayoutGrid,
   List,
 } from 'lucide-react';
-import { SiWechat, SiX, SiTelegram, SiDiscord } from 'react-icons/si';
+import {    SiX,    } from 'react-icons/si';
 import Link from 'next/link';
 import styles from './index.module.css';
 import { getEvents, deleteEvent } from '../api/event';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/contexts/AuthContext';
-import EventDraftTable from '@/components/event/EventDraftTable';
+import { useAuth } from '@/contexts/AuthContext'; 
 
 const { Search: AntSearch } = Input;
 const { Option } = Select;
+
+ 
 
 type ViewMode = 'grid' | 'list';
 
@@ -58,7 +59,7 @@ export default function EventsPage() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [wechatModalVisible, setWechatModalVisible] = useState(false);
   const [publishStatus, setPublishStatus] = useState(2);
-  const [initialized, setInitialized] = useState(false);
+ 
 
   const router = useRouter();
   // 使用统一的认证上下文，避免重复调用 useSession
@@ -138,11 +139,7 @@ export default function EventsPage() {
     setCurrentPage(1);
   };
 
-  // 按标签筛选
-  const handleTagFilter = async (tag: string) => {
-    setSelectedTag(tag);
-    setCurrentPage(1);
-  };
+ 
 
   // 排序切换
   const handleSortChange = async (order: 'asc' | 'desc') => {
@@ -725,53 +722,7 @@ export default function EventsPage() {
           />
         </div>
       </div>
-      {/* Stats Section */}
-      {/* <div className={styles.statsSection}>
-        <Card className={styles.statCard}>
-          <div className={styles.statContent}>
-            <div className={styles.statIcon}>
-              <Calendar className={styles.statIconSvg} />
-            </div>
-            <div className={styles.statInfo}>
-              <div className={styles.statNumber}>12</div>
-              <div className={styles.statLabel}>本月活动</div>
-            </div>
-          </div>
-        </Card>
-        <Card className={styles.statCard}>
-          <div className={styles.statContent}>
-            <div className={styles.statIcon}>
-              <Users className={styles.statIconSvg} />
-            </div>
-            <div className={styles.statInfo}>
-              <div className={styles.statNumber}>1,234</div>
-              <div className={styles.statLabel}>总参与人数</div>
-            </div>
-          </div>
-        </Card>
-        <Card className={styles.statCard}>
-          <div className={styles.statContent}>
-            <div className={styles.statIcon}>
-              <Globe className={styles.statIconSvg} />
-            </div>
-            <div className={styles.statInfo}>
-              <div className={styles.statNumber}>8</div>
-              <div className={styles.statLabel}>线上活动</div>
-            </div>
-          </div>
-        </Card>
-        <Card className={styles.statCard}>
-          <div className={styles.statContent}>
-            <div className={styles.statIcon}>
-              <MapPin className={styles.statIconSvg} />
-            </div>
-            <div className={styles.statInfo}>
-              <div className={styles.statNumber}>4</div>
-              <div className={styles.statLabel}>线下活动</div>
-            </div>
-          </div>
-        </Card>
-      </div> */}
+      
       <Modal
         open={wechatModalVisible}
         onCancel={() => setWechatModalVisible(false)}

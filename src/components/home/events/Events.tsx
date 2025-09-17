@@ -1,11 +1,12 @@
 import { Calendar, MapPin, Users, Video } from 'lucide-react';
 import Link from 'next/link';
-import styles from './section.module.css';
-import { Key, useEffect, useState } from 'react';
-import { getEvents } from '../api/event';
+
+import {   useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Tag } from 'antd';
 import { useAuth } from '@/contexts/AuthContext';
+import styles from './Events.module.css';
+import {getEvents } from '@/pages/api/event'
 
 export function formatTime(isoTime: string): string {
     return dayjs(isoTime).format('YYYY年M月D日');
@@ -15,7 +16,8 @@ export function formatTime(isoTime: string): string {
 export default function EventSection() {
     // 使用统一的认证上下文，避免重复调用 useSession
     const { status } = useAuth();
-    const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
+    const [sortOrder   ] = useState<"asc" | "desc">("desc")
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [events, setEvents] = useState<any[]>([])
 
     const loadEvents = async (params?: {
