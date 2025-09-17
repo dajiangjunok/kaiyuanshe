@@ -33,8 +33,6 @@
     z-index: 1;
 }
 
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -83,6 +81,8 @@
     padding: 2rem;
     transition: all 0.3s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .activityCardGlow {
@@ -116,8 +116,8 @@
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.08) 100%);
 }
 
-
 .activityCardHeader {
+    flex: 1;
     margin-bottom: 1.5rem;
 }
 
@@ -135,24 +135,29 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .activityBadgeActive {
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: 1px solid #10b981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
 .activityBadgeInactive {
-    background: #f3f4f6;
-    color: #374151;
-    border: 1px solid #d1d5db;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .activityBadgeEnded {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: 1px solid #ef4444;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
 
@@ -160,8 +165,8 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
 }
 
 .activityIcon {
@@ -173,14 +178,23 @@
     font-size: 1.25rem;
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 0.5rem;
-    min-height: 62px;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
     transition: all 0.3s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .activityDescription {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .activityCardContent {
@@ -202,19 +216,21 @@
 }
 
 .tagsContainer {
-    margin: 8px 0;
+    margin: 1rem 0;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
 }
 
 .tag {
-    background-color: white;
-    /* color: #b13de3; */
+    background-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
     user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .activityButton {
@@ -230,7 +246,10 @@
     position: relative;
     overflow: hidden;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
- 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .activityButton::before {
@@ -296,6 +315,16 @@
     left: 100%;
 }
 
+.buttonIcon {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.moreButton:hover .buttonIcon {
+    transform: translateX(2px);
+}
+
 .sectionFooter {
     text-align: center;
 }
@@ -337,6 +366,16 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
+    
+    .activityMeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .activityParticipants {
+        gap: 0.75rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -359,7 +398,10 @@
     
     .activityTitle {
         font-size: 1.1rem;
-        min-height: auto;
+    }
+    
+    .activityDescription {
+        font-size: 0.85rem;
     }
     
     .activityButton,
