@@ -1,35 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl'
+import { useEffect, useRef } from 'react'
 
-import styles from  './CircularGallery.module.css';
+import styles from './CircularGallery.module.css'
 
-type GL = Renderer['gl'];
+type GL = Renderer['gl']
 
 function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
-  let timeout: number;
+  let timeout: number
   return function (this: any, ...args: Parameters<T>) {
-    window.clearTimeout(timeout);
-    timeout = window.setTimeout(() => func.apply(this, args), wait);
-  };
+    window.clearTimeout(timeout)
+    timeout = window.setTimeout(() => func.apply(this, args), wait)
+  }
 }
 
 function lerp(p1: number, p2: number, t: number): number {
-  return p1 + (p2 - p1) * t;
+  return p1 + (p2 - p1) * t
 }
 
 function autoBind(instance: any): void {
-  const proto = Object.getPrototypeOf(instance);
+  const proto = Object.getPrototypeOf(instance)
   Object.getOwnPropertyNames(proto).forEach(key => {
     if (key !== 'constructor' && typeof instance[key] === 'function') {
-      instance[key] = instance[key].bind(instance);
+      instance[key] = instance[key].bind(instance)
     }
-  });
+  })
 }
 
 function getFontSize(font: string): number {
-  const match = font.match(/(\d+)px/);
-  return match ? parseInt(match[1], 10) : 30;
+  const match = font.match(/(\d+)px/)
+  return match ? parseInt(match[1], 10) : 30
 }
 
 function createTextTexture(
@@ -38,63 +38,75 @@ function createTextTexture(
   font: string = 'bold 30px monospace',
   color: string = 'black'
 ): { texture: Texture; width: number; height: number } {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  if (!context) throw new Error('Could not get 2d context');
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('Could not get 2d context')
 
-  context.font = font;
-  const metrics = context.measureText(text);
-  const textWidth = Math.ceil(metrics.width);
-  const fontSize = getFontSize(font);
-  const textHeight = Math.ceil(fontSize * 1.2);
+  context.font = font
+  const metrics = context.measureText(text)
+  const textWidth = Math.ceil(metrics.width)
+  const fontSize = getFontSize(font)
+  const textHeight = Math.ceil(fontSize * 1.2)
 
-  canvas.width = textWidth + 20;
-  canvas.height = textHeight + 20;
+  canvas.width = textWidth + 20
+  canvas.height = textHeight + 20
 
-  context.font = font;
-  context.fillStyle = color;
-  context.textBaseline = 'middle';
-  context.textAlign = 'center';
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillText(text, canvas.width / 2, canvas.height / 2);
+  context.font = font
+  context.fillStyle = color
+  context.textBaseline = 'middle'
+  context.textAlign = 'center'
+  context.clearRect(0, 0, canvas.width, canvas.height)
+  context.fillText(text, canvas.width / 2, canvas.height / 2)
 
-  const texture = new Texture(gl, { generateMipmaps: false });
-  texture.image = canvas;
-  return { texture, width: canvas.width, height: canvas.height };
+  const texture = new Texture(gl, { generateMipmaps: false })
+  texture.image = canvas
+  return { texture, width: canvas.width, height: canvas.height }
 }
 
 interface TitleProps {
-  gl: GL;
-  plane: Mesh;
-  renderer: Renderer;
-  text: string;
-  textColor?: string;
-  font?: string;
+  gl: GL
+  plane: Mesh
+  renderer: Renderer
+  text: string
+  textColor?: string
+  font?: string
 }
 
 class Title {
-  gl: GL;
-  plane: Mesh;
-  renderer: Renderer;
-  text: string;
-  textColor: string;
-  font: string;
-  mesh!: Mesh;
+  gl: GL
+  plane: Mesh
+  renderer: Renderer
+  text: string
+  textColor: string
+  font: string
+  mesh!: Mesh
 
-  constructor({ gl, plane, renderer, text, textColor = '#545050', font = '30px sans-serif' }: TitleProps) {
-    autoBind(this);
-    this.gl = gl;
-    this.plane = plane;
-    this.renderer = renderer;
-    this.text = text;
-    this.textColor = textColor;
-    this.font = font;
-    this.createMesh();
+  constructor({
+    gl,
+    plane,
+    renderer,
+    text,
+    textColor = '#545050',
+    font = '30px sans-serif'
+  }: TitleProps) {
+    autoBind(this)
+    this.gl = gl
+    this.plane = plane
+    this.renderer = renderer
+    this.text = text
+    this.textColor = textColor
+    this.font = font
+    this.createMesh()
   }
 
   createMesh() {
-    const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
-    const geometry = new Plane(this.gl);
+    const { texture, width, height } = createTextTexture(
+      this.gl,
+      this.text,
+      this.font,
+      this.textColor
+    )
+    const geometry = new Plane(this.gl)
     const program = new Program(this.gl, {
       vertex: `
         attribute vec3 position;
@@ -119,71 +131,72 @@ class Title {
       `,
       uniforms: { tMap: { value: texture } },
       transparent: true
-    });
-    this.mesh = new Mesh(this.gl, { geometry, program });
-    const aspect = width / height;
-    const textHeightScaled = this.plane.scale.y * 0.15;
-    const textWidthScaled = textHeightScaled * aspect;
-    this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
-    this.mesh.setParent(this.plane);
+    })
+    this.mesh = new Mesh(this.gl, { geometry, program })
+    const aspect = width / height
+    const textHeightScaled = this.plane.scale.y * 0.15
+    const textWidthScaled = textHeightScaled * aspect
+    this.mesh.scale.set(textWidthScaled, textHeightScaled, 1)
+    this.mesh.position.y =
+      -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05
+    this.mesh.setParent(this.plane)
   }
 }
 
 interface ScreenSize {
-  width: number;
-  height: number;
+  width: number
+  height: number
 }
 
 interface Viewport {
-  width: number;
-  height: number;
+  width: number
+  height: number
 }
 
 interface MediaProps {
-  geometry: Plane;
-  gl: GL;
-  image: string;
-  index: number;
-  length: number;
-  renderer: Renderer;
-  scene: Transform;
-  screen: ScreenSize;
-  text: string;
-  viewport: Viewport;
-  bend: number;
-  textColor: string;
-  borderRadius?: number;
-  font?: string;
+  geometry: Plane
+  gl: GL
+  image: string
+  index: number
+  length: number
+  renderer: Renderer
+  scene: Transform
+  screen: ScreenSize
+  text: string
+  viewport: Viewport
+  bend: number
+  textColor: string
+  borderRadius?: number
+  font?: string
 }
 
 class Media {
-  extra: number = 0;
-  geometry: Plane;
-  gl: GL;
-  image: string;
-  index: number;
-  length: number;
-  renderer: Renderer;
-  scene: Transform;
-  screen: ScreenSize;
-  text: string;
-  viewport: Viewport;
-  bend: number;
-  textColor: string;
-  borderRadius: number;
-  font?: string;
-  program!: Program;
-  plane!: Mesh;
-  title!: Title;
-  scale!: number;
-  padding!: number;
-  width!: number;
-  widthTotal!: number;
-  x!: number;
-  speed: number = 0;
-  isBefore: boolean = false;
-  isAfter: boolean = false;
+  extra: number = 0
+  geometry: Plane
+  gl: GL
+  image: string
+  index: number
+  length: number
+  renderer: Renderer
+  scene: Transform
+  screen: ScreenSize
+  text: string
+  viewport: Viewport
+  bend: number
+  textColor: string
+  borderRadius: number
+  font?: string
+  program!: Program
+  plane!: Mesh
+  title!: Title
+  scale!: number
+  padding!: number
+  width!: number
+  widthTotal!: number
+  x!: number
+  speed: number = 0
+  isBefore: boolean = false
+  isAfter: boolean = false
 
   constructor({
     geometry,
@@ -201,30 +214,30 @@ class Media {
     borderRadius = 0,
     font
   }: MediaProps) {
-    this.geometry = geometry;
-    this.gl = gl;
-    this.image = image;
-    this.index = index;
-    this.length = length;
-    this.renderer = renderer;
-    this.scene = scene;
-    this.screen = screen;
-    this.text = text;
-    this.viewport = viewport;
-    this.bend = bend;
-    this.textColor = textColor;
-    this.borderRadius = borderRadius;
-    this.font = font;
-    this.createShader();
-    this.createMesh();
-    this.createTitle();
-    this.onResize();
+    this.geometry = geometry
+    this.gl = gl
+    this.image = image
+    this.index = index
+    this.length = length
+    this.renderer = renderer
+    this.scene = scene
+    this.screen = screen
+    this.text = text
+    this.viewport = viewport
+    this.bend = bend
+    this.textColor = textColor
+    this.borderRadius = borderRadius
+    this.font = font
+    this.createShader()
+    this.createMesh()
+    this.createTitle()
+    this.onResize()
   }
 
   createShader() {
     const texture = new Texture(this.gl, {
       generateMipmaps: true
-    });
+    })
     this.program = new Program(this.gl, {
       depthTest: false,
       depthWrite: false,
@@ -285,22 +298,25 @@ class Media {
         uBorderRadius: { value: this.borderRadius }
       },
       transparent: true
-    });
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = this.image;
+    })
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.src = this.image
     img.onload = () => {
-      texture.image = img;
-      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
-    };
+      texture.image = img
+      this.program.uniforms.uImageSizes.value = [
+        img.naturalWidth,
+        img.naturalHeight
+      ]
+    }
   }
 
   createMesh() {
     this.plane = new Mesh(this.gl, {
       geometry: this.geometry,
       program: this.program
-    });
-    this.plane.setParent(this.scene);
+    })
+    this.plane.setParent(this.scene)
   }
 
   createTitle() {
@@ -311,110 +327,124 @@ class Media {
       text: this.text,
       textColor: this.textColor,
       font: this.font
-    });
+    })
   }
 
-  update(scroll: { current: number; last: number }, direction: 'right' | 'left') {
-    this.plane.position.x = this.x - scroll.current - this.extra;
+  update(
+    scroll: { current: number; last: number },
+    direction: 'right' | 'left'
+  ) {
+    this.plane.position.x = this.x - scroll.current - this.extra
 
-    const x = this.plane.position.x;
-    const H = this.viewport.width / 2;
+    const x = this.plane.position.x
+    const H = this.viewport.width / 2
 
     if (this.bend === 0) {
-      this.plane.position.y = 0;
-      this.plane.rotation.z = 0;
+      this.plane.position.y = 0
+      this.plane.rotation.z = 0
     } else {
-      const B_abs = Math.abs(this.bend);
-      const R = (H * H + B_abs * B_abs) / (2 * B_abs);
-      const effectiveX = Math.min(Math.abs(x), H);
+      const B_abs = Math.abs(this.bend)
+      const R = (H * H + B_abs * B_abs) / (2 * B_abs)
+      const effectiveX = Math.min(Math.abs(x), H)
 
-      const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
+      const arc = R - Math.sqrt(R * R - effectiveX * effectiveX)
       if (this.bend > 0) {
-        this.plane.position.y = -arc;
-        this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
+        this.plane.position.y = -arc
+        this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R)
       } else {
-        this.plane.position.y = arc;
-        this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
+        this.plane.position.y = arc
+        this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R)
       }
     }
 
-    this.speed = scroll.current - scroll.last;
-    this.program.uniforms.uTime.value += 0.04;
-    this.program.uniforms.uSpeed.value = this.speed;
+    this.speed = scroll.current - scroll.last
+    this.program.uniforms.uTime.value += 0.04
+    this.program.uniforms.uSpeed.value = this.speed
 
-    const planeOffset = this.plane.scale.x / 2;
-    const viewportOffset = this.viewport.width / 2;
-    this.isBefore = this.plane.position.x + planeOffset < -viewportOffset;
-    this.isAfter = this.plane.position.x - planeOffset > viewportOffset;
+    const planeOffset = this.plane.scale.x / 2
+    const viewportOffset = this.viewport.width / 2
+    this.isBefore = this.plane.position.x + planeOffset < -viewportOffset
+    this.isAfter = this.plane.position.x - planeOffset > viewportOffset
     if (direction === 'right' && this.isBefore) {
-      this.extra -= this.widthTotal;
-      this.isBefore = this.isAfter = false;
+      this.extra -= this.widthTotal
+      this.isBefore = this.isAfter = false
     }
     if (direction === 'left' && this.isAfter) {
-      this.extra += this.widthTotal;
-      this.isBefore = this.isAfter = false;
+      this.extra += this.widthTotal
+      this.isBefore = this.isAfter = false
     }
   }
 
-  onResize({ screen, viewport }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
-    if (screen) this.screen = screen;
+  onResize({
+    screen,
+    viewport
+  }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
+    if (screen) this.screen = screen
     if (viewport) {
-      this.viewport = viewport;
+      this.viewport = viewport
       if (this.plane.program.uniforms.uViewportSizes) {
-        this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
+        this.plane.program.uniforms.uViewportSizes.value = [
+          this.viewport.width,
+          this.viewport.height
+        ]
       }
     }
-    this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (1600 * this.scale)) / this.screen.width;
-    this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-    this.padding = 2;
-    this.width = this.plane.scale.x + this.padding;
-    this.widthTotal = this.width * this.length;
-    this.x = this.width * this.index;
+    this.scale = this.screen.height / 1500
+    this.plane.scale.y =
+      (this.viewport.height * (900 * this.scale)) / this.screen.height
+    this.plane.scale.x =
+      (this.viewport.width * (1600 * this.scale)) / this.screen.width
+    this.plane.program.uniforms.uPlaneSizes.value = [
+      this.plane.scale.x,
+      this.plane.scale.y
+    ]
+    this.padding = 2
+    this.width = this.plane.scale.x + this.padding
+    this.widthTotal = this.width * this.length
+    this.x = this.width * this.index
   }
 }
 
 interface AppConfig {
-  items?: { image: string; text: string }[];
-  bend?: number;
-  textColor?: string;
-  borderRadius?: number;
-  font?: string;
-  scrollSpeed?: number;
-  scrollEase?: number;
+  items?: { image: string; text: string }[]
+  bend?: number
+  textColor?: string
+  borderRadius?: number
+  font?: string
+  scrollSpeed?: number
+  scrollEase?: number
 }
 
 class App {
-  container: HTMLElement;
-  scrollSpeed: number;
+  container: HTMLElement
+  scrollSpeed: number
   scroll: {
-    ease: number;
-    current: number;
-    target: number;
-    last: number;
-    position?: number;
-  };
-  onCheckDebounce: (...args: any[]) => void;
-  renderer!: Renderer;
-  gl!: GL;
-  camera!: Camera;
-  scene!: Transform;
-  planeGeometry!: Plane;
-  medias: Media[] = [];
-  mediasImages: { image: string; text: string }[] = [];
-  screen!: { width: number; height: number };
-  viewport!: { width: number; height: number };
-  raf: number = 0;
+    ease: number
+    current: number
+    target: number
+    last: number
+    position?: number
+  }
+  onCheckDebounce: (...args: any[]) => void
+  renderer!: Renderer
+  gl!: GL
+  camera!: Camera
+  scene!: Transform
+  planeGeometry!: Plane
+  medias: Media[] = []
+  mediasImages: { image: string; text: string }[] = []
+  screen!: { width: number; height: number }
+  viewport!: { width: number; height: number }
+  raf: number = 0
 
-  boundOnResize!: () => void;
-  boundOnWheel!: (e: Event) => void;
-  boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchUp!: () => void;
+  boundOnResize!: () => void
+  boundOnWheel!: (e: Event) => void
+  boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void
+  boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void
+  boundOnTouchUp!: () => void
 
-  isDown: boolean = false;
-  start: number = 0;
+  isDown: boolean = false
+  start: number = 0
 
   constructor(
     container: HTMLElement,
@@ -428,19 +458,19 @@ class App {
       scrollEase = 0.05
     }: AppConfig
   ) {
-    document.documentElement.classList.remove('no-js');
-    this.container = container;
-    this.scrollSpeed = scrollSpeed;
-    this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
-    this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
-    this.createRenderer();
-    this.createCamera();
-    this.createScene();
-    this.onResize();
-    this.createGeometry();
-    this.createMedias(items, bend, textColor, borderRadius, font);
-    this.update();
-    this.addEventListeners();
+    document.documentElement.classList.remove('no-js')
+    this.container = container
+    this.scrollSpeed = scrollSpeed
+    this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 }
+    this.onCheckDebounce = debounce(this.onCheck.bind(this), 200)
+    this.createRenderer()
+    this.createCamera()
+    this.createScene()
+    this.onResize()
+    this.createGeometry()
+    this.createMedias(items, bend, textColor, borderRadius, font)
+    this.update()
+    this.addEventListeners()
   }
 
   createRenderer() {
@@ -448,27 +478,27 @@ class App {
       alpha: true,
       antialias: true,
       dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
-    this.gl = this.renderer.gl;
-    this.gl.clearColor(0, 0, 0, 0);
-    this.container.appendChild(this.renderer.gl.canvas as HTMLCanvasElement);
+    })
+    this.gl = this.renderer.gl
+    this.gl.clearColor(0, 0, 0, 0)
+    this.container.appendChild(this.renderer.gl.canvas as HTMLCanvasElement)
   }
 
   createCamera() {
-    this.camera = new Camera(this.gl);
-    this.camera.fov = 45;
-    this.camera.position.z = 20;
+    this.camera = new Camera(this.gl)
+    this.camera.fov = 45
+    this.camera.position.z = 20
   }
 
   createScene() {
-    this.scene = new Transform();
+    this.scene = new Transform()
   }
 
   createGeometry() {
     this.planeGeometry = new Plane(this.gl, {
       heightSegments: 50,
       widthSegments: 100
-    });
+    })
   }
 
   createMedias(
@@ -499,9 +529,9 @@ class App {
         image: '/img/rotation/activity5.png',
         text: 'Activity 5'
       }
-    ];
-    const galleryItems = items && items.length ? items : defaultItems;
-    this.mediasImages = galleryItems.concat(galleryItems);
+    ]
+    const galleryItems = items && items.length ? items : defaultItems
+    this.mediasImages = galleryItems.concat(galleryItems)
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
         geometry: this.planeGeometry,
@@ -518,114 +548,130 @@ class App {
         textColor,
         borderRadius,
         font
-      });
-    });
+      })
+    })
   }
 
   onTouchDown(e: MouseEvent | TouchEvent) {
-    this.isDown = true;
-    this.scroll.position = this.scroll.current;
-    this.start = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    this.isDown = true
+    this.scroll.position = this.scroll.current
+    this.start = 'touches' in e ? e.touches[0].clientX : e.clientX
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
-    if (!this.isDown) return;
-    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
-    this.scroll.target = (this.scroll.position ?? 0) + distance;
+    if (!this.isDown) return
+    const x = 'touches' in e ? e.touches[0].clientX : e.clientX
+    const distance = (this.start - x) * (this.scrollSpeed * 0.025)
+    this.scroll.target = (this.scroll.position ?? 0) + distance
   }
 
   onTouchUp() {
-    this.isDown = false;
-    this.onCheck();
+    this.isDown = false
+    this.onCheck()
   }
 
   onWheel(e: Event) {
-    const wheelEvent = e as WheelEvent;
-    const delta = wheelEvent.deltaY || (wheelEvent as any).wheelDelta || (wheelEvent as any).detail;
-    this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
-    this.onCheckDebounce();
+    const wheelEvent = e as WheelEvent
+    const delta =
+      wheelEvent.deltaY ||
+      (wheelEvent as any).wheelDelta ||
+      (wheelEvent as any).detail
+    this.scroll.target +=
+      (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2
+    this.onCheckDebounce()
   }
 
   onCheck() {
-    if (!this.medias || !this.medias[0]) return;
-    const width = this.medias[0].width;
-    const itemIndex = Math.round(Math.abs(this.scroll.target) / width);
-    const item = width * itemIndex;
-    this.scroll.target = this.scroll.target < 0 ? -item : item;
+    if (!this.medias || !this.medias[0]) return
+    const width = this.medias[0].width
+    const itemIndex = Math.round(Math.abs(this.scroll.target) / width)
+    const item = width * itemIndex
+    this.scroll.target = this.scroll.target < 0 ? -item : item
   }
 
   onResize() {
     this.screen = {
       width: this.container.clientWidth,
       height: this.container.clientHeight
-    };
-    this.renderer.setSize(this.screen.width, this.screen.height);
+    }
+    this.renderer.setSize(this.screen.width, this.screen.height)
     this.camera.perspective({
       aspect: this.screen.width / this.screen.height
-    });
-    const fov = (this.camera.fov * Math.PI) / 180;
-    const height = 2 * Math.tan(fov / 2) * this.camera.position.z;
-    const width = height * this.camera.aspect;
-    this.viewport = { width, height };
+    })
+    const fov = (this.camera.fov * Math.PI) / 180
+    const height = 2 * Math.tan(fov / 2) * this.camera.position.z
+    const width = height * this.camera.aspect
+    this.viewport = { width, height }
     if (this.medias) {
-      this.medias.forEach(media => media.onResize({ screen: this.screen, viewport: this.viewport }));
+      this.medias.forEach(media =>
+        media.onResize({ screen: this.screen, viewport: this.viewport })
+      )
     }
   }
 
   update() {
-    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
-    const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
+    this.scroll.current = lerp(
+      this.scroll.current,
+      this.scroll.target,
+      this.scroll.ease
+    )
+    const direction = this.scroll.current > this.scroll.last ? 'right' : 'left'
     if (this.medias) {
-      this.medias.forEach(media => media.update(this.scroll, direction));
+      this.medias.forEach(media => media.update(this.scroll, direction))
     }
-    this.renderer.render({ scene: this.scene, camera: this.camera });
-    this.scroll.last = this.scroll.current;
-    this.raf = window.requestAnimationFrame(this.update.bind(this));
+    this.renderer.render({ scene: this.scene, camera: this.camera })
+    this.scroll.last = this.scroll.current
+    this.raf = window.requestAnimationFrame(this.update.bind(this))
   }
 
   addEventListeners() {
-    this.boundOnResize = this.onResize.bind(this);
-    this.boundOnWheel = this.onWheel.bind(this);
-    this.boundOnTouchDown = this.onTouchDown.bind(this);
-    this.boundOnTouchMove = this.onTouchMove.bind(this);
-    this.boundOnTouchUp = this.onTouchUp.bind(this);
-    window.addEventListener('resize', this.boundOnResize);
-    window.addEventListener('mousewheel', this.boundOnWheel);
-    window.addEventListener('wheel', this.boundOnWheel);
-    window.addEventListener('mousedown', this.boundOnTouchDown);
-    window.addEventListener('mousemove', this.boundOnTouchMove);
-    window.addEventListener('mouseup', this.boundOnTouchUp);
-    window.addEventListener('touchstart', this.boundOnTouchDown);
-    window.addEventListener('touchmove', this.boundOnTouchMove);
-    window.addEventListener('touchend', this.boundOnTouchUp);
+    this.boundOnResize = this.onResize.bind(this)
+    this.boundOnWheel = this.onWheel.bind(this)
+    this.boundOnTouchDown = this.onTouchDown.bind(this)
+    this.boundOnTouchMove = this.onTouchMove.bind(this)
+    this.boundOnTouchUp = this.onTouchUp.bind(this)
+    window.addEventListener('resize', this.boundOnResize)
+    window.addEventListener('mousewheel', this.boundOnWheel)
+    window.addEventListener('wheel', this.boundOnWheel)
+    window.addEventListener('mousedown', this.boundOnTouchDown)
+    window.addEventListener('mousemove', this.boundOnTouchMove)
+    window.addEventListener('mouseup', this.boundOnTouchUp)
+    window.addEventListener('touchstart', this.boundOnTouchDown)
+    window.addEventListener('touchmove', this.boundOnTouchMove)
+    window.addEventListener('touchend', this.boundOnTouchUp)
   }
 
   destroy() {
-    window.cancelAnimationFrame(this.raf);
-    window.removeEventListener('resize', this.boundOnResize);
-    window.removeEventListener('mousewheel', this.boundOnWheel);
-    window.removeEventListener('wheel', this.boundOnWheel);
-    window.removeEventListener('mousedown', this.boundOnTouchDown);
-    window.removeEventListener('mousemove', this.boundOnTouchMove);
-    window.removeEventListener('mouseup', this.boundOnTouchUp);
-    window.removeEventListener('touchstart', this.boundOnTouchDown);
-    window.removeEventListener('touchmove', this.boundOnTouchMove);
-    window.removeEventListener('touchend', this.boundOnTouchUp);
-    if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
-      this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas as HTMLCanvasElement);
+    window.cancelAnimationFrame(this.raf)
+    window.removeEventListener('resize', this.boundOnResize)
+    window.removeEventListener('mousewheel', this.boundOnWheel)
+    window.removeEventListener('wheel', this.boundOnWheel)
+    window.removeEventListener('mousedown', this.boundOnTouchDown)
+    window.removeEventListener('mousemove', this.boundOnTouchMove)
+    window.removeEventListener('mouseup', this.boundOnTouchUp)
+    window.removeEventListener('touchstart', this.boundOnTouchDown)
+    window.removeEventListener('touchmove', this.boundOnTouchMove)
+    window.removeEventListener('touchend', this.boundOnTouchUp)
+    if (
+      this.renderer &&
+      this.renderer.gl &&
+      this.renderer.gl.canvas.parentNode
+    ) {
+      this.renderer.gl.canvas.parentNode.removeChild(
+        this.renderer.gl.canvas as HTMLCanvasElement
+      )
     }
   }
 }
 
 interface CircularGalleryProps {
-  items?: { image: string; text: string }[];
-  bend?: number;
-  textColor?: string;
-  borderRadius?: number;
-  font?: string;
-  scrollSpeed?: number;
-  scrollEase?: number;
+  items?: { image: string; text: string }[]
+  bend?: number
+  textColor?: string
+  borderRadius?: number
+  font?: string
+  scrollSpeed?: number
+  scrollEase?: number
 }
 
 export default function CircularGallery({
@@ -637,9 +683,9 @@ export default function CircularGallery({
   scrollSpeed = 2,
   scrollEase = 0.05
 }: CircularGalleryProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) return
     const app = new App(containerRef.current, {
       items,
       bend,
@@ -648,10 +694,10 @@ export default function CircularGallery({
       font,
       scrollSpeed,
       scrollEase
-    });
+    })
     return () => {
-      app.destroy();
-    };
-  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
-  return <div className={styles.circularGallery} ref={containerRef} />;
+      app.destroy()
+    }
+  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase])
+  return <div className={styles.circularGallery} ref={containerRef} />
 }
