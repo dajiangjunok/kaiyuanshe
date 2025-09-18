@@ -11,6 +11,7 @@ import Hero from '@/components/home/hero/Hero'
 import MissionSection from '@/components/home/mission/Mission'
 import EventSection from '@/components/home/events/Events'
 import NewsSection from '@/components/home/news/New'
+import ArticleSection from '@/components/home/article/Article'
 import CarouselSession from '@/components/home/carousel/Carousel'
 
 export default function Home() {
@@ -67,6 +68,8 @@ export default function Home() {
       <EventSection />
 
       <NewsSection />
+
+      <ArticleSection />
        {/* Mission Section */}
       <MissionSection />
 

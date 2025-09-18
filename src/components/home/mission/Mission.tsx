@@ -60,41 +60,49 @@ export default function MissionSection() {
 
   const apps = [
     {
+      img: '/img/home/xgyzpt.png',
       icon: <Shield className={styles.appIcon} />,
       title: '新冠援助平台',
       desc: '疫情期间的开源援助与协调平台'
     },
     {
+      img: '/img/home/kysgw.png',
       icon: <Globe className={styles.appIcon} />,
       title: '开源社官网',
       desc: '开源社区的官方门户与信息中心'
     },
     {
+      img: '/img/home/ossChat.png',
       icon: <Bot className={styles.appIcon} />,
       title: 'OSS.Chat',
       desc: '开源项目智能对话与协作平台'
     },
     {
+      img: '/img/home/map.png',
       icon: <Map className={styles.appIcon} />,
       title: '中国开源地图',
       desc: '全景展示中国开源项目与社区分布'
     },
     {
+      img: '/img/home/kToen.png',
       icon: <Database className={styles.appIcon} />,
       title: 'KToken',
       desc: '基于区块链的开源贡献激励系统'
     },
     {
+      img: '/img/home/xyjqr.png',
       icon: <Rocket className={styles.appIcon} />,
       title: '小源机器人',
       desc: '智能化的社区服务与互动机器人'
     },
     {
+      img: '/img/home/kybg.png',
       icon: <FileText className={styles.appIcon} />,
       title: '中国开源年度报告',
       desc: '权威的中国开源发展趋势分析报告'
     },
     {
+      img: '/img/home/hackathon.png',
       icon: <Trophy className={styles.appIcon} />,
       title: '开放黑客松',
       desc: '促进创新与合作的开源竞赛平台'
@@ -104,7 +112,6 @@ export default function MissionSection() {
   return (
     <section className={styles.missionSection}>
       <div className={styles.container}>
-       
         {/* Our Mission */}
         <div className={styles.missionBlock}>
           <div className={styles.blockHeader}>
@@ -115,9 +122,7 @@ export default function MissionSection() {
           <div className={styles.missionGrid}>
             {missions.map((mission, index) => (
               <div key={index} className={styles.missionCard}>
-                <div className={styles.missionIconWrapper}>
-                  {mission.icon}
-                </div>
+                <div className={styles.missionIconWrapper}>{mission.icon}</div>
                 <h3 className={styles.missionTitle}>{mission.title}</h3>
                 <p className={styles.missionDesc}>{mission.desc}</p>
               </div>
@@ -155,9 +160,7 @@ export default function MissionSection() {
           <div className={styles.appsGrid}>
             {apps.map((app, index) => (
               <div key={index} className={styles.appCard}>
-                <div className={styles.appIconWrapper}>
-                  {app.icon}
-                </div>
+                <div className={styles.appIconWrapper}>{app.icon}</div>
                 <h3 className={styles.appTitle}>{app.title}</h3>
                 <p className={styles.appDesc}>{app.desc}</p>
               </div>

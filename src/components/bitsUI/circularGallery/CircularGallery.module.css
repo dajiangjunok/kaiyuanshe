@@ -3,8 +3,23 @@
   height: 100%;
   overflow: hidden;
   cursor: grab;
+  touch-action: pan-x;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .circularGallery:active {
   cursor: grabbing;
+}
+
+@media (max-width: 768px) {
+  .circularGallery {
+    cursor: default;
+    /* 移动端不显示抓手光标 */
+  }
+  
+  .circularGallery:active {
+    cursor: default;
+  }
 }

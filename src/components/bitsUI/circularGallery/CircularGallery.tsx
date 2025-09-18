@@ -134,11 +134,14 @@ class Title {
     })
     this.mesh = new Mesh(this.gl, { geometry, program })
     const aspect = width / height
-    const textHeightScaled = this.plane.scale.y * 0.15
+    // 根据屏幕大小调整文字缩放比例
+    const isMobile = window.innerWidth <= 768
+    const textScale = isMobile ? 0.1 : 0.15
+    const textHeightScaled = this.plane.scale.y * textScale
     const textWidthScaled = textHeightScaled * aspect
     this.mesh.scale.set(textWidthScaled, textHeightScaled, 1)
     this.mesh.position.y =
-      -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05
+      -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - (isMobile ? 0.03 : 0.05)
     this.mesh.setParent(this.plane)
   }
 }
@@ -389,16 +392,24 @@ class Media {
         ]
       }
     }
-    this.scale = this.screen.height / 1500
+    // 根据屏幕宽度调整基础缩放比例，移动端显示更小
+    const isMobile = this.screen.width <= 768
+    const baseScale = isMobile ? 0.6 : 0.8 // 放大图片基础比例
+    this.scale = (this.screen.height / 1500) * baseScale
+    
+    // 调整图片尺寸，使其更大
+    const imageHeight = isMobile ? 800 : 900 // 增加图片高度
+    const imageWidth = isMobile ? 1300 : 1500 // 增加图片宽度
+    
     this.plane.scale.y =
-      (this.viewport.height * (900 * this.scale)) / this.screen.height
+      (this.viewport.height * (imageHeight * this.scale)) / this.screen.height
     this.plane.scale.x =
-      (this.viewport.width * (1600 * this.scale)) / this.screen.width
+      (this.viewport.width * (imageWidth * this.scale)) / this.screen.width
     this.plane.program.uniforms.uPlaneSizes.value = [
       this.plane.scale.x,
       this.plane.scale.y
     ]
-    this.padding = 2
+    this.padding = isMobile ? 1 : 2 // 移动端减少间距
     this.width = this.plane.scale.x + this.padding
     this.widthTotal = this.width * this.length
     this.x = this.width * this.index
@@ -511,23 +522,23 @@ class App {
     const defaultItems = [
       {
         image: '/img/rotation/activity1.png',
-        text: 'Activity 1'
+        text: '开源社'
       },
       {
         image: '/img/rotation/activity2.png',
-        text: 'Activity 2'
+        text: `COSCon'24 媒体社区合作伙伴`
       },
       {
         image: '/img/rotation/activity3.png',
-        text: 'Activity 3'
+        text: '2023第八届中国开源年会'
       },
       {
         image: '/img/rotation/activity4.png',
-        text: 'Activity 4'
+        text: '十周年'
       },
       {
         image: '/img/rotation/activity5.png',
-        text: 'Activity 5'
+        text: 'COSCUP2024 大陆讲师团'
       }
     ]
     const galleryItems = items && items.length ? items : defaultItems
@@ -679,7 +690,7 @@ export default function CircularGallery({
   bend = 3,
   textColor = '#ffffff',
   borderRadius = 0.05,
-  font = 'bold 30px Figtree',
+  font = typeof window !== 'undefined' && window.innerWidth <= 768 ? 'bold 20px Figtree' : 'bold 30px Figtree',
   scrollSpeed = 2,
   scrollEase = 0.05
 }: CircularGalleryProps) {

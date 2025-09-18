@@ -1,6 +1,6 @@
 /* Carousel Section */
 .carousel {
-  padding: 4rem 0;
+  padding: 2rem 0;
   background: #000;
   overflow: hidden;
   position: relative;
@@ -16,6 +16,37 @@
 
 .container {
   margin: 0 auto;
-  padding: 0 2rem;
-  height: 800px;
+  padding: 0 1rem;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+}
+
+/* Mobile responsive styles */
+@media (min-width: 640px) {
+  .carousel {
+    padding: 3rem 0;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+    height: 65vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel {
+    padding: 4rem 0;
+  }
+  
+  .container {
+    padding: 0 2rem;
+    height: 70vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    height: 600px;
+  }
 }
