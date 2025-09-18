@@ -1,7 +1,7 @@
 package scheduler
 
 import (
-	"devplaza/models"
+	"kaiyuanshe/models"
 	"log"
 
 	"github.com/robfig/cron/v3"

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"devplaza/controllers"
-	"devplaza/middlewares"
+	"kaiyuanshe/controllers"
+	"kaiyuanshe/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

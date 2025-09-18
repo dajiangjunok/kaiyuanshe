@@ -1,10 +1,10 @@
 package main
 
 import (
-	"devplaza/logger"
-	"devplaza/middlewares"
-	"devplaza/routes"
-	"devplaza/scheduler"
+	"kaiyuanshe/logger"
+	"kaiyuanshe/middlewares"
+	"kaiyuanshe/routes"
+	"kaiyuanshe/scheduler"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"

@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"devplaza/logger"
-	"devplaza/models"
-	"devplaza/utils"
+	"kaiyuanshe/logger"
+	"kaiyuanshe/models"
+	"kaiyuanshe/utils"
 	"net/http"
 	"strconv"
 

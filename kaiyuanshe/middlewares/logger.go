@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"devplaza/logger"
+	"kaiyuanshe/logger"
 	"time"
 
 	"github.com/gin-gonic/gin"

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"devplaza/config"
+	"kaiyuanshe/config"
 )
 
 var db = config.DB

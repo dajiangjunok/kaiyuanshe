@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"devplaza/models"
+	"kaiyuanshe/models"
 	"encoding/json"
 	"fmt"
 	"log"
