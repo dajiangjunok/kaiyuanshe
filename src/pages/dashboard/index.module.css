@@ -4,7 +4,7 @@
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, var(--primary-600) 100%);
   padding: 140px 0 40px;
   /* 增加顶部padding为导航栏留出空间 */
   margin-bottom: 24px;
@@ -111,12 +111,12 @@
 }
 
 .navigationMenu .ant-menu-item-selected {
-  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  background: linear-gradient(135deg, #667eea, var(--primary-600)) !important;
   color: white !important;
 }
 
 .navigationMenu .ant-menu-item-selected:hover {
-  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  background: linear-gradient(135deg, #667eea, var(--primary-600)) !important;
   color: white !important;
 }
 
@@ -200,7 +200,7 @@
 }
 
 .viewAllButton:hover {
-  color: #764ba2 !important;
+  color: var(--primary-600) !important;
   transform: translateX(2px);
 }
 

@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   padding: 0rem 1rem;
-  background: linear-gradient(to bottom right, #faf5ff, #e1dbfe);
+  background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
 }
 
 .header {

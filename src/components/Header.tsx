@@ -147,36 +147,36 @@ export default function Header() {
             label: t('navigation.knowledge.open_source_library'),
             icon: '📚',
             children: [
-              { key: 'cosc', label: t('navigation.knowledge.cosc'), href: '/' },
+              { key: 'cosc', label: t('navigation.knowledge.cosc'), href: '/articles?keyword=cosc' },
               {
                 key: 'kcc-library',
                 label: t('navigation.knowledge.kcc_library'),
-                href: '/'
+                href: '/articles?keyword=kcc-library'
               },
               {
                 key: 'reading-club',
                 label: t('navigation.knowledge.reading_club'),
-                href: '/'
+                href: '/articles?keyword=reading-club'
               },
               {
                 key: 'original-articles',
                 label: t('navigation.knowledge.original_articles'),
-                href: '/'
+                href: '/articles?keyword=original-articles'
               },
               {
                 key: 'translation-articles',
                 label: t('navigation.knowledge.translation_articles'),
-                href: '/'
+                href: '/articles?keyword=translation-articles'
               },
               {
                 key: 'all-articles',
                 label: t('navigation.knowledge.all_articles'),
-                href: '/'
+                href: '/articles?keyword=all-articles'
               },
               {
                 key: 'archived-articles',
                 label: t('navigation.knowledge.archived_articles'),
-                href: '/'
+                href: '/articles?keyword=archived-articles'
               }
             ]
           },

@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #faf5ff, #e1dbfe);
+  background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
 }
 
 /* Hero Section */
