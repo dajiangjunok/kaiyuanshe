@@ -28,7 +28,7 @@ export default function Hero() {
         </div>
 
         <div className={styles.heroButtons}>
-          <Link href="/monad" className={styles.heroPrimaryButton}>
+          <Link href="https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db" target='_blank' className={styles.heroPrimaryButton}>
             <Globe className={styles.buttonIcon} />
             了解 开源社
           </Link>

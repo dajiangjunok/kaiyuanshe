@@ -134,7 +134,8 @@ export default function Header() {
           {
             key: 'china-open-source-power-list',
             label: t('navigation.honors.china_open_source_power_list'),
-            href: '/'
+            href: 'https://opensource.win/',
+            target:'_blank'
           }
         ]
       },
