@@ -7,6 +7,7 @@ import Auth from './Auth'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from '../hooks/useTranslation'
+import { usePathname } from 'next/navigation'
 
 interface MenuItem {
   key: string
@@ -27,6 +28,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { t } = useTranslation()
+  const pathname = usePathname()
+  // 判断是否为根路由
+  const isHomePage = pathname === '/'
   // 使用 useMemo 确保 Auth 组件只创建一次，避免重复渲染
   const authComponent = useMemo(() => <Auth />, [])
 
@@ -179,8 +183,9 @@ export default function Header() {
           {
             key: 'china-open-source-annual-report',
             label: t('navigation.knowledge.china_open_source_annual_report'),
-            href: '/',
-            icon: '📊'
+            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
+            icon: '📊',
+            target:'_blank'
           },
           {
             key: 'china-open-source-map',
@@ -225,17 +230,20 @@ export default function Header() {
               {
                 key: 'open-source-toolbox',
                 label: t('navigation.activities.open_source_toolbox'),
-                href: '/'
+                href: 'https://oss-toolbox.kaiyuanshe.cn/',
+                target: '_blank'
               },
               {
                 key: 'open-hackathon-platform',
                 label: t('navigation.activities.open_hackathon_platform'),
-                href: '/'
+                href: 'https://hackathon.kaiyuanshe.cn/',
+                target: '_blank'
               },
               {
                 key: 'xiaoyuan-qa-bot',
                 label: t('navigation.activities.xiaoyuan_qa_bot'),
-                href: '/'
+                href: 'https://aitable.ai/share/shrLPzmeV2iapzGSowywU',
+                target: '_blank'
               }
             ]
           }
@@ -371,7 +379,7 @@ export default function Header() {
                 src="/logo.png"
                 className={styles.logo}
               />
-              <span className={styles.logoTitle}>開源社</span>
+              <span className={styles.logoTitle} style={{ color: isHomePage ? '#ffffff' : '#333333' }}>開源社</span>
             </div>
           </Link>
           <nav className={styles.nav}>
@@ -384,9 +392,9 @@ export default function Header() {
                 placement="bottom"
                 trigger={['hover']}
               >
-                <div className={styles.navItem}>
+                <div className={styles.navItem} style={{ color: isHomePage ? '#ffffff' : '#333333' }}>
                   <span>{section.title}</span>
-                  <ChevronDown className={styles.navIcon} />
+                  <ChevronDown className={styles.navIcon} style={{ color: isHomePage ? '#ffffff' : '#333333' }} />
                 </div>
               </Dropdown>
             ))}
