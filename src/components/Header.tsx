@@ -44,42 +44,42 @@ export default function Header() {
           {
             key: 'governance-overview',
             label: t('navigation.governance.governance_overview'),
-            href: '/',
+            href: '/department',
             icon: '🏛️'
           },
           {
             key: 'board',
             label: t('navigation.governance.board'),
-            href: '/',
+            href: '/department/board',
             icon: '👥'
           },
           {
             key: 'advisory',
             label: t('navigation.governance.advisory'),
-            href: '/',
+            href: '/department/committee/advisory',
             icon: '💡'
           },
           {
             key: 'legal',
             label: t('navigation.governance.legal'),
-            href: '/',
+            href: '/department/committee/legal',
             icon: '⚖️'
           },
           {
             key: 'kcc',
             label: t('navigation.governance.kcc'),
-            href: '/',
+            href: '/community',
             icon: '🏙️'
           },
           {
             key: 'formal-members',
             label: t('navigation.governance.formal_members'),
-            href: '/'
+            href: '/member'
           },
           {
             key: 'election',
             label: t('navigation.governance.election'),
-            href: '/'
+            href: '/community/star'
           },
           {
             key: 'calendar',
