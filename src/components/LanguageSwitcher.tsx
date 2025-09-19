@@ -8,16 +8,6 @@ export default function LanguageSwitcher() {
 
   const languageItems = [
     {
-      key: 'zh-TW',
-      label: (
-        <div className={styles.languageItem}>
-          <span className={styles.languageText}>{t('language.traditional_chinese')}</span>
-          {locale === 'zh-TW' && <span className={styles.activeIndicator}>✓</span>}
-        </div>
-      ),
-      onClick: () => changeLanguage('zh-TW')
-    },
-    {
       key: 'zh-CN',
       label: (
         <div className={styles.languageItem}>
@@ -26,6 +16,16 @@ export default function LanguageSwitcher() {
         </div>
       ),
       onClick: () => changeLanguage('zh-CN')
+    },
+    {
+      key: 'zh-TW',
+      label: (
+        <div className={styles.languageItem}>
+          <span className={styles.languageText}>{t('language.traditional_chinese')}</span>
+          {locale === 'zh-TW' && <span className={styles.activeIndicator}>✓</span>}
+        </div>
+      ),
+      onClick: () => changeLanguage('zh-TW')
     },
     {
       key: 'en',

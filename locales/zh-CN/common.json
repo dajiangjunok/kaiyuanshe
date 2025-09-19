@@ -115,9 +115,9 @@
     }
   },
   "footer": {
-    "title": "開源社",
-    "description": "開源社 是一个聚合 开源 活动、社区、文章和开发者数据的一站式广场。",
-    "copyright": "&copy; 2025 開源社. 保留所有权利"
+    "title": "开源社",
+    "description": "开源社 是一个聚合 开源 活动、社区、文章和开发者数据的一站式广场。",
+    "copyright": "&copy; 2025 开源社. 保留所有权利"
   },
   "errors": {
     "fetchDapps": "获取 DApps 列表失败:"

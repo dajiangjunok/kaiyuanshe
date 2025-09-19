@@ -378,6 +378,7 @@ export default function Header() {
                 preview={false}
                 width={30}
                 src="/logo.png"
+                alt="logo"
                 className={styles.logo}
               />
               <span className={styles.logoTitle} style={{ color: isHomePage ? '#ffffff' : '#333333' }}>開源社</span>

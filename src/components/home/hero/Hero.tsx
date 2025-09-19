@@ -22,8 +22,8 @@ export default function Hero() {
 
         <div className={styles.heroSubtitle}>
           <div>
-            <p className={styles.heroHighlight}>立足中國，貢獻全球，</p>
-            <p>推動開源成為新時代生活方式。</p>
+            <p className={styles.heroHighlight}>立足中国，贡献全球，</p>
+            <p>推动开源成为新时代生活方式。</p>
           </div>
         </div>
 
