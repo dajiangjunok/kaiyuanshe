@@ -1,4 +1,4 @@
-import {   Rocket } from 'lucide-react'
+import { Rocket } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
@@ -63,14 +63,14 @@ export default function Home() {
     <div className={styles.homepage}>
       {/* session1 */}
       <Hero />
-     <CarouselSession />
+      <CarouselSession />
       {/* Activities Section */}
       <EventSection />
 
       <NewsSection />
 
       <ArticleSection />
-       {/* Mission Section */}
+      {/* Mission Section */}
       <MissionSection />
 
       {/* CTA Section */}

@@ -161,6 +161,7 @@
   .heroButtons {
     flex-direction: column;
     gap: 0.75rem;
+    margin-top: 2rem;
   }
 
   
@@ -176,6 +177,7 @@
 @media (max-width: 480px) {
   .heroButtons {
     gap: 0.5rem;
+    margin-top: 2.5rem;
   }
 
   .heroPrimaryButton,
@@ -190,33 +192,33 @@
   .heroSubtitle {
     width: 100%;
     max-width: 600px;
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 32px;
+    line-height: 42px;
     height: auto;
     padding: 0 1rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    margin-top: 6rem;
+    margin-bottom: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .heroSubtitle {
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 26px;
+    line-height: 36px;
     max-width: 500px;
     width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 1.25rem;
+    margin-top: 8rem;
+    margin-bottom: 3rem;
   }
 }
 
 @media (max-width: 480px) {
   .heroSubtitle {
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 22px;
+    line-height: 30px;
     max-width: 320px;
     width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 10rem;
+    margin-bottom: 3.5rem;
   }
 }

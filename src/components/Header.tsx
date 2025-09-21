@@ -412,7 +412,7 @@ export default function Header() {
               className={styles.mobileMenuButton}
               onClick={() => setMobileMenuOpen(true)}
             >
-              <MenuIcon className={styles.mobileMenuIcon} />
+              <MenuIcon className={styles.mobileMenuIcon} style={{ color: isHomePage ? '#ffffff' : '#333333' }} />
             </button>
           </div>
         </div>
@@ -445,22 +445,14 @@ export default function Header() {
       >
         <div className={styles.mobileMenuContent}>
           {menuSections.map(section => {
-            // 为移动端筛选显示的菜单项（排除嵌套子菜单）
-            const displayItems = section.items
-              .filter(
-                item =>
-                  !item.children ||
-                  section.key === 'knowledge' ||
-                  section.key === 'activities'
-              )
-              .slice(
-                0,
-                section.key === 'governance'
-                  ? 5
-                  : section.key === 'honors'
-                    ? 4
-                    : undefined
-              )
+            const displayItems = section.items.slice(
+              0,
+              section.key === 'governance'
+                ? 5
+                : section.key === 'honors'
+                  ? 4
+                  : undefined
+            )
 
             return (
               <div key={section.key} className={styles.mobileMenuSection}>
@@ -469,16 +461,39 @@ export default function Header() {
                 </h3>
                 <div className={styles.mobileMenuLinks}>
                   {displayItems.map(item => (
-                    <Link
-                      key={item.key}
-                      href={item.href || '/'}
-                      target={item.target}
-                      className={styles.mobileMenuLink}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.icon && <span>{item.icon}</span>}
-                      <span>{item.label}</span>
-                    </Link>
+                    <div key={item.key}>
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          target={item.target}
+                          className={styles.mobileMenuLink}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.icon && <span>{item.icon}</span>}
+                          <span>{item.label}</span>
+                        </Link>
+                      ) : (
+                        <div className={styles.mobileMenuSubheader}>
+                          {item.icon && <span>{item.icon}</span>}
+                          <span>{item.label}</span>
+                        </div>
+                      )}
+                      {item.children && (
+                        <div className={styles.mobileMenuSublinks}>
+                          {item.children.map(child => (
+                            <Link
+                              key={child.key}
+                              href={child.href || '/'}
+                              target={child.target}
+                              className={styles.mobileMenuSublink}
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              <span>{child.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>

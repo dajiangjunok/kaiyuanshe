@@ -34,7 +34,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   min-height: 72px;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .headerContent::before {
@@ -340,6 +340,54 @@
 
 .mobileMenuLink span:last-child {
   font-weight: 500;
+}
+
+/* 3级导航样式 */
+.mobileMenuSubheader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--foreground);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background: rgba(30, 58, 138, 0.05);
+  border: 1px solid rgba(30, 58, 138, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.mobileMenuSubheader span:first-child {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.mobileMenuSublinks {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(30, 58, 138, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.mobileMenuSublink {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  color: var(--foreground-secondary);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+  background: transparent;
+  font-size: 0.9rem;
+}
+
+.mobileMenuSublink:hover {
+  background: rgba(30, 58, 138, 0.05);
+  color: var(--primary);
+  transform: translateX(2px);
 }
 
 /* 移动端菜单响应式优化 */

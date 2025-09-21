@@ -11,8 +11,12 @@ export default function LanguageSwitcher() {
       key: 'zh-CN',
       label: (
         <div className={styles.languageItem}>
-          <span className={styles.languageText}>{t('language.simplified_chinese')}</span>
-          {locale === 'zh-CN' && <span className={styles.activeIndicator}>✓</span>}
+          <span className={styles.languageText}>
+            {t('language.simplified_chinese')}
+          </span>
+          {locale === 'zh-CN' && (
+            <span className={styles.activeIndicator}>✓</span>
+          )}
         </div>
       ),
       onClick: () => changeLanguage('zh-CN')
@@ -21,8 +25,12 @@ export default function LanguageSwitcher() {
       key: 'zh-TW',
       label: (
         <div className={styles.languageItem}>
-          <span className={styles.languageText}>{t('language.traditional_chinese')}</span>
-          {locale === 'zh-TW' && <span className={styles.activeIndicator}>✓</span>}
+          <span className={styles.languageText}>
+            {t('language.traditional_chinese')}
+          </span>
+          {locale === 'zh-TW' && (
+            <span className={styles.activeIndicator}>✓</span>
+          )}
         </div>
       ),
       onClick: () => changeLanguage('zh-TW')
@@ -46,7 +54,11 @@ export default function LanguageSwitcher() {
       trigger={['hover', 'click']}
       arrow
     >
-      <div className={styles.languageSwitcher} title={t('language.switch')}>
+      <div
+        className={styles.languageSwitcher}
+        title={t('language.switch')}
+        onClick={e => e.preventDefault()}
+      >
         <Globe className={styles.globeIcon} />
         <span className={styles.currentLanguage}>
           {locale === 'zh-TW' ? '繁' : locale === 'zh-CN' ? '简' : 'EN'}
