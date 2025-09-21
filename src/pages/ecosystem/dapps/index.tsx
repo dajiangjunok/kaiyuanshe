@@ -209,9 +209,9 @@ export default function EcosystemPage() {
         <div className={styles.heroContent}>
           <div className={styles.heroHeader}>
             <div className={styles.heroText}>
-              <h1 className={styles.heroTitle}>DevPlaza</h1>
+              <h1 className={styles.heroTitle}>开源社</h1>
               <p className={styles.heroDescription}>
-                聚合 Web3 活动、社区、文章与开发者数据，为开发者提供一站式探索与成长的平台。
+               立足中国，贡献全球，推动开源成为新时代生活方式。
               </p>
             </div>
             {status === 'authenticated' && permissions.includes('dapp:write') && (
@@ -270,7 +270,7 @@ export default function EcosystemPage() {
             <Button
               size="large"
             >
-              DevPlaza 项目
+              开源社 项目
             </Button>
             <Button
               size="large"

@@ -277,7 +277,7 @@ export default function StatsIndex() {
             </div>
             <h1 className={styles.title}>数据统计中心</h1>
           </div>
-          <p className={styles.subtitle}>DevPlaza 内容数据与运营数据概览</p>
+          <p className={styles.subtitle}>开源社 内容数据与运营数据概览</p>
         </div>
 
         {/* 日历选择器和当前选择显示 */}

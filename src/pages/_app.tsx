@@ -24,7 +24,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
-  const appName = process.env.NEXT_PUBLIC_APP_NAME || 'DevPlaza';
+  const appName = process.env.NEXT_PUBLIC_APP_NAME || '开源社';
 
   return (
     <SessionProvider
