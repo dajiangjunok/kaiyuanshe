@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
   i18n: {
     locales: ['zh-CN', 'zh-TW', 'en'],
     defaultLocale: 'zh-CN',
+    localeDetection: false,
   },
   images: {
     remotePatterns: [
