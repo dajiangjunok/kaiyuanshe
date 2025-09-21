@@ -84,17 +84,17 @@ export default function Header() {
           {
             key: 'calendar',
             label: t('navigation.governance.calendar'),
-            href: '/'
+            href: '/governance/meeting'
           },
           {
             key: 'suggestion-box',
             label: t('navigation.governance.suggestion_box'),
-            href: '/'
+            href: '/governance/issue'
           },
           {
             key: 'proposal-library',
             label: t('navigation.governance.proposal_library'),
-            href: '/'
+            href: '/governance/proposal'
           }
         ]
       },
@@ -105,31 +105,31 @@ export default function Header() {
           {
             key: 'open-source-star',
             label: t('navigation.honors.open_source_star'),
-            href: '/',
+            href: '/community/award/Open-Source-star',
             icon: '⭐'
           },
           {
             key: 'annual-volunteer',
             label: t('navigation.honors.annual_volunteer'),
-            href: '/',
+            href: '/community/award/excellent-volunteer',
             icon: '🏆'
           },
           {
             key: 'coscon-star',
             label: t('navigation.honors.coscon_star'),
-            href: '/',
+            href: '/community/award/COSCon-star',
             icon: '🌟'
           },
           {
             key: 'community-cooperation-star',
             label: t('navigation.honors.community_cooperation_star'),
-            href: '/',
+            href: '/community/award/community-cooperation-star',
             icon: '🤝'
           },
           {
             key: 'china-open-source-pioneer',
             label: t('navigation.honors.china_open_source_pioneer'),
-            href: '/'
+            href: '/community/award/China-Open-Source-pioneer'
           },
           {
             key: 'china-open-source-power-list',

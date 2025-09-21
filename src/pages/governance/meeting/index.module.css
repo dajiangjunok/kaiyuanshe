@@ -1,0 +1,284 @@
+/* 会议日历样式 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, var(--primary-400) 100%);
+  padding: 40px 20px;
+  padding-top: 8rem !important;
+}
+
+.calendarWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease-out;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1890ff;
+  font-size: 56px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleIcon {
+  margin-right: 20px;
+  color: #1890ff;
+}
+
+/* 日历样式 */
+.calendar {
+  font-size: 18px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 日历事件 */
+.calendarMeetings {
+  min-height: 70px;
+  padding: 4px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.calendarMeetings::-webkit-scrollbar {
+  width: 4px;
+}
+
+.calendarMeetings::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.calendarMeetings::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.calendarMeetings::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.meetingItem {
+  font-size: 12px;
+  padding: 3px 6px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.meetingItem:hover {
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  position: relative;
+}
+
+.meetingItem:active {
+  animation: pulse 0.3s ease-in-out;
+}
+
+.moreMeetings {
+  color: #1890ff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  padding: 3px;
+  border-radius: 4px;
+  background: rgba(24, 144, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.moreMeetings:hover {
+  background: rgba(24, 144, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* 状态颜色 */
+.meetingUpcoming {
+  background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+}
+
+.meetingOngoing {
+  background: linear-gradient(135deg, #fa8c16 0%, #ffa940 100%);
+}
+
+.meetingEnded {
+  background: linear-gradient(135deg, #8c8c8c 0%, #bfbfbf 100%);
+}
+
+/* 抽屉 */
+.drawerTitle {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+.drawerIcon {
+  margin-right: 12px;
+  color: #1890ff;
+}
+
+.meetingCard {
+  margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.meetingCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.meetingTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #262626;
+}
+
+.meetingDescription {
+  margin: 12px 0;
+  color: #595959;
+  line-height: 1.6;
+}
+
+.meetingInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.meetingInfoItem {
+  display: flex;
+  align-items: center;
+  color: #595959;
+  font-size: 14px;
+}
+
+.meetingInfoIcon {
+  margin-right: 6px;
+}
+
+/* 弹窗 */
+.modalMeetingTitle {
+  margin-bottom: 16px;
+  color: #262626;
+}
+
+.modalDescription {
+  color: #595959;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.modalInfo {
+  width: 100%;
+}
+
+.modalInfoItem {
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modalInfoItem:last-child {
+  border-bottom: none;
+}
+
+.modalInfoLabel {
+  font-weight: 600;
+  color: #262626;
+  margin-right: 12px;
+}
+
+.modalInfoValue {
+  color: #595959;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .calendarWrapper {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 36px;
+    flex-direction: column;
+  }
+
+  .titleIcon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .calendar {
+    font-size: 16px;
+  }
+
+  .calendarMeetings {
+    min-height: 60px;
+    max-height: 100px;
+  }
+
+  .meetingItem {
+    font-size: 11px;
+    padding: 2px 4px;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

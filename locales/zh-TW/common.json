@@ -64,12 +64,12 @@
     "hero": {
       "title": "開源社",
       "subtitle": "立足中國，貢獻全球，推動開源成為新時代生活方式。",
-      "learnMore": "了解 DevPlaza",
+      "learnMore": "了解 开源社",
       "joinCommunity": "加入社區"
     },
     "features": {
       "title": "核心功能",
-      "description": "DevPlaza 通過整合 Web3 多鏈數據、活動與社區內容，為開發者提供高效的一站式體驗",
+      "description": "开源社 通過整合 Web3 多鏈數據、活動與社區內容，為開發者提供高效的一站式體驗",
       "multiChain": {
         "title": "多鏈聚合",
         "description": "統一整合以太坊等多條 Web3 鏈上的活動、文章、博客和社區動態"
@@ -104,7 +104,7 @@
       }
     },
     "milestones": {
-      "title": "DevPlaza 里程碑"
+      "title": "开源社 里程碑"
     },
     "cta": {
       "title": "加入 開源社· 見證你的 開源 成長之路",

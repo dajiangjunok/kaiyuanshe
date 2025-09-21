@@ -64,12 +64,12 @@
     "hero": {
       "title": "开源社",
       "subtitle": "立足中国，贡献全球，推动开源成为新时代生活方式",
-      "learnMore": "了解 DevPlaza",
+      "learnMore": "了解 开源社",
       "joinCommunity": "加入社区"
     },
     "features": {
       "title": "核心功能",
-      "description": "DevPlaza 通过整合 Web3 多链数据、活动与社区内容，为开发者提供高效的一站式体验",
+      "description": "开源社 通过整合 Web3 多链数据、活动与社区内容，为开发者提供高效的一站式体验",
       "multiChain": {
         "title": "多链聚合",
         "description": "统一整合以太坊等多条 Web3 链上的活动、文章、博客和社区动态"
@@ -104,10 +104,10 @@
       }
     },
     "milestones": {
-      "title": "DevPlaza 里程碑"
+      "title": "开源社 里程碑"
     },
     "cta": {
-      "title": "加入 DevPlaza · 见证你的 开源 成长之路",
+      "title": "加入 开源社 · 见证你的 开源 成长之路",
       "description": "无论你是 热衷于开源 开发者，还是已经投身 开源， 开源社 都为你提供最全面的资源与舞台。",
       "getStarted": "立即开始",
       "joinTelegram": "加入 Telegram",
