@@ -16,12 +16,12 @@ import VditorEditor from '@/components/vditorEditor/VditorEditor';
 // import QuillEditor from '@/components/quillEditor/QuillEditor';
 import UploadCardImg from '@/components/uploadCardImg/UploadCardImg';
 
-import { createBlog } from '../api/blog';
+import { createArticle } from '../api/article';
 import router from 'next/router';
 
 const { TextArea } = Input;
 
-export default function NewBlogPage() {
+export default function NewArticlePage() {
   const { message } = AntdApp.useApp();
   const [form] = Form.useForm();
 
@@ -45,29 +45,28 @@ export default function NewBlogPage() {
       console.log(values);
       setIsSubmitting(true);
 
-      const createBlogRequest = {
+      const createArticleRequest = {
         title: values.title || '',
         description: values.description || '',
         content: values.content || '',
         source_link: values.source || '',
-        source_type: values.sourceType,
-        category: 'blog',
+        category: values.category,
         cover_img: cloudinaryImg?.secure_url || '',
         tags: tags,
         author: values.author || '',
         translator: values.translator || '',
       };
 
-      const result = await createBlog(createBlogRequest);
+      const result = await createArticle(createArticleRequest);
       if (result.success) {
         message.success(result.message);
-        router.push('/blogs');
+        router.push('/articles');
       } else {
-        message.error(result.message || '创建博客失败');
+        message.error(result.message || '创建文章失败');
       }
     } catch (error) {
-      console.error('创建博客失败:', error);
-      message.error('创建博客出错，请重试');
+      console.error('创建文章失败:', error);
+      message.error('创建文章出错，请重试');
     } finally {
       setIsSubmitting(false);
     }
@@ -94,12 +93,12 @@ export default function NewBlogPage() {
       <div className={styles.header}>
         <Link href="/blogs" className={styles.backButton}>
           <ArrowLeft className={styles.backIcon} />
-          返回博客列表
+          返回文章列表
         </Link>
       </div>
 
       <div className={styles.titleSection}>
-        <h1 className={styles.title}>新建博客</h1>
+        <h1 className={styles.title}>新建文章</h1>
       </div>
 
       <Form
@@ -122,33 +121,33 @@ export default function NewBlogPage() {
               </h2>
 
               <Form.Item
-                label="博客标题"
+                label="文章标题"
                 name="title"
-                rules={[{ required: true, message: '请输入博客标题' }]}
+                rules={[{ required: true, message: '请输入文章标题' }]}
               >
                 <Input
-                  placeholder="请输入博客标题"
+                  placeholder="请输入文章标题"
                   className={styles.input}
                   maxLength={30}
                   showCount
                 />
               </Form.Item>
               <Form.Item
-                label="博客描述"
+                label="文章描述"
                 name="description"
-                rules={[{ required: true, message: '请输入博客描述' }]}
+                rules={[{ required: true, message: '请输入文章描述' }]}
               >
                 <TextArea
                   rows={2}
                   maxLength={60}
                   showCount
-                  placeholder="请输入博客描述"
+                  placeholder="请输入文章描述"
                 />
               </Form.Item>
               <Form.Item
-                label="博客内容"
+                label="文章内容"
                 name="content"
-                rules={[{ required: true, message: '请输入博客内容' }]}
+                rules={[{ required: true, message: '请输入文章内容' }]}
               >
                 {/* <QuillEditor
                   value={form.getFieldValue('content')}
@@ -165,15 +164,15 @@ export default function NewBlogPage() {
 
           {/* 右侧表单 */}
           <div className={styles.rightColumn}>
-            {/* 博客封面 */}
+            {/* 文章封面 */}
             <Card className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <ImageIcon className={styles.sectionIcon} />
-                博客封面
+                文章封面
               </h2>
               <Form.Item
                 name="cover"
-                rules={[{ required: true, message: '请上传博客封面' }]}
+                rules={[{ required: true, message: '请上传文章封面' }]}
               >
                 <UploadCardImg
                   previewUrl={previewUrl}
@@ -201,13 +200,14 @@ export default function NewBlogPage() {
               </Form.Item>
 
               <Form.Item
-                label="类型"
-                name="sourceType"
-                rules={[{ required: true, message: '请选择类型' }]}
+                label="分类"
+                name="category"
+                rules={[{ required: true, message: '请选择分类' }]}
               >
-                <Select placeholder="请选择类型">
-                  <Select.Option value="official">官方</Select.Option>
-                  <Select.Option value="community">社区解读</Select.Option>
+                <Select placeholder="请选择分类">
+                  <Select.Option value="original">原创</Select.Option>
+                  <Select.Option value="translation">翻译</Select.Option>
+                  <Select.Option value="archive">归档</Select.Option>
                 </Select>
               </Form.Item>
             </Card>
@@ -232,7 +232,16 @@ export default function NewBlogPage() {
               <div className={styles.formRow}>
                 <Form.Item label="翻译" name="translator">
                   <Input
-                    placeholder="请输入翻译人员（可选）"
+                    placeholder="请输入翻译（可选）"
+                    maxLength={10}
+                    showCount
+                  />
+                </Form.Item>
+              </div>
+               <div className={styles.formRow}>
+                <Form.Item label="编辑" name="editor">
+                  <Input
+                    placeholder="请输入编辑"
                     maxLength={10}
                     showCount
                   />
@@ -244,7 +253,7 @@ export default function NewBlogPage() {
             <Card className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <Plus className={styles.sectionIcon} />
-                博客标签
+                文章标签
               </h2>
 
               <div className={styles.tagsContainer}>
@@ -297,7 +306,7 @@ export default function NewBlogPage() {
             disabled={isSubmitting}
           >
             <Save className={styles.submitIcon} />
-            {isSubmitting ? '创建中...' : '创建博客'}
+            {isSubmitting ? '创建中...' : '创建文章'}
           </Button>
         </div>
       </Form>

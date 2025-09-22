@@ -34,10 +34,10 @@ func InitRolesAndPermissions() error {
 
 	// 1. 创建权限
 	permissions := []Permission{
-		{Name: "blog:write", Description: "创作博客"},
-		{Name: "blog:review", Description: "审核博客"},
-		{Name: "blog:delete", Description: "删除博客"},
-		{Name: "blog:publish", Description: "发布博客"},
+		{Name: "article:write", Description: "创作文章"},
+		{Name: "article:review", Description: "审核文章	"},
+		{Name: "article:delete", Description: "删除文章"},
+		{Name: "article:publish", Description: "发布文章"},
 		{Name: "tutorial:write", Description: "创作教程"},
 		{Name: "tutorial:review", Description: "审核教程"},
 		{Name: "tutorial:delete", Description: "删除教程"},
@@ -57,8 +57,8 @@ func InitRolesAndPermissions() error {
 
 	// 2. 创建权限组
 	permissionGroups := []PermissionGroup{
-		{Name: "博客作者", Description: "博客创作权限组"},
-		{Name: "博客管理员", Description: "博客管理权限组"},
+		{Name: "文章作者", Description: "文章创作权限组"},
+		{Name: "文章管理员", Description: "文章管理权限组"},
 		{Name: "教程作者", Description: "教程创作权限组"},
 		{Name: "教程管理员", Description: "教程管理权限组"},
 		{Name: "活动创建者", Description: "活动创建权限组"},
@@ -80,19 +80,19 @@ func InitRolesAndPermissions() error {
 		return p, err
 	}
 
-	// 博客创作者：创作博客，删除博客
-	blogWrite, _ := getPermByName("blog:write")
-	blogDelete, _ := getPermByName("blog:delete")
-	err := db.Model(&permissionGroups[0]).Association("Permissions").Append(&blogWrite, &blogDelete)
+	// 文章创作者：创作文章，删除文章
+	articleWrite, _ := getPermByName("article:write")
+	articleDelete, _ := getPermByName("article:delete")
+	err := db.Model(&permissionGroups[0]).Association("Permissions").Append(&articleWrite, &articleDelete)
 	if err != nil {
 		return err
 	}
 
-	// 博客管理员：可以审核博客
-	blogReview, _ := getPermByName("blog:review")
-	blogPublish, _ := getPermByName("blog:publish")
-	blogPermissions := []*Permission{&blogWrite, &blogReview, &blogDelete, &blogPublish}
-	err = db.Model(&permissionGroups[1]).Association("Permissions").Append(blogPermissions)
+	// 文章管理员：可以审核文章
+	articleReview, _ := getPermByName("article:review")
+	articlePublish, _ := getPermByName("article:publish")
+	articlePermissions := []*Permission{&articleWrite, &articleReview, &articleDelete, &articlePublish}
+	err = db.Model(&permissionGroups[1]).Association("Permissions").Append(articlePermissions)
 	if err != nil {
 		return err
 	}
@@ -132,7 +132,7 @@ func InitRolesAndPermissions() error {
 	}
 
 	// 内容创作者
-	contentPermissions := []*Permission{&blogWrite, &blogDelete, &tutorialWrite, &tutorialDelete}
+	contentPermissions := []*Permission{&articleWrite, &articleDelete, &tutorialWrite, &tutorialDelete}
 	err = db.Model(&permissionGroups[6]).Association("Permissions").Append(contentPermissions)
 	if err != nil {
 		return err
@@ -140,7 +140,7 @@ func InitRolesAndPermissions() error {
 	}
 
 	// 内容管理员：拥有所有内容管理权限
-	err = db.Model(&permissionGroups[7]).Association("Permissions").Append(blogPermissions, tutorialPermissions)
+	err = db.Model(&permissionGroups[7]).Association("Permissions").Append(articlePermissions, tutorialPermissions)
 	if err != nil {
 		return err
 
@@ -158,15 +158,15 @@ func InitRolesAndPermissions() error {
 	}
 
 	// 超级管理员：拥有所有权限
-	err = db.Model(&permissionGroups[9]).Association("Permissions").Append(blogPermissions, tutorialPermissions, eventPermissions, dappPermissions)
+	err = db.Model(&permissionGroups[9]).Association("Permissions").Append(articlePermissions, tutorialPermissions, eventPermissions, dappPermissions)
 	if err != nil {
 		return err
 	}
 
 	// 4. 创建示例角色并关联权限和权限组
 	roles := []Role{
-		{Name: "blog_writer", Description: "博客作者角色"},
-		{Name: "blog_admin", Description: "博客管理员角色"},
+		{Name: "article_writer", Description: "文章作者角色"},
+		{Name: "article_admin", Description: "文章管理员角色"},
 		{Name: "tutorial_writer", Description: "教程作者角色"},
 		{Name: "tutorial_admin", Description: "教程管理员角色"},
 		{Name: "event_creator", Description: "活动创建角色"},
@@ -182,12 +182,12 @@ func InitRolesAndPermissions() error {
 	}
 
 	// 关联角色与权限组（角色继承权限组权限）
-	err = db.Model(&roles[0]).Association("PermissionGroups").Append(&permissionGroups[0]) // 博客作者
+	err = db.Model(&roles[0]).Association("PermissionGroups").Append(&permissionGroups[0]) // 文章作者
 	if err != nil {
 		return err
 	}
 
-	err = db.Model(&roles[1]).Association("PermissionGroups").Append(&permissionGroups[1]) // 博客管理员
+	err = db.Model(&roles[1]).Association("PermissionGroups").Append(&permissionGroups[1]) // 文章管理员
 	if err != nil {
 		return err
 	}

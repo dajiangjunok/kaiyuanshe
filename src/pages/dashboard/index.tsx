@@ -19,7 +19,7 @@ import { BookOpen, FileText, Eye, Clock, Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import styles from './index.module.css';
-import { deleteBlog, getBlogs } from '../api/blog';
+import { deleteBlog, getBlogs } from '../api/article';
 import { deleteTutorial, getTutorials } from '../api/tutorial';
 import { deletePost, getPosts, updatePost, getPostById } from '../api/post';
 import { useAuth } from '@/contexts/AuthContext';

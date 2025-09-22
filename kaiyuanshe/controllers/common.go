@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"kaiyuanshe/models"
 	"encoding/json"
 	"fmt"
+	"kaiyuanshe/models"
 	"log"
 )
 
@@ -123,11 +123,11 @@ type CreateArticleRequest struct {
 	Tags       []string `json:"tags"`
 	Author     string   `json:"author" binding:"required"`
 	Translator string   `json:"translator"`
+	Editor     string   `json:"editor"`
 }
 
 type QueryArticlesResponse struct {
-	Blogs    []models.Article `json:"blogs"`
-	Guides   []models.Article `json:"guides"`
+	Articles []models.Article `json:"articles"`
 	Page     int              `json:"page"`
 	PageSize int              `json:"page_size"`
 	Total    int64            `json:"total"`

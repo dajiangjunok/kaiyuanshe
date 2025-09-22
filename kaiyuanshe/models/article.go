@@ -20,6 +20,7 @@ type Article struct {
 	Category      string         `json:"category"`
 	Author        string         `json:"author"`
 	Translator    string         `json:"translator"`
+	Editor        string         `json:"editor"`
 	PublisherId   uint           `json:"publisher_id"`
 	Publisher     *User          `gorm:"foreignKey:PublisherId" json:"publisher"`
 	PublishTime   *time.Time     `json:"publish_time"`

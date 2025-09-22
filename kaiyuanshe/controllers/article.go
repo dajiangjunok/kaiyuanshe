@@ -29,6 +29,7 @@ func CreateArticle(c *gin.Context) {
 		SourceType:  req.SourceType,
 		Author:      req.Author,
 		Translator:  req.Translator,
+		Editor:      req.Editor,
 	}
 
 	uid, ok := c.Get("uid")
@@ -101,11 +102,7 @@ func QueryArticles(c *gin.Context) {
 		Page:     page,
 		PageSize: pageSize,
 		Total:    total,
-	}
-	if category == "blog" {
-		response.Blogs = articles
-	} else {
-		response.Guides = articles
+		Articles: articles,
 	}
 
 	utils.SuccessResponse(c, http.StatusOK, "query success", response)

@@ -36,14 +36,14 @@ func SetupRouter(r *gin.Engine) {
 		event.PUT("/recap/:id", middlewares.JWT("blog:write"), controllers.UpdateRecap)
 		event.GET("/recap", controllers.GetRecap)
 	}
-	blog := r.Group("/v1/blogs")
+	blog := r.Group("/v1/articles")
 	{
-		blog.POST("", middlewares.JWT("blog:write"), controllers.CreateArticle)
-		blog.DELETE("/:id", middlewares.JWT("blog:delete"), controllers.DeleteArticle)
-		blog.PUT("/:id", middlewares.JWT("blog:write"), controllers.UpdateArticle)
+		blog.POST("", middlewares.JWT("article:write"), controllers.CreateArticle)
+		blog.DELETE("/:id", middlewares.JWT("article:delete"), controllers.DeleteArticle)
+		blog.PUT("/:id", middlewares.JWT("article:write"), controllers.UpdateArticle)
 		blog.GET("/:id", controllers.GetArticle)
 		blog.GET("", controllers.QueryArticles)
-		blog.PUT("/:id/status", middlewares.JWT("blog:review"), controllers.UpdateArticlePublishStatus)
+		blog.PUT("/:id/status", middlewares.JWT("article:review"), controllers.UpdateArticlePublishStatus)
 	}
 	dapp := r.Group("/v1/dapps")
 	{

@@ -1,24 +1,23 @@
 import { apiRequest } from './api';
 
 // 创建事件请求参数接口
-export interface CreateBlogParams {
+export interface CreateArticleParams {
   title: string;
   description: string;
   content: string;
   category: string;
   cover_img: string;
   source_link: string;
-  source_type: string;
   tags: string[];
   author: string;
   translator: string;
 }
 
-export interface UpdateBlogParams {
+export interface UpdateArticleParams {
   title: string;
   description: string;
   content: string;
-  category: string | 'blog';
+  category: string | 'article';
   source_link: string;
   cover_img: string;
   tags: string[];
@@ -26,7 +25,7 @@ export interface UpdateBlogParams {
   translator: string;
 }
 
-export interface GetBlogsParams {
+export interface GetArticlesParams {
   keyword?: string;
   tag?: string;
   order?: 'asc' | 'desc';
@@ -48,7 +47,7 @@ export interface User {
   github: string;
 }
 
-export interface Blog {
+export interface Article {
   ID: number;
   title: string;
   CreatedAt: string;
@@ -60,6 +59,7 @@ export interface Blog {
   category: string;
   author: string;
   translator: string;
+  editor: string;
   tags: string[];
   publish_status?: number;
   publish_time?: string;
@@ -69,56 +69,55 @@ export interface Blog {
 }
 
 // 分页返回数据结构
-export interface PaginatedBlogData {
-  blogs: Blog[];
+export interface PaginatedArticleData {
+  articles: Article[];
   page: number;
   page_size: number;
   total: number;
 }
 
 // 统一结果结构
-export interface BlogListResult {
+export interface ArticleListResult {
   success: boolean;
   message: string;
-  data?: PaginatedBlogData;
+  data?: PaginatedArticleData;
 }
 
-export interface BlogResult {
+export interface ArticleResult {
   success: boolean;
   message: string;
-  data?: Blog;
+  data?: Article;
 }
 
-export const createBlog = async (
-  params: CreateBlogParams
-): Promise<BlogResult> => {
+export const createArticle = async (
+  params: CreateArticleParams
+): Promise<ArticleResult> => {
   try {
     const body = {
       title: params.title.trim(),
       desc: params.description.trim(),
       content: params.content,
-      category: 'blog',
+      category: params.category,
       source_link: params.source_link,
-      source_type: params.source_type,
       cover_img: params.cover_img,
       tags: params.tags ?? [],
       author: params.author ?? '',
       translator: params.translator ?? '',
     };
 
-    const response = await apiRequest<BlogResult>('/blogs', 'POST', body);
+    const response = await apiRequest<ArticleResult>('/articles', 'POST', body);
 
     if (response.code === 200 && response.data) {
       return {
         success: true,
-        message: '博客创建成功',
-        data: response.data as unknown as Blog,
+        message: '文章创建成功',
+        data: response.data as unknown as Article,
       };
     }
 
-    return { success: false, message: '博客创建出错' };
+    return { success: false, message: '文章创建出错' };
   } catch (error: any) {
-    console.error('博客活动异常:', error);
+    console.error('文章活动异常:', error);
     return {
       success: false,
       message: error?.message ?? '网络错误，请稍后重试',
@@ -126,16 +125,16 @@ export const createBlog = async (
   }
 };
 
-export const updateBlog = async (
-  blogId: string,
-  params: UpdateBlogParams
-): Promise<BlogResult> => {
+export const updateArticle = async (
+  articleId: string,
+  params: UpdateArticleParams
+): Promise<ArticleResult> => {
   try {
     const body = {
       title: params.title.trim(),
       desc: params.description.trim(),
       content: params.content,
-      category: 'blog',
+      category: params.category,
       source_link: params.source_link,
       cover_img: params.cover_img,
       tags: params.tags ?? [],
@@ -143,8 +142,8 @@ export const updateBlog = async (
       translator: params.translator ?? '',
     };
 
-    const response = await apiRequest<BlogResult>(
-      `/blogs/${blogId}`,
+    const response = await apiRequest<ArticleResult>(
+      `/articles/${articleId}`,
       'PUT',
       body
     );
@@ -152,12 +151,12 @@ export const updateBlog = async (
     if (response.code === 200 && response.data) {
       return {
         success: true,
-        message: response.message ?? '博客更新成功',
-        data: response.data as unknown as Blog,
+        message: response.message ?? '文章更新成功',
+        data: response.data as unknown as Article,
       };
     }
 
-    return { success: false, message: response.message ?? '博客更新失败' };
+    return { success: false, message: response.message ?? '文章更新失败' };
   } catch (error: any) {
     return {
       success: false,
@@ -166,9 +165,9 @@ export const updateBlog = async (
   }
 };
 
-export const getBlogs = async (
-  params: GetBlogsParams = {}
-): Promise<BlogListResult> => {
+export const getArticles = async (
+  params: GetArticlesParams = {}
+): Promise<ArticleListResult> => {
   try {
     const query = new URLSearchParams();
 
@@ -179,27 +178,27 @@ export const getBlogs = async (
     if (params.user_id != null)
       query.append('user_id', params.user_id.toString());
 
-    query.append('category', 'blog');
+    query.append('category', params.category || '');
     query.append('order', params.order ?? 'desc');
     query.append('page', (params.page ?? 1).toString());
     query.append('page_size', (params.page_size ?? 6).toString());
 
-    const response = await apiRequest<BlogListResult>(
-      `/blogs?${query.toString()}`,
+    const response = await apiRequest<ArticleListResult>(
+      `/articles?${query.toString()}`,
       'GET'
     );
 
     if (response.code === 200 && response.data) {
       return {
         success: true,
-        message: response.message ?? '获取博客列表成功',
-        data: response.data as unknown as PaginatedBlogData,
+        message: response.message ?? '获取文章列表成功',
+        data: response.data as unknown as PaginatedArticleData,
       };
     }
 
-    return { success: false, message: response.message ?? '获取博客列表失败' };
+    return { success: false, message: response.message ?? '获取文章列表失败' };
   } catch (error: any) {
-    console.error('获取博客列表异常:', error);
+    console.error('获取文章列表异常:', error);
     return {
       success: false,
       message: error?.message ?? '网络错误，请稍后重试',
@@ -207,25 +206,25 @@ export const getBlogs = async (
   }
 };
 
-export const getBlogById = async (blogId: string): Promise<BlogResult> => {
+export const getArticleById = async (articleId: string): Promise<ArticleResult> => {
   try {
-    if (!blogId) {
-      return { success: false, message: '博客ID不能为空' };
+    if (!articleId) {
+      return { success: false, message: '文章ID不能为空' };
     }
 
-    const response = await apiRequest<BlogResult>(`/blogs/${blogId}`, 'GET');
+    const response = await apiRequest<ArticleResult>(`/articles/${articleId}`, 'GET');
 
     if (response.code === 200 && response.data) {
       return {
         success: true,
-        message: response.message ?? '获取博客成功',
-        data: response.data as unknown as Blog,
+        message: response.message ?? '获取文章成功',
+        data: response.data as unknown as Article,
       };
     }
 
-    return { success: false, message: response.message ?? '获取博客失败' };
+    return { success: false, message: response.message ?? '获取文章失败' };
   } catch (error: any) {
-    console.error('获取博客异常:', error);
+    console.error('获取文章异常:', error);
     return {
       success: false,
       message: error?.message ?? '网络错误，请稍后重试',
@@ -234,9 +233,9 @@ export const getBlogById = async (blogId: string): Promise<BlogResult> => {
 };
 
 // 删除事件
-export const deleteBlog = async (blogId: number): Promise<BlogResult> => {
+export const deleteArticle = async (articleId: number): Promise<ArticleResult> => {
   try {
-    const response = await apiRequest<BlogResult>(`/blogs/${blogId}`, 'DELETE');
+    const response = await apiRequest<ArticleResult>(`/articles/${articleId}`, 'DELETE');
 
     if (response.code === 200) {
       return { success: true, message: response.message ?? '删除成功' };
@@ -244,7 +243,7 @@ export const deleteBlog = async (blogId: number): Promise<BlogResult> => {
 
     return { success: false, message: response.message ?? '删除失败' };
   } catch (error: any) {
-    console.error('删除博客异常:', error);
+    console.error('删除文章异常:', error);
     return {
       success: false,
       message: error?.message ?? '网络错误，请稍后重试',
@@ -281,17 +280,17 @@ export const formatDateTime = (date: any, time: any): string => {
   }
 };
 
-export const updateBlogPublishStatus = async (
-  blogId: string,
+export const updateArticlePublishStatus = async (
+  articleId: string,
   publishStatus: number
-): Promise<BlogResult> => {
+): Promise<ArticleResult> => {
   try {
     const body = {
       publish_status: publishStatus,
     };
 
-    const response = await apiRequest<BlogResult>(
-      `/blogs/${blogId}/status`,
+    const response = await apiRequest<ArticleResult>(
+      `/articles/${articleId}/status`,
       'PUT',
       body
     );
@@ -299,12 +298,12 @@ export const updateBlogPublishStatus = async (
     if (response.code === 200 && response.data) {
       return {
         success: true,
-        message: response.message ?? '博客状态更新成功',
-        data: response.data as unknown as Blog,
+        message: response.message ?? '文章状态更新成功',
+        data: response.data as unknown as Article,
       };
     }
 
-    return { success: false, message: response.message ?? '博客状态更新失败' };
+    return { success: false, message: response.message ?? '文章状态更新失败' };
   } catch (error: any) {
     return {
       success: false,
