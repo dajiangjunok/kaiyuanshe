@@ -6,6 +6,7 @@ export interface CreateArticleParams {
   description: string;
   content: string;
   category: string;
+  license: string;
   cover_img: string;
   source_link: string;
   tags: string[];
@@ -57,6 +58,7 @@ export interface Article {
   source_link: string;
   cover_img: string;
   category: string;
+  license: string
   author: string;
   translator: string;
   editor: string;
@@ -98,6 +100,7 @@ export const createArticle = async (
       desc: params.description.trim(),
       content: params.content,
       category: params.category,
+      license: params.license,
       source_link: params.source_link,
       cover_img: params.cover_img,
       tags: params.tags ?? [],

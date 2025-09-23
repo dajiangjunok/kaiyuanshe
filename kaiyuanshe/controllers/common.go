@@ -117,6 +117,7 @@ type CreateArticleRequest struct {
 	Desc       string   `json:"desc" binding:"required"`
 	Content    string   `json:"content" binding:"required"`
 	Category   string   `json:"category" binding:"required"`
+	License    string   `json:"license" binding:"required"`
 	SourceLink string   `json:"source_link"`
 	SourceType string   `json:"source_type"`
 	CoverImg   string   `json:"cover_img" binding:"required"`

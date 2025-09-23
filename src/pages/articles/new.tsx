@@ -50,7 +50,8 @@ export default function NewArticlePage() {
         description: values.description || '',
         content: values.content || '',
         source_link: values.source || '',
-        category: values.category,
+        category: values.category || '',
+        license: values.license || '',
         cover_img: cloudinaryImg?.secure_url || '',
         tags: tags,
         author: values.author || '',
@@ -156,7 +157,7 @@ export default function NewArticlePage() {
                 <VditorEditor
                   value={form.getFieldValue('content')}
                   onChange={handleVditorEditorChange}
-                  height={720}
+                  height={900}
                 />
               </Form.Item>
             </Card>
@@ -198,7 +199,16 @@ export default function NewArticlePage() {
               >
                 <Input placeholder="请输入原文链接" className={styles.input} />
               </Form.Item>
-
+              <Form.Item
+                label="版权声明"
+                name="license"
+                rules={[{ required: true, message: '请选择版权声明' }]}
+              >
+                 <Select placeholder="请选择版权声明">
+                  <Select.Option value="CCO">CCO(公共领域贡献)</Select.Option>
+                  <Select.Option value="CC-4.0">CC-4.0(知识共享 4.0 国际许可协议)</Select.Option>
+                </Select>
+              </Form.Item>
               <Form.Item
                 label="分类"
                 name="category"
@@ -238,7 +248,7 @@ export default function NewArticlePage() {
                   />
                 </Form.Item>
               </div>
-               <div className={styles.formRow}>
+              <div className={styles.formRow}>
                 <Form.Item label="编辑" name="editor">
                   <Input
                     placeholder="请输入编辑"

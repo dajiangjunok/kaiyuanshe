@@ -160,6 +160,18 @@ export default function ArticleDetailPage() {
                   发布时间：{formatTime(article.publish_time || article.CreatedAt)}
                 </div>
               </div>
+               <div className={styles.metaItem}>
+                <User className={styles.metaIcon} />
+                <div className={styles.metaText}>
+                  原文连接：{article.source_link || ''}
+                </div>
+              </div>
+               <div className={styles.metaItem}>
+                <User className={styles.metaIcon} />
+                <div className={styles.metaText}>
+                  版权声明： {article.license || ''}
+                </div>
+              </div>
               <div className={styles.metaItem}>
                 <User className={styles.metaIcon} />
                 <div className={styles.metaText}>

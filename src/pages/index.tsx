@@ -5,7 +5,6 @@ import Link from 'next/link'
 import styles from './index.module.css'
 import { SiTelegram, SiX } from 'react-icons/si'
 
-import { getDapps } from './api/dapp'
 import { useTranslation } from '../hooks/useTranslation'
 import Hero from '@/components/home/hero/Hero'
 import MissionSection from '@/components/home/mission/Mission'
@@ -16,26 +15,7 @@ import CarouselSession from '@/components/home/carousel/Carousel'
 
 export default function Home() {
   const { t } = useTranslation()
-  const pageSize = 20
   const scrollRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const fetchDapps = async () => {
-      try {
-        const params = {
-          is_feature: 1,
-          page: 1,
-          page_size: pageSize
-        }
-        const result = await getDapps(params)
-        if (result.success && result.data && Array.isArray(result.data.dapps)) {
-        }
-      } catch (error) {
-        console.error(t('errors.fetchDapps'), error)
-      }
-    }
-    fetchDapps()
-  }, [t])
 
   useEffect(() => {
     let animationFrame: number

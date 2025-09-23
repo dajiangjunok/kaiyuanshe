@@ -23,6 +23,7 @@ func CreateArticle(c *gin.Context) {
 		Description: req.Desc,
 		Content:     req.Content,
 		Category:    req.Category,
+		License:     req.License,
 		CoverImg:    req.CoverImg,
 		Tags:        req.Tags,
 		SourceLink:  req.SourceLink,

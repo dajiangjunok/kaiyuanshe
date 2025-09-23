@@ -18,6 +18,7 @@ type Article struct {
 	CoverImg      string         `json:"cover_img"`
 	Tags          pq.StringArray `gorm:"type:text[]" json:"tags"`
 	Category      string         `json:"category"`
+	License       string         `json:"license"`
 	Author        string         `json:"author"`
 	Translator    string         `json:"translator"`
 	Editor        string         `json:"editor"`

@@ -5,94 +5,60 @@ import dayjs from 'dayjs';
 import { Tag } from 'antd';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './Article.module.css';
+import { getArticles } from '@/pages/api/article';
 
 export function formatTime(isoTime: string): string {
     return dayjs(isoTime).format('YYYY年M月D日');
 }
 
-interface ArticleItem {
-    id: number;
-    title: string;
-    description: string;
-    content: string;
-    author: string;
-    publishTime: string;
-    readCount: number;
-    likeCount: number;
-    commentCount: number;
-    tags: string[];
-    category: string;
-    isFeatured: boolean;
-    thumbnail?: string;
-    readingTime: number;
-}
-
-const mockArticles: ArticleItem[] = [
-    {
-        id: 1,
-        title: "开源技术深度解析：从零开始构建现代化Web应用",
-        description: "深入探讨现代Web开发技术栈，分享从项目架构设计到生产环境部署的完整开发经验与最佳实践。",
-        content: "详细内容...",
-        author: "技术极客",
-        publishTime: "2024-01-16T09:00:00Z",
-        readCount: 2580,
-        likeCount: 156,
-        commentCount: 42,
-        tags: ["Web开发", "架构设计", "最佳实践"],
-        category: "技术教程",
-        isFeatured: true,
-        readingTime: 12
-    },
-    {
-        id: 2,
-        title: "开源项目管理实践：如何高效协调团队开发",
-        description: "分享在开源项目中进行团队协作的经验，包括代码审查、版本管理、持续集成等核心环节的优化策略。",
-        content: "详细内容...",
-        author: "项目管理者",
-        publishTime: "2024-01-14T16:20:00Z",
-        readCount: 1920,
-        likeCount: 128,
-        commentCount: 35,
-        tags: ["项目管理", "团队协作", "DevOps"],
-        category: "管理经验",
-        isFeatured: false,
-        readingTime: 8
-    },
-    {
-        id: 3,
-        title: "开源安全实践指南：保护你的代码和用户数据",
-        description: "全面介绍开源项目中的安全考量，从代码安全到数据保护，帮助开发者建立完整的安全防护体系。",
-        content: "详细内容...",
-        author: "安全专家",
-        publishTime: "2024-01-11T11:45:00Z",
-        readCount: 1456,
-        likeCount: 89,
-        commentCount: 28,
-        tags: ["网络安全", "数据保护", "安全防护"],
-        category: "安全指南",
-        isFeatured: false,
-        readingTime: 15
-    }
-];
 
 export default function ArticleSection() {
     const { status } = useAuth();
-    const [articles, setArticles] = useState<ArticleItem[]>([]);
+    const [articles, setArticles] = useState<any[]>([]);
 
-    const loadArticles = useCallback(async () => {
+    // 加载文章列表
+    const loadArticles = async (params?: {
+        keyword?: string;
+        tag?: string;
+        order?: 'asc' | 'desc';
+        page?: number;
+        page_size?: number;
+        publish_status?: number;
+    }) => {
         try {
-            setArticles(mockArticles);
+            const queryParams = {
+                page: 1,
+                page_size: 3,
+                publish_status: 2,
+            };
+
+            const result = await getArticles(queryParams);
+            if (result.success && result.data) {
+                // 处理后端返回的数据结构
+                if (result.data.articles && Array.isArray(result.data.articles)) {
+                    console.log(result.data.articles);
+                    setArticles(result.data.articles);
+                } else if (Array.isArray(result.data)) {
+                    setArticles(result.data);
+                } else {
+                    console.warn('API 返回的数据格式不符合预期:', result.data);
+                    setArticles([]);
+                }
+            } else {
+                console.error('获取文章列表失败:', result.message);
+                setArticles([]);
+            }
         } catch (error) {
-            console.error("加载文章列表异常:", error);
+            console.error('加载文章列表异常:', error);
             setArticles([]);
-        }
-    }, []);
+        } 
+    };
 
     useEffect(() => {
         if (!status || status !== 'loading') {
             loadArticles();
         }
-    }, [status, loadArticles]);
+    }, [status]);
 
     return (
         <section className={styles.articles}>
@@ -115,16 +81,16 @@ export default function ArticleSection() {
                                     <div className={styles.articleStats}>
                                         <div className={styles.statItem}>
                                             <Eye className={styles.articleIcon} />
-                                            {article.readCount}
+                                            {article.view_count}
                                         </div>
-                                        <div className={styles.statItem}>
+                                        {/* <div className={styles.statItem}>
                                             <Star className={styles.articleIcon} />
                                             {article.likeCount}
                                         </div>
                                         <div className={styles.statItem}>
                                             <MessageCircle className={styles.articleIcon} />
                                             {article.commentCount}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <h3 className={styles.articleTitle}>{article.title}</h3>
@@ -138,11 +104,11 @@ export default function ArticleSection() {
                                     </div>
                                     <div className={styles.articleInfoItem}>
                                         <Calendar className={styles.articleIcon} />
-                                        {formatTime(article.publishTime)}
+                                        {formatTime(article.publish_time)}
                                     </div>
                                     <div className={styles.articleInfoItem}>
                                         <BookOpen className={styles.articleIcon} />
-                                        {article.readingTime} 分钟阅读
+                                        {article.readingTime || 6} 分钟阅读
                                     </div>
                                 </div>
                                 {article.tags && article.tags.length > 0 && (
