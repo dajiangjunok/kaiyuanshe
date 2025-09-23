@@ -17,7 +17,7 @@ interface NewsItem {
     content: string;
     author: string;
     publishTime: string;
-    readCount: number;
+    view_count: number;
     commentCount: number;
     tags: string[];
     category: string;
@@ -33,7 +33,7 @@ const mockNews: NewsItem[] = [
         content: "详细内容...",
         author: "开源社区",
         publishTime: "2024-01-15T10:00:00Z",
-        readCount: 1280,
+        view_count: 1280,
         commentCount: 24,
         tags: ["技术更新", "社区动态", "协作工具"],
         category: "技术动态",
@@ -46,7 +46,7 @@ const mockNews: NewsItem[] = [
         content: "详细内容...",
         author: "技术研究院",
         publishTime: "2024-01-12T14:30:00Z",
-        readCount: 890,
+        view_count: 890,
         commentCount: 18,
         tags: ["技术趋势", "人工智能", "开源生态"],
         category: "行业报告",
@@ -59,7 +59,7 @@ const mockNews: NewsItem[] = [
         content: "详细内容...",
         author: "社区运营",
         publishTime: "2024-01-10T09:15:00Z",
-        readCount: 654,
+        view_count: 654,
         commentCount: 32,
         tags: ["社区计划", "贡献者", "激励机制"],
         category: "社区公告",
@@ -107,7 +107,7 @@ export default function NewsSection() {
                                     <div className={styles.newsStats}>
                                         <div className={styles.statItem}>
                                             <Eye className={styles.newsIcon} />
-                                            {item.readCount}
+                                            {item.view_count}
                                         </div>
                                         <div className={styles.statItem}>
                                             <MessageCircle className={styles.newsIcon} />

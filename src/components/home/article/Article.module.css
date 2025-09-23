@@ -1,6 +1,6 @@
 .articles {
     padding: 5rem 1rem;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a3a 25%, #3a3a4a 50%, #4a4a5a 75%, #2a2a2a 100%);
+    background: #FEFEFE;
     position: relative;
     overflow: hidden;
 }
@@ -48,7 +48,7 @@
 .sectionTitle {
     font-size: 3rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 25%, #e0e0e0 50%, #ffffff 75%, #d0d0d0 100%);
+    background: #333333;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -58,8 +58,8 @@
 }
 
 .sectionDescription {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+    color: #333333;
     font-weight: 300;
     letter-spacing: 0.02em;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -76,7 +76,7 @@
     position: relative;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(73, 95, 222, 0.2);
     border-radius: 1.5rem;
     padding: 2rem;
     transition: all 0.3s ease;
@@ -88,12 +88,7 @@
 .articleCardGlow {
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, 
-        var(--primary) 0%, 
-        var(--primary-600) 25%, 
-        var(--primary-500) 50%, 
-        var(--primary-700) 75%, 
-        var(--primary) 100%);
+    background: #FEFEFE;
     opacity: 0;
     transition: all 0.6s ease;
     border-radius: 1.5rem;
@@ -136,13 +131,13 @@
     font-size: 0.75rem;
     font-weight: 600;
     background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
+    color: #333333;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .featuredBadge {
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    color: white;
+    color: #333333;
     border: 1px solid #fbbf24;
     box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
 }
@@ -156,7 +151,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #333333;
     font-size: 0.75rem;
 }
 
@@ -168,7 +163,7 @@
 .articleTitle {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #ffffff;
+    color: #333333;
     margin-bottom: 0.75rem;
     line-height: 1.4;
     transition: all 0.3s ease;
@@ -179,7 +174,7 @@
 }
 
 .articleDescription {
-    color: rgba(255, 255, 255, 0.8);
+    color: #333333;
     line-height: 1.6;
     font-size: 0.9rem;
     display: -webkit-box;
@@ -200,7 +195,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #333333;
     font-size: 0.875rem;
     margin-bottom: 0.75rem;
     transition: all 0.3s ease;
@@ -215,7 +210,7 @@
 
 .tag {
     background-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
+    color: #333333;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
@@ -226,8 +221,8 @@
 
 .articleButton {
     width: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
-    color: white;
+    background: #60acf3;
+    color: #333333;
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1rem;
     border-radius: 0.75rem;
@@ -250,12 +245,12 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: #2385e1;
     transition: left 0.5s ease;
 }
 
 .articleButton:hover {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+    background: #2385e1;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-600);
@@ -276,8 +271,8 @@
 }
 
 .moreButton {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    color: #fff;
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    color: #333333;
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -305,7 +300,7 @@
 
 .moreButton:hover {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
-    color: white;
+    background: #60acf3;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-600);

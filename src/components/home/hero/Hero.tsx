@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Globe, Users } from 'lucide-react'
+import { Globe, ChevronDown } from 'lucide-react'
 import LightRays from '@/components/bitsUI/lightRays/LightRays'
 import styles from './Hero.module.css'
 
@@ -27,7 +27,10 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className={styles.heroButtons}>
+        <div className={styles.heroDown}>
+           <ChevronDown className={styles.heroArrow} size={100}/>
+        </div>
+        {/* <div className={styles.heroButtons}>
           <Link href="https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db" target='_blank' className={styles.heroPrimaryButton}>
             <Globe className={styles.buttonIcon} />
             了解 开源社
@@ -36,7 +39,7 @@ export default function Hero() {
             <Users className={styles.buttonIcon} />
             加入社区
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   )

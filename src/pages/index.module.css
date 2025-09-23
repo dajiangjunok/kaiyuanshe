@@ -1966,8 +1966,8 @@
 /* CTA Section */
 .cta {
   padding: 5rem 1rem;
-  background:var(--primary);
-  color: white;
+  background: #60acf3;
+  color: #333333;
   position: relative;
   overflow: hidden;
 }
@@ -1981,7 +1981,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: white;
+  background: #60acf3;
   border-radius: 50%;
   opacity: 0.2;
   animation: pulse 2s infinite;
@@ -1991,7 +1991,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: white;
+  background: #60acf3;
   border-radius: 50%;
   opacity: 0.1;
   left: 50%;

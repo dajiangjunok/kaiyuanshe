@@ -1,6 +1,6 @@
 .activities {
     padding: 5rem 1rem;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a3a 25%, #3a3a4a 50%, #4a4a5a 75%, #2a2a2a 100%);
+    background: #FEFEFE;
     position: relative;
     overflow: hidden;
 }
@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
         radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
     background-size: 150px 150px, 200px 200px;
@@ -25,10 +25,10 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(45deg, 
-        transparent 40%, 
-        rgba(255, 255, 255, 0.05) 50%, 
-        transparent 60%);
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 60%);
     opacity: 0.2;
     z-index: 1;
 }
@@ -48,7 +48,7 @@
 .sectionTitle {
     font-size: 3rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 25%, #e0e0e0 50%, #ffffff 75%, #d0d0d0 100%);
+    background: #333333;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -58,11 +58,11 @@
 }
 
 .sectionDescription {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+    color: #333333;
     font-weight: 300;
     letter-spacing: 0.02em;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 20px rgba(255, 255, 255);
 }
 
 .activitiesGrid {
@@ -74,9 +74,9 @@
 
 .activityCard {
     position: relative;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    background: #FEFEFE;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid #6a6767;
     border-radius: 1.5rem;
     padding: 2rem;
     transition: all 0.3s ease;
@@ -88,12 +88,12 @@
 .activityCardGlow {
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, 
-        var(--primary) 0%, 
-        var(--primary-600) 25%, 
-        var(--primary-500) 50%, 
-        var(--primary-700) 75%, 
-        var(--primary) 100%);
+    background: linear-gradient(135deg,
+            var(--primary) 0%,
+            var(--primary-600) 25%,
+            var(--primary-500) 50%,
+            var(--primary-700) 75%,
+            var(--primary) 100%);
     opacity: 0;
     transition: all 0.6s ease;
     border-radius: 1.5rem;
@@ -109,7 +109,7 @@
 
 .activityCard:hover {
     transform: translateY(-4px);
-    box-shadow: 
+    box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.15),
         0 4px 10px rgba(0, 0, 0, 0.1);
     border-color: var(--primary-400);
@@ -135,27 +135,25 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #FEFEFE;
+    color: #333333;
 }
 
 .activityBadgeActive {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
+    color: #333333;
     border: 1px solid #10b981;
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
 .activityBadgeInactive {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #bff2ae;
+    color: #333333;
 }
 
 .activityBadgeEnded {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
+    color: #333333;
     border: 1px solid #ef4444;
     box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
@@ -177,7 +175,7 @@
 .activityTitle {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #ffffff;
+    color: #333333;
     margin-bottom: 0.75rem;
     line-height: 1.4;
     transition: all 0.3s ease;
@@ -188,7 +186,7 @@
 }
 
 .activityDescription {
-    color: rgba(255, 255, 255, 0.8);
+    color: #333333;
     line-height: 1.6;
     font-size: 0.9rem;
     display: -webkit-box;
@@ -209,7 +207,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #1562aa;
     font-size: 0.875rem;
     margin-bottom: 0.75rem;
     transition: all 0.3s ease;
@@ -224,19 +222,19 @@
 
 .tag {
     background-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
+    color: #333333;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
     user-select: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #60acf3;
     backdrop-filter: blur(10px);
 }
 
 .activityButton {
     width: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
-    color: white;
+    background: #60acf3;
+    color: #333333;
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1rem;
     border-radius: 0.75rem;
@@ -259,12 +257,12 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: #2385e1;
     transition: left 0.5s ease;
 }
 
 .activityButton:hover {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+    background: #2188e8;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-600);
@@ -276,7 +274,7 @@
 
 .moreButton {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    color: #fff;
+    color: #333333;
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -303,8 +301,8 @@
 }
 
 .moreButton:hover {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
-    color: white;
+    background: #60acf3;
+    color: #333333;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-600);
@@ -334,16 +332,16 @@
     .activities {
         padding: 4rem 1rem;
     }
-    
+
     .sectionTitle {
         font-size: 2.5rem;
     }
-    
+
     .activitiesGrid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
-    
+
     .activityCard {
         padding: 1.5rem;
     }
@@ -353,26 +351,26 @@
     .activities {
         padding: 3rem 0.5rem;
     }
-    
+
     .sectionTitle {
         font-size: 2rem;
     }
-    
+
     .sectionDescription {
         font-size: 1rem;
     }
-    
+
     .activitiesGrid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .activityMeta {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.75rem;
     }
-    
+
     .activityParticipants {
         gap: 0.75rem;
     }
@@ -382,28 +380,28 @@
     .activities {
         padding: 2rem 0.5rem;
     }
-    
+
     .sectionTitle {
         font-size: 1.75rem;
     }
-    
+
     .sectionDescription {
         font-size: 0.9rem;
     }
-    
+
     .activityCard {
         padding: 1.25rem;
         border-radius: 1rem;
     }
-    
+
     .activityTitle {
         font-size: 1.1rem;
     }
-    
+
     .activityDescription {
         font-size: 0.85rem;
     }
-    
+
     .activityButton,
     .moreButton {
         padding: 0.6rem 1rem;

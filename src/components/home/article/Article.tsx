@@ -120,7 +120,7 @@ export default function ArticleSection() {
                                         ))}
                                     </div>
                                 )}
-                                <Link href={`/articles/${article.id}`} passHref>
+                                <Link href={`/articles/${article.ID}`} passHref>
                                     <button className={styles.articleButton}>
                                         阅读文章
                                         <ArrowRight className={styles.buttonIcon} />

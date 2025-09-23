@@ -4,10 +4,10 @@
   padding: 4rem 1rem;
   padding-top: 5.5rem;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(to bottom right, #60acf3, var(--primary-200));
   min-height: 100vh;
 }
- 
+
 @media (max-width: 768px) {
   .hero {
     padding: 3rem 1rem;
@@ -24,7 +24,7 @@
     gap: 0.75rem;
   }
 
- 
+
 }
 
 @media (max-width: 480px) {
@@ -73,7 +73,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  color: #fff;
+  color: #333333;
   margin: 2rem auto;
   margin-bottom: 2rem;
   justify-content: center;
@@ -82,25 +82,74 @@
 
 .heroHighlight {
   margin-bottom: 3rem;
-  color: #fff;
+  color: #333333;
   font-weight: 500;
 }
 
-.heroButtons {
+.heroDown {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 200px;
+  animation: fadeInUp 1.5s ease-out;
+  cursor: pointer;
 }
 
-.heroButtons:hover a{
-  color: #333!important;
+.heroArrow {
+  color: #333333;
+  animation: bounce 2s infinite ease-in-out;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
- 
+.heroArrow:hover {
+  transform: scale(1.1);
+  color: #555555;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* 淡入向上动画 */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 上下弹跳动画 */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .heroDown {
+    margin-top: 150px;
+  }
+  
+  .heroArrow {
+    transform: scale(0.8);
+  }
+  
+  .heroArrow:hover {
+    transform: scale(0.9);
+  }
+}
+
+.heroButtons:hover a {
+  color: #333 !important;
+}
+
+
 
 .heroPrimaryButton {
   background: #fefefe;
@@ -164,7 +213,7 @@
     margin-top: 2rem;
   }
 
-  
+
 
   .heroPrimaryButton,
   .heroSecondaryButton {
@@ -187,7 +236,7 @@
     max-width: 250px;
   }
 }
- 
+
 @media (max-width: 1024px) {
   .heroSubtitle {
     width: 100%;

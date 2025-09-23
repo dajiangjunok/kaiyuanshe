@@ -45,7 +45,7 @@ export default function NewEventPage() {
   const [eventMode, setEventMode] = useState<'线上活动' | '线下活动'>(
     '线上活动'
   );
-  const [tags, setTags] = useState<string[]>(['技术分享']);
+  const [tags, setTags] = useState<string[]>([]);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -303,6 +303,10 @@ export default function EventsPage() {
             <h1 className={styles.title}>精彩活动</h1>
             <p className={styles.subtitle}>发现精彩活动，连接志同道合的人</p>
           </div>
+            <Link href="/events/new" className={styles.createButton}>
+              <Plus size={20} />
+              发布活动
+            </Link>
         </div>
       </div>
 

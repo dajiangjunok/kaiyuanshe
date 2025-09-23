@@ -381,7 +381,7 @@ export default function Header() {
                 alt="logo"
                 className={styles.logo}
               />
-              <span className={styles.logoTitle} style={{ color: isHomePage ? '#ffffff' : '#333333' }}>開源社</span>
+              <span className={styles.logoTitle} style={{ color: '#333333' }}>開源社</span>
             </div>
           </Link>
           <nav className={styles.nav}>
@@ -394,9 +394,9 @@ export default function Header() {
                 placement="bottom"
                 trigger={['hover']}
               >
-                <div className={styles.navItem} style={{ color: isHomePage ? '#ffffff' : '#333333' }}>
+                <div className={styles.navItem} style={{ color: '#333333' }}>
                   <span>{section.title}</span>
-                  <ChevronDown className={styles.navIcon} style={{ color: isHomePage ? '#ffffff' : '#333333' }} />
+                  <ChevronDown className={styles.navIcon} style={{ color: '#333333' }} />
                 </div>
               </Dropdown>
             ))}
@@ -412,7 +412,7 @@ export default function Header() {
               className={styles.mobileMenuButton}
               onClick={() => setMobileMenuOpen(true)}
             >
-              <MenuIcon className={styles.mobileMenuIcon} style={{ color: isHomePage ? '#ffffff' : '#333333' }} />
+              <MenuIcon className={styles.mobileMenuIcon} style={{ color: '#333333' }} />
             </button>
           </div>
         </div>

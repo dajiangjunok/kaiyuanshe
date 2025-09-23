@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from 'react'
 import dayjs from 'dayjs'
 import { Tag } from 'antd'
 import { useAuth } from '@/contexts/AuthContext'
+import { getEvents } from '@/pages/api/event'
 
 export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY年M月D日')
@@ -25,88 +26,55 @@ interface Event {
 export default function EventSection() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { status } = useAuth()
-  const [events, setEvents] = useState<Event[]>([])
+  const [events, setEvents] = useState<any[]>([])
 
-  const loadEvents = useCallback(async () => {
-    try {
-      const queryParams = {
-        keyword: '',
-        tag: '',
-        order: 'desc' as const,
-        page: 1,
-        page_size: 3,
-        status: 3,
-        location: '',
-        event_mode: '',
-        evnet_type: '',
-        publish_status: 2
-      }
-
-      // const result = await getEvents(queryParams)
-      const result = {
-        code: 200,
-        data: {
-          events: [
-            {
-              ID: 26,
-              CreatedAt: '2025-09-13T18:54:32.196927+08:00',
-              UpdatedAt: '2025-09-16T12:30:18.945167+08:00',
-              DeletedAt: null,
-              title: '中国开源年会 2024',
-              description:
-                '中关村国家自主创新示范区-会议中心，北京市海淀区新建宫门路2号',
-              event_mode: '线下活动',
-              event_type: 'meetup',
-              location: '北京（中关村国家自主创新示范区）',
-              link: '',
-              registration_deadline: null,
-              registration_link: 'https://luma.com/uvcej0qt',
-              start_time: '2025-08-23T14:30:00+08:00',
-              end_time: '2025-08-23T16:00:00+08:00',
-              cover_img:
-                'https://res.cloudinary.com/gmonad/image/upload/v1757760841/monad_img/tddwoyfu6a4klunrvpn4.jpg',
-              tags: ['社区聚会', '北京'],
-              participants: 21,
-              status: 2,
-              publish_status: 2,
-              publish_time: '2025-09-13T18:55:47.215554+08:00',
-              twitter: 'https://x.com/_Seven7777777/status/1958074798833377594',
-              user_id: 3,
-              User: null
-            }
-          ],
-          page: 1,
-          page_size: 1,
-          total: 1
-        },
-        message: 'query success'
-      }
-
-      if (result.data) {
-        // 处理后端返回的数据结构
-        if (result.data.events && Array.isArray(result.data.events)) {
-          setEvents(result.data.events)
-        } else if (Array.isArray(result.data)) {
-          setEvents(result.data)
-        } else {
-          console.warn('API 返回的数据格式不符合预期:', result.data)
-          setEvents([])
-        }
-      } else {
-        setEvents([])
-      }
-    } catch (error) {
-      console.error('加载活动列表异常:', error)
-      setEvents([])
-    }
-  }, [])
+ // 加载事件列表
+   const loadEvents = async (params?: {
+     keyword?: string;
+     tag?: string;
+     order?: 'asc' | 'desc';
+     page?: number;
+     page_size?: number;
+     status?: string | number;
+     location?: string;
+     event_mode?: string;
+     event_type?: string;
+     publish_status?: number;
+   }) => {
+     try {
+       const queryParams = {
+         page: 1,
+         page_size: 3,
+       };
+ 
+       const result = await getEvents(queryParams);
+ 
+       if (result.success && result.data) {
+         // 处理后端返回的数据结构
+         if (result.data.events && Array.isArray(result.data.events)) {
+           setEvents(result.data.events);
+         } else if (Array.isArray(result.data)) {
+           setEvents(result.data);
+         } else {
+           console.warn('API 返回的数据格式不符合预期:', result.data);
+           setEvents([]);
+         }
+       } else {
+         console.error('获取事件列表失败:', result.message);
+         setEvents([]);
+       }
+     } catch (error) {
+       console.error('加载事件列表异常:', error);
+       setEvents([]);
+     }
+   };
 
   // 组件挂载时加载数据，但避免在认证过程中重复请求
   useEffect(() => {
     if (!status || status !== 'loading') {
       loadEvents()
     }
-  }, [status, loadEvents])
+  }, [status])
 
   return (
     <section className={styles.activities}>
@@ -146,7 +114,7 @@ export default function EventSection() {
                   )}
                 </div>
                 <h3 className={styles.activityTitle}>{event.title}</h3>
-                {/* <p className={styles.activityDescription}>{event.description}</p> */}
+                <p className={styles.activityDescription}>{event.description}</p>
               </div>
               <div className={styles.activityCardContent}>
                 <div className={styles.activityInfo}>
