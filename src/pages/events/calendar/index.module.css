@@ -1,9 +1,9 @@
 /* 'O�7 */
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, var(--primary-400) 100%);
   padding: 40px 20px;
   padding-top: 8rem !important;
+  background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
 }
 
 .calendarWrapper {

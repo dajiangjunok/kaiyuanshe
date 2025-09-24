@@ -2,7 +2,7 @@
   min-height: 100vh;
   padding: 1rem;
   padding-top: 6.5rem;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
 }
 
 .header {
