@@ -4,8 +4,17 @@
   padding: 4rem 1rem;
   padding-top: 5.5rem;
   overflow: hidden;
-  background: linear-gradient(to bottom right, #60acf3, var(--primary-200));
-  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--primary-400) 0%,
+    #87ceeb 30%,
+    #b3d9ff 50%,
+    #87ceeb 70%,
+    var(--primary-400) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease-in-out infinite;
+  min-height: 55vh;
 }
 
 @media (max-width: 768px) {
@@ -23,8 +32,6 @@
     flex-direction: column;
     gap: 0.75rem;
   }
-
-
 }
 
 @media (max-width: 480px) {
@@ -43,7 +50,7 @@
   }
 
   .heroSubtitle {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -64,7 +71,7 @@
 }
 
 .heroSubtitle {
-  height: 60vh;
+  height: 50vh;
   font-family: 'Noto Sans SC', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -74,10 +81,9 @@
   align-items: center;
   text-align: center;
   color: #333333;
-  margin: 2rem auto;
   margin-bottom: 2rem;
   justify-content: center;
-  margin-top: 5rem;
+  margin: 0 auto;
 }
 
 .heroHighlight {
@@ -122,11 +128,25 @@
 
 /* 上下弹跳动画 */
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(10px);
+  }
+}
+
+/* 渐变背景动画 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -135,11 +155,11 @@
   .heroDown {
     margin-top: 150px;
   }
-  
+
   .heroArrow {
     transform: scale(0.8);
   }
-  
+
   .heroArrow:hover {
     transform: scale(0.9);
   }
@@ -148,8 +168,6 @@
 .heroButtons:hover a {
   color: #333 !important;
 }
-
-
 
 .heroPrimaryButton {
   background: #fefefe;
@@ -212,8 +230,6 @@
     gap: 0.75rem;
     margin-top: 2rem;
   }
-
-
 
   .heroPrimaryButton,
   .heroSecondaryButton {

@@ -131,9 +131,9 @@
 }
 
 .missionCard {
-  background: rgba(80, 133, 213, 0.3);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.15);
   border-radius: 20px;
   padding: 2.5rem 1.5rem;
   text-align: center;
@@ -142,10 +142,10 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   background-image:
-    linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
     radial-gradient(
       circle at 100% 0%,
-      rgba(139, 92, 246, 0.08),
+      rgba(139, 92, 246, 0.04),
       transparent 50%
     );
 }
@@ -265,10 +265,6 @@
   margin-bottom: 1.2rem;
   position: relative;
   z-index: 2;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .missionDesc {
@@ -293,9 +289,9 @@
 }
 
 .principleCard {
-  background: rgba(80, 133, 213, 0.3);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.15);
   border-radius: 24px;
   padding: 4rem 3rem;
   text-align: center;
@@ -304,10 +300,10 @@
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   background-image:
-    linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
     radial-gradient(
       circle at 0% 100%,
-      rgba(244, 114, 182, 0.08),
+      rgba(244, 114, 182, 0.04),
       transparent 50%
     );
 }
@@ -408,7 +404,7 @@
 .principleIcon {
   width: 44px;
   height: 44px;
-  color: #333333;
+  color: #ffffff;
   z-index: 2;
   position: relative;
   transition: all 0.6s ease;
@@ -427,10 +423,6 @@
   margin-bottom: 2rem;
   position: relative;
   z-index: 2;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .principleDesc {

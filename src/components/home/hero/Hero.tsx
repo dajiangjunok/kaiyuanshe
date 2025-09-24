@@ -1,24 +1,12 @@
 import Link from 'next/link'
-import { Globe, ChevronDown } from 'lucide-react'
-import LightRays from '@/components/bitsUI/lightRays/LightRays'
+import { Globe, ChevronDown } from 'lucide-react' 
 import styles from './Hero.module.css'
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#fff"
-          raysSpeed={1.5}
-          lightSpread={2}
-          rayLength={3}
-          followMouse={true}
-          mouseInfluence={0.1}
-          noiseAmount={0.1}
-          distortion={0.05}
-          className={styles.heroGradient}
-        />
+  
 
         <div className={styles.heroSubtitle}>
           <div>

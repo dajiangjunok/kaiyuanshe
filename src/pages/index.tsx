@@ -56,16 +56,21 @@ export default function Home() {
             <h2 className={styles.ctaTitle}>{t('homepage.cta.title')}</h2>
             <p className={styles.ctaDesc}>{t('homepage.cta.description')}</p>
             <div className={styles.ctaButtons}>
-              <Link href="/signup" className={styles.ctaPrimaryButton}>
+              <Link
+                href="https://github.com/kaiyuanshe"
+                target="_blank"
+                className={styles.ctaPrimaryButton}
+              >
                 <Rocket className={styles.buttonIcon} />
-                {t('homepage.cta.getStarted')}
+                关注github
               </Link>
-              <Link href="/community" className={styles.ctaSecondaryButton}>
+              <Link href="/" className={styles.ctaSecondaryButton}>
                 <SiTelegram className={styles.buttonIcon} />
-                {t('homepage.cta.joinTelegram')}
+                关注公众号
               </Link>
               <Link
-                href="https://x.com/devplaza"
+                href="https://x.com/kaiyuanshe"
+                target="_blank"
                 className={styles.ctaSecondaryButton}
               >
                 <SiX className={styles.buttonIcon} />

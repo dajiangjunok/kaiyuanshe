@@ -1966,7 +1966,15 @@
 /* CTA Section */
 .cta {
   padding: 5rem 1rem;
-  background: #60acf3;
+  background: linear-gradient(
+    135deg,
+    var(--primary-400) 0%,
+    #87ceeb 30%,
+    #b3d9ff 50%,
+    #87ceeb 70%,
+    var(--primary-400) 100%
+  );
+  background-size: 200% 200%;
   color: #333333;
   position: relative;
   overflow: hidden;

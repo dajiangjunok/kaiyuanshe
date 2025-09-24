@@ -74,21 +74,28 @@
 
 .articleCard {
     position: relative;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    background: #FEFEFE;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(73, 95, 222, 0.2);
+    border: 1px solid var(--primary-300);
     border-radius: 1.5rem;
     padding: 2rem;
     transition: all 0.3s ease;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(30, 58, 138, 0.1), 0 2px 8px rgba(30, 58, 138, 0.08);
 }
 
 .articleCardGlow {
     position: absolute;
     inset: -2px;
-    background: #FEFEFE;
+    background: linear-gradient(135deg,
+            var(--primary) 0%,
+            var(--primary-600) 25%,
+            var(--primary-500) 50%,
+            var(--primary-700) 75%,
+            var(--primary) 100%);
     opacity: 0;
     transition: all 0.6s ease;
     border-radius: 1.5rem;
@@ -103,12 +110,9 @@
 }
 
 .articleCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.15),
-        0 4px 10px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary-400);
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.08) 100%);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15), 0 8px 20px rgba(30, 58, 138, 0.08);
+    border-color: var(--primary-500);
 }
 
 .articleCardHeader {
@@ -130,9 +134,8 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: #FEFEFE;
     color: #333333;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .featuredBadge {
@@ -151,7 +154,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: #333333;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.75rem;
 }
 
@@ -195,10 +198,14 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #333333;
+    color: var(--primary-500);
     font-size: 0.875rem;
     margin-bottom: 0.75rem;
     transition: all 0.3s ease;
+}
+
+.articleCard:hover .articleInfoItem {
+    color: var(--primary-600);
 }
 
 .tagsContainer {
@@ -209,20 +216,25 @@
 }
 
 .tag {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: #333333;
+    background-color: rgba(30, 58, 138, 0.1);
+    color: var(--primary-600);
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
     user-select: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-300);
     backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.articleCard:hover .tag {
+    color: var(--primary-700);
 }
 
 .articleButton {
     width: 100%;
-    background: #60acf3;
-    color: #333333;
+    background: linear-gradient(135deg, var(--primary-400) 0%, var(--primary-500) 50%, var(--primary-600) 100%);
+    color: #ffffff;
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1rem;
     border-radius: 0.75rem;
@@ -231,33 +243,18 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-}
-
-.articleButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: #2385e1;
-    transition: left 0.5s ease;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
 }
 
 .articleButton:hover {
-    background: #2385e1;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    border-color: var(--primary-600);
-}
-
-.articleButton:hover::before {
-    left: 100%;
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+    border-color: var(--primary-500);
 }
 
 .buttonIcon {
@@ -271,8 +268,8 @@
 }
 
 .moreButton {
-   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    color: #333333;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    color: var(--primary-600);
     border: 1px solid var(--primary-400);
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -287,28 +284,11 @@
     overflow: hidden;
 }
 
-.moreButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary-100), transparent);
-    transition: left 0.5s ease;
-}
-
 .moreButton:hover {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
-    background: #60acf3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    border-color: var(--primary-600);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.moreButton:hover::before {
-    left: 100%;
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+    color: var(--primary-700);
+    border-color: var(--primary-500);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2);
 }
 
 .moreButton:hover .buttonIcon {
