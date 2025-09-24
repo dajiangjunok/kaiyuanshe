@@ -1,10 +1,9 @@
 .missionSection {
   padding: 120px 0;
-  background: #FEFEFE;
+  background: #fefefe;
   position: relative;
   overflow: hidden;
 }
-
 
 .container {
   max-width: 1400px;
@@ -74,7 +73,12 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
   animation: rotate 3s linear infinite;
 }
 
@@ -137,9 +141,13 @@
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  background-image: 
+  background-image:
     linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.08), transparent 50%);
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(139, 92, 246, 0.08),
+      transparent 50%
+    );
 }
 
 .missionCard::before {
@@ -149,7 +157,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.15),
+    rgba(139, 92, 246, 0.1)
+  );
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -161,7 +173,12 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(59, 130, 246, 0.1),
+    transparent
+  );
   opacity: 0;
   transition: all 0.5s ease;
   animation: rotate 6s linear infinite;
@@ -178,7 +195,7 @@
 .missionCard:hover {
   transform: translateY(-15px) scale(1.03);
   border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.4),
     0 0 80px rgba(59, 130, 246, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -206,7 +223,12 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   opacity: 0;
   transition: all 0.6s ease;
   animation: rotate 4s linear infinite;
@@ -281,9 +303,13 @@
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  background-image: 
+  background-image:
     linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(244, 114, 182, 0.08), transparent 50%);
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(244, 114, 182, 0.08),
+      transparent 50%
+    );
 }
 
 .principleCard::before {
@@ -293,7 +319,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(244, 114, 182, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(244, 114, 182, 0.1)
+  );
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -305,7 +335,12 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(139, 92, 246, 0.12), transparent);
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(139, 92, 246, 0.12),
+    transparent
+  );
   opacity: 0;
   transition: all 0.6s ease;
   animation: rotate 8s linear infinite;
@@ -322,7 +357,7 @@
 .principleCard:hover {
   transform: translateY(-20px) scale(1.04);
   border-color: rgba(139, 92, 246, 0.5);
-  box-shadow: 
+  box-shadow:
     0 35px 70px rgba(0, 0, 0, 0.5),
     0 0 100px rgba(139, 92, 246, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -350,7 +385,12 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
   opacity: 0;
   transition: all 0.7s ease;
   animation: rotate 5s linear infinite;
@@ -416,7 +456,7 @@
 }
 
 .appCard {
-  background: rgba(80, 133, 213, 0.3);
+  background: #ffffff;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(16, 185, 129, 0.2);
   border-radius: 18px;
@@ -426,9 +466,7 @@
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  background-image: 
-    linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.06), transparent 50%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .appCard::before {
@@ -438,7 +476,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.08));
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.1),
+    rgba(59, 130, 246, 0.08)
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -450,59 +492,22 @@
 .appCard:hover {
   transform: translateY(-10px) scale(1.02);
   border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
     0 0 60px rgba(16, 185, 129, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.appIconWrapper {
+.appIcon {
   width: 80px;
   height: 80px;
-  margin: 0 auto 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  border: 2px solid rgba(16, 185, 129, 0.3);
-}
-
-.appIconWrapper::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  opacity: 0;
-  transition: all 0.5s ease;
-  animation: rotate 4s linear infinite;
-}
-
-.appCard:hover .appIconWrapper {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-}
-
-.appCard:hover .appIconWrapper::before {
-  opacity: 1;
-}
-
-.appIcon {
-  width: 48px;
-  height: 48px;
   object-fit: contain;
   z-index: 2;
   position: relative;
   transition: all 0.4s ease;
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
   border-radius: 8px;
+  margin-bottom: 1.5rem;
 }
 
 .appCard:hover .appIcon {
@@ -534,8 +539,12 @@
 }
 
 @keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Design */
@@ -543,11 +552,11 @@
   .mainTitle {
     font-size: 3rem;
   }
-  
+
   .blockHeader {
     gap: 1.5rem;
   }
-  
+
   .blockTitle {
     font-size: 2.2rem;
   }
@@ -557,48 +566,48 @@
   .missionSection {
     padding: 80px 0;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   .sectionHeader {
     margin-bottom: 6rem;
   }
-  
+
   .mainTitle {
     font-size: 2.5rem;
   }
-  
+
   .mainSubtitle {
     font-size: 1.1rem;
   }
-  
+
   .blockHeader {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .blockTitle {
     font-size: 2rem;
   }
-  
+
   .missionGrid,
   .principlesGrid,
   .appsGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .missionCard,
   .principleCard {
     padding: 2.5rem 1.5rem;
   }
-  
+
   .appCard {
     padding: 2rem 1.5rem;
   }
-  
+
   .missionBlock,
   .principlesBlock {
     margin-bottom: 6rem;
@@ -609,61 +618,55 @@
   .missionSection {
     padding: 60px 0;
   }
-  
+
   .sectionHeader {
     margin-bottom: 4rem;
   }
-  
+
   .mainTitle {
     font-size: 2.2rem;
   }
-  
+
   .blockTitle {
     font-size: 1.8rem;
   }
-  
+
   .missionCard,
   .principleCard {
     padding: 2rem 1rem;
   }
-  
+
   .appCard {
     padding: 1.5rem 1rem;
   }
-  
+
   .missionIconWrapper {
     width: 70px;
     height: 70px;
     margin-bottom: 1.5rem;
   }
-  
+
   .principleIconWrapper {
     width: 80px;
     height: 80px;
     margin-bottom: 2rem;
   }
-  
-  .appIconWrapper {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 1.5rem;
-  }
-  
+
   .missionIcon {
     width: 32px;
     height: 32px;
   }
-  
+
   .principleIcon {
     width: 36px;
     height: 36px;
   }
-  
+
   .appIcon {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
   }
-  
+
   .missionBlock,
   .principlesBlock {
     margin-bottom: 4rem;

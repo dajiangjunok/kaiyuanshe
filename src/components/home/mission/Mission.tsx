@@ -7,6 +7,7 @@ import {
   Heart,
   Network
 } from 'lucide-react'
+import Image from 'next/image'
 import styles from './Mission.module.css'
 
 export default function MissionSection() {
@@ -55,42 +56,50 @@ export default function MissionSection() {
     {
       img: '/img/home/xgyzpt.png',
       title: '新冠援助平台',
-      desc: '疫情期间的开源援助与协调平台'
+      desc: '疫情期间的开源援助与协调平台',
+      href: 'https://wuhan2020.kaiyuanshe.cn/#'
     },
     {
       img: '/img/home/kysgw.png',
       title: '开源社官网',
-      desc: '开源社区的官方门户与信息中心'
+      desc: '开源社区的官方门户与信息中心',
+      href: '/'
     },
     {
       img: '/img/home/ossChat.png',
       title: 'OSS.Chat',
-      desc: '开源项目智能对话与协作平台'
+      desc: '开源项目智能对话与协作平台',
+      href: 'https://github.com/kaiyuanshe/osschat'
     },
     {
       img: '/img/home/map.png',
       title: '中国开源地图',
-      desc: '全景展示中国开源项目与社区分布'
+      desc: '全景展示中国开源项目与社区分布',
+      href: '/organization'
     },
     {
       img: '/img/home/kToken.png',
       title: 'KToken',
-      desc: '基于区块链的开源贡献激励系统'
+      desc: '基于区块链的开源贡献激励系统',
+      href: 'https://github.com/kaiyuanshe/KToken'
     },
     {
       img: '/img/home/xyjqr.png',
       title: '小源机器人',
-      desc: '智能化的社区服务与互动机器人'
+      desc: '智能化的社区服务与互动机器人',
+      href: 'https://github.com/kaiyuanshe/xiaoyuan'
     },
     {
       img: '/img/home/kybg.png',
       title: '中国开源年度报告',
-      desc: '权威的中国开源发展趋势分析报告'
+      desc: '权威的中国开源发展趋势分析报告',
+      href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd'
     },
     {
       img: '/img/home/hackathon.png',
       title: '开放黑客松',
-      desc: '促进创新与合作的开源竞赛平台'
+      desc: '促进创新与合作的开源竞赛平台',
+      href: 'https://hackathon.kaiyuanshe.cn/'
     }
   ]
 
@@ -144,13 +153,24 @@ export default function MissionSection() {
           </div>
           <div className={styles.appsGrid}>
             {apps.map((app, index) => (
-              <div key={index} className={styles.appCard}>
-                <div className={styles.appIconWrapper}>
-                  <img src={app.img} alt={app.title} className={styles.appIcon} />
-                </div>
+              <a
+                key={index}
+                href={app.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.appCard}
+              >
+                <Image 
+                  src={app.img} 
+                  alt={app.title} 
+                  width={80}
+                  height={80}
+                  className={styles.appIcon} 
+                />
+
                 <h3 className={styles.appTitle}>{app.title}</h3>
                 <p className={styles.appDesc}>{app.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>
