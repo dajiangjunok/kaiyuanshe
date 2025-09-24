@@ -1,9 +1,9 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+  background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
   position: relative;
   overflow-x: hidden;
-  padding: 2rem 2rem;
+  padding: 5rem 2rem;
 }
 
 /* Enhanced header with floating elements and animations */
@@ -70,6 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #333333;
   gap: 1.5rem;
   position: relative;
   z-index: 2;
@@ -122,20 +123,30 @@
   }
 }
 
+/* 添加容器样式 */
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 控制标题和徽标之间的间距 */
+  justify-content: center; /* 或者 flex-start 根据需求调整 */
+  flex-wrap: wrap; /* 小屏幕时自动换行 */
+}
+
 .title {
   font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%);
+  background: #333333;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   letter-spacing: -0.02em;
+  white-space: nowrap; /* 防止标题换行 */
 }
 
 .titleBadge {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: #60a5fa;
   color: white;
   padding: 0.5rem 1.5rem;
   border-radius: 2rem;
@@ -144,6 +155,25 @@
   letter-spacing: 0.1em;
   box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
   animation: glow 2s infinite alternate;
+  white-space: nowrap; /* 防止徽标文字换行 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .titleContainer {
+    flex-direction: column; /* 小屏幕时垂直排列 */
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .titleBadge {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+  }
 }
 
 @keyframes glow {
@@ -159,7 +189,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: #cbd5e1;
+  color: #333333;
   font-size: 1.3rem;
   font-weight: 500;
   text-align: center;
@@ -193,7 +223,7 @@
 
 .statLabel {
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: #333333;
   font-weight: 500;
 }
 
@@ -220,7 +250,7 @@
   gap: 1rem;
   font-size: 2rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: #333333;
   margin-bottom: 3rem;
   text-align: center;
   justify-content: center;

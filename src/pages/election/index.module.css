@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 80px 20px;
+  background: linear-gradient(to bottom right, #f5fbff, var(--primary-400));
+  padding: 8rem 2rem;
 }
 
 .header {
@@ -17,7 +17,7 @@
 }
 
 .title {
-  color: white !important;
+  color: #333333 !important;
   font-size: 3rem !important;
   font-weight: 700 !important;
   margin: 20px 0 40px 0 !important;
@@ -30,7 +30,8 @@
 
 .candidatesSection {
   max-width: 1400px;
-  margin: 0 auto;
+  padding-top: 100px;
+  margin: 20px auto 20px;
 }
 
 .sectionTitle {

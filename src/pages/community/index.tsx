@@ -38,12 +38,14 @@ const CommunityPage: React.FC = () => {
           <div className={styles.floatingElement}></div>
         </div>
         <div className={styles.titleSection}>
-          <div className={styles.titleIconWrapper}>
+          {/* <div className={styles.titleIconWrapper}>
             <Globe className={styles.titleIcon} />
             <Sparkles className={styles.sparkleIcon} />
+          </div> */}
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>开源社城市社区</h1>
+            <div className={styles.titleBadge}>KCC</div>
           </div>
-          <h1 className={styles.title}>开源社城市社区</h1>
-          <div className={styles.titleBadge}>KCC</div>
           <div className={styles.subtitle}>
             <Users size={18} />
             <span>连接全球开源开发者，共建技术未来</span>

@@ -79,7 +79,7 @@ export default function Header() {
           {
             key: 'election',
             label: t('navigation.governance.election'),
-            href: '/community/star'
+            href: '/election'
           },
           {
             key: 'calendar',
@@ -105,31 +105,31 @@ export default function Header() {
           {
             key: 'open-source-star',
             label: t('navigation.honors.open_source_star'),
-            href: '/community/award/Open-Source-star',
+            href: '/community/star',
             icon: '⭐'
           },
           {
             key: 'annual-volunteer',
             label: t('navigation.honors.annual_volunteer'),
-            href: '/community/award/excellent-volunteer',
+            href: '/community/volunteer',
             icon: '🏆'
           },
           {
             key: 'coscon-star',
             label: t('navigation.honors.coscon_star'),
-            href: '/community/award/COSCon-star',
+            href: '/community/coscon',
             icon: '🌟'
           },
           {
             key: 'community-cooperation-star',
             label: t('navigation.honors.community_cooperation_star'),
-            href: '/community/award/community-cooperation-star',
+            href: '/community/cooperation',
             icon: '🤝'
           },
           {
             key: 'china-open-source-pioneer',
             label: t('navigation.honors.china_open_source_pioneer'),
-            href: '/community/award/China-Open-Source-pioneer'
+            href: '/community/pioneer'
           },
           {
             key: 'china-open-source-power-list',
@@ -191,13 +191,13 @@ export default function Header() {
           {
             key: 'china-open-source-map',
             label: t('navigation.knowledge.china_open_source_map'),
-            href: '/',
+            href: '/organization',
             icon: '🗺️'
           },
           {
             key: 'china-public-welfare-map',
             label: t('navigation.knowledge.china_public_welfare_map'),
-            href: '/',
+            href: '/ngo',
             icon: '❤️'
           }
         ]
