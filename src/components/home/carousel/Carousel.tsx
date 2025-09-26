@@ -1,17 +1,100 @@
  
+'use client'
+
+import { useState, useRef } from 'react'
+import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import styles from './Carousel.module.css'
- import CircularGallery from '@/components/bitsUI/circularGallery/CircularGallery'
+
+const images = [
+  '/img/rotation/activity1.png',
+  '/img/rotation/activity2.png', 
+  '/img/rotation/activity3.png',
+  '/img/rotation/activity4.png',
+  '/img/rotation/activity5.png'
+]
 
 export default function Carousel() {
- 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
- 
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const scrollDistance = window.innerWidth >= 1800 ? 440 : 420
+      scrollContainerRef.current.scrollBy({ left: -scrollDistance, behavior: 'smooth' })
+    }
+  }
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const scrollDistance = window.innerWidth >= 1800 ? 440 : 420
+      scrollContainerRef.current.scrollBy({ left: scrollDistance, behavior: 'smooth' })
+    }
+  }
+
+  const openImageModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc)
+  }
+
+  const closeImageModal = () => {
+    setSelectedImage(null)
+  }
 
   return (
     <section className={styles.carousel}>
       <div className={styles.container}>
-         <CircularGallery   bend={0} textColor="#333333" borderRadius={0.05} scrollEase={0.02}/>
+        <button 
+          className={styles.navButton + ' ' + styles.navLeft}
+          onClick={scrollLeft}
+          aria-label="Previous images"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        
+        <div className={styles.scrollContainer} ref={scrollContainerRef}>
+          <div className={styles.imageGrid}>
+            {images.map((src, index) => (
+              <div 
+                key={index} 
+                className={styles.imageWrapper}
+                onClick={() => openImageModal(src)}
+              >
+                <img 
+                  src={src} 
+                  alt={`Activity ${index + 1}`}
+                  className={styles.image}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button 
+          className={styles.navButton + ' ' + styles.navRight}
+          onClick={scrollRight}
+          aria-label="Next images"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
+
+      {selectedImage && (
+        <div className={styles.modal} onClick={closeImageModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button 
+              className={styles.closeButton}
+              onClick={closeImageModal}
+              aria-label="Close image"
+            >
+              <X size={24} />
+            </button>
+            <img 
+              src={selectedImage} 
+              alt="Enlarged view"
+              className={styles.modalImage}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
