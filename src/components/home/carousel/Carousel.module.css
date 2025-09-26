@@ -207,16 +207,7 @@
   }
   
   .navButton {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .navLeft {
-    left: -20px;
-  }
-  
-  .navRight {
-    right: -20px;
+    display: none;
   }
   
   .imageWrapper {
@@ -232,25 +223,24 @@
     max-width: 95vw;
     max-height: 95vh;
   }
+  
+  .scrollContainer {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .imageWrapper {
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 480px) {
   .navButton {
-    position: relative;
-    margin: 0 5px;
-  }
-  
-  .navLeft {
-    left: auto;
-  }
-  
-  .navRight {
-    right: auto;
+    display: none;
   }
   
   .container {
-    flex-direction: column;
-    gap: 20px;
+    gap: 0;
   }
   
   .imageWrapper {
