@@ -41,8 +41,21 @@ export default function Home() {
   return (
     <div className={styles.homepage}>
       {/* session1 */}
-      <Hero />
-      <CarouselSession />
+      <div
+        style={{
+          background: `linear-gradient(
+    135deg,
+    var(--primary-400) 0%,
+    #87ceeb 30%,
+    #b3d9ff 50%,
+    #87ceeb 70%,
+    var(--primary-400) 100%
+  )`
+        }}
+      >
+        <Hero />
+        <CarouselSession />
+      </div>
       {/* Activities Section */}
       <EventSection />
       <ArticleSection />

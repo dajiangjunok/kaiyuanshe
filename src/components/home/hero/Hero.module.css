@@ -2,19 +2,11 @@
 .hero {
   position: relative;
   padding: 4rem 1rem;
-  padding-top: 5.5rem;
+  padding-top: 6rem;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    var(--primary-400) 0%,
-    #87ceeb 30%,
-    #b3d9ff 50%,
-    #87ceeb 70%,
-    var(--primary-400) 100%
-  );
   background-size: 200% 200%;
   animation: gradientShift 12s ease-in-out infinite;
-  min-height: 55vh;
+  min-height: 45vh;
 }
 
 @media (max-width: 768px) {
