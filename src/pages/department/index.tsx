@@ -202,6 +202,7 @@ export default function DepartmentPage() {
                     layout: "orthogonal",
                     orient: "LR",
                     roam: true,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     symbolSize: (value: any, params: any) => {
                         return params.data.symbolSize || 20
                     },
@@ -210,9 +211,10 @@ export default function DepartmentPage() {
                         position: "left",
                         verticalAlign: "middle",
                         align: "right",
-                        fontSize: 11,
-                        color: "#333",
+                        fontSize: 14,
+                        color: "#1a1a1a",
                         distance: 4,
+                        fontWeight: "500",
                     },
                     leaves: {
                         label: {
@@ -220,6 +222,9 @@ export default function DepartmentPage() {
                             verticalAlign: "middle",
                             align: "left",
                             distance: 5,
+                            fontSize: 14,
+                            color: "#1a1a1a",
+                            fontWeight: "500",
                         },
                     },
                     emphasis: {
