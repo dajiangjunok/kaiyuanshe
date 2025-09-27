@@ -119,11 +119,11 @@ export const createArticle = async (
     }
 
     return { success: false, message: '文章创建出错' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('文章活动异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -160,10 +160,10 @@ export const updateArticle = async (
     }
 
     return { success: false, message: response.message ?? '文章更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -200,11 +200,11 @@ export const getArticles = async (
     }
 
     return { success: false, message: response.message ?? '获取文章列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取文章列表异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -226,11 +226,11 @@ export const getArticleById = async (articleId: string): Promise<ArticleResult> 
     }
 
     return { success: false, message: response.message ?? '获取文章失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取文章异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -245,25 +245,30 @@ export const deleteArticle = async (articleId: number): Promise<ArticleResult> =
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('删除文章异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
 
+// 定义支持format方法的类型
+interface Formattable {
+  format: (pattern: string) => string;
+}
+
 // 工具函数：格式化日期时间
-export const formatDateTime = (date: any, time: any): string => {
+export const formatDateTime = (date: Date | Formattable | string | null | undefined, time: Date | Formattable | string | null | undefined): string => {
   try {
     if (!date || !time) return '';
 
     if (
-      typeof date?.format === 'function' &&
-      typeof time?.format === 'function'
+      typeof (date as Formattable)?.format === 'function' &&
+      typeof (time as Formattable)?.format === 'function'
     ) {
-      return `${date.format('YYYY-MM-DD')} ${time.format('HH:mm:ss')}`;
+      return `${(date as Formattable).format('YYYY-MM-DD')} ${(time as Formattable).format('HH:mm:ss')}`;
     }
 
     if (date instanceof Date && time instanceof Date) {
@@ -307,10 +312,10 @@ export const updateArticlePublishStatus = async (
     }
 
     return { success: false, message: response.message ?? '文章状态更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
