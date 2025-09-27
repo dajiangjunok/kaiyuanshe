@@ -181,10 +181,14 @@ func UpdateArticle(c *gin.Context) {
 	article.Description = req.Desc
 	article.Content = req.Content
 	article.Category = req.Category
+	article.License = req.License
+	article.Author = req.Author
 	article.SourceLink = req.SourceLink
 	article.CoverImg = req.CoverImg
 	article.Tags = req.Tags
 	article.Author = req.Author
+	article.Translator = req.Translator
+	article.Editor = req.Editor
 
 	article.PublishStatus = 1 // 更新后需要重新审核
 

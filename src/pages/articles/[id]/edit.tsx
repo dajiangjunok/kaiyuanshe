@@ -8,6 +8,7 @@ import {
   Card,
   Tag,
   App as AntdApp,
+  Select,
 } from 'antd';
 import type { UploadProps, UploadFile } from 'antd';
 import { useRouter } from 'next/router';
@@ -84,7 +85,9 @@ export default function EditArticlePage() {
         category: values.category || '',
         cover_img: cloudinaryImg?.secure_url || previewUrl, // 当用户未修改封面则使用详情返回的previewUrl
         tags: tags,
+        license: values.license || '',
         author: values.author || '',
+        editor: values.editor || '',
         translator: values.translator || '',
       };
 
@@ -137,6 +140,8 @@ export default function EditArticlePage() {
             cover: response.data?.cover_img,
             author: response.data?.author,
             translator: response.data?.translator || '',
+            editor: response.data?.editor,
+            license: response.data?.license,
           });
           setPreviewUrl(response.data?.cover_img || '');
           setTags(response.data?.tags || []);
@@ -292,6 +297,80 @@ export default function EditArticlePage() {
               </Form.Item>
             </Card>
 
+            {/* 原文链接 */}
+            <Card className={styles.section}>
+              <Form.Item
+                label="原文链接"
+                name="source"
+                rules={[
+                  {
+                    type: 'url',
+                    message: '请输入有效的链接地址',
+                  },
+                ]}
+              >
+                <Input placeholder="请输入原文链接" className={styles.input} />
+              </Form.Item>
+              <Form.Item
+                label="版权声明"
+                name="license"
+                rules={[{ required: true, message: '请选择版权声明' }]}
+              >
+                <Select placeholder="请选择版权声明">
+                  <Select.Option value="CCO">CCO(公共领域贡献)</Select.Option>
+                  <Select.Option value="CC-4.0">CC-4.0(知识共享 4.0 国际许可协议)</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="分类"
+                name="category"
+                rules={[{ required: true, message: '请选择分类' }]}
+              >
+                <Select placeholder="请选择分类">
+                  <Select.Option value="original">原创</Select.Option>
+                  <Select.Option value="translation">翻译</Select.Option>
+                  <Select.Option value="archive">归档</Select.Option>
+                </Select>
+              </Form.Item>
+            </Card>
+
+            {/* 参与人员 */}
+            <Card className={styles.section}>
+              <h2 className={styles.sectionTitle}>
+                <Users className={styles.sectionIcon} />
+                作者与协作者
+              </h2>
+
+              <div className={styles.formRow}>
+                <Form.Item
+                  label="作者"
+                  name="author"
+                  rules={[{ required: true, message: '请输入作者姓名' }]}
+                >
+                  <Input placeholder="请输入作者" maxLength={10} showCount />
+                </Form.Item>
+              </div>
+
+              <div className={styles.formRow}>
+                <Form.Item label="翻译" name="translator">
+                  <Input
+                    placeholder="请输入翻译（可选）"
+                    maxLength={10}
+                    showCount
+                  />
+                </Form.Item>
+              </div>
+              <div className={styles.formRow}>
+                <Form.Item label="编辑" name="editor">
+                  <Input
+                    placeholder="请输入编辑"
+                    maxLength={10}
+                    showCount
+                  />
+                </Form.Item>
+              </div>
+            </Card>
+
             {/* 标签 */}
             <Card className={styles.section}>
               <h2 className={styles.sectionTitle}>
@@ -334,17 +413,6 @@ export default function EditArticlePage() {
               </div>
             </Card>
 
-            {/* 其他设置 */}
-            <Card className={styles.section}>
-              <h2 className={styles.sectionTitle}>其他设置</h2>
-              <Form.Item
-                name="publishImmediately"
-                valuePropName="checked"
-                className={styles.formGroup}
-              >
-                <Checkbox className={styles.checkbox}>立即发布文章</Checkbox>
-              </Form.Item>
-            </Card>
           </div>
         </div>
 
