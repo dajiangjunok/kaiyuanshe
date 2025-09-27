@@ -56,6 +56,7 @@ export default function NewArticlePage() {
         tags: tags,
         author: values.author || '',
         translator: values.translator || '',
+        editor: values.editor || '',
       };
 
       const result = await createArticle(createArticleRequest);

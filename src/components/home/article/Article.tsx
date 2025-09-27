@@ -11,6 +11,26 @@ export function formatTime(isoTime: string): string {
     return dayjs(isoTime).format('YYYY年M月D日');
 }
 
+// 分类映射配置
+const categoryConfig = {
+    original: {
+        label: '原创',
+        className: styles.original
+    },
+    translation: {
+        label: '翻译', 
+        className: styles.translation
+    },
+    archive: {
+        label: '归档',
+        className: styles.archive
+    }
+};
+
+// 获取分类信息的辅助函数
+const getCategoryInfo = (category: string) => {
+    return categoryConfig[category as keyof typeof categoryConfig] || categoryConfig.original;
+};
 
 export default function ArticleSection() {
     const { status } = useAuth();
@@ -70,65 +90,72 @@ export default function ArticleSection() {
                     </p>
                 </div>
                 <div className={styles.articlesGrid}>
-                    {articles.map((article, index) => (
-                        <div key={index} className={styles.articleCard}>
-                            <div className={styles.articleCardGlow}></div>
-                            <div className={styles.articleCardHeader}>
-                                <div className={styles.articleMeta}>
-                                    <span className={`${styles.categoryBadge} ${article.isFeatured ? styles.featuredBadge : ''}`}>
-                                        {article.isFeatured ? '精选' : article.category}
-                                    </span>
-                                    <div className={styles.articleStats}>
-                                        <div className={styles.statItem}>
-                                            <Eye className={styles.articleIcon} />
-                                            {article.view_count}
+                    {articles.map((article, index) => {
+                        // 获取分类信息
+                        const categoryInfo = getCategoryInfo(article.category);
+                        
+                        return (
+                            <div key={article.ID || index} className={styles.articleCard}>
+                                <div className={styles.articleCardGlow}></div>
+                                <div className={styles.articleCardHeader}>
+                                    <div className={styles.articleMeta}>
+                                        {/* 修改分类标签部分 */}
+                                        <span className={`${styles.categoryBadge} ${categoryInfo.className}`}>
+                                            {categoryInfo.label}
+                                        </span>
+                                        <div className={styles.articleStats}>
+                                            <div className={styles.statItem}>
+                                                <Eye className={styles.articleIcon} />
+                                                {article.view_count || 0}
+                                            </div>
+                                            {/* 注释掉暂时不需要的统计信息 */}
+                                            {/* <div className={styles.statItem}>
+                                                <Star className={styles.articleIcon} />
+                                                {article.likeCount}
+                                            </div>
+                                            <div className={styles.statItem}>
+                                                <MessageCircle className={styles.articleIcon} />
+                                                {article.commentCount}
+                                            </div> */}
                                         </div>
-                                        {/* <div className={styles.statItem}>
-                                            <Star className={styles.articleIcon} />
-                                            {article.likeCount}
+                                    </div>
+                                    <h3 className={styles.articleTitle}>{article.title}</h3>
+                                    <p className={styles.articleDescription}>{article.description}</p>
+                                </div>
+                                <div className={styles.articleCardContent}>
+                                    <div className={styles.articleInfo}>
+                                        <div className={styles.articleInfoItem}>
+                                            <User className={styles.articleIcon} />
+                                            {article.author || '未知作者'}
                                         </div>
-                                        <div className={styles.statItem}>
-                                            <MessageCircle className={styles.articleIcon} />
-                                            {article.commentCount}
-                                        </div> */}
+                                        <div className={styles.articleInfoItem}>
+                                            <Calendar className={styles.articleIcon} />
+                                            {article.publish_time ? formatTime(article.publish_time) : '未发布'}
+                                        </div>
+                                        <div className={styles.articleInfoItem}>
+                                            <BookOpen className={styles.articleIcon} />
+                                            {article.readingTime || 6} 分钟阅读
+                                        </div>
                                     </div>
+                                    {article.tags && article.tags.length > 0 && (
+                                        <div className={styles.tagsContainer}>
+                                            {article.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
+                                                <Tag key={tagIndex} className={styles.tag}>
+                                                    {tag}
+                                                </Tag>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <Link href={`/articles/${article.ID}`} passHref>
+                                        <button className={styles.articleButton}>
+                                            阅读文章
+                                            <ArrowRight className={styles.buttonIcon} />
+                                        </button>
+                                    </Link>
                                 </div>
-                                <h3 className={styles.articleTitle}>{article.title}</h3>
-                                <p className={styles.articleDescription}>{article.description}</p>
                             </div>
-                            <div className={styles.articleCardContent}>
-                                <div className={styles.articleInfo}>
-                                    <div className={styles.articleInfoItem}>
-                                        <User className={styles.articleIcon} />
-                                        {article.author}
-                                    </div>
-                                    <div className={styles.articleInfoItem}>
-                                        <Calendar className={styles.articleIcon} />
-                                        {formatTime(article.publish_time)}
-                                    </div>
-                                    <div className={styles.articleInfoItem}>
-                                        <BookOpen className={styles.articleIcon} />
-                                        {article.readingTime || 6} 分钟阅读
-                                    </div>
-                                </div>
-                                {article.tags && article.tags.length > 0 && (
-                                    <div className={styles.tagsContainer}>
-                                        {article.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
-                                            <Tag key={tagIndex} className={styles.tag}>
-                                                {tag}
-                                            </Tag>
-                                        ))}
-                                    </div>
-                                )}
-                                <Link href={`/articles/${article.ID}`} passHref>
-                                    <button className={styles.articleButton}>
-                                        阅读文章
-                                        <ArrowRight className={styles.buttonIcon} />
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
                 <div className={styles.sectionFooter}>
                     <Link href="/articles">
