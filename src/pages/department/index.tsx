@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback, useMemo } from "react"
 import * as echarts from "echarts"
 import styles from "./index.module.css"
 
@@ -19,7 +19,7 @@ export default function DepartmentPage() {
     const chartInstance = useRef<echarts.ECharts | null>(null)
     const [showActiveDepts, setShowActiveDepts] = useState(false) // Default to false to match the second image
 
-    const orgData: TreeNode = {
+    const orgData: TreeNode = useMemo(() => ({
         name: "社员大会",
         symbolSize: 40,
         itemStyle: {
@@ -96,9 +96,9 @@ export default function DepartmentPage() {
                 },
             },
         ],
-    };
+    }), []);
 
-    const simpleOrgData: TreeNode = {
+    const simpleOrgData: TreeNode = useMemo(() => ({
         name: "社员大会",
         symbolSize: 30,
         itemStyle: {
@@ -158,7 +158,7 @@ export default function DepartmentPage() {
                 },
             },
         ],
-    }
+    }), [])
 
     useEffect(() => {
         if (chartRef.current) {
@@ -175,13 +175,13 @@ export default function DepartmentPage() {
                 chartInstance.current.dispose()
             }
         }
-    }, [])
+    }, [updateChart])
 
     useEffect(() => {
         updateChart()
-    }, [showActiveDepts])
+    }, [showActiveDepts, updateChart])
 
-    const updateChart = () => {
+    const updateChart = useCallback(() => {
         if (!chartInstance.current) return
 
         const currentData = showActiveDepts ? orgData : simpleOrgData
@@ -265,7 +265,7 @@ export default function DepartmentPage() {
 
         chartInstance.current.clear()
         chartInstance.current.setOption(option, true)
-    }
+    }, [showActiveDepts, orgData, simpleOrgData])
 
     // 处理窗口大小变化
     useEffect(() => {

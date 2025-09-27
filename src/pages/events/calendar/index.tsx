@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import Image from 'next/image';
 import {
   Calendar,
   Badge,
@@ -42,10 +43,10 @@ const EventsCalendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   
   const { session, status } = useAuth();
-  const permissions = session?.user?.permissions || [];
+  const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
   // 加载事件数据
-  const loadEvents = async () => {
+  const loadEvents = useCallback(async () => {
     try {
       const result = await getEvents({
         page: 1,
@@ -71,11 +72,11 @@ const EventsCalendar: React.FC = () => {
     } catch (error) {
       console.error('加载事件失败:', error);
     }
-  };
+  }, [status, permissions]);
 
   useEffect(() => {
     loadEvents();
-  }, [status]);
+  }, [status, loadEvents]);
 
   // 获取事件状态颜色类名
   const getEventStatusClass = (event: Event) => {
@@ -302,9 +303,11 @@ const EventsCalendar: React.FC = () => {
           {selectedEvent && (
             <div>
               {selectedEvent.cover_img && (
-                <img 
+                <Image 
                   src={selectedEvent.cover_img} 
                   alt={selectedEvent.title}
+                  width={500}
+                  height={300}
                   className={styles.modalImage}
                 />
               )}

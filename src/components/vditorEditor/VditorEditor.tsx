@@ -260,7 +260,7 @@ const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
         vd?.destroy();
         setVd(undefined);
       };
-    }, [mounted]);
+    }, [mounted, height, width, mode, placeholder, disabled, value, onChange, onFocus, onBlur, vd]);
 
     // 更新值
     useEffect(() => {

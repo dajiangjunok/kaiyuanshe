@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RotateCcw, X, ImageIcon } from 'lucide-react';
 import { App as AntdApp } from 'antd';
+import Image from 'next/image';
 import type { UploadProps, UploadFile, RcFile } from 'antd';
 import { uploadImgToCloud, deleteImgFromCloud } from '@/lib/cloudinary';
 import { Upload } from 'antd';
@@ -191,9 +192,11 @@ export default function UploadCardImg(props: {
     <div className={styles.imageUpload}>
       {previewUrl ? (
         <div className={styles.imagePreviewContainer}>
-          <img
+          <Image
             src={previewUrl || '/placeholder.svg'}
             alt="图片预览"
+            width={400}
+            height={300}
             className={styles.previewImage}
           />
           {isImageLoading && (

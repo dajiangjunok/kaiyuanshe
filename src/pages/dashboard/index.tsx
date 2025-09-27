@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import {
   Card,
   Row,
@@ -48,7 +49,7 @@ export default function DashboardPage() {
   const { session } = useAuth()
   const { update } = useSession()
 
-  const loadEvents = async (page = 1, pageSize = 10) => {
+  const loadEvents = useCallback(async (page = 1, pageSize = 10) => {
     try {
       setEventsLoading(true)
       const result = { data: { evnets: [], page: 1, page_size: 10, total: 0 } }
@@ -64,9 +65,9 @@ export default function DashboardPage() {
     } finally {
       setEventsLoading(false)
     }
-  }
+  }, [])
 
-  const loadArticles = async (page = 1, pageSize = 10) => {
+  const loadArticles = useCallback(async (page = 1, pageSize = 10) => {
     try {
       setArticleLoading(true)
       const result = {
@@ -91,14 +92,14 @@ export default function DashboardPage() {
     } finally {
       setArticleLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (session?.user?.uid) {
       loadEvents()
       loadArticles()
     }
-  }, [session])
+  }, [session, loadEvents, loadArticles])
 
   const profileData = {
     name: session?.user?.username || '',
@@ -192,7 +193,7 @@ export default function DashboardPage() {
   if (!session) {
     return (
       <div className={styles.emptyState}>
-        <img src="/meme1.gif" className={styles.emptyImage} alt="登录提示图片" />
+        <Image src="/meme1.gif" width={300} height={200} className={styles.emptyImage} alt="登录提示图片" />
         <p>请先登录以查看个人中心</p>
       </div>
     )

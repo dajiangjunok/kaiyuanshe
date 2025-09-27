@@ -1,4 +1,5 @@
 import { Tooltip } from 'antd';
+import Image from 'next/image';
 import {Dapp} from "@/pages/api/dapp";
 
 interface DAppOptionProps {
@@ -92,12 +93,12 @@ export function DAppOption({ dapp }: DAppOptionProps) {
           backgroundColor: '#f5f5f5'
         }}>
           {dapp.logo ? (
-            <img
+            <Image
               src={dapp.logo}
               alt={dapp.name}
+              width={32}
+              height={32}
               style={{
-                width: '100%',
-                height: '100%',
                 objectFit: 'cover'
               }}
               onError={handleImageError}

@@ -136,7 +136,7 @@ export default function EditArticlePage() {
     };
 
     fetchData();
-  }, [router.isReady, rId, form]);
+  }, [router.isReady, rId, form, message]);
 
   if (!loading && !article) {
     return (

@@ -124,6 +124,7 @@ export default function PostsList() {
     status,
     fetchPosts,
     fetchPostsStats,
+    setListState,
   ]);
 
   const handleResetFilters = useCallback(() => {

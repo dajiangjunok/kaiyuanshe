@@ -104,7 +104,7 @@ export default function EventDetailPage() {
     }
 
     fetchData()
-  }, [router.isReady, rId])
+  }, [router.isReady, rId, message])
 
   const handleShare = (platform?: string) => {
     if (platform === 'copy') {

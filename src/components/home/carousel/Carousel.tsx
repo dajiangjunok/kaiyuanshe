@@ -3,6 +3,7 @@
 
 import { useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import Image from 'next/image'
 import styles from './Carousel.module.css'
 
 const images = [
@@ -58,9 +59,11 @@ export default function Carousel() {
                 className={styles.imageWrapper}
                 onClick={() => openImageModal(src)}
               >
-                <img 
+                <Image 
                   src={src} 
                   alt={`Activity ${index + 1}`}
+                  width={400}
+                  height={300}
                   className={styles.image}
                 />
               </div>
@@ -87,9 +90,11 @@ export default function Carousel() {
             >
               <X size={24} />
             </button>
-            <img 
+            <Image 
               src={selectedImage} 
               alt="Enlarged view"
+              width={800}
+              height={600}
               className={styles.modalImage}
             />
           </div>

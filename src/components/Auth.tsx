@@ -65,7 +65,7 @@ const Auth: React.FC = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [code, session, router]);
+  }, [code, session, router, message]);
 
   const handleSignIn = () => {
     setLoading(true); // 点击按钮时设置为加载状态

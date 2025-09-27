@@ -75,7 +75,7 @@ export default function ArticleDetailPage() {
     };
 
     fetchData();
-  }, [router.isReady, id]);
+  }, [router.isReady, id, message, rId]);
 
   if (loading) {
     return (

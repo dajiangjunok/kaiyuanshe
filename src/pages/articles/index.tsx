@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Pagination,
   Input,
@@ -53,12 +53,12 @@ export default function ArticlesPage() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();
 
-  const permissions = session?.user?.permissions || [];
+  const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
   const { message } = AntdApp.useApp();
 
   // 加载文章列表
-  const loadArticles = async (params?: {
+  const loadArticles = useCallback(async (params?: {
     keyword?: string;
     tag?: string;
     order?: 'asc' | 'desc';
@@ -107,7 +107,7 @@ export default function ArticlesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchKeyword, selectedTag, sortOrder, currentPage, pageSize, publishStatus]);
 
   // 搜索文章
   const handleSearch = async (keyword: string) => {
@@ -160,7 +160,7 @@ export default function ArticlesPage() {
 
     // 直接调用 loadarticles，避免 publishStatus 状态更新延迟
     loadArticles({ publish_status: newPublishStatus });
-  }, [status, permissions.length]);
+  }, [status, permissions.length, loadArticles, permissions]);
 
   return (
     <div className={`${styles.container} nav-t-top`}>

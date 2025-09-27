@@ -211,7 +211,7 @@ export default function EditEventPage() {
     };
 
     fetchData();
-  }, [router.isReady, rId, form]);
+  }, [router.isReady, rId, form, message]);
 
   if (loading) {
     return (

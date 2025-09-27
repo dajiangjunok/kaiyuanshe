@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react"
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import { Button, Input, Form, message } from "antd"
 import { ArrowLeft, Calendar, Users, Video, Mic, Save } from "lucide-react"
 import styles from "./recap.module.css"
@@ -43,7 +44,7 @@ export default function EventRecap() {
         };
 
         fetchData();
-    }, [router.isReady, id]);
+    }, [router.isReady, id, rId]);
 
     const handleSubmit = async (values: RecapFormData) => {
         setSubmitting(true);
@@ -129,7 +130,7 @@ export default function EventRecap() {
                 <div className={styles.eventOverview}>
                     <div className={styles.eventInfo}>
                         <div className={styles.eventImage}>
-                            <img src={event.cover_img || "/placeholder.svg"} alt={event.title} />
+                            <Image src={event.cover_img || "/placeholder.svg"} alt={event.title} width={300} height={200} />
                         </div>
 
                         <div className={styles.eventDetails}>

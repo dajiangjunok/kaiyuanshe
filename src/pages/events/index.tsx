@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Pagination,
   Input,
@@ -65,7 +65,7 @@ export default function EventsPage() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();
 
-  const permissions = session?.user?.permissions || [];
+  const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
   // 新增筛选状态
   const [statusFilter, setStatusFilter] = useState('3');
@@ -74,7 +74,7 @@ export default function EventsPage() {
   const [eventTypeFilter, setEventTypeFilter] = useState('');
 
   // 加载事件列表
-  const loadEvents = async (params?: {
+  const loadEvents = useCallback(async (params?: {
     keyword?: string;
     tag?: string;
     order?: 'asc' | 'desc';
@@ -131,7 +131,7 @@ export default function EventsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchKeyword, selectedTag, sortOrder, currentPage, pageSize, statusFilter, locationKeyword, eventModeFilter, eventTypeFilter, publishStatus]);
 
   // 搜索事件
   const handleSearch = async (keyword: string) => {
@@ -264,7 +264,7 @@ export default function EventsPage() {
         { shallow: true }
       );
     }
-  }, [router.isReady, router.query.type]);
+  }, [router.isReady, router.query.type, eventTypeFilter, loadEvents, router]);
 
   // 根据登录状态更新 publishStatus
   useEffect(() => {
@@ -273,7 +273,7 @@ export default function EventsPage() {
     } else if (status === 'unauthenticated') {
       setPublishStatus(2);
     }
-  }, [status, permissions]);
+  }, [status, permissions, eventTypeFilter, loadEvents, router]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -292,6 +292,9 @@ export default function EventsPage() {
     eventModeFilter,
     eventTypeFilter,
     publishStatus,
+    loadEvents,
+    router.isReady,
+    router.query.type,
   ]);
 
   return (
