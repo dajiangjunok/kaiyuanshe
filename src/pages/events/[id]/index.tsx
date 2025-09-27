@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Button, Tag, Avatar, App as AntdApp, Image } from 'antd';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { Button, Tag, Avatar, App as AntdApp, Image } from 'antd'
 import {
   ArrowLeft,
   Calendar,
@@ -13,112 +13,110 @@ import {
   User,
   Mail,
   Copy,
-  CheckCircle,
-} from 'lucide-react';
-import Link from 'next/link';
-import styles from './index.module.css';
-import { useAuth } from '@/contexts/AuthContext';
-import { getEventById, updateEventPublishStatus } from '@/pages/api/event';
-import { SiX } from 'react-icons/si';
-import { getRecapByEventId } from '@/pages/api/recap';
-import { sanitizeMarkdown } from '@/lib/markdown';
+  CheckCircle
+} from 'lucide-react'
+import Link from 'next/link'
+import styles from './index.module.css'
+import { useAuth } from '@/contexts/AuthContext'
+import { getEventById, updateEventPublishStatus } from '@/pages/api/event'
+import { SiX } from 'react-icons/si'
+import { getRecapByEventId } from '@/pages/api/recap'
+import { sanitizeMarkdown } from '@/lib/markdown'
 
 export default function EventDetailPage() {
-  const { message } = AntdApp.useApp();
-  const router = useRouter();
-  const { id } = router.query; // 路由参数应该叫 id，不是 ids
-  const rId = Array.isArray(id) ? id[0] : id;
+  const { message } = AntdApp.useApp()
+  const router = useRouter()
+  const { id } = router.query // 路由参数应该叫 id，不是 ids
+  const rId = Array.isArray(id) ? id[0] : id
 
-  const [event, setEvent] = useState<{ ID: string; title: string; description: string; event_mode: string; event_type: string; link: string; location: string; start_time: string; end_time: string; cover_img: string; tags: string[]; twitter: string; registration_link: string; registration_deadline: string; status: number; publish_status: number; participants: number; agenda?: { time: string; title: string; description: string; speaker: string }[]; requirements?: string[]; benefits?: string[]; organizer?: { avatar: string; name: string; title: string; company: string; bio: string; email: string; twitter: string } } | null>(null);
-  const [recap, setRecap] = useState<{ content: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
-  const [activeTab, setActiveTab] = useState<'intro' | 'recap'>('intro');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [event, setEvent] = useState<any>(null)
+  const [recap, setRecap] = useState<{ content: string } | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState<'intro' | 'recap'>('intro')
 
   // 使用统一的认证上下文，避免重复调用 useSession
-  const { session, status } = useAuth();
+  const { session, status } = useAuth()
 
-  const permissions = session?.user?.permissions || [];
+  const permissions = session?.user?.permissions || []
 
   // parseMarkdown将返回的markdown转为html展示
-  const [eventContent, setEventContent] = useState<string>('');
-  const [recapContent, setRecapContent] = useState<string>('');
+  const [eventContent, setEventContent] = useState<string>('')
+  const [recapContent, setRecapContent] = useState<string>('')
 
   useEffect(() => {
     if (event?.description) {
-      sanitizeMarkdown(event.description).then((htmlContent) => {
-        setEventContent(htmlContent);
-      });
+      sanitizeMarkdown(event.description).then(htmlContent => {
+        setEventContent(htmlContent)
+      })
     }
-  }, [event?.description]);
+  }, [event?.description])
 
   useEffect(() => {
     if (recap?.content) {
-      sanitizeMarkdown(recap.content).then((htmlContent) => {
-        setRecapContent(htmlContent);
-      });
+      sanitizeMarkdown(recap.content).then(htmlContent => {
+        setRecapContent(htmlContent)
+      })
     }
-  }, [recap?.content]);
+  }, [recap?.content])
 
   const handleUpdatePublishStatus = async () => {
     try {
-      const result = await updateEventPublishStatus(event.ID, 2);
+      const result = await updateEventPublishStatus(event.ID, 2)
       if (result.success) {
-        router.reload();
-        message.success(result.message);
+        router.reload()
+        message.success(result.message)
       } else {
-        message.error(result.message || '审核出错');
+        message.error(result.message || '审核出错')
       }
     } catch {
-      message.error('审核出错，请重试');
+      message.error('审核出错，请重试')
     }
-  };
+  }
 
   useEffect(() => {
-    if (!router.isReady || !rId) return;
+    if (!router.isReady || !rId) return
 
     const fetchData = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
         // 获取活动详情
-        const eventRes = await getEventById(rId);
-        console.log('获取活动详情:', eventRes);
-        setEvent(eventRes?.data ?? null);
+        const eventRes = await getEventById(rId)
+        console.log('获取活动详情:', eventRes)
+        setEvent(eventRes?.data ?? null)
 
         // 获取活动回顾
-        const recapRes = await getRecapByEventId(rId);
-        console.log('获取活动回顾:', recapRes);
+        const recapRes = await getRecapByEventId(rId)
+        console.log('获取活动回顾:', recapRes)
 
         if (recapRes.success && recapRes.data) {
-          setRecap(recapRes.data);
+          setRecap(recapRes.data)
         } else {
-          setRecap(null); // 没有数据也清空
+          setRecap(null) // 没有数据也清空
         }
       } catch {
-        message.error('加载失败');
-        setEvent(null);
-        setRecap(null);
+        message.error('加载失败')
+        setEvent(null)
+        setRecap(null)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchData();
-  }, [router.isReady, rId]);
-
-
+    fetchData()
+  }, [router.isReady, rId])
 
   const handleShare = (platform?: string) => {
     if (platform === 'copy') {
-      navigator.clipboard.writeText(window.location.href);
-      message.success('链接已复制到剪贴板');
+      navigator.clipboard.writeText(window.location.href)
+      message.success('链接已复制到剪贴板')
     } else if (platform === 'twitter') {
-      const text = `${event.title} - ${window.location.href}`;
+      const text = `${event.title} - ${window.location.href}`
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`
-      );
-  };
+      )
+    }
+  }
 
   if (loading) {
     return (
@@ -126,7 +124,7 @@ export default function EventDetailPage() {
         <div className={styles.loadingSpinner}></div>
         <p>加载中...</p>
       </div>
-    );
+    )
   }
 
   if (
@@ -141,44 +139,44 @@ export default function EventDetailPage() {
           返回活动列表
         </Link>
       </div>
-    );
+    )
   }
 
   const getEventStatus = () => {
     if (event.status === 0) {
-      return { text: '即将开始', type: 'upcoming', color: '#10b981' };
+      return { text: '即将开始', type: 'upcoming', color: '#10b981' }
     } else if (event.status === 1) {
-      return { text: '进行中', type: 'ongoing', color: '#3b82f6' };
+      return { text: '进行中', type: 'ongoing', color: '#3b82f6' }
     } else {
-      return { text: '已结束', type: 'ended', color: '#6b7280' };
+      return { text: '已结束', type: 'ended', color: '#6b7280' }
     }
-  };
+  }
 
   const formatDateTime = (dateTime: string) => {
-    const date = new Date(dateTime);
+    const date = new Date(dateTime)
     return {
       date: date.toLocaleDateString('zh-CN', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-        weekday: 'long',
+        weekday: 'long'
       }),
       time: date.toLocaleTimeString('zh-CN', {
         hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
-  };
+        minute: '2-digit'
+      })
+    }
+  }
 
   const formatDateTimeRange = (startTime: string, endTime: string) => {
-    const startDate = new Date(startTime);
-    const endDate = new Date(endTime);
-    
+    const startDate = new Date(startTime)
+    const endDate = new Date(endTime)
+
     // 检查是否跨天
-    const startDay = startDate.toDateString();
-    const endDay = endDate.toDateString();
-    const isSameDay = startDay === endDay;
-    
+    const startDay = startDate.toDateString()
+    const endDay = endDate.toDateString()
+    const isSameDay = startDay === endDay
+
     if (isSameDay) {
       // 同一天：显示日期和时间范围
       return {
@@ -186,37 +184,37 @@ export default function EventDetailPage() {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-          weekday: 'long',
+          weekday: 'long'
         }),
         timeRange: `${startDate.toLocaleTimeString('zh-CN', {
           hour: '2-digit',
-          minute: '2-digit',
+          minute: '2-digit'
         })} - ${endDate.toLocaleTimeString('zh-CN', {
           hour: '2-digit',
-          minute: '2-digit',
+          minute: '2-digit'
         })}`,
         isSameDay: true
-      };
+      }
     } else {
       // 跨天：只显示日期范围
       return {
         date: `${startDate.toLocaleDateString('zh-CN', {
           year: 'numeric',
           month: 'long',
-          day: 'numeric',
+          day: 'numeric'
         })} - ${endDate.toLocaleDateString('zh-CN', {
           year: 'numeric',
           month: 'long',
-          day: 'numeric',
+          day: 'numeric'
         })}`,
         timeRange: '',
         isSameDay: false
-      };
+      }
     }
-  };
+  }
 
-  const eventStatus = getEventStatus();
-  const dateTimeRange = formatDateTimeRange(event.start_time, event.end_time);
+  const eventStatus = getEventStatus()
+  const dateTimeRange = formatDateTimeRange(event.start_time, event.end_time)
 
   return (
     <div className={`${styles.container} nav-t-top`}>
@@ -229,7 +227,7 @@ export default function EventDetailPage() {
           </Link>
           <div className={styles.headerActions}>
             {status === 'authenticated' &&
-              permissions.includes('event:write') ? (
+            permissions.includes('event:write') ? (
               <Button
                 icon={<Edit size={16} className={styles.actionIcon} />}
                 className={styles.actionButton}
@@ -239,8 +237,8 @@ export default function EventDetailPage() {
               </Button>
             ) : null}
             {event.publish_status === 1 &&
-              status === 'authenticated' &&
-              permissions.includes('event:review') ? (
+            status === 'authenticated' &&
+            permissions.includes('event:review') ? (
               <Button
                 icon={<CheckCircle size={16} className={styles.actionIcon} />}
                 className={styles.actionButton}
@@ -362,15 +360,13 @@ export default function EventDetailPage() {
                   className={`${styles.richText} prose`}
                   dangerouslySetInnerHTML={{ __html: eventContent }}
                 />
+              ) : recap?.content ? (
+                <div
+                  className={`${styles.richText} prose`}
+                  dangerouslySetInnerHTML={{ __html: recapContent }}
+                />
               ) : (
-                recap?.content ? (
-                  <div
-                    className={`${styles.richText} prose`}
-                    dangerouslySetInnerHTML={{ __html: recapContent }}
-                  />
-                ) : (
-                  <div className={styles.richText}>暂无活动回顾内容</div>
-                )
+                <div className={styles.richText}>暂无活动回顾内容</div>
               )}
             </section>
 
@@ -379,24 +375,34 @@ export default function EventDetailPage() {
               <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>活动议程</h2>
                 <div className={styles.agenda}>
-                  {event.agenda.map((item: { time: string; title: string; description: string; speaker: string }, index: number) => (
-                    <div key={index} className={styles.agendaItem}>
-                      <div className={styles.agendaTime}>
-                        <Clock size={16} />
-                        {item.time}
-                      </div>
-                      <div className={styles.agendaContent}>
-                        <h4 className={styles.agendaTitle}>{item.title}</h4>
-                        <p className={styles.agendaDescription}>
-                          {item.description}
-                        </p>
-                        <div className={styles.agendaSpeaker}>
-                          <User size={14} />
-                          {item.speaker}
+                  {event.agenda.map(
+                    (
+                      item: {
+                        time: string
+                        title: string
+                        description: string
+                        speaker: string
+                      },
+                      index: number
+                    ) => (
+                      <div key={index} className={styles.agendaItem}>
+                        <div className={styles.agendaTime}>
+                          <Clock size={16} />
+                          {item.time}
+                        </div>
+                        <div className={styles.agendaContent}>
+                          <h4 className={styles.agendaTitle}>{item.title}</h4>
+                          <p className={styles.agendaDescription}>
+                            {item.description}
+                          </p>
+                          <div className={styles.agendaSpeaker}>
+                            <User size={14} />
+                            {item.speaker}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </section>
             )}
@@ -426,7 +432,6 @@ export default function EventDetailPage() {
             </div>
           </div>
 
-
           {/* Right Column */}
           <div className={styles.rightColumn}>
             {/* Registration Card */}
@@ -437,42 +442,42 @@ export default function EventDetailPage() {
                   <div className={styles.price}>免费</div>
                 </div>
                 <div className={styles.cardContent}>
-                  {event.event_mode === '线下活动' && event.registration_link && (
-                    <>
-                      <div className={styles.participantCount}>
-                        <Users size={20} />
-                        <span>
-                          {event.participants} 人已报名
-                          {/* {event.max_participants &&
+                  {event.event_mode === '线下活动' &&
+                    event.registration_link && (
+                      <>
+                        <div className={styles.participantCount}>
+                          <Users size={20} />
+                          <span>
+                            {event.participants} 人已报名
+                            {/* {event.max_participants &&
                         ` / ${event.max_participants} 人`} */}
-                        </span>
-                      </div>
-                      {event.registration_deadline && (
-                        <div className={styles.deadline}>
-                          <Clock size={16} />
-                          报名截止：
-                          {formatDateTime(event.registration_deadline).date}
+                          </span>
                         </div>
-                      )}
-                      <Button
-                        type="primary"
-                        size="large"
-                        className={styles.registerButton}
-                        onClick={() => {
-                          window.open(event.registration_link, '_blank');
-                        }}
-                      >
-
-                        立即报名
-                      </Button>
-                    </>
-                  )}
+                        {event.registration_deadline && (
+                          <div className={styles.deadline}>
+                            <Clock size={16} />
+                            报名截止：
+                            {formatDateTime(event.registration_deadline).date}
+                          </div>
+                        )}
+                        <Button
+                          type="primary"
+                          size="large"
+                          className={styles.registerButton}
+                          onClick={() => {
+                            window.open(event.registration_link, '_blank')
+                          }}
+                        >
+                          立即报名
+                        </Button>
+                      </>
+                    )}
                   {event.event_mode === '线上活动' && event.link && (
                     <Button
                       icon={<ExternalLink size={16} />}
                       className={styles.joinButton}
                       onClick={() => window.open(event.link, '_blank')}
-                    // disabled={eventStatus.type !== 'ongoing'}
+                      // disabled={eventStatus.type !== 'ongoing'}
                     >
                       加入会议
                     </Button>
@@ -547,24 +552,28 @@ export default function EventDetailPage() {
               </div>
             </div>
             {status === 'authenticated' &&
-              permissions.includes('blog:write') && !recap && event.status === 2 && ( // 用户默认拥有博客创作权限，默认用户都可以添加活动回顾
-              <div className={styles.recapCard}>
-                <h3 className={styles.cardTitle}>活动回顾</h3>
-                <p className={styles.description}>你可以为本次活动添加活动回顾。</p>
-                <Button
-                  type="primary"
-                  className={styles.actionButton}
-                  onClick={() => {
-                    router.push(`/events/${event.ID}/recap`);
-                  }}
-                >
-                  添加活动回顾
-                </Button>
-              </div>
-            )}
+              permissions.includes('blog:write') &&
+              !recap &&
+              event.status === 2 && ( // 用户默认拥有博客创作权限，默认用户都可以添加活动回顾
+                <div className={styles.recapCard}>
+                  <h3 className={styles.cardTitle}>活动回顾</h3>
+                  <p className={styles.description}>
+                    你可以为本次活动添加活动回顾。
+                  </p>
+                  <Button
+                    type="primary"
+                    className={styles.actionButton}
+                    onClick={() => {
+                      router.push(`/events/${event.ID}/recap`)
+                    }}
+                  >
+                    添加活动回顾
+                  </Button>
+                </div>
+              )}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
