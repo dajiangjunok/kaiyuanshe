@@ -185,46 +185,66 @@ export default function DepartmentPage() {
         if (!chartInstance.current) return
 
         const currentData = showActiveDepts ? orgData : simpleOrgData
+        
+        // 检测是否为移动设备
+        const isMobile = window.innerWidth <= 768
+        const isSmallMobile = window.innerWidth <= 480
 
         const option = {
             tooltip: {
                 trigger: "item",
                 triggerOn: "mousemove",
+                textStyle: {
+                    fontSize: isMobile ? 11 : 12,
+                },
+                backgroundColor: "rgba(0,0,0,0.8)",
+                borderColor: "transparent",
+                borderRadius: 6,
+                padding: [8, 12],
             },
             series: [
                 {
                     type: "tree",
                     data: [currentData],
-                    top: "5%",
-                    left: "10%",
-                    bottom: "5%",
-                    right: "15%",
+                    top: isMobile ? "3%" : "5%",
+                    left: isMobile ? "5%" : "10%",
+                    bottom: isMobile ? "3%" : "5%",
+                    right: isMobile ? "8%" : "15%",
                     layout: "orthogonal",
-                    orient: "LR",
+                    orient: isMobile ? "TB" : "LR",
                     roam: true,
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     symbolSize: (value: any, params: any) => {
-                        return params.data.symbolSize || 20
+                        const originalSize = params.data.symbolSize || 20
+                        if (isSmallMobile) return Math.max(originalSize * 0.6, 12)
+                        if (isMobile) return Math.max(originalSize * 0.75, 14)
+                        return originalSize
                     },
                     label: {
                         show: true,
-                        position: "left",
-                        verticalAlign: "middle",
-                        align: "right",
-                        fontSize: 14,
+                        position: isMobile ? "bottom" : "left",
+                        verticalAlign: isMobile ? "top" : "middle",
+                        align: isMobile ? "center" : "right",
+                        fontSize: isSmallMobile ? 10 : isMobile ? 11 : 14,
                         color: "#1a1a1a",
-                        distance: 4,
+                        distance: isMobile ? 6 : 4,
                         fontWeight: "500",
+                        overflow: "truncate",
+                        width: isMobile ? 80 : 120,
+                        lineHeight: isSmallMobile ? 12 : isMobile ? 14 : 16,
                     },
                     leaves: {
                         label: {
-                            position: "right",
-                            verticalAlign: "middle",
-                            align: "left",
-                            distance: 5,
-                            fontSize: 14,
+                            position: isMobile ? "bottom" : "right",
+                            verticalAlign: isMobile ? "top" : "middle",
+                            align: isMobile ? "center" : "left",
+                            distance: isMobile ? 6 : 5,
+                            fontSize: isSmallMobile ? 9 : isMobile ? 10 : 14,
                             color: "#1a1a1a",
                             fontWeight: "500",
+                            overflow: "truncate",
+                            width: isMobile ? 70 : 100,
+                            lineHeight: isSmallMobile ? 11 : isMobile ? 12 : 16,
                         },
                     },
                     emphasis: {
@@ -235,10 +255,10 @@ export default function DepartmentPage() {
                     animationDurationUpdate: 750,
                     lineStyle: {
                         color: "#ccc",
-                        width: 1.5,
+                        width: isMobile ? 1 : 1.5,
                         curveness: 0.2,
                     },
-                    initialTreeDepth: showActiveDepts ? -1 : 3,
+                    initialTreeDepth: showActiveDepts ? -1 : (isMobile ? 2 : 3),
                 },
             ],
         }

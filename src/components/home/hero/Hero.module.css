@@ -63,12 +63,12 @@
 }
 
 .heroSubtitle {
-  height: 50vh;
+  height: 56vh;
   font-family: 'Noto Sans SC', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 70px;
-  line-height: 48px;
+  line-height: 5rem;
   display: flex;
   align-items: center;
   text-align: center;
@@ -79,7 +79,7 @@
 }
 
 .heroHighlight {
-  margin-bottom: 3rem;
+  margin-bottom: 2.2rem;
   color: #333333;
   font-weight: 500;
 }
@@ -248,7 +248,7 @@
 @media (max-width: 1024px) {
   .heroSubtitle {
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     font-size: 32px;
     line-height: 42px;
     height: auto;
@@ -262,7 +262,7 @@
   .heroSubtitle {
     font-size: 26px;
     line-height: 36px;
-    max-width: 500px;
+    /* max-width: 500px; */
     width: 100%;
     margin-top: 8rem;
     margin-bottom: 3rem;
@@ -273,7 +273,7 @@
   .heroSubtitle {
     font-size: 22px;
     line-height: 30px;
-    max-width: 320px;
+    /* max-width: 320px; */
     width: 100%;
     margin-top: 10rem;
     margin-bottom: 3.5rem;

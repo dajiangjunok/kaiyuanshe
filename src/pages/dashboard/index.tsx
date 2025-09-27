@@ -464,7 +464,7 @@ export default function DashboardPage() {
                   <div className={styles.itemMain}>
                     <div className={styles.titleRow}>
                       <Link
-                        href={`/blogs/${blog.ID}`}
+                        href={`/articles/${blog.ID}`}
                         className={styles.itemTitle}
                       >
                         {blog.title}

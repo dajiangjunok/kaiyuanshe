@@ -92,7 +92,7 @@ export default function NewArticlePage() {
   return (
     <div className={`${styles.container} nav-t-top`}>
       <div className={styles.header}>
-        <Link href="/blogs" className={styles.backButton}>
+        <Link href="/articles" className={styles.backButton}>
           <ArrowLeft className={styles.backIcon} />
           返回文章列表
         </Link>
@@ -305,7 +305,7 @@ export default function NewArticlePage() {
 
         {/* 提交按钮 */}
         <div className={styles.submitSection}>
-          <Link href="/blogs" className={styles.cancelButton}>
+          <Link href="/articles" className={styles.cancelButton}>
             取消
           </Link>
           <Button
