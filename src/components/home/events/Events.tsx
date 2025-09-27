@@ -46,6 +46,7 @@ export default function EventSection() {
          page: 1,
          page_size: 3,
          publish_status: 2,
+         status: 3,
        };
  
        const result = await getEvents(queryParams);
