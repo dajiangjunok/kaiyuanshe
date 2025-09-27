@@ -7,7 +7,6 @@ import {
   ImageIcon,
   Save,
   Plus,
-  Link as LinkIcon,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './new.module.css';
@@ -30,7 +29,7 @@ export default function NewArticlePage() {
   const [inputValue, setInputValue] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [cloudinaryImg, setCloudinaryImg] = useState<any>();
+  const [cloudinaryImg, setCloudinaryImg] = useState<Record<string, unknown>>();
 
   // 编辑器处理
   const handleVditorEditorChange = useCallback(
@@ -40,7 +39,7 @@ export default function NewArticlePage() {
     [form]
   );
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: Record<string, unknown>) => {
     try {
       console.log(values);
       setIsSubmitting(true);
@@ -66,7 +65,7 @@ export default function NewArticlePage() {
       } else {
         message.error(result.message || '创建文章失败');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('创建文章失败:', error);
       message.error('创建文章出错，请重试');
     } finally {

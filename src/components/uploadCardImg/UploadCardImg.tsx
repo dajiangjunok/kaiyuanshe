@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RotateCcw, X, ImageIcon } from 'lucide-react';
 import { App as AntdApp } from 'antd';
-import type { UploadProps, UploadFile } from 'antd';
+import type { UploadProps, UploadFile, RcFile } from 'antd';
 import { uploadImgToCloud, deleteImgFromCloud } from '@/lib/cloudinary';
 import { Upload } from 'antd';
 
@@ -9,12 +9,23 @@ import styles from './UploadCardImg.module.css';
 
 const { Dragger } = Upload;
 
+interface CloudinaryImage {
+  public_id: string;
+  secure_url: string;
+  [key: string]: unknown;
+}
+
+interface FormInstance {
+  setFieldValue: (field: string, value: unknown) => void;
+  [key: string]: unknown;
+}
+
 export default function UploadCardImg(props: {
   previewUrl: string;
   setPreviewUrl: (url: string) => void;
-  cloudinaryImg: any;
-  setCloudinaryImg: (img: any) => void;
-  form?: any;
+  cloudinaryImg: CloudinaryImage | null;
+  setCloudinaryImg: (img: CloudinaryImage | null) => void;
+  form?: FormInstance;
 }) {
   const { previewUrl, setPreviewUrl, cloudinaryImg, setCloudinaryImg, form } =
     props;
@@ -22,7 +33,7 @@ export default function UploadCardImg(props: {
   const [coverImage, setCoverImage] = useState<UploadFile | null>(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
 
-  const handleImageChange = async (info: any) => {
+  const handleImageChange = async (info: { file: UploadFile; fileList: UploadFile[] }) => {
     // const { file, fileList } = info;
 
     // // 只处理上传完成的文件
@@ -77,7 +88,7 @@ export default function UploadCardImg(props: {
       setCoverImage(null);
       setPreviewUrl('');
       form?.setFieldValue('cover', undefined);
-    } catch (error) {
+    } catch {
       message.error('图片删除失败，请重试');
     } finally {
       setIsImageLoading(false);
@@ -105,7 +116,7 @@ export default function UploadCardImg(props: {
             status: 'done',
             percent: 100,
             // 使用类型断言来处理 originFileObj
-            originFileObj: file as any,
+            originFileObj: file as RcFile,
           };
 
           setCoverImage(uploadFile);
@@ -118,7 +129,7 @@ export default function UploadCardImg(props: {
           } else {
             message.error('图片上传失败，请重试');
           }
-        } catch (error) {
+        } catch {
           message.error('图片上传失败，请重试');
         } finally {
           setIsImageLoading(false);
@@ -149,7 +160,11 @@ export default function UploadCardImg(props: {
 
       return true; // 始终返回 false，阻止默认上传
     },
-    customRequest: async ({ file, onSuccess, onError }:any) => {
+    customRequest: async ({ file, onSuccess, onError }: {
+      file: File | Blob;
+      onSuccess?: (response: unknown) => void;
+      onError?: (error: Error) => void;
+    }) => {
       try {
         setIsImageLoading(true);
         const res = await uploadImgToCloud(file);

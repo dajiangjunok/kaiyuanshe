@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Input, Button, FormInstance } from 'antd';
 import { Plus, X } from 'lucide-react';
 import styles from '../../pages/posts/index.module.css';
 import dynamic from 'next/dynamic';
@@ -13,12 +13,12 @@ interface CreatePostModalProps {
   visible: boolean;
   isEditMode: boolean;
   loading: boolean;
-  form: any;
+  form: FormInstance;
   tags: string[];
   inputVisible: boolean;
   inputValue: string;
   onCancel: () => void;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: Record<string, unknown>) => void;
   onEditorChange: (value: string) => void;
   onTagAdd: () => void;
   onTagRemove: (tag: string) => void;

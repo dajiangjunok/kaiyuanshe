@@ -1,6 +1,6 @@
-import { Calendar, User, Eye, MessageCircle, ArrowRight, BookOpen, Star } from 'lucide-react';
+import { Calendar, User, Eye, ArrowRight, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Tag } from 'antd';
 import { useAuth } from '@/contexts/AuthContext';
@@ -34,17 +34,20 @@ const getCategoryInfo = (category: string) => {
 
 export default function ArticleSection() {
     const { status } = useAuth();
-    const [articles, setArticles] = useState<any[]>([]);
+    const [articles, setArticles] = useState<Array<{
+        ID: number;
+        title: string;
+        description: string;
+        cover_img: string;
+        category: string;
+        tags: string[];
+        CreatedAt: string;
+        author: string;
+        view_count?: number;
+    }>>([]);
 
     // 加载文章列表
-    const loadArticles = async (params?: {
-        keyword?: string;
-        tag?: string;
-        order?: 'asc' | 'desc';
-        page?: number;
-        page_size?: number;
-        publish_status?: number;
-    }) => {
+    const loadArticles = async () => {
         try {
             const queryParams = {
                 page: 1,

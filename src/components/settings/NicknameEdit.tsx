@@ -37,7 +37,7 @@ export default function NicknameEdit({
       await onSave(nickname.trim());
 
       setIsModalVisible(false);
-    } catch (error) {
+    } catch {
       console.error('昵称修改失败');
     } finally {
       setSaving(false);

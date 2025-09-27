@@ -8,8 +8,6 @@ import {
   Popconfirm,
   Modal,
   Image,
-  Row,
-  Col,
   App as AntdApp,
 } from 'antd';
 import dayjs from 'dayjs';
@@ -22,15 +20,12 @@ import {
   Share2,
   LayoutGrid,
   List,
-  BookOpenText,
-  Languages,
-  TypeOutline,
   Eye,
   UserRound,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './index.module.css';
-import { getEvents, deleteEvent } from '../api/event';
+import { deleteEvent } from '../api/event';
 import router from 'next/router';
 import { useAuth } from '@/contexts/AuthContext';
 import { getArticles } from '../api/article';
@@ -47,12 +42,12 @@ export default function ArticlesPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
-  const [articles, setArticles] = useState<any[]>([]);
+  const [articles, setArticles] = useState<Record<string, unknown>[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [selectedTag] = useState('');
+  const [sortOrder] = useState<'asc' | 'desc'>('desc');
   const [wechatModalVisible, setWechatModalVisible] = useState(false);
   const [publishStatus, setPublishStatus] = useState(0);
   // 使用统一的认证上下文，避免重复调用 useSession
@@ -105,7 +100,7 @@ export default function ArticlesPage() {
         setArticles([]);
         setTotal(0);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('加载文章列表异常:', error);
       setArticles([]);
       setTotal(0);
@@ -146,7 +141,7 @@ export default function ArticlesPage() {
       } else {
         message.error(result.message || '创建文章失败');
       }
-    } catch (error) {
+    } catch {
       message.error('删除失败，请重试');
     }
   };
@@ -225,7 +220,7 @@ export default function ArticlesPage() {
             total={total}
             pageSize={pageSize}
             onChange={handlePageChange}
-            showTotal={(total, range) =>
+            showTotal={(total) =>
               `显示 ${startIndex}-${endIndex} 项，共 ${total} 项`
             }
             className={styles.fullPagination}
@@ -474,7 +469,7 @@ export default function ArticlesPage() {
             pageSize={pageSize}
             onChange={handlePageChange}
             // showQuickJumper={true}
-            showTotal={(total, range) =>
+            showTotal={(total) =>
               `显示 ${startIndex}-${endIndex} 项，共 ${total} 项`
             }
             className={styles.fullPagination}

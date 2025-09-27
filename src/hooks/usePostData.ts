@@ -117,7 +117,7 @@ export function usePostData() {
             
           }));
         }
-      } catch (error) {
+      } catch {
         message.error('获取帖子失败');
       } finally {
         setListState((prev) => ({ ...prev, loading: false }));
@@ -133,7 +133,7 @@ export function usePostData() {
       if (res.success && res.data) {
         setPostsStats(res.data);
       }
-    } catch (error) {
+    } catch {
       message.error('获取统计数据失败');
     }
   }, [message]);

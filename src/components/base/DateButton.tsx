@@ -13,7 +13,6 @@ interface DateButtonProps extends Omit<ButtonProps, 'onClick' | 'children'> {
 }
 
 export default function DateButton({
-  dateRange,
   handleDateRangeChange,
   loading,
   label,

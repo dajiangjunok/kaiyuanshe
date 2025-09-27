@@ -192,7 +192,7 @@ export default function DashboardPage() {
   if (!session) {
     return (
       <div className={styles.emptyState}>
-        <img src="/meme1.gif" className={styles.emptyImage} />
+        <img src="/meme1.gif" className={styles.emptyImage} alt="登录提示图片" />
         <p>请先登录以查看个人中心</p>
       </div>
     )

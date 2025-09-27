@@ -28,7 +28,7 @@ export function AnalyticsCard({
   const cardContent = (
     <Card
       className={`${trend?styles.analyticsCard:styles.analyticsCardShot}`}
-      style={{ '--card-color': color } as any}
+      style={{ '--card-color': color } as React.CSSProperties}
       hoverable={showDetails}
       onClick={showDetails ? onDetailsClick : undefined}
     >

@@ -113,7 +113,7 @@ export const getAnalyticsData = async (
       console.error('Analytics API returned error:', result.error);
       throw new Error(result.error || 'Analytics API error');
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取Analytics数据异常:', error);
     throw error;
   }
@@ -140,11 +140,11 @@ export const getStatsOverview = async (): Promise<StatsResult> => {
       success: false,
       message: response.message ?? '获取统计失败',
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取统计概览异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -174,11 +174,11 @@ export default async function handler(
         message: result.message,
       });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Stats API error:', error);
     return res.status(500).json({
       success: false,
-      message: error.message || 'Internal server error',
+      message: error instanceof Error ? error.message : 'Internal server error',
     });
   }
 }

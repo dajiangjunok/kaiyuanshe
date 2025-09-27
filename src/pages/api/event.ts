@@ -1,4 +1,3 @@
-import { RiRegisteredLine } from 'react-icons/ri';
 import { apiRequest } from './api';
 
 // 创建事件请求参数接口
@@ -119,11 +118,11 @@ export const createEvent = async (
     }
 
     return { success: false, message: response.message ?? '活动创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建活动异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -172,11 +171,11 @@ export const createEvent = async (
 //     }
 
 //     return { success: false, message: response.message ?? '保存草稿失败' };
-//   } catch (error: any) {
+//   } catch (error: unknown) {
 //     console.error('保存草稿异常:', error);
 //     return {
 //       success: false,
-//       message: error?.message ?? '网络错误，请稍后重试',
+//       message: error instanceof Error ? error.message : '网络错误，请稍后重试',
 //     };
 //   }
 // };
@@ -217,11 +216,11 @@ export const updateEventDraft = async (
     }
 
     return { success: false, message: response.message ?? '活动草稿更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('活动草稿更新异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -262,11 +261,11 @@ export const updateEvent = async (
     }
 
     return { success: false, message: response.message ?? '活动创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建活动异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -295,10 +294,10 @@ export const updateEventPublishStatus = async (
     }
 
     return { success: false, message: response.message ?? '活动状态更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -340,11 +339,11 @@ export const getEvents = async (
     }
 
     return { success: false, message: response.message ?? '获取活动列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取活动列表异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -375,11 +374,11 @@ export const getEvents = async (
 //       success: false,
 //       message: response.message ?? '获取活动草稿列表失败',
 //     };
-//   } catch (error: any) {
+//   } catch (error: unknown) {
 //     console.error('获取活动草稿列表异常:', error);
 //     return {
 //       success: false,
-//       message: error?.message ?? '网络错误，请稍后重试',
+//       message: error instanceof Error ? error.message : '网络错误，请稍后重试',
 //     };
 //   }
 // };
@@ -402,11 +401,11 @@ export const getEventById = async (eventId: string): Promise<EventResult> => {
     }
 
     return { success: false, message: response.message ?? '获取活动失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取活动异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -424,17 +423,17 @@ export const deleteEvent = async (eventId: number): Promise<EventResult> => {
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('删除活动异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
 
 // 工具函数：格式化日期时间
-export const formatDateTime = (date: any, time: any): string => {
+export const formatDateTime = (date: unknown, time: unknown): string => {
   try {
     if (!date || !time) return '';
 

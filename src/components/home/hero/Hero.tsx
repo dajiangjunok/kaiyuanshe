@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { Globe, ChevronDown } from 'lucide-react' 
+import { ChevronDown } from 'lucide-react' 
 import styles from './Hero.module.css'
 
 export default function Hero() {

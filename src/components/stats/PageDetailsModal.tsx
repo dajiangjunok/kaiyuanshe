@@ -1,8 +1,5 @@
 import {
   Eye,
-  Users2,
-  TrendingUp,
-  Clock,
   Globe,
 } from 'lucide-react';
 import { PageDetailsModalProps } from './types';

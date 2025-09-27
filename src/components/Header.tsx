@@ -7,7 +7,6 @@ import Auth from './Auth'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from '../hooks/useTranslation'
-import { usePathname } from 'next/navigation'
 
 interface MenuItem {
   key: string
@@ -28,9 +27,6 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { t } = useTranslation()
-  const pathname = usePathname()
-  // 判断是否为根路由
-  const isHomePage = pathname === '/'
   // 使用 useMemo 确保 Auth 组件只创建一次，避免重复渲染
   const authComponent = useMemo(() => <Auth />, [])
 

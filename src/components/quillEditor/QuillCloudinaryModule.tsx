@@ -3,11 +3,11 @@ import { uploadImgToCloud } from '@/lib/cloudinary';
 
 // Quill Cloudinary 图片上传模块
 export class QuillCloudinaryModule {
-  quill: any;
-  options: any;
+  quill: unknown;
+  options: Record<string, unknown>;
   onError: (error: string) => void;
 
-  constructor(quill: any, options: any = {}) {
+  constructor(quill: unknown, options: Record<string, unknown> = {}) {
     this.quill = quill;
     this.options = options;
     this.onError = options.onError || ((error: string) => console.error(error));
@@ -124,7 +124,7 @@ export class QuillCloudinaryModule {
         this.quill.insertText(range.index, '上传失败', 'user');
         this.onError('图片上传失败，请重试');
       }
-    } catch (error) {
+    } catch {
       // 删除占位符并显示错误
       const range = this.quill.getSelection() || { index: this.quill.getLength() };
       const placeholderText = '上传中...';

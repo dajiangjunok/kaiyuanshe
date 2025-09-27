@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Form, Input, Button, Divider, App as AntdApp } from 'antd';
+import { Form, Input, Button, App as AntdApp } from 'antd';
 import { signIn } from 'next-auth/react';
 import styles from './index.module.css';
 import { useRouter } from 'next/router';
@@ -39,7 +39,7 @@ const LoginPage: React.FC = () => {
       } else {
         message.warning('登录失败...');
       }
-    } catch (error) {
+    } catch {
       message.error('网络错误...');
     } finally {
       setLoading(false);

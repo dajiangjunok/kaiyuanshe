@@ -20,14 +20,12 @@ interface Pagination {
 
 interface EventDraftTableProps {
   styles?: { [key: string]: string };
-  status: string;
-  permissions: string[];
   data: DataType[];
   pagination: Pagination,
   loading: boolean;
 }
 
-const EventDraftTable: React.FC<EventDraftTableProps> = ({ styles, status, permissions, data, loading, pagination }) => {
+const EventDraftTable: React.FC<EventDraftTableProps> = ({ styles, data, loading, pagination }) => {
   const columns: TableProps<DataType>['columns'] = [
     {
       title: '活动名称',

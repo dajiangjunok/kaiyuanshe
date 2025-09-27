@@ -1,4 +1,3 @@
-import { apiRequest } from "./api";
 
 // 登录参数
 export interface LoginParams {
@@ -56,8 +55,9 @@ export const loginUser = async (params: LoginParams): Promise<LoginResult> => {
     }
 
     return { success: false, message: data.message ?? '登录失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('登录异常:', error);
-    return { success: false, message: error?.message ?? '网络错误，请稍后重试' };
+    const errorMessage = error instanceof Error ? error.message : '网络错误，请稍后重试';
+    return { success: false, message: errorMessage };
   }
 };

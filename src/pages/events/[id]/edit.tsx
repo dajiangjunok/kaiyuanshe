@@ -2,33 +2,26 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   Form,
   Input,
-  Radio,
   DatePicker,
   TimePicker,
-  InputNumber,
-  Checkbox,
-  Upload,
   Button,
   Card,
   Tag,
   App as AntdApp,
   Select,
 } from 'antd';
-import type { UploadProps, UploadFile, InputProps } from 'antd';
+import type { InputProps } from 'antd';
 import {
   ArrowLeft,
   Calendar,
   MapPin,
   Users,
-  Video,
   Globe,
   FileText,
   ImageIcon,
   Save,
-  NotepadTextDashed,
   Plus,
   X,
-  RotateCcw,
 } from 'lucide-react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
@@ -36,7 +29,7 @@ import { useRouter } from 'next/router';
 import styles from './edit.module.css'; 
 import UploadCardImg from '@/components/uploadCardImg/UploadCardImg';
 
-import { getEventById, updateEvent, updateEventDraft } from '@/pages/api/event';
+import { getEventById, updateEvent } from '@/pages/api/event';
 import dynamic from 'next/dynamic';
 
 // const QuillEditor = dynamic(() => import('@/components/quillEditor/QuillEditor'), { ssr: false });
@@ -98,13 +91,12 @@ export default function EditEventPage() {
   const [inputValue, setInputValue] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSavingDraft, setIsSavingDraft] = useState(false);
-  const [cloudinaryImg, setCloudinaryImg] = useState<any>();
-  const [event, setEvent] = useState<any>(null);
+  const [cloudinaryImg, setCloudinaryImg] = useState<{ secure_url: string } | undefined>();
+  const [event, setEvent] = useState<{ ID: string; title: string; description: string; event_mode: string; event_type: string; link: string; location: string; start_time: string; end_time: string; cover_img: string; tags: string[]; twitter: string; registration_link: string; registration_deadline: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   // 格式化时间为字符串
-  const formatDateTime = (date: any, time: any) => {
+  const formatDateTime = (date: { format: (format: string) => string }, time: { format: (format: string) => string }) => {
     if (!date || !time) return '';
 
     const dateStr = date.format('YYYY-MM-DD');
@@ -119,7 +111,7 @@ export default function EditEventPage() {
     [form]
   );
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: { title: string; description: string; eventMode: string; eventType: string; location: string; startDate: { format: (format: string) => string }; startTime: { format: (format: string) => string }; endDate: { format: (format: string) => string }; endTime: { format: (format: string) => string }; twitter: string; registrationLink: string; registrationDeadline?: { format: (format: string) => string } }) => {
     try {
       setIsSubmitting(true);
 
@@ -149,7 +141,7 @@ export default function EditEventPage() {
       } else {
         message.error(result.message || '创建活动失败');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('创建活动失败:', error);
       message.error('创建活动失败，请重试');
     } finally {
@@ -210,7 +202,7 @@ export default function EditEventPage() {
           setPreviewUrl(data?.cover_img || '');
           setTags(data?.tags || []);
         }
-      } catch (error) {
+      } catch {
         message.error('加载失败');
         setEvent(null);
       } finally {

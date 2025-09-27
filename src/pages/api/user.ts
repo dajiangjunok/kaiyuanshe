@@ -43,7 +43,7 @@ export const getUser = async (userId: number): Promise<UserResult> => {
     }
 
     return { success: false, message: response.message ?? "获取失败" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
       message: error?.message ?? "网络错误，请稍后重试",
@@ -79,10 +79,10 @@ export const updateUser = async (
         }
 
         return { success: false, message: response.message ?? '更新失败' };
-    } catch (error: any) {
+    } catch (error: unknown) {
         return {
             success: false,
-            message: error?.message ?? '网络错误，请稍后重试',
+            message: error instanceof Error ? error.message : '网络错误，请稍后重试',
         };
     }
 };
@@ -106,7 +106,7 @@ export const followUser = async (userId: number): Promise<FollowResult> => {
             success: false,
             message: response.message ?? "关注失败",
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
         return {
             success: false,
             message: error?.message ?? "网络错误，请稍后重试",
@@ -132,7 +132,7 @@ export const unfollowUser = async (userId: number): Promise<FollowResult> => {
             success: false,
             message: response.message ?? "取消关注失败",
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
         return {
             success: false,
             message: error?.message ?? "网络错误，请稍后重试",
@@ -171,7 +171,7 @@ export const getFollowStates = async (
     }
 
     return { success: false, message: response.message ?? "查询失败" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
       message: error?.message ?? "网络错误，请稍后重试",

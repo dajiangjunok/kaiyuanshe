@@ -47,7 +47,7 @@ class QuillModuleRegistry {
 
       // 动态导入 React Quill
       const ReactQuillModule = await import('react-quill-new');
-      const Quill = ReactQuillModule.default?.Quill || (window as any).Quill;
+      const Quill = ReactQuillModule.default?.Quill || (window as unknown as { Quill?: unknown }).Quill;
 
       if (!Quill) {
         console.warn('Quill not found');

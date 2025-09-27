@@ -2,15 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   Form,
   Input,
-  Checkbox,
-  Upload,
   Button,
   Card,
   Tag,
   App as AntdApp,
   Select,
 } from 'antd';
-import type { UploadProps, UploadFile } from 'antd';
 import { useRouter } from 'next/router';
 import {
   ArrowLeft,
@@ -19,8 +16,6 @@ import {
   ImageIcon,
   Save,
   Plus,
-  X,
-  RotateCcw,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './edit.module.css';
@@ -41,23 +36,14 @@ export default function EditArticlePage() {
   const rId = Array.isArray(id) ? id[0] : id;
   const [loading, setLoading] = useState(true);
 
-  const [article, setArticle] = useState<any>();
+  const [article, setArticle] = useState<Record<string, unknown>>();
   const [tags, setTags] = useState<string[]>([]);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [coverImage, setCoverImage] = useState<UploadFile | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [cloudinaryImg, setCloudinaryImg] = useState<any>();
+  const [cloudinaryImg, setCloudinaryImg] = useState<Record<string, unknown>>();
 
-  // 格式化时间为字符串
-  const formatDateTime = (date: any, time: any) => {
-    if (!date || !time) return '';
-
-    const dateStr = date.format('YYYY-MM-DD');
-    const timeStr = time.format('HH:mm:ss');
-    return `${dateStr} ${timeStr}`;
-  };
 
   // 编辑器处理
   const handleVditorEditorChange = useCallback(
@@ -67,15 +53,10 @@ export default function EditArticlePage() {
     [form]
   );
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: Record<string, unknown>) => {
     try {
       console.log(values);
       setIsSubmitting(true);
-      const formData = {
-        ...values,
-        tags: tags, // 添加标签数据
-        coverImage: coverImage, // 添加封面图片
-      };
 
       const updateArticleRequest = {
         title: values.title || '',
@@ -98,7 +79,7 @@ export default function EditArticlePage() {
       } else {
         message.error(result.message || '更新文章失败');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('更新文章失败:', error);
       message.error('更新文章出错，请重试');
     } finally {
@@ -146,7 +127,7 @@ export default function EditArticlePage() {
           setPreviewUrl(response.data?.cover_img || '');
           setTags(response.data?.tags || []);
         }
-      } catch (error) {
+      } catch {
         message.error('加载失败');
         setArticle(null);
       } finally {

@@ -37,7 +37,19 @@ interface VditorEditorProps {
   onBlur?: (value: string) => void;
 }
 
-const VditorEditor = React.forwardRef<any, VditorEditorProps>(
+interface VditorInstance {
+  getValue: () => string;
+  setValue: (val: string) => void;
+  insertValue: (val: string) => void;
+  focus: () => void;
+  blur: () => void;
+  disabled: () => void;
+  enable: () => void;
+  getHTML: () => string;
+  destroy: () => void;
+}
+
+const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
   (
     {
       value = '',
@@ -52,7 +64,7 @@ const VditorEditor = React.forwardRef<any, VditorEditorProps>(
     },
     ref
   ) => {
-    const [vd, setVd] = useState<any>();
+    const [vd, setVd] = useState<VditorInstance | undefined>();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);

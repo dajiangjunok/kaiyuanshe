@@ -1,4 +1,4 @@
-import { Select, App as AntdApp } from 'antd';
+import { Select } from 'antd';
 import { DAppOption } from './DAppOption';
 import { useDAppSearch } from './hooks/useDAppSearch';
 

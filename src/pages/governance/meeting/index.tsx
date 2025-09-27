@@ -16,7 +16,6 @@ import {
   MapPin,
   Users,
   Globe,
-  Eye,
   Share2,
   Clock
 } from 'lucide-react'
@@ -90,7 +89,7 @@ const mockMeetings: Meeting[] = [
 ]
 
 const MeetingCalendar: React.FC = () => {
-  const [meetings, setMeetings] = useState<Meeting[]>(mockMeetings)
+  const [meetings] = useState<Meeting[]>(mockMeetings)
   const [meetingsByDate, setMeetingsByDate] = useState<MeetingsByDate>({})
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs())
   const [selectedMeetings, setSelectedMeetings] = useState<Meeting[]>([])

@@ -107,11 +107,11 @@ export const createPost = async (
     }
 
     return { success: false, message: '帖子创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建帖子异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -144,10 +144,10 @@ export const updatePost = async (
     }
 
     return { success: false, message: response.message ?? '帖子更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -186,11 +186,11 @@ export const getPosts = async (
     }
 
     return { success: false, message: response.message ?? '获取帖子列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取帖子列表异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -218,11 +218,11 @@ export const getPostById = async (
     }
 
     return { success: false, message: response.message ?? '获取帖子失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取帖子异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -242,11 +242,11 @@ export const deletePost = async (
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('删除帖子异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -281,11 +281,11 @@ export const getPostsStats = async (): Promise<PostsStatsResult> => {
       };
     }
     return { success: false, message: response.message ?? '获取帖子统计失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取帖子统计异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -334,11 +334,11 @@ export const getPostsStatus = async (ids: number[]): Promise<PostsStatusResult> 
     }
 
     return { success: false, message: response.message ?? '获取帖子状态失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取帖子状态异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -358,9 +358,9 @@ export const likePost = async (postId: number): Promise<CommonResult> => {
       return { success: true, message: response.message ?? '点赞成功' };
     }
     return { success: false, message: response.message ?? '点赞失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('点赞异常:', error);
-    return { success: false, message: error?.message ?? '网络错误，请稍后重试' };
+    return { success: false, message: error instanceof Error ? error.message : '网络错误，请稍后重试' };
   }
 };
 
@@ -371,9 +371,9 @@ export const unlikePost = async (postId: number): Promise<CommonResult> => {
       return { success: true, message: response.message ?? '取消点赞成功' };
     }
     return { success: false, message: response.message ?? '取消点赞失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('取消点赞异常:', error);
-    return { success: false, message: error?.message ?? '网络错误，请稍后重试' };
+    return { success: false, message: error instanceof Error ? error.message : '网络错误，请稍后重试' };
   }
 };
 
@@ -385,9 +385,9 @@ export const favoritePost = async (postId: number): Promise<CommonResult> => {
       return { success: true, message: response.message ?? '收藏成功' };
     }
     return { success: false, message: response.message ?? '收藏失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('收藏异常:', error);
-    return { success: false, message: error?.message ?? '网络错误，请稍后重试' };
+    return { success: false, message: error instanceof Error ? error.message : '网络错误，请稍后重试' };
   }
 };
 
@@ -398,8 +398,8 @@ export const unFavoritePost = async (postId: number): Promise<CommonResult> => {
       return { success: true, message: response.message ?? '取消收藏成功' };
     }
     return { success: false, message: response.message ?? '取消收藏失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('取消收藏异常:', error);
-    return { success: false, message: error?.message ?? '网络错误，请稍后重试' };
+    return { success: false, message: error instanceof Error ? error.message : '网络错误，请稍后重试' };
   }
 };

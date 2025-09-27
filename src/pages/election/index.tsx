@@ -6,7 +6,6 @@ import { Check, X, Calendar, User, Award, FileText, MessageSquare } from "lucide
 import styles from "./index.module.css"
 
 const { Title, Text } = Typography
-const { Panel } = Collapse
 
 interface Candidate {
   id: string

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react"
 import { useRouter } from 'next/router'
 import { Button, Input, Form, message } from "antd"
-import { ArrowLeft, Calendar, MapPin, Users, Video, Mic, Save } from "lucide-react"
+import { ArrowLeft, Calendar, Users, Video, Mic, Save } from "lucide-react"
 import styles from "./recap.module.css"
 import { SiX } from "react-icons/si"
 import dynamic from "next/dynamic"
@@ -10,11 +10,6 @@ import { createRecap } from "@/pages/api/recap"
 
 const QuillEditor = dynamic(() => import('@/components/quillEditor/QuillEditor'), { ssr: false });
 
-interface Event {
-    ID: string
-    title: string
-    description: string
-}
 
 interface RecapFormData {
     content: string
@@ -25,8 +20,7 @@ interface RecapFormData {
 
 export default function EventRecap() {
     const [form] = Form.useForm()
-    const [event, setEvent] = useState<any>(null);
-    const [loading, setLoading] = useState(false)
+    const [event, setEvent] = useState<{ ID: string; title: string; description: string; cover_img: string; start_time: string; participants: number } | null>(null);
     const [submitting, setSubmitting] = useState(false)
     const router = useRouter();
     const { id } = router.query;
@@ -36,16 +30,15 @@ export default function EventRecap() {
         if (!router.isReady || !rId) return;
 
         const fetchData = async () => {
-            setLoading(true);
             try {
                 const response = await getEventById(rId);
                 console.log('获取活动详情:', response);
                 setEvent(response?.data);
-            } catch (error) {
+            } catch {
                 message.error('加载失败');
                 setEvent(null);
             } finally {
-                setLoading(false);
+                // Cleanup if needed
             }
         };
 
@@ -66,7 +59,7 @@ export default function EventRecap() {
             } else {
                 message.error(res.message || "发布失败，请重试");
             }
-        } catch (error) {
+        } catch {
             message.error("发布失败，请重试");
         } finally {
             setSubmitting(false);

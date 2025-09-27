@@ -64,11 +64,11 @@ export const createRecap = async (
     }
 
     return { success: false, message: response.message ?? '创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建回顾异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -101,11 +101,11 @@ export const updateRecap = async (
     }
 
     return { success: false, message: response.message ?? '更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('更新回顾异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -129,11 +129,11 @@ export const getRecapByEventId = async (
     }
 
     return { success: false, message: response.message ?? '获取失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取回顾异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -151,11 +151,11 @@ export const deleteRecap = async (recapId: number): Promise<RecapResult> => {
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('删除回顾异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };

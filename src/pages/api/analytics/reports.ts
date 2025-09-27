@@ -74,7 +74,7 @@ function validateApiUrl(url: string): boolean {
   try {
     const urlObj = new URL(url);
     return allowedHosts.includes(urlObj.hostname) && urlObj.protocol === 'https:';
-  } catch (error) {
+  } catch {
     return false;
   }
 }
@@ -123,7 +123,7 @@ interface AnalyticsData {
 }
 
 // 验证请求体大小和深度，防止DoS攻击
-function validateRequestBody(body: any): boolean {
+function validateRequestBody(body: unknown): boolean {
   if (!body || typeof body !== 'object') {
     return false;
   }
@@ -135,15 +135,17 @@ function validateRequestBody(body: any): boolean {
   }
   
   // 检查对象嵌套深度，防止深度过深的对象
-  function getMaxDepth(obj: any, currentDepth = 0): number {
+  function getMaxDepth(obj: unknown, currentDepth = 0): number {
     if (currentDepth > 10) return currentDepth; // 最大深度限制
     if (obj === null || typeof obj !== 'object') return currentDepth;
     
     let maxDepth = currentDepth;
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        const depth = getMaxDepth(obj[key], currentDepth + 1);
-        maxDepth = Math.max(maxDepth, depth);
+    if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          const depth = getMaxDepth((obj as Record<string, unknown>)[key], currentDepth + 1);
+          maxDepth = Math.max(maxDepth, depth);
+        }
       }
     }
     return maxDepth;
@@ -299,19 +301,23 @@ export default async function handler(
       source: analyticsData.source
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     // 记录详细错误信息到服务器日志，但不暴露给客户端
-    console.error('Analytics API Error:', {
-      message: error?.message,
-      stack: error?.stack,
+    const errorRecord = error instanceof Error ? {
+      message: error.message,
+      stack: error.stack,
       timestamp: new Date().toISOString()
-    });
+    } : {
+      message: String(error),
+      timestamp: new Date().toISOString()
+    };
+    console.error('Analytics API Error:', errorRecord);
     
     // 清理敏感错误信息
-    const sanitizeError = (err: any) => {
+    const sanitizeError = (err: unknown) => {
       if (!err) return 'Unknown error';
       
-      const message = typeof err === 'string' ? err : err.message || 'Unknown error';
+      const message = typeof err === 'string' ? err : (err as { message?: string })?.message || 'Unknown error';
       
       // 移除可能包含敏感信息的路径和详细信息
       return message
@@ -321,8 +327,9 @@ export default async function handler(
     };
     
     // 如果是认证错误或API限制，返回错误
-    if (error?.status === 403 || error?.status === 401) {
-      return res.status(error.status).json({
+    const errorWithStatus = error as { status?: number };
+    if (errorWithStatus?.status === 403 || errorWithStatus?.status === 401) {
+      return res.status(errorWithStatus.status).json({
         success: false,
         error: 'Authentication failed or access denied'
       });
@@ -614,7 +621,7 @@ async function getAccessToken(serviceAccountKey: string): Promise<string> {
 }
 
 // 创建JWT令牌（使用Node.js内置crypto模块）
-async function createJWT(credentials: any): Promise<string> {
+async function createJWT(credentials: Record<string, unknown>): Promise<string> {
   try {
     const now = Math.floor(Date.now() / 1000);
     
@@ -626,7 +633,7 @@ async function createJWT(credentials: any): Promise<string> {
     
     // JWT Payload
     const payload = {
-      iss: credentials.client_email,
+      iss: credentials.client_email as string,
       scope: 'https://www.googleapis.com/auth/analytics.readonly',
       aud: 'https://oauth2.googleapis.com/token',
       exp: now + 3600, // 1小时后过期
@@ -634,7 +641,7 @@ async function createJWT(credentials: any): Promise<string> {
     };
 
     // Base64URL编码
-    const encodeBase64URL = (obj: any) => {
+    const encodeBase64URL = (obj: Record<string, unknown>) => {
       return Buffer.from(JSON.stringify(obj))
         .toString('base64')
         .replace(/=/g, '')
@@ -647,7 +654,7 @@ async function createJWT(credentials: any): Promise<string> {
     const message = `${encodedHeader}.${encodedPayload}`;
 
     // 使用私钥签名
-    const privateKey = credentials.private_key.replace(/\\n/g, '\n');
+    const privateKey = (credentials.private_key as string).replace(/\\n/g, '\n');
     const sign = crypto.createSign('RSA-SHA256');
     sign.update(message);
     const signature = sign.sign(privateKey, 'base64')
@@ -720,7 +727,7 @@ async function fetchGA4TopPages(
     
     if (!data.rows) return null;
     
-    return data.rows.map((row: any) => ({
+    return data.rows.map((row: { dimensionValues: { value: string }[]; metricValues: { value: string }[] }) => ({
       page: row.dimensionValues[0].value,
       pageViews: parseInt(row.metricValues[0].value || '0'),
     }));
@@ -792,11 +799,11 @@ async function fetchGA4Demographics(
     const devices = devicesData.ok ? await devicesData.json() : null;
 
     return {
-      countries: countries?.rows ? countries.rows.map((row: any) => ({
+      countries: countries?.rows ? countries.rows.map((row: { dimensionValues: { value: string }[]; metricValues: { value: string }[] }) => ({
         country: row.dimensionValues[0].value,
         users: parseInt(row.metricValues[0].value || '0')
       })) : [],
-      devices: devices?.rows ? devices.rows.map((row: any) => ({
+      devices: devices?.rows ? devices.rows.map((row: { dimensionValues: { value: string }[]; metricValues: { value: string }[] }) => ({
         device: row.dimensionValues[0].value,
         sessions: parseInt(row.metricValues[0].value || '0')
       })) : []
@@ -808,7 +815,7 @@ async function fetchGA4Demographics(
 }
 
 // 转换GA4 API响应数据
-function transformGA4Data(apiResponse: any): AnalyticsData {
+function transformGA4Data(apiResponse: { rows?: Array<{ dimensionValues: { value: string }[]; metricValues: { value: string }[] }> }): AnalyticsData {
   try {
     const rows = apiResponse.rows || [];
     
@@ -831,7 +838,7 @@ function transformGA4Data(apiResponse: any): AnalyticsData {
       events: number;
     }> = [];
 
-    rows.forEach((row: any) => {
+    rows.forEach((row: { dimensionValues: { value: string }[]; metricValues: { value: string }[] }) => {
       const date = row.dimensionValues[0].value;
       const metrics = row.metricValues;
       
@@ -881,7 +888,7 @@ function transformGA4Data(apiResponse: any): AnalyticsData {
 }
 
 // 转换Universal Analytics API响应数据
-function transformUniversalAnalyticsData(apiResponse: any): AnalyticsData {
+function transformUniversalAnalyticsData(apiResponse: { reports: Array<{ data: { rows?: Array<{ dimensions: string[]; metrics: Array<{ values: string[] }> }> } }> }): AnalyticsData {
   // 解析Google Analytics API响应并转换为我们需要的格式
   try {
     const report = apiResponse.reports[0];
@@ -906,7 +913,7 @@ function transformUniversalAnalyticsData(apiResponse: any): AnalyticsData {
       events: number;
     }> = [];
 
-    rows.forEach((row: any) => {
+    rows.forEach((row: { dimensions: string[]; metrics: Array<{ values: string[] }> }) => {
       const date = row.dimensions[0];
       const metrics = row.metrics[0].values;
       

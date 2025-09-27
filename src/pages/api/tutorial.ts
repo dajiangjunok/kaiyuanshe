@@ -126,11 +126,11 @@ export const createTutorial = async (
     }
 
     return { success: false, message: '教程创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建教程异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -167,10 +167,10 @@ export const updateTutorial = async (
     }
 
     return { success: false, message: response.message ?? '教程更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -209,11 +209,11 @@ export const getTutorials = async (
     }
 
     return { success: false, message: response.message ?? '获取教程列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取教程列表异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -241,11 +241,11 @@ export const getTutorialById = async (
     }
 
     return { success: false, message: response.message ?? '获取教程失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取教程异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -265,11 +265,11 @@ export const deleteTutorial = async (
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('删除教程异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -299,10 +299,10 @@ export const updateTutorialPublishStatus = async (
     }
 
     return { success: false, message: response.message ?? '教程状态更新失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };

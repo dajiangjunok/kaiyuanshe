@@ -82,10 +82,10 @@ export const createDapp = async (
     }
 
     return { success: false, message: 'Dapp 添加出错' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -122,10 +122,10 @@ export const getDapps = async (
     }
 
     return { success: false, message: response.message ?? '获取Dapp列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -147,10 +147,10 @@ export const getDappById = async (dappId: string): Promise<DappResult> => {
     }
 
     return { success: false, message: response.message ?? '获取Dapp失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -164,16 +164,16 @@ export const deleteDapp = async (dappId: number): Promise<DappResult> => {
     }
 
     return { success: false, message: response.message ?? '删除失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
 
 // 工具函数：格式化日期时间
-export const formatDateTime = (date: any, time: any): string => {
+export const formatDateTime = (date: unknown, time: unknown): string => {
   try {
     if (!date || !time) return '';
 
@@ -259,10 +259,10 @@ export const getCategories = async (
     }
 
     return { success: false, message: response.message ?? '获取分类出错' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };

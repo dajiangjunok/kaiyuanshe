@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Tag, Avatar, Modal, App as AntdApp, Image } from 'antd';
+import { Button, Tag, Avatar, App as AntdApp, Image } from 'antd';
 import {
   ArrowLeft,
   Calendar,
@@ -8,17 +8,12 @@ import {
   MapPin,
   Users,
   Globe,
-  Share2,
-  Heart,
   ExternalLink,
   Edit,
-  Star,
   User,
   Mail,
   Copy,
-  Download,
   CheckCircle,
-  Twitter,
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from './index.module.css';
@@ -34,12 +29,11 @@ export default function EventDetailPage() {
   const { id } = router.query; // 路由参数应该叫 id，不是 ids
   const rId = Array.isArray(id) ? id[0] : id;
 
-  const [event, setEvent] = useState<any>(null);
-  const [recap, setRecap] = useState<any>(null);
+  const [event, setEvent] = useState<{ ID: string; title: string; description: string; event_mode: string; event_type: string; link: string; location: string; start_time: string; end_time: string; cover_img: string; tags: string[]; twitter: string; registration_link: string; registration_deadline: string; status: number; publish_status: number; participants: number; agenda?: { time: string; title: string; description: string; speaker: string }[]; requirements?: string[]; benefits?: string[]; organizer?: { avatar: string; name: string; title: string; company: string; bio: string; email: string; twitter: string } } | null>(null);
+  const [recap, setRecap] = useState<{ content: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
-  const [shareModalVisible, setShareModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<'intro' | 'recap'>('intro');
 
   // 使用统一的认证上下文，避免重复调用 useSession
@@ -76,7 +70,7 @@ export default function EventDetailPage() {
       } else {
         message.error(result.message || '审核出错');
       }
-    } catch (error) {
+    } catch {
       message.error('审核出错，请重试');
     }
   };
@@ -101,7 +95,7 @@ export default function EventDetailPage() {
         } else {
           setRecap(null); // 没有数据也清空
         }
-      } catch (error) {
+      } catch {
         message.error('加载失败');
         setEvent(null);
         setRecap(null);
@@ -113,25 +107,7 @@ export default function EventDetailPage() {
     fetchData();
   }, [router.isReady, rId]);
 
-  const handleRegister = () => {
-    if (isRegistered) {
-      message.success('已取消报名');
-      setIsRegistered(false);
-    } else {
-      message.success('报名成功！');
-      setIsRegistered(true);
-    }
-  };
 
-  const handleFavorite = () => {
-    if (isFavorited) {
-      message.success('已取消收藏');
-      setIsFavorited(false);
-    } else {
-      message.success('已添加到收藏');
-      setIsFavorited(true);
-    }
-  };
 
   const handleShare = (platform?: string) => {
     if (platform === 'copy') {
@@ -142,9 +118,6 @@ export default function EventDetailPage() {
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`
       );
-    } else {
-      setShareModalVisible(true);
-    }
   };
 
   if (loading) {
@@ -244,8 +217,6 @@ export default function EventDetailPage() {
 
   const eventStatus = getEventStatus();
   const dateTimeRange = formatDateTimeRange(event.start_time, event.end_time);
-  const startDateTime = formatDateTime(event.start_time);
-  const endDateTime = formatDateTime(event.end_time);
 
   return (
     <div className={`${styles.container} nav-t-top`}>
@@ -408,7 +379,7 @@ export default function EventDetailPage() {
               <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>活动议程</h2>
                 <div className={styles.agenda}>
-                  {event.agenda.map((item: any, index: number) => (
+                  {event.agenda.map((item: { time: string; title: string; description: string; speaker: string }, index: number) => (
                     <div key={index} className={styles.agendaItem}>
                       <div className={styles.agendaTime}>
                         <Clock size={16} />
@@ -576,7 +547,7 @@ export default function EventDetailPage() {
               </div>
             </div>
             {status === 'authenticated' &&
-              permissions.includes('blog:write') && !recap && event.status === 2 && // 用户默认拥有博客创作权限，默认用户都可以添加活动回顾
+              permissions.includes('blog:write') && !recap && event.status === 2 && ( // 用户默认拥有博客创作权限，默认用户都可以添加活动回顾
               <div className={styles.recapCard}>
                 <h3 className={styles.cardTitle}>活动回顾</h3>
                 <p className={styles.description}>你可以为本次活动添加活动回顾。</p>
@@ -590,7 +561,7 @@ export default function EventDetailPage() {
                   添加活动回顾
                 </Button>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-export function useLocalStorage<T = any>(key: string) {
+export function useLocalStorage<T = unknown>(key: string) {
   // 获取
   const get = useCallback((): T | undefined => {
     if (typeof window === 'undefined') return undefined;

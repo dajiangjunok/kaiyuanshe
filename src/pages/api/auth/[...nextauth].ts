@@ -90,13 +90,22 @@ export default NextAuth({
     async jwt({ token, user, trigger, session }) {
       // 首次登录时保存用户信息到token
       if (user) {
-        token.uid = (user as any).id;
-        token.username = (user as any).username;
-        token.github = (user as any).github;
-        token.email = (user as any).email;
-        token.avatar = (user as any).avatar;
-        token.permissions = (user as any).permissions;
-        token.token = (user as any).token;
+        const userWithExtras = user as {
+          id: string;
+          username?: string;
+          github?: string;
+          email?: string;
+          avatar?: string;
+          permissions?: string[];
+          token?: string;
+        };
+        token.uid = userWithExtras.id;
+        token.username = userWithExtras.username;
+        token.github = userWithExtras.github;
+        token.email = userWithExtras.email;
+        token.avatar = userWithExtras.avatar;
+        token.permissions = userWithExtras.permissions;
+        token.token = userWithExtras.token;
       }
       
       // 当触发update()时，更新token中的用户信息

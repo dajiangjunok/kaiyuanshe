@@ -6,6 +6,12 @@ export interface CreateFeedbackParams {
   email: string;
 }
 
+export interface GetFeedbacksParams {
+  order?: 'asc' | 'desc';
+  page?: number;
+  page_size?: number;
+}
+
 export interface Feedback {
   content?: string;
   url?: string;
@@ -68,11 +74,11 @@ export const createFeedback = async (
     }
 
     return { success: false, message: '创建失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('创建异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };
@@ -101,11 +107,11 @@ export const getTFeedbacks= async (
     }
 
     return { success: false, message: response.message ?? '获取列表失败' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('获取列表异常:', error);
     return {
       success: false,
-      message: error?.message ?? '网络错误，请稍后重试',
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
     };
   }
 };

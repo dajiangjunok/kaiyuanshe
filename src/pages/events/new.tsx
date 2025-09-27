@@ -2,11 +2,8 @@ import { useCallback, useState } from 'react';
 import {
   Form,
   Input,
-  Radio,
   DatePicker,
   TimePicker,
-  InputNumber,
-  Checkbox,
   Button,
   Card,
   Tag,
@@ -19,10 +16,8 @@ import {
   Calendar,
   MapPin,
   Users,
-  Video,
   Globe,
   FileText,
-  NotepadTextDashed,
   Save,
   Plus,
   ImageIcon,
@@ -49,14 +44,13 @@ export default function NewEventPage() {
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSavingDraft, setIsSavingDraft] = useState(false);
 
   // 封面图片
   const [previewUrl, setPreviewUrl] = useState<string>('');
-  const [cloudinaryImg, setCloudinaryImg] = useState<any>();
+  const [cloudinaryImg, setCloudinaryImg] = useState<{ secure_url: string } | undefined>();
 
   // 格式化时间为字符串
-  const formatDateTime = (date: any, time: any) => {
+  const formatDateTime = (date: { format: (format: string) => string }, time: { format: (format: string) => string }) => {
     if (!date || !time) return '';
 
     const dateStr = date.format('YYYY-MM-DD');
@@ -71,7 +65,7 @@ export default function NewEventPage() {
     [form]
   );
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: { title: string; description: string; eventMode: string; eventType: string; location: string; startDate: { format: (format: string) => string }; startTime: { format: (format: string) => string }; endDate: { format: (format: string) => string }; endTime: { format: (format: string) => string }; twitter: string; registrationLink: string; registrationDeadline?: { format: (format: string) => string } }) => {
     try {
       setIsSubmitting(true);
 
@@ -102,7 +96,7 @@ export default function NewEventPage() {
       } else {
         message.error('活动创建出错');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('创建活动失败:', error);
       message.error('创建活动失败，请重试');
     } finally {

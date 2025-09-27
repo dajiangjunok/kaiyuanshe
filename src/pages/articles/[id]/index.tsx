@@ -26,7 +26,7 @@ export default function ArticleDetailPage() {
   const { id } = router.query; // 路由参数应该叫 id，不是 ids
   const rId = Array.isArray(id) ? id[0] : id;
 
-  const [article, setArticle] = useState<any>(null);
+  const [article, setArticle] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(true);
   // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();
@@ -53,7 +53,7 @@ export default function ArticleDetailPage() {
       } else {
         message.error(result.message || '审核出错');
       }
-    } catch (error) {
+    } catch {
       message.error('审核出错，请重试');
     }
   };
@@ -66,7 +66,7 @@ export default function ArticleDetailPage() {
       try {
         const response = await getArticleById(rId);
         setArticle(response?.data);
-      } catch (error) {
+      } catch {
         message.error('加载失败');
         setArticle(null);
       } finally {

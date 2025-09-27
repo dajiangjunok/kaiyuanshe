@@ -124,7 +124,7 @@ export default function EventsPage() {
         setEvents([]);
         setTotal(0);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('加载事件列表异常:', error);
       setEvents([]);
       setTotal(0);
@@ -233,7 +233,7 @@ export default function EventsPage() {
       } else {
         message.error(result.message || '创建活动失败');
       }
-    } catch (error) {
+    } catch {
       message.error('删除失败，请重试');
     }
   };
@@ -416,7 +416,7 @@ export default function EventsPage() {
             total={total}
             pageSize={pageSize}
             onChange={handlePageChange}
-            showTotal={(total, range) =>
+            showTotal={(total) =>
               `显示 ${startIndex}-${endIndex} 项，共 ${total} 项`
             }
             className={styles.fullPagination}
@@ -719,7 +719,7 @@ export default function EventsPage() {
             pageSize={pageSize}
             onChange={handlePageChange}
             // showQuickJumper={true}
-            showTotal={(total, range) =>
+            showTotal={(total) =>
               `显示 ${startIndex}-${endIndex} 项，共 ${total} 项`
             }
             className={styles.fullPagination}

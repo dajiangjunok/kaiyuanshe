@@ -1,7 +1,7 @@
 import { Calendar, MapPin, Users, Video } from 'lucide-react'
 import Link from 'next/link'
 import styles from './Events.module.css'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 // import { getEvents } from '@/pages/api/event'
 import dayjs from 'dayjs'
 import { Tag } from 'antd'
@@ -23,24 +23,14 @@ interface Event {
   tags?: string[]
 }
 
+
 export default function EventSection() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { status } = useAuth()
-  const [events, setEvents] = useState<any[]>([])
+  const [events, setEvents] = useState<Event[]>([])
 
  // 加载事件列表
-   const loadEvents = async (params?: {
-     keyword?: string;
-     tag?: string;
-     order?: 'asc' | 'desc';
-     page?: number;
-     page_size?: number;
-     status?: string | number;
-     location?: string;
-     event_mode?: string;
-     event_type?: string;
-     publish_status?: number;
-   }) => {
+   const loadEvents = async () => {
      try {
        const queryParams = {
          page: 1,

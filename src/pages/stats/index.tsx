@@ -104,13 +104,34 @@ export default function StatsIndex() {
   // );
   const [showPageDetails, setShowPageDetails] = useState(false);
 
-  // 从API获取真实页面数据
+  // 定义接口类型
+interface TopPageData {
+  page: string;
+  pageViews: number;
+}
+
+interface DeviceData {
+  device: string;
+  sessions: number;
+}
+
+interface DemographicsData {
+  devices: DeviceData[];
+}
+
+interface AnalyticsDataWithExtensions extends AnalyticsResponse {
+  topPages?: TopPageData[];
+  demographics?: DemographicsData;
+}
+
+// 从API获取真实页面数据
   const getPageData = (): PageData[] => {
     // 只使用真实的Google Analytics API数据
-    if (analyticsData?.overview && (analyticsData as any).topPages) {
-      const topPages = (analyticsData as any).topPages;
+    const extendedAnalyticsData = analyticsData as AnalyticsDataWithExtensions;
+    if (analyticsData?.overview && extendedAnalyticsData.topPages) {
+      const topPages = extendedAnalyticsData.topPages;
       // console.log('Using real page data from Google Analytics API:', topPages);
-      return topPages.map((page: any) => ({
+      return topPages.map((page: TopPageData) => ({
         page: page.page,
         pageViews: page.pageViews,
       }));
@@ -215,16 +236,17 @@ export default function StatsIndex() {
   // 创建设备类型工具提示（使用API数据）
   const createDeviceTooltip = () => {
     // 检查是否有真实的设备数据
+    const extendedAnalyticsData = analyticsData as AnalyticsDataWithExtensions;
     const hasDeviceData =
-      analyticsData?.overview && (analyticsData as any).demographics?.devices;
+      analyticsData?.overview && extendedAnalyticsData.demographics?.devices;
 
     if (hasDeviceData) {
-      const devices = (analyticsData as any).demographics.devices;
+      const devices = extendedAnalyticsData.demographics!.devices;
       return (
         <div className={styles.tooltipContent}>
           <h4 className={styles.tooltipTitle}>设备类型分布</h4>
           <div className={styles.tooltipList}>
-            {devices.map((device: any, index: number) => (
+            {devices.map((device: DeviceData, index: number) => (
               <div key={index} className={styles.tooltipItem}>
                 {device.device === 'desktop' && (
                   <Monitor className={styles.tooltipIcon} />

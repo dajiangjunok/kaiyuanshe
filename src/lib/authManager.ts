@@ -2,7 +2,7 @@
 class AuthManager {
   private static instance: AuthManager;
   private isLoggingIn = false;
-  private loginPromise: Promise<any> | null = null;
+  private loginPromise: Promise<unknown> | null = null;
   private lastSuccessMessageTime = 0;
 
   private constructor() {}
@@ -14,7 +14,7 @@ class AuthManager {
     return AuthManager.instance;
   }
 
-  public async ensureLogin(signInFn: () => Promise<any>): Promise<any> {
+  public async ensureLogin(signInFn: () => Promise<unknown>): Promise<unknown> {
     // 如果正在登录中，等待当前的登录完成
     if (this.isLoggingIn && this.loginPromise) {
       return this.loginPromise;
@@ -33,7 +33,7 @@ class AuthManager {
     }
   }
 
-  private async performLogin(signInFn: () => Promise<any>): Promise<any> {
+  private async performLogin(signInFn: () => Promise<unknown>): Promise<unknown> {
     try {
       return await signInFn();
     } catch (error) {
