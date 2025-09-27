@@ -164,6 +164,10 @@
   gap: 1rem;
 }
 
+.rightColumn .section .formRow {
+  display: block;
+}
+
 /* 覆盖 Ant Design Input 样式 */
 .input,
 .textarea {
