@@ -146,11 +146,13 @@ type UpdateArticleRequest struct {
 	Desc       string   `json:"desc" binding:"required"`
 	Content    string   `json:"content" binding:"required"`
 	Category   string   `json:"category" binding:"required"`
+	License    string   `json:"license"`
 	SourceLink string   `json:"source_link"`
 	CoverImg   string   `json:"cover_img" binding:"required"`
 	Tags       []string `json:"tags"`
 	Author     string   `json:"author" binding:"required"`
 	Translator string   `json:"translator"`
+	Editor     string   `json:"editor"`
 }
 
 type UpdateBlogPublishStatusRequest struct {
