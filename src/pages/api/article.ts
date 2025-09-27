@@ -12,6 +12,7 @@ export interface CreateArticleParams {
   tags: string[];
   author: string;
   translator: string;
+  editor: string;
 }
 
 export interface UpdateArticleParams {
@@ -24,6 +25,8 @@ export interface UpdateArticleParams {
   tags: string[];
   author: string;
   translator: string;
+  editor: string;
+  license: string;
 }
 
 export interface GetArticlesParams {
@@ -106,6 +109,7 @@ export const createArticle = async (
       tags: params.tags ?? [],
       author: params.author ?? '',
       translator: params.translator ?? '',
+      editor: params.editor ?? '',
     };
 
     const response = await apiRequest<ArticleResult>('/articles', 'POST', body);
@@ -143,6 +147,8 @@ export const updateArticle = async (
       tags: params.tags ?? [],
       author: params.author ?? '',
       translator: params.translator ?? '',
+      editor: params.editor ?? '',
+      license: params.license ?? '',
     };
 
     const response = await apiRequest<ArticleResult>(
