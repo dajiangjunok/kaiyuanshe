@@ -131,7 +131,7 @@ export default function Header() {
             key: 'china-open-source-power-list',
             label: t('navigation.honors.china_open_source_power_list'),
             href: 'https://opensource.win/',
-            target:'_blank'
+            target: '_blank'
           }
         ]
       },
@@ -144,7 +144,11 @@ export default function Header() {
             label: t('navigation.knowledge.open_source_library'),
             icon: '📚',
             children: [
-              { key: 'cosc', label: t('navigation.knowledge.cosc'), href: '/articles?keyword=cosc' },
+              {
+                key: 'cosc',
+                label: t('navigation.knowledge.cosc'),
+                href: '/articles?keyword=cosc'
+              },
               {
                 key: 'kcc-library',
                 label: t('navigation.knowledge.kcc_library'),
@@ -182,7 +186,7 @@ export default function Header() {
             label: t('navigation.knowledge.china_open_source_annual_report'),
             href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
             icon: '📊',
-            target:'_blank'
+            target: '_blank'
           },
           {
             key: 'china-open-source-map',
@@ -253,8 +257,7 @@ export default function Header() {
           {
             key: 'about',
             label: t('navigation.about'),
-            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
-            target: '_blank',
+            href: '/about',
             icon: '🏢'
           },
           {
@@ -377,7 +380,9 @@ export default function Header() {
                 alt="logo"
                 className={styles.logo}
               />
-              <span className={styles.logoTitle} style={{ color: '#333333' }}>開源社</span>
+              <span className={styles.logoTitle} style={{ color: '#333333' }}>
+                開源社
+              </span>
             </div>
           </Link>
           <nav className={styles.nav}>
@@ -392,7 +397,10 @@ export default function Header() {
               >
                 <div className={styles.navItem} style={{ color: '#333333' }}>
                   <span>{section.title}</span>
-                  <ChevronDown className={styles.navIcon} style={{ color: '#333333' }} />
+                  <ChevronDown
+                    className={styles.navIcon}
+                    style={{ color: '#333333' }}
+                  />
                 </div>
               </Dropdown>
             ))}
@@ -408,7 +416,10 @@ export default function Header() {
               className={styles.mobileMenuButton}
               onClick={() => setMobileMenuOpen(true)}
             >
-              <MenuIcon className={styles.mobileMenuIcon} style={{ color: '#333333' }} />
+              <MenuIcon
+                className={styles.mobileMenuIcon}
+                style={{ color: '#333333' }}
+              />
             </button>
           </div>
         </div>
