@@ -28,18 +28,36 @@ const { Title, Text, Paragraph } = Typography
 // 启用 dayjs UTC 插件
 dayjs.extend(utc)
 
+interface User {
+  id: number
+  name: string
+  email?: string
+}
+
 interface Meeting {
-  id: string
-  title: string
+  CreatedAt: string
+  DeletedAt: string | null
+  ID: number
+  UpdatedAt: string
+  User: User | null
+  cover_img: string
   description: string
+  end_time: string
+  event_mode: string
+  event_type: string
+  link: string
+  location: string
+  participants: number
+  publish_status: number
+  publish_time: string
+  registration_deadline: string | null
+  registration_link: string
   start_time: string
-  end_time?: string
-  location?: string
-  meeting_type: string
-  participants?: number
-  status: 'upcoming' | 'ongoing' | 'ended'
-  organizer?: string
-  meeting_link?: string
+  status: number
+  tags: string[]
+  title: string
+  twitter: string
+  user_id: number
 }
 
 interface MeetingsByDate {
@@ -49,42 +67,87 @@ interface MeetingsByDate {
 // 模拟会议数据
 const mockMeetings: Meeting[] = [
   {
-    id: '1',
-    title: '理事会月度例会',
-    description: '讨论社区发展规划和重要决策事项',
-    start_time: dayjs().add(1, 'day').format('YYYY-MM-DD 14:00:00'),
-    end_time: dayjs().add(1, 'day').format('YYYY-MM-DD 16:00:00'),
-    location: '线上会议',
-    meeting_type: '理事会',
-    participants: 15,
-    status: 'upcoming',
-    organizer: '秘书处',
-    meeting_link: 'https://meet.example.com/board-meeting'
+    CreatedAt: dayjs().subtract(7, 'days').toISOString(),
+    DeletedAt: null,
+    ID: 1,
+    UpdatedAt: dayjs().subtract(5, 'days').toISOString(),
+    User: null,
+    cover_img: "https://res.cloudinary.com/gmonad/image/upload/v1758962717/monad_img/tihm9lbtayzfqcvizvun.png",
+    description: "开源年会成都场活动，包含技术分享、闪电演讲、展位交流等多种形式。聚集开源社区的开发者们，一起交流技术、分享经验、探讨开源发展趋势。",
+    end_time: dayjs().add(1, 'day').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    event_mode: "线下活动",
+    event_type: "meetup",
+    link: "",
+    location: "成都",
+    participants: 189,
+    publish_status: 2,
+    publish_time: dayjs().subtract(5, 'days').toISOString(),
+    registration_deadline: null,
+    registration_link: "",
+    start_time: dayjs().add(1, 'day').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    status: 2,
+    tags: ["开源", "技术", "社区"],
+    title: "开源年会成都场丨码农在 1024 技术趴上可以做什么？",
+    twitter: "https://fcc-cd.dev/activity/conference/coscon-2020-chengdu/",
+    user_id: 1
   },
   {
-    id: '2',
-    title: '顾问委员会季度会议',
-    description: '技术发展趋势讨论和战略建议',
-    start_time: dayjs().add(3, 'days').format('YYYY-MM-DD 10:00:00'),
-    end_time: dayjs().add(3, 'days').format('YYYY-MM-DD 12:00:00'),
-    location: '北京办公室',
-    meeting_type: '顾问委员会',
-    participants: 8,
-    status: 'upcoming',
-    organizer: '技术委员会'
+    CreatedAt: dayjs().subtract(10, 'days').toISOString(),
+    DeletedAt: null,
+    ID: 2,
+    UpdatedAt: dayjs().subtract(3, 'days').toISOString(),
+    User: {
+      id: 1,
+      name: "开源社管理员",
+      email: "admin@kaiyuanshe.cn"
+    },
+    cover_img: "https://res.cloudinary.com/gmonad/image/upload/v1758962718/monad_img/javascript_meetup.png",
+    description: "JavaScript 前端技术分享会，邀请业界专家分享最新的前端技术趋势、框架使用经验和最佳实践。适合前端开发者、全栈工程师参与。",
+    end_time: dayjs().add(5, 'days').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    event_mode: "线上活动",
+    event_type: "tech-talk",
+    link: "https://meet.example.com/js-meetup",
+    location: "线上",
+    participants: 85,
+    publish_status: 1,
+    publish_time: dayjs().subtract(3, 'days').toISOString(),
+    registration_deadline: dayjs().add(3, 'days').toISOString(),
+    registration_link: "https://event.kaiyuanshe.cn/js-meetup/register",
+    start_time: dayjs().add(5, 'days').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    status: 1,
+    tags: ["JavaScript", "前端", "技术分享"],
+    title: "JavaScript 前端技术分享会",
+    twitter: "https://twitter.com/kaiyuanshe/status/123456",
+    user_id: 1
   },
   {
-    id: '3',
-    title: 'KCC城市社区联席会议',
-    description: '各城市社区工作汇报和协调',
-    start_time: dayjs().add(7, 'days').format('YYYY-MM-DD 19:30:00'),
-    end_time: dayjs().add(7, 'days').format('YYYY-MM-DD 21:00:00'),
-    location: '线上会议',
-    meeting_type: 'KCC',
-    participants: 25,
-    status: 'upcoming',
-    organizer: 'KCC协调组',
-    meeting_link: 'https://meet.example.com/kcc-meeting'
+    CreatedAt: dayjs().subtract(5, 'days').toISOString(),
+    DeletedAt: null,
+    ID: 3,
+    UpdatedAt: dayjs().subtract(1, 'day').toISOString(),
+    User: {
+      id: 2,
+      name: "技术委员会",
+      email: "tech@kaiyuanshe.cn"
+    },
+    cover_img: "https://res.cloudinary.com/gmonad/image/upload/v1758962719/monad_img/ai_workshop.png",
+    description: "人工智能与开源技术工作坊，探讨 AI 技术在开源项目中的应用，包括机器学习框架、自然语言处理工具等。**适合有一定编程基础的参与者**。",
+    end_time: dayjs().add(10, 'days').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    event_mode: "混合活动",
+    event_type: "workshop",
+    link: "https://workshop.kaiyuanshe.cn/ai-tech",
+    location: "北京中关村软件园",
+    participants: 42,
+    publish_status: 2,
+    publish_time: dayjs().subtract(1, 'day').toISOString(),
+    registration_deadline: dayjs().add(8, 'days').toISOString(),
+    registration_link: "https://event.kaiyuanshe.cn/ai-workshop/register",
+    start_time: dayjs().add(10, 'days').format('YYYY-MM-DDTHH:mm:ss+08:00'),
+    status: 1,
+    tags: ["人工智能", "机器学习", "工作坊", "开源"],
+    title: "人工智能与开源技术工作坊",
+    twitter: "https://twitter.com/kaiyuanshe/status/789012",
+    user_id: 2
   }
 ]
 
@@ -152,9 +215,10 @@ const MeetingCalendar: React.FC = () => {
       dates: `${startTime.utc().format('YYYYMMDDTHHmmss')}Z/${endTime.utc().format('YYYYMMDDTHHmmss')}Z`,
       details:
         meeting.description +
-        (meeting.meeting_link ? `\n\n会议链接：${meeting.meeting_link}` : ''),
-      location: meeting.location || '',
-      sprop: 'name:开源社会议日历'
+        (meeting.link ? `\n\n活动链接：${meeting.link}` : '') +
+        (meeting.registration_link ? `\n\n报名链接：${meeting.registration_link}` : ''),
+      location: meeting.location,
+      sprop: 'name:开源社活动日历'
     })
 
     return `https://calendar.google.com/calendar/render?${params.toString()}`
@@ -177,7 +241,7 @@ const MeetingCalendar: React.FC = () => {
       <div className={styles.calendarMeetings}>
         {dayMeetings.slice(0, 3).map(meeting => (
           <div
-            key={meeting.id}
+            key={meeting.ID}
             className={`${styles.meetingItem} ${getMeetingStatusClass(meeting)}`}
             onClick={e => {
               e.stopPropagation()
@@ -274,7 +338,7 @@ const MeetingCalendar: React.FC = () => {
             <div style={{ marginTop: '16px' }}>
               {selectedMeetings.map(meeting => (
                 <Card
-                  key={meeting.id}
+                  key={meeting.ID}
                   className={styles.meetingCard}
                   hoverable
                   onClick={() => {
@@ -287,10 +351,10 @@ const MeetingCalendar: React.FC = () => {
                       type="text"
                       onClick={(e: React.MouseEvent<HTMLElement>) => {
                         e.stopPropagation()
-                        window.open(meeting.meeting_link, '_blank')
+                        window.open(meeting.link, '_blank')
                       }}
                     >
-                      加入会议
+                      加入活动
                     </Button>,
                     <Button
                       key="google-calendar"
@@ -329,8 +393,8 @@ const MeetingCalendar: React.FC = () => {
                         <span className={styles.meetingTitle}>
                           {meeting.title}
                         </span>
-                        <Tag color={getMeetingTypeColor(meeting.meeting_type)}>
-                          {meeting.meeting_type}
+                        <Tag color={getMeetingTypeColor(meeting.event_type)}>
+                          {meeting.event_type}
                         </Tag>
                       </div>
                     }
@@ -408,12 +472,12 @@ const MeetingCalendar: React.FC = () => {
                 添加到Google日历
               </Button>
             ),
-            selectedMeeting?.meeting_link && (
+            selectedMeeting?.link && (
               <Button
                 key="join"
                 type="primary"
                 onClick={() =>
-                  window.open(selectedMeeting.meeting_link, '_blank')
+                  window.open(selectedMeeting.link, '_blank')
                 }
               >
                 加入会议
@@ -457,19 +521,19 @@ const MeetingCalendar: React.FC = () => {
                 )}
 
                 <div className={styles.modalInfoItem}>
-                  <Text className={styles.modalInfoLabel}>会议地点：</Text>
+                  <Text className={styles.modalInfoLabel}>活动地点：</Text>
                   <Text className={styles.modalInfoValue}>
-                    {selectedMeeting.location === '线上会议' ? (
-                      <Tag color="green">线上会议</Tag>
+                    {selectedMeeting.event_mode === '线上活动' ? (
+                      <Tag color="green">线上活动</Tag>
                     ) : (
-                      selectedMeeting.location || '待定'
+                      selectedMeeting.location
                     )}
                   </Text>
                 </div>
 
                 {selectedMeeting.participants && (
                   <div className={styles.modalInfoItem}>
-                    <Text className={styles.modalInfoLabel}>参会人数：</Text>
+                    <Text className={styles.modalInfoLabel}>参与人数：</Text>
                     <Text className={styles.modalInfoValue}>
                       {selectedMeeting.participants} 人
                     </Text>
@@ -477,35 +541,63 @@ const MeetingCalendar: React.FC = () => {
                 )}
 
                 <div className={styles.modalInfoItem}>
-                  <Text className={styles.modalInfoLabel}>会议类型：</Text>
+                  <Text className={styles.modalInfoLabel}>活动类型：</Text>
                   <Tag
-                    color={getMeetingTypeColor(selectedMeeting.meeting_type)}
+                    color={getMeetingTypeColor(selectedMeeting.event_type)}
                   >
-                    {selectedMeeting.meeting_type}
+                    {selectedMeeting.event_type}
                   </Tag>
                 </div>
 
-                {selectedMeeting.organizer && (
+                {selectedMeeting.User && (
                   <div className={styles.modalInfoItem}>
                     <Text className={styles.modalInfoLabel}>组织方：</Text>
                     <Text className={styles.modalInfoValue}>
-                      {selectedMeeting.organizer}
+                      {selectedMeeting.User.name}
                     </Text>
                   </div>
                 )}
 
-                {selectedMeeting.meeting_link && (
+                {selectedMeeting.link && (
                   <div className={styles.modalInfoItem}>
-                    <Text className={styles.modalInfoLabel}>会议链接：</Text>
+                    <Text className={styles.modalInfoLabel}>活动链接：</Text>
                     <Button
                       type="link"
                       onClick={() =>
-                        window.open(selectedMeeting.meeting_link, '_blank')
+                        window.open(selectedMeeting.link, '_blank')
                       }
                       style={{ padding: 0 }}
                     >
-                      点击加入会议
+                      点击参与活动
                     </Button>
+                  </div>
+                )}
+
+                {selectedMeeting.registration_link && (
+                  <div className={styles.modalInfoItem}>
+                    <Text className={styles.modalInfoLabel}>报名链接：</Text>
+                    <Button
+                      type="link"
+                      onClick={() =>
+                        window.open(selectedMeeting.registration_link, '_blank')
+                      }
+                      style={{ padding: 0 }}
+                    >
+                      点击报名
+                    </Button>
+                  </div>
+                )}
+
+                {selectedMeeting.tags.length > 0 && (
+                  <div className={styles.modalInfoItem}>
+                    <Text className={styles.modalInfoLabel}>标签：</Text>
+                    <Space wrap>
+                      {selectedMeeting.tags.map((tag, index) => (
+                        <Tag key={index} color="blue">
+                          {tag}
+                        </Tag>
+                      ))}
+                    </Space>
                   </div>
                 )}
               </Space>
