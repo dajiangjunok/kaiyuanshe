@@ -27,7 +27,7 @@ interface Event {
 export default function EventSection() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { status } = useAuth()
-  const [events, setEvents] = useState<Event[]>([])
+  const [events, setEvents] = useState<any[]>([])
 
  // 加载事件列表
    const loadEvents = async () => {
