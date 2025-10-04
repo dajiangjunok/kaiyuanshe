@@ -45,13 +45,20 @@ const EventsCalendar: React.FC = () => {
   const { session, status } = useAuth();
   const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
-  // 加载事件数据
-  const loadEvents = useCallback(async () => {
+  // 加载事件数据 - 优化为按日期范围查询
+  const loadEvents = useCallback(async (currentDate?: Dayjs) => {
     try {
+      const targetDate = currentDate || selectedDate;
+      // 获取当前月份的开始和结束日期
+      const startOfMonth = targetDate.startOf('month').format('YYYY-MM-DD');
+      const endOfMonth = targetDate.endOf('month').format('YYYY-MM-DD');
+      
       const result = await getEvents({
         page: 1,
-        page_size: 1000, // 获取大量数据用于日历显示
+        page_size: 1000,
         publish_status: status === 'authenticated' && permissions.includes('event:review') ? 0 : 2,
+        start_date: startOfMonth,
+        end_date: endOfMonth,
       });
       
       if (result.success && result.data) {
@@ -69,10 +76,10 @@ const EventsCalendar: React.FC = () => {
         });
         setEventsByDate(eventsByDateMap);
       }
-    } catch (error) {
+    } catch (error) { 
       console.error('加载事件失败:', error);
     }
-  }, [status, permissions]);
+  }, [status, permissions, selectedDate]);
 
   useEffect(() => {
     loadEvents();
@@ -160,10 +167,10 @@ const EventsCalendar: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.calendarWrapper}>
         {/* 标题 */}
-        <h1 className={styles.title}>
+        <h2 className={styles.title}>
           <CalendarIcon className={styles.titleIcon} />
           活动日历
-        </h1>
+        </h2>
 
         {/* 日历主体 */}
         <div className={styles.calendar}>
@@ -184,6 +191,13 @@ const EventsCalendar: React.FC = () => {
                 setSelectedDate(date);
                 setSelectedEvents(dayEvents);
                 setDrawerVisible(true);
+              }
+            }}
+            onPanelChange={(date, mode) => {
+              // 当切换月份或年份时，重新加载当前月份的数据
+              if (mode === 'month') {
+                setSelectedDate(date);
+                loadEvents(date);
               }
             }}
           />

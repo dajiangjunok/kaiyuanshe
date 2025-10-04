@@ -257,10 +257,12 @@ const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
 
       // Clear the effect
       return () => {
-        vd?.destroy();
-        setVd(undefined);
+        if (vd) {
+          vd.destroy();
+          setVd(undefined);
+        }
       };
-    }, [mounted, height, width, mode, placeholder, disabled, value, onChange, onFocus, onBlur, vd]);
+    }, [mounted, height, width, mode, placeholder, disabled]);
 
     // 更新值
     useEffect(() => {

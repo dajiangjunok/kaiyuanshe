@@ -15,6 +15,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { getArticleById, updateArticlePublishStatus } from '@/pages/api/article';
 import dayjs from 'dayjs';
 import { sanitizeMarkdown } from '@/lib/markdown';
+import CommentSection from '@/components/comments/CommentSection';
 
 export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY-MM-DD HH:MM');
@@ -223,6 +224,12 @@ export default function ArticleDetailPage() {
             dangerouslySetInnerHTML={{ __html: articleContent }}
           />
         </div>
+        
+        {/* 评论区域 */}
+        <CommentSection 
+          targetType="article" 
+          targetId={article.ID as number} 
+        />
       </div>
     </div>
   );

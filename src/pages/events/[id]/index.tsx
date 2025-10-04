@@ -22,6 +22,7 @@ import { getEventById, updateEventPublishStatus } from '@/pages/api/event'
 import { SiX } from 'react-icons/si'
 import { getRecapByEventId } from '@/pages/api/recap'
 import { sanitizeMarkdown } from '@/lib/markdown'
+import CommentSection from '@/components/comments/CommentSection'
 
 export default function EventDetailPage() {
   const { message } = AntdApp.useApp()
@@ -573,6 +574,12 @@ export default function EventDetailPage() {
               )}
           </div>
         </div>
+        
+        {/* 评论区域 */}
+        <CommentSection 
+          targetType="event" 
+          targetId={event.ID} 
+        />
       </div>
     </div>
   )
