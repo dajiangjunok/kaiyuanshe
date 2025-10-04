@@ -107,11 +107,12 @@ const AboutPage = () => {
             <h2 className={styles.sectionTitle}>愿景和目标</h2>
             <div className={styles.sectionContent}>
               <p className={styles.description}>
-                开源社（英文名称为"KAIYUANSHE"）成立于2014年，是由志愿贡献于开源事业的个人志愿者，依"贡献、共识、共治"原则所组成的开源社区。
+               开源社（英文名称为“KAIYUANSHE”）成立于 2014 年，是由志愿贡献于开源事业的个人志愿者，依 “贡献、共识、共治” 原则所组成的开源社区。开源社始终维持 “厂商中立、公益、非营利” 的理念，以 “立足中国、贡献全球，推动开源成为新时代的生活方式” 为愿景，以 “开源治理、国际接轨、社区发展、项目孵化” 为使命，旨在共创健康可持续发展的开源生态体系。
               </p>
               <p className={styles.description}>
-                开源社始终坚持"厂商中立、公益、非营利"的理念，以"立足中国、贡献全球，推动开源成为新时代的生活方式"为愿景，以"开源治理、国际接轨、社区发展、项目孵化"为使命，旨在共创健康可持续发展的开源生态体系。
+               开源社积极与支持开源的社区、高校、企业以及政府相关单位紧密合作，同时也是全球开源协议认证组织 - OSI 在中国的首个成员。
               </p>
+              <p className={styles.description}>自2016年起连续举办中国开源年会（COSCon），持续发布《中国开源年度报告》，联合发起了“中国开源先锋榜”、“中国开源码力榜”等，在海内外产生了广泛的影响力。</p>
               <img
                 src="/img/about/yuanjin.jpeg"
                 alt="愿景"
@@ -141,13 +142,13 @@ const AboutPage = () => {
             <div className={styles.sectionContent}>
               <div className={styles.documentsGrid}>
                 <a
-                  href="https://www.kaiyuanshe.top/"
+                  href="https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db"
                   className={styles.officialLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className={styles.linkIcon}>🔗</span>
-                  开源社官网
+                  开源社
                   <span className={styles.externalIcon}>↗</span>
                 </a>
               </div>

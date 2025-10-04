@@ -226,10 +226,10 @@ const MeetingCalendar: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.calendarWrapper}>
         {/* 标题 */}
-        <h1 className={styles.title}>
+        <h2 className={styles.title}>
           <CalendarIcon className={styles.titleIcon} />
           会议日历
-        </h1>
+        </h2>
 
         {/* 日历主体 */}
         <div className={styles.calendar}>
