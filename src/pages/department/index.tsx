@@ -160,26 +160,6 @@ export default function DepartmentPage() {
         ],
     }), [])
 
-    useEffect(() => {
-        if (chartRef.current) {
-            // 初始化图表
-            chartInstance.current = echarts.init(chartRef.current)
-
-            // 更新图表
-            updateChart()
-        }
-
-        // 清理函数
-        return () => {
-            if (chartInstance.current) {
-                chartInstance.current.dispose()
-            }
-        }
-    }, [updateChart])
-
-    useEffect(() => {
-        updateChart()
-    }, [showActiveDepts, updateChart])
 
     const updateChart = useCallback(() => {
         if (!chartInstance.current) return
@@ -266,6 +246,29 @@ export default function DepartmentPage() {
         chartInstance.current.clear()
         chartInstance.current.setOption(option, true)
     }, [showActiveDepts, orgData, simpleOrgData])
+
+
+      useEffect(() => {
+        if (chartRef.current) {
+            // 初始化图表
+            chartInstance.current = echarts.init(chartRef.current)
+
+            // 更新图表
+            updateChart()
+        }
+
+        // 清理函数
+        return () => {
+            if (chartInstance.current) {
+                chartInstance.current.dispose()
+            }
+        }
+    }, [updateChart])
+
+    useEffect(() => {
+        updateChart()
+    }, [showActiveDepts, updateChart])
+    
 
     // 处理窗口大小变化
     useEffect(() => {
