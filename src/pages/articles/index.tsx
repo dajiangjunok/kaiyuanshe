@@ -42,7 +42,7 @@ export default function ArticlesPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
-  const [articles, setArticles] = useState<Record<string, unknown>[]>([]);
+  const [articles, setArticles] = useState<Record<string, any>[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');

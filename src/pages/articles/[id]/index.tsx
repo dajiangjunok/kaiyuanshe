@@ -227,8 +227,16 @@ export default function ArticleDetailPage() {
         
         {/* 评论区域 */}
         <CommentSection 
-          targetType="article" 
-          targetId={article.ID as number} 
+          repo="dajiangjunok/kaiyuanshe"
+          repoId="R_kgDOPveyWQ"
+          category="General"
+          categoryId="DIC_kwDOPveyWc4CwQj4"
+          mapping="pathname"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          inputPosition="bottom"
+          theme="preferred_color_scheme"
+          lang="zh-CN"
         />
       </div>
     </div>
