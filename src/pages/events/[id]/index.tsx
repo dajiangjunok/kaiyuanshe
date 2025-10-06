@@ -276,7 +276,7 @@ export default function EventDetailPage() {
 
 // 定义各个组件的 Props 接口
 interface SectionProps {
-  event: any
+  event?: any
   eventContent?: string
   recapContent?: string
 }
@@ -573,7 +573,7 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
 }
 
 // 志愿者组件
-const VolunteerSection = ({ event }: SectionProps) => {
+const VolunteerSection = ({}: SectionProps) => {
   const onChange = (key: string) => {
     console.log(key)
   }
@@ -709,7 +709,7 @@ const VolunteerSection = ({ event }: SectionProps) => {
 }
 
 // 礼品墙组件
-const GiftGallerySection = ({ event }: SectionProps) => {
+const GiftGallerySection = ({}: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>礼品墙</h2>
@@ -722,7 +722,7 @@ const GiftGallerySection = ({ event }: SectionProps) => {
 }
 
 // 财务公开组件
-const OpenFinanceSection = ({ event }: SectionProps) => {
+const OpenFinanceSection = ({}: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>财务公开</h2>
@@ -735,7 +735,7 @@ const OpenFinanceSection = ({ event }: SectionProps) => {
 }
 
 // 数据统计组件
-const DataStatisticSection = ({ event }: SectionProps) => {
+const DataStatisticSection = ({}: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>活动数据统计</h2>
@@ -748,7 +748,7 @@ const DataStatisticSection = ({ event }: SectionProps) => {
 }
 
 // 往届活动组件
-const OtherEventsSection = ({ event }: SectionProps) => {
+const OtherEventsSection = ({}: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>往届活动</h2>
