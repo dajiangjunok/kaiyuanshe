@@ -53,8 +53,7 @@
 .tabs :global(.ant-tabs-content-holder) {
   padding: 24px;
 }
-
-/* 0þÆþ7 */
+ 
 .mapView {
   position: relative;
 }
@@ -87,7 +86,7 @@
   color: #6b7280;
 }
 
-/* hÆþ7 */
+/* hï¿½ï¿½7 */
 .listView {
   min-height: 600px;
 }
@@ -130,7 +129,7 @@
   margin-top: 8px;
 }
 
-/* Í”¾¡ */
+/* Í”ï¿½ï¿½ */
 @media (max-width: 768px) {
   .organizationPage {
     padding: 16px;
@@ -160,6 +159,39 @@
     position: static;
     margin-top: 16px;
   }
+}
+
+/* Icon utility classes */
+.iconSmall {
+  width: 12px;
+  height: 12px;
+  display: inline;
+  margin-right: 4px;
+}
+
+.iconMedium {
+  width: 16px;
+  height: 16px;
+  display: inline;
+  margin-right: 4px;
+}
+
+.iconMediumMr2 {
+  width: 16px;
+  height: 16px;
+  display: inline;
+  margin-right: 8px;
+}
+
+.iconLarge {
+  width: 32px;
+  height: 32px;
+  display: inline;
+  margin-right: 12px;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 @media (max-width: 480px) {

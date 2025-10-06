@@ -147,23 +147,23 @@ export default function OrganizationPage() {
                   <Space>
                     <span>{org.name}</span>
                     <Tag color="blue">
-                      <Users className="w-3 h-3 inline mr-1" />
+                      <Users className={styles.iconSmall} />
                       {org.memberCount}人
                     </Tag>
                   </Space>
                 }
                 description={
-                  <Space direction="vertical" size="small" className="w-full">
+                  <Space direction="vertical" size="small" className={styles.fullWidth}>
                     <div className={styles.description}>
                       {org.description}
                     </div>
                     <div className={styles.location}>
-                      <MapPin className="w-4 h-4 inline mr-1" />
+                      <MapPin className={styles.iconMedium} />
                       {org.location.city}
                     </div>
                     {org.website && (
                       <div className={styles.website}>
-                        <Globe className="w-4 h-4 inline mr-1" />
+                        <Globe className={styles.iconMedium} />
                         <a href={org.website} target="_blank" rel="noopener noreferrer">
                           官网
                         </a>
@@ -171,7 +171,7 @@ export default function OrganizationPage() {
                     )}
                     {org.email && (
                       <div className={styles.email}>
-                        <Mail className="w-4 h-4 inline mr-1" />
+                        <Mail className={styles.iconMedium} />
                         <a href={`mailto:${org.email}`}>
                           {org.email}
                         </a>
@@ -196,10 +196,10 @@ export default function OrganizationPage() {
 
   return (
     <Layout>
-      <div className={styles.organizationPage}>
+      <div className={`${styles.organizationPage} nav-t-top`}>
         <div className={styles.header}>
           <h1 className={styles.title}>
-            <Building2 className="w-8 h-8 inline mr-3" />
+            <Building2 className={styles.iconLarge} />
             开源社组织
           </h1>
           <p className={styles.subtitle}>
@@ -217,7 +217,7 @@ export default function OrganizationPage() {
             <TabPane 
               tab={
                 <span>
-                  <MapPin className="w-4 h-4 inline mr-2" />
+                  <MapPin className={styles.iconMediumMr2} />
                   地图视图
                 </span>
               } 
@@ -228,7 +228,7 @@ export default function OrganizationPage() {
             <TabPane 
               tab={
                 <span>
-                  <Building2 className="w-4 h-4 inline mr-2" />
+                  <Building2 className={styles.iconMediumMr2} />
                   列表视图
                 </span>
               } 

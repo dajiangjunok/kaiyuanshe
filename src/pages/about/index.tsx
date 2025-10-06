@@ -1,63 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Target, Users, FileText, HelpCircle } from 'lucide-react'
+import React from 'react'
 import styles from './index.module.css'
 
 const AboutPage = () => {
-  const [activeSection, setActiveSection] = useState('vision')
-
-  const menuItems = [
-    {
-      id: 'vision',
-      title: '愿景和目标',
-      icon: <Target className={styles.menuIcon} />
-    },
-    {
-      id: 'organization',
-      title: '组织结构',
-      icon: <Users className={styles.menuIcon} />
-    },
-    {
-      id: 'documents',
-      title: '常用文档和链接',
-      icon: <FileText className={styles.menuIcon} />
-    },
-    {
-      id: 'help',
-      title: '知识空间帮助',
-      icon: <HelpCircle className={styles.menuIcon} />
-    }
-  ]
-
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId)
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['vision', 'organization', 'documents', 'help']
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          const offsetTop = element.offsetTop - 200
-          const offsetBottom = offsetTop + element.offsetHeight
-
-          if (scrollTop >= offsetTop && scrollTop < offsetBottom) {
-            setActiveSection(sectionId)
-            break
-          }
-        }
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <div className={styles.aboutPage}>
@@ -78,33 +22,11 @@ const AboutPage = () => {
 
       {/* Main Content */}
       <div className={styles.mainContent}>
-        {/* Left Sidebar Navigation */}
-        <aside className={styles.sidebar}>
-          <nav className={styles.navigation}>
-            <h2 className={styles.navTitle}>开源社</h2>
-            <ul className={styles.navList}>
-              {menuItems.map(item => (
-                <li key={item.id} className={styles.navItem}>
-                  <button
-                    onClick={() => scrollToSection(item.id)}
-                    className={`${styles.navButton} ${
-                      activeSection === item.id ? styles.active : ''
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-
-        {/* Right Content Area */}
+        {/* Content Area */}
         <main className={styles.contentArea}>
           {/* Vision Section */}
           <section id="vision" className={styles.section}>
-            <h2 className={styles.sectionTitle}>愿景和目标</h2>
+            <h2 className={styles.sectionTitleCentered}>愿景和目标</h2>
             <div className={styles.sectionContent}>
               <p className={styles.description}>
                开源社（英文名称为“KAIYUANSHE”）成立于 2014 年，是由志愿贡献于开源事业的个人志愿者，依 “贡献、共识、共治” 原则所组成的开源社区。开源社始终维持 “厂商中立、公益、非营利” 的理念，以 “立足中国、贡献全球，推动开源成为新时代的生活方式” 为愿景，以 “开源治理、国际接轨、社区发展、项目孵化” 为使命，旨在共创健康可持续发展的开源生态体系。
@@ -123,7 +45,7 @@ const AboutPage = () => {
 
           {/* Organization Section */}
           <section id="organization" className={styles.section}>
-            <h2 className={styles.sectionTitle}>组织结构</h2>
+            <h2 className={styles.sectionTitleCentered}>组织结构</h2>
             <div className={styles.sectionContent}>
               <img
                 src="/img/about/zuzhijg.png"
@@ -138,7 +60,7 @@ const AboutPage = () => {
 
           {/* Documents Section */}
           <section id="documents" className={styles.section}>
-            <h2 className={styles.sectionTitle}>常用文档和链接</h2>
+            <h2 className={styles.sectionTitleCentered}>常用文档和链接</h2>
             <div className={styles.sectionContent}>
               <div className={styles.documentsGrid}>
                 <a
@@ -157,7 +79,7 @@ const AboutPage = () => {
 
           {/* Help Section */}
           <section id="help" className={styles.section}>
-            <h2 className={styles.sectionTitle}>知识空间帮助</h2>
+            <h2 className={styles.sectionTitleCentered}>知识空间帮助</h2>
             <div className={styles.sectionContent}>
                <p className={styles.description}>
               这里你可以添加知识库使用规范、操作流程、管理员联系方式等。

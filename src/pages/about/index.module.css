@@ -58,7 +58,6 @@
 
 /* Main Content */
 .mainContent {
-  display: flex;
   max-width: 1400px;
   margin: 0 auto;
   background: white;
@@ -139,7 +138,6 @@
 
 /* Content Area */
 .contentArea {
-  flex: 1;
   padding: 3rem 4rem;
   overflow-y: auto;
 }
@@ -169,6 +167,28 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 2px;
+}
+
+.sectionTitleCentered {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sectionTitleCentered::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60px;
   height: 3px;
   background: linear-gradient(90deg, #3498db, #2980b9);
@@ -444,32 +464,6 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .mainContent {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    position: static;
-    height: auto;
-  }
-  
-  .navigation {
-    padding: 1rem;
-  }
-  
-  .navList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .navItem {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 0;
-  }
-  
   .contentArea {
     padding: 2rem;
   }
@@ -501,16 +495,9 @@
     padding: 1.5rem;
   }
   
-  .sectionTitle {
+  .sectionTitle,
+  .sectionTitleCentered {
     font-size: 2rem;
-  }
-  
-  .navList {
-    flex-direction: column;
-  }
-  
-  .navItem {
-    min-width: auto;
   }
   
   .statsGrid {
