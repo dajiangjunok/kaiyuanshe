@@ -1,15 +1,208 @@
-.container {
-    width: 100%;
-    height: 100vh;
-    padding-top: 100px;
-    background: linear-gradient(to bottom right, #f5fbff, var(--primary-400));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.ngoPage {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(135deg, #fef7f0 0%, #fae8e0 100%);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 .title {
-    justify-content: center;
-    align-items: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tabs {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tabs :global(.ant-tabs-nav) {
+  background: #fef7f0;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.tabs :global(.ant-tabs-tab) {
+  padding: 16px 0;
+  margin: 0 24px 0 0;
+}
+
+.tabs :global(.ant-tabs-content-holder) {
+  padding: 24px;
+}
+ 
+.mapView {
+  position: relative;
+}
+
+.mapLegend {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  max-width: 200px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.marker {
+  width: 12px;
+  height: 12px;
+  background: #dc2626;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.legendText {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.listView {
+  min-height: 600px;
+}
+
+.description {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.location,
+.website,
+.email,
+.phone,
+.established {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.location svg,
+.website svg,
+.email svg,
+.phone svg,
+.established svg {
+  flex-shrink: 0;
+}
+
+.website a,
+.email a,
+.phone a {
+  color: #dc2626;
+  text-decoration: none;
+}
+
+.website a:hover,
+.email a:hover,
+.phone a:hover {
+  text-decoration: underline;
+}
+
+.tags {
+  margin-top: 8px;
+}
+
+/* Í”¾¡ */
+@media (max-width: 768px) {
+  .ngoPage {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .tabs :global(.ant-tabs-nav) {
+    padding: 0 16px;
+  }
+  
+  .tabs :global(.ant-tabs-tab) {
+    margin-right: 16px;
+  }
+  
+  .tabs :global(.ant-tabs-content-holder) {
+    padding: 16px;
+  }
+  
+  .mapLegend {
+    position: static;
+    margin-top: 16px;
+  }
+}
+
+/* Icon utility classes */
+.iconSmall {
+  width: 12px;
+  height: 12px;
+  display: inline;
+  margin-right: 4px;
+}
+
+.iconMedium {
+  width: 16px;
+  height: 16px;
+  display: inline;
+  margin-right: 4px;
+}
+
+.iconMediumMr2 {
+  width: 16px;
+  height: 16px;
+  display: inline;
+  margin-right: 8px;
+}
+
+.iconLarge {
+  width: 32px;
+  height: 32px;
+  display: inline;
+  margin-right: 12px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { Tabs, Card, List, Avatar, Button, Space, Tag } from 'antd'
-import { MapPin, Building2, Users, Globe, Mail } from 'lucide-react'
-import Layout from '@/components/Layout'
+import { MapPin, Building2, Users, Globe, Mail, Map, UserCheck } from 'lucide-react'
+import Link from 'next/link'
 import GoogleMap from '@/components/common/GoogleMap'
 import styles from './index.module.css'
 
@@ -195,7 +195,6 @@ export default function OrganizationPage() {
   )
 
   return (
-    <Layout>
       <div className={`${styles.organizationPage} nav-t-top`}>
         <div className={styles.header}>
           <h1 className={styles.title}>
@@ -208,37 +207,50 @@ export default function OrganizationPage() {
         </div>
 
         <div className={styles.content}>
-          <Tabs
-            activeKey={activeTab}
-            onChange={setActiveTab}
-            size="large"
-            className={styles.tabs}
-          >
-            <TabPane 
-              tab={
-                <span>
-                  <MapPin className={styles.iconMediumMr2} />
-                  地图视图
-                </span>
-              } 
-              key="map"
+          <div className={styles.tabsContainer}>
+            <Tabs
+              activeKey={activeTab}
+              onChange={setActiveTab}
+              size="large"
+              className={styles.tabs}
             >
-              {renderMapView()}
-            </TabPane>
-            <TabPane 
-              tab={
-                <span>
-                  <Building2 className={styles.iconMediumMr2} />
-                  列表视图
-                </span>
-              } 
-              key="list"
-            >
-              {renderListView()}
-            </TabPane>
-          </Tabs>
+              <TabPane 
+                tab={
+                  <span>
+                    <MapPin className={styles.iconMediumMr2} />
+                    地图视图
+                  </span>
+                } 
+                key="map"
+              >
+                {renderMapView()}
+              </TabPane>
+              <TabPane 
+                tab={
+                  <span>
+                    <Building2 className={styles.iconMediumMr2} />
+                    列表视图
+                  </span>
+                } 
+                key="list"
+              >
+                {renderListView()}
+              </TabPane>
+            </Tabs>
+            <div className={styles.actionButtons}>
+              <Space>
+                <Link href="/organization/landscape">
+                  <Button type="primary" icon={<Map className={styles.iconMedium} />}>
+                    全景图
+                  </Button>
+                </Link>
+                {/* <Button type="default" icon={<UserCheck className={styles.iconMedium} />}>
+                  接入开源社
+                </Button> */}
+              </Space>
+            </div>
+          </div>
         </div>
       </div>
-    </Layout>
   )
 }

@@ -32,11 +32,26 @@
   margin: 0 auto;
 }
 
-.tabs {
+.tabsContainer {
+  position: relative;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+.actionButtons {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.tabs {
+  background: transparent;
 }
 
 .tabs :global(.ant-tabs-nav) {
@@ -158,6 +173,13 @@
   .mapLegend {
     position: static;
     margin-top: 16px;
+  }
+  
+  .actionButtons {
+    position: static;
+    margin: 16px 16px 0;
+    height: auto;
+    justify-content: center;
   }
 }
 
