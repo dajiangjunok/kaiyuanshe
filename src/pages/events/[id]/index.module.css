@@ -1,6 +1,8 @@
 .container {
   min-height: 100vh;
   background: linear-gradient(to bottom right, #faf5ff, var(--primary-400));
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
@@ -17,114 +19,96 @@
   margin: 0 auto;
 }
 
-.heroContent {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-}
 
 
 /* Hero Section */
-.hero {
-  padding: 3rem 0;
-}
-
-
-.coverContainer {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+ 
+ 
+ 
 
 .coverImage {
   width: 100%;
-  height: auto;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
   display: block;
-}
-
-.coverImage {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  display: block;
+  border-radius: 0;
 }
 
 .navigation {
   display: flex;
   justify-content: center;
   padding: 20px;
-}
-
-.tabSpace {
   background: #f0f2f5;
-  padding: 6px;
   border-radius: 12px;
+  margin: 20px auto;
+  max-width: 1200px;
 }
 
-.contentSpace {
-  background: transparent;
+.content {
+  flex: 1;
+  padding: 20px;
 }
 
-.contentSpace :global(.ant-radio-button-wrapper) {
-  border: none;
-  background: transparent;
-  color: #8c8c8c;
-  padding: 8px 24px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-size: 30px;
-  font-weight: 500;
+.navigationMenu {
+  background: transparent !important;
+  border-bottom: none !important;
+  flex: 1;
+  justify-content: center;
+}
+ 
+.navigationMenu :global(.ant-menu-item:hover) {
+  color: #595959 !important;
+  background: rgba(64, 150, 255, 0.1) !important;
 }
 
-.contentSpace :global(.ant-radio-button-wrapper:hover) {
-  color: #595959;
+.navigationMenu :global(.ant-menu-item-selected) {
+  background: #4096ff !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(64, 150, 255, 0.3) !important;
 }
 
-.contentSpace :global(.ant-radio-button-wrapper-checked) {
-  background: #4096ff;
-  color: white;
-  box-shadow: 0 2px 8px rgba(64, 150, 255, 0.3);
+.navigationMenu :global(.ant-menu-item-selected:hover) {
+  background: #4096ff !important;
+  color: white !important;
 }
 
-.contentSpace :global(.ant-radio-button-wrapper::before) {
-  display: none;
-}
-
-.contentSpace :global(.ant-radio-button-wrapper:not(:first-child)::before) {
-  display: none;
-}
-
-.spaceBtn {
-  height: 55px;
-  margin-left: 5px;
+.navigationMenu :global(.ant-menu-item::after) {
+  display: none !important;
 }
 
 .sessionContent {
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  text-align: center;
 }
 
 .sessionTitle {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  text-align: center;
 }
 
 .sessionAddress {
-  color: #333333;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  color: #666666;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .sessionDescription {
   margin-top: 2rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: #333333;
-  font-size: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #444444;
+  font-size: 1.6rem;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sessionAudit {
@@ -171,7 +155,7 @@
 /* Regular agenda item */
 .agendaItem {
   display: grid;
-  align-items: flex-start;
+  align-items: center;
   grid-template-columns: 220px 1fr 280px;
   gap: 2rem;
   padding: 1.5rem 2rem;
@@ -214,12 +198,34 @@
   gap: 0.75rem;
 }
 
-.speakerAvatar {
+.speakerAvatarContainer {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  object-fit: cover;
+  overflow: hidden;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speakerAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.speakerAvatarIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e0e0e0;
 }
 
 .speakerInfo {
@@ -285,12 +291,36 @@
   text-align: center;
 }
 
-.volunteerSpeakerAvatar {
+.volunteerAvatarContainer {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volunteerSpeakerAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #f0f0f0; /* 可选：添加边框 */
+  border: 3px solid #f0f0f0;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.volunteerAvatarIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #e0e0e0;
   transition: transform 0.2s ease;
 }
 
