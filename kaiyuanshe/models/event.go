@@ -10,25 +10,28 @@ import (
 
 type Event struct {
 	gorm.Model
-	Title                string         `json:"title"`
-	Description          string         `json:"description"`
-	EventMode            string         `json:"event_mode"`
-	EventType            string         `json:"event_type"`
-	Location             string         `json:"location"`
-	Link                 string         `json:"link"`
-	RegistrationDeadline *time.Time     `json:"registration_deadline"`
-	RegistrationLink     string         `json:"registration_link"`
-	StartTime            time.Time      `json:"start_time"`
-	EndTime              time.Time      `json:"end_time"`
-	CoverImg             string         `json:"cover_img"`
-	Tags                 pq.StringArray `gorm:"type:text[]" json:"tags"`
-	Participants         uint           `json:"participants"`
-	Status               uint           `gorm:"default:0" json:"status"`         // 0: 未开始，1: 进行中 2: 已结束 TODO: 定时器更新状态？
-	PublishStatus        uint           `gorm:"default:1" json:"publish_status"` // 0: 所有  1: 待审核 2: 已发布
-	PublishTime          *time.Time     `json:"publish_time"`
-	Twitter              string         `json:"twitter"`
-	UserId               uint           `json:"user_id"`
-	User                 *User          `gorm:"foreignKey:UserId"`
+	Title                string              `json:"title"`
+	Description          string              `json:"description"`
+	EventMode            string              `json:"event_mode"`
+	EventType            string              `json:"event_type"`
+	Location             string              `json:"location"`
+	Link                 string              `json:"link"`
+	RegistrationDeadline *time.Time          `json:"registration_deadline"`
+	RegistrationLink     string              `json:"registration_link"`
+	StartTime            time.Time           `json:"start_time"`
+	EndTime              time.Time           `json:"end_time"`
+	CoverImg             string              `json:"cover_img"`
+	Tags                 pq.StringArray      `gorm:"type:text[]" json:"tags"`
+	Participants         uint                `json:"participants"`
+	Status               uint                `gorm:"default:0" json:"status"`         // 0: 未开始，1: 进行中 2: 已结束 TODO: 定时器更新状态？
+	PublishStatus        uint                `gorm:"default:1" json:"publish_status"` // 0: 所有  1: 待审核 2: 已发布
+	PublishTime          *time.Time          `json:"publish_time"`
+	Twitter              string              `json:"twitter"`
+	UserId               uint                `json:"user_id"`
+	User                 *User               `gorm:"foreignKey:UserId" json:"user"`
+	Sessions             []Session           `gorm:"foreignKey:EventID" json:"sessions"`
+	VolunteerCategories  []VolunteerCategory `gorm:"foreignKey:EventID" json:"volunteer_categories"`
+	Gifts                []Gift              `gorm:"foreignKey:EventID" json:"gifts"`
 }
 
 func (e *Event) Create() error {
