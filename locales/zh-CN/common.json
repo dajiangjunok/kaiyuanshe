@@ -64,59 +64,124 @@
     "hero": {
       "title": "开源社",
       "subtitle": "立足中国，贡献全球，推动开源成为新时代生活方式",
-      "learnMore": "了解 开源社",
-      "joinCommunity": "加入社区"
+      "heroHighlight": "立足中国，贡献全球，",
+      "heroSubtext": "推动开源成为新时代生活方式。"
     },
-    "features": {
-      "title": "核心功能",
-      "description": "开源社 通过整合 Web3 多链数据、活动与社区内容，为开发者提供高效的一站式体验",
-      "multiChain": {
-        "title": "多链聚合",
-        "description": "统一整合以太坊等多条 Web3 链上的活动、文章、博客和社区动态"
+    "events": {
+      "title": "社区活动",
+      "description": "发现精彩活动，链接更多开源",
+      "status": {
+        "notStarted": "未开始",
+        "inProgress": "进行中", 
+        "ended": "已结束"
       },
-      "analytics": {
-        "title": "开发者分析",
-        "description": "实时采集并统计开发者数据，帮助发现生态趋势与活跃度"
+      "mode": {
+        "online": "线上活动",
+        "offline": "线下活动"
       },
-      "content": {
-        "title": "内容聚合",
-        "description": "跨平台整合 Web3 最新资讯与优质文章，减少信息碎片化"
+      "learnMore": "了解详情",
+      "viewMore": "查看更多活动"
+    },
+    "articles": {
+      "title": "精彩文章",
+      "description": "深度好文，启发思考，助力成长",
+      "categories": {
+        "original": "原创",
+        "translation": "翻译", 
+        "archive": "归档"
       },
-      "ecosystem": {
-        "title": "生态导航",
-        "description": "全景化展示生态 DApps 与项目，便于开发者快速了解与参与"
+      "readArticle": "阅读文章",
+      "viewMore": "查看更多文章",
+      "readingTime": "分钟阅读",
+      "unknownAuthor": "未知作者",
+      "unpublished": "未发布"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "blockNumber01": "01",
+      "blockNumber02": "02", 
+      "blockNumber03": "03",
+      "ourMission": "我们的使命",
+      "ourPrinciples": "我们的原则",
+      "ourProjects": "我们的项目",
+      "missions": {
+        "governance": {
+          "title": "开源治理",
+          "description": "推动开源项目的规范化治理与可持续发展"
+        },
+        "bridge": {
+          "title": "国际桥梁",
+          "description": "搭建中国与全球开源社区的沟通桥梁"
+        },
+        "community": {
+          "title": "社区发展",
+          "description": "培育健康的开源社区生态与文化"
+        },
+        "incubation": {
+          "title": "项目孵化",
+          "description": "孵化优秀的开源项目与创新技术"
+        }
+      },
+      "principles": {
+        "contribution": {
+          "title": "贡献",
+          "description": "通过代码、文档、设计等方式为开源项目做出有价值的贡献"
+        },
+        "consensus": {
+          "title": "共识",
+          "description": "在社区中建立共同的愿景、价值观和发展目标"
+        },
+        "governance": {
+          "title": "共治",
+          "description": "建立透明、民主的社区治理机制与决策流程"
+        }
+      },
+      "projects": {
+        "covidPlatform": {
+          "title": "新冠援助平台",
+          "description": "疫情期间的开源援助与协调平台"
+        },
+        "officialWebsite": {
+          "title": "开源社官网",
+          "description": "开源社区的官方门户与信息中心"
+        },
+        "ossChat": {
+          "title": "OSS.Chat",
+          "description": "开源项目智能对话与协作平台"
+        },
+        "chinaMap": {
+          "title": "中国开源地图",
+          "description": "全景展示中国开源项目与社区分布"
+        },
+        "kToken": {
+          "title": "KToken",
+          "description": "基于区块链的开源贡献激励系统"
+        },
+        "xiaoyuanBot": {
+          "title": "小源机器人",
+          "description": "智能化的社区服务与互动机器人"
+        },
+        "annualReport": {
+          "title": "中国开源年度报告",
+          "description": "权威的中国开源发展趋势分析报告"
+        },
+        "hackathon": {
+          "title": "开放黑客松",
+          "description": "促进创新与合作的开源竞赛平台"
+        }
       }
-    },
-    "resources": {
-      "title": "学习资源",
-      "description": "通过教程、文章和文档，帮助开发者从 Web2 快速转型 Web3",
-      "tutorials": {
-        "title": "教程",
-        "description": "系统学习如何从零开始构建 Web3 应用"
-      },
-      "codeExamples": {
-        "title": "代码示例",
-        "description": "参考开源项目，快速掌握最佳实践"
-      },
-      "ecosystemGuide": {
-        "title": "生态导航",
-        "description": "全景化了解最新的 Web3 发展与项目"
-      }
-    },
-    "milestones": {
-      "title": "开源社 里程碑"
     },
     "cta": {
-      "title": "加入 开源社 · 见证你的 开源 成长之路",
-      "description": "无论你是 热衷于开源 开发者，还是已经投身 开源， 开源社 都为你提供最全面的资源与舞台。",
-      "getStarted": "立即开始",
-      "joinTelegram": "加入 Telegram",
+      "title": "加入开源社 · 见证你的开源成长之路",
+      "description": "无论你是热衷于开源的开发者，还是已经投身开源，开源社都为你提供最全面的资源与舞台。",
+      "followGithub": "关注Github",
+      "followWeChat": "关注公众号",
       "followX": "关注 X"
     }
   },
   "footer": {
     "title": "开源社",
-    "description": "开源社 是一个聚合 开源 活动、社区、文章和开发者数据的一站式广场。",
+    "description": "开源社是一个聚合开源活动、社区、文章和开发者数据的一站式广场。",
     "copyright": "&copy; 2025 开源社. 保留所有权利"
   },
   "errors": {

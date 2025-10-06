@@ -1,16 +1,17 @@
 import { ChevronDown } from 'lucide-react' 
 import styles from './Hero.module.css'
+import { useTranslation } from '../../../hooks/useTranslation'
 
 export default function Hero() {
+  const { t } = useTranslation()
+  
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
-  
-
         <div className={styles.heroSubtitle}>
           <div>
-            <p className={styles.heroHighlight}>立足中国，贡献全球，</p>
-            <p>推动开源成为新时代生活方式。</p>
+            <p className={styles.heroHighlight}>{t('homepage.hero.heroHighlight')}</p>
+            <p>{t('homepage.hero.heroSubtext')}</p>
           </div>
         </div>
 

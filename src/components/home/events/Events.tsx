@@ -2,11 +2,11 @@ import { Calendar, MapPin, Users, Video } from 'lucide-react'
 import Link from 'next/link'
 import styles from './Events.module.css'
 import { useEffect, useState } from 'react'
-// import { getEvents } from '@/pages/api/event'
 import dayjs from 'dayjs'
 import { Tag } from 'antd'
 import { useAuth } from '@/contexts/AuthContext'
 import { getEvents } from '@/pages/api/event'
+import { useTranslation } from '../../../hooks/useTranslation'
 
 export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY年M月D日')
@@ -27,6 +27,7 @@ interface Event {
 export default function EventSection() {
   // 使用统一的认证上下文，避免重复调用 useSession
   const { status } = useAuth()
+  const { t } = useTranslation()
   const [events, setEvents] = useState<any[]>([])
 
  // 加载事件列表
@@ -72,9 +73,9 @@ export default function EventSection() {
     <section className={styles.activities}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>社区活动</h2>
+          <h2 className={styles.sectionTitle}>{t('homepage.events.title')}</h2>
           <p className={styles.sectionDescription}>
-            发现精彩活动，链接更多 开源
+            {t('homepage.events.description')}
           </p>
         </div>
         <div className={styles.activitiesGrid}>
@@ -93,10 +94,10 @@ export default function EventSection() {
                     }`}
                   >
                     {event.status === 0
-                      ? '未开始'
+                      ? t('homepage.events.status.notStarted')
                       : event.status === 1
-                        ? '进行中'
-                        : '已结束'}
+                        ? t('homepage.events.status.inProgress')
+                        : t('homepage.events.status.ended')}
                   </span>
                   {event.participants !== 0 && (
                     <div className={styles.activityParticipants}>
@@ -121,7 +122,7 @@ export default function EventSection() {
                       <MapPin className={styles.activityIcon} />
                     )}
                     {event.event_mode === '线上活动'
-                      ? '线上活动'
+                      ? t('homepage.events.mode.online')
                       : event.location}
                   </div>
                 </div>
@@ -139,7 +140,7 @@ export default function EventSection() {
                   </div>
                 )}
                 <Link href={`/events/${event.ID}`} passHref>
-                  <button className={styles.activityButton}>了解详情</button>
+                  <button className={styles.activityButton}>{t('homepage.events.learnMore')}</button>
                 </Link>
               </div>
             </div>
@@ -149,7 +150,7 @@ export default function EventSection() {
           <Link href="/events">
             <button className={styles.moreButton}>
               <Calendar className={styles.buttonIcon} />
-              查看更多活动
+              {t('homepage.events.viewMore')}
             </button>
           </Link>
         </div>

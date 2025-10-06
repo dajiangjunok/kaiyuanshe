@@ -6,29 +6,31 @@ import { Tag } from 'antd'
 import { useAuth } from '@/contexts/AuthContext'
 import styles from './Article.module.css'
 import { getArticles } from '@/pages/api/article'
+import { useTranslation } from '../../../hooks/useTranslation'
 
 export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY年M月D日')
 }
 
-// 分类映射配置
-const categoryConfig = {
+// 分类映射配置，现在使用翻译函数
+const getCategoryConfig = (t: any) => ({
   original: {
-    label: '原创',
+    label: t('homepage.articles.categories.original'),
     className: styles.original
   },
   translation: {
-    label: '翻译',
+    label: t('homepage.articles.categories.translation'),
     className: styles.translation
   },
   archive: {
-    label: '归档',
+    label: t('homepage.articles.categories.archive'),
     className: styles.archive
   }
-}
+})
 
 // 获取分类信息的辅助函数
-const getCategoryInfo = (category: string) => {
+const getCategoryInfo = (category: string, t: any) => {
+  const categoryConfig = getCategoryConfig(t)
   return (
     categoryConfig[category as keyof typeof categoryConfig] ||
     categoryConfig.original
@@ -37,6 +39,7 @@ const getCategoryInfo = (category: string) => {
 
 export default function ArticleSection() {
   const { status } = useAuth()
+  const { t } = useTranslation()
   const [articles, setArticles] = useState<
     Array<{
       ID: number
@@ -92,15 +95,15 @@ export default function ArticleSection() {
     <section className={styles.articles}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>精彩文章</h2>
+          <h2 className={styles.sectionTitle}>{t('homepage.articles.title')}</h2>
           <p className={styles.sectionDescription}>
-            深度好文，启发思考，助力成长
+            {t('homepage.articles.description')}
           </p>
         </div>
         <div className={styles.articlesGrid}>
           {articles.map((article, index) => {
             // 获取分类信息
-            const categoryInfo = getCategoryInfo(article.category)
+            const categoryInfo = getCategoryInfo(article.category, t)
 
             return (
               <div key={article.ID || index} className={styles.articleCard}>
@@ -138,17 +141,17 @@ export default function ArticleSection() {
                   <div className={styles.articleInfo}>
                     <div className={styles.articleInfoItem}>
                       <User className={styles.articleIcon} />
-                      {article.author || '未知作者'}
+                      {article.author || t('homepage.articles.unknownAuthor')}
                     </div>
                     <div className={styles.articleInfoItem}>
                       <Calendar className={styles.articleIcon} />
                       {article.publish_time
                         ? formatTime(article.publish_time)
-                        : '未发布'}
+                        : t('homepage.articles.unpublished')}
                     </div>
                     <div className={styles.articleInfoItem}>
                       <BookOpen className={styles.articleIcon} />
-                      {article.readingTime || 6} 分钟阅读
+                      {article.readingTime || 6} {t('homepage.articles.readingTime')}
                     </div>
                   </div>
                   {article.tags && article.tags.length > 0 && (
@@ -164,7 +167,7 @@ export default function ArticleSection() {
                   )}
                   <Link href={`/articles/${article.ID}`} passHref>
                     <button className={styles.articleButton}>
-                      阅读文章
+                      {t('homepage.articles.readArticle')}
                       <ArrowRight className={styles.buttonIcon} />
                     </button>
                   </Link>
@@ -177,7 +180,7 @@ export default function ArticleSection() {
           <Link href="/articles">
             <button className={styles.moreButton}>
               <BookOpen className={styles.buttonIcon} />
-              查看更多文章
+              {t('homepage.articles.viewMore')}
             </button>
           </Link>
         </div>

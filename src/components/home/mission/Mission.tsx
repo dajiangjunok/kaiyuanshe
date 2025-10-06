@@ -9,96 +9,99 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import styles from './Mission.module.css'
+import { useTranslation } from '../../../hooks/useTranslation'
 
 export default function MissionSection() {
+  const { t } = useTranslation()
+  
   const missions = [
     {
       icon: <GitBranch className={styles.missionIcon} />,
-      title: '开源治理',
-      desc: '推动开源项目的规范化治理与可持续发展'
+      title: t('homepage.mission.missions.governance.title'),
+      desc: t('homepage.mission.missions.governance.description')
     },
     {
       icon: <Globe className={styles.missionIcon} />,
-      title: '国际桥梁',
-      desc: '搭建中国与全球开源社区的沟通桥梁'
+      title: t('homepage.mission.missions.bridge.title'),
+      desc: t('homepage.mission.missions.bridge.description')
     },
     {
       icon: <Users className={styles.missionIcon} />,
-      title: '社区发展',
-      desc: '培育健康的开源社区生态与文化'
+      title: t('homepage.mission.missions.community.title'),
+      desc: t('homepage.mission.missions.community.description')
     },
     {
       icon: <GitMerge className={styles.missionIcon} />,
-      title: '项目孵化',
-      desc: '孵化优秀的开源项目与创新技术'
+      title: t('homepage.mission.missions.incubation.title'),
+      desc: t('homepage.mission.missions.incubation.description')
     }
   ]
 
   const principles = [
     {
       icon: <PenTool className={styles.principleIcon} />,
-      title: '贡献',
-      desc: '通过代码、文档、设计等方式为开源项目做出有价值的贡献'
+      title: t('homepage.mission.principles.contribution.title'),
+      desc: t('homepage.mission.principles.contribution.description')
     },
     {
       icon: <Heart className={styles.principleIcon} />,
-      title: '共识',
-      desc: '在社区中建立共同的愿景、价值观和发展目标'
+      title: t('homepage.mission.principles.consensus.title'),
+      desc: t('homepage.mission.principles.consensus.description')
     },
     {
       icon: <Network className={styles.principleIcon} />,
-      title: '共治',
-      desc: '建立透明、民主的社区治理机制与决策流程'
+      title: t('homepage.mission.principles.governance.title'),
+      desc: t('homepage.mission.principles.governance.description')
     }
   ]
 
   const apps = [
     {
       img: '/img/home/xgyzpt.png',
-      title: '新冠援助平台',
-      desc: '疫情期间的开源援助与协调平台',
+      title: t('homepage.mission.projects.covidPlatform.title'),
+      desc: t('homepage.mission.projects.covidPlatform.description'),
       href: 'https://wuhan2020.kaiyuanshe.cn/#'
     },
     {
       img: '/img/home/kysgw.png',
-      title: '开源社官网',
-      desc: '开源社区的官方门户与信息中心',
+      title: t('homepage.mission.projects.officialWebsite.title'),
+      desc: t('homepage.mission.projects.officialWebsite.description'),
       href: '/'
     },
     {
       img: '/img/home/ossChat.png',
-      title: 'OSS.Chat',
-      desc: '开源项目智能对话与协作平台',
+      title: t('homepage.mission.projects.ossChat.title'),
+      desc: t('homepage.mission.projects.ossChat.description'),
       href: 'https://github.com/kaiyuanshe/osschat'
     },
     {
       img: '/img/home/map.png',
-      title: '中国开源地图',
-      desc: '全景展示中国开源项目与社区分布',
+      title: t('homepage.mission.projects.chinaMap.title'),
+      desc: t('homepage.mission.projects.chinaMap.description'),
       href: '/organization'
     },
     {
       img: '/img/home/kToken.png',
-      title: 'KToken',
-      desc: '基于区块链的开源贡献激励系统',
+      title: t('homepage.mission.projects.kToken.title'),
+      desc: t('homepage.mission.projects.kToken.description'),
       href: 'https://github.com/kaiyuanshe/KToken'
     },
     {
       img: '/img/home/xyjqr.png',
-      title: '小源机器人',
-      desc: '智能化的社区服务与互动机器人',
+      title: t('homepage.mission.projects.xiaoyuanBot.title'),
+      desc: t('homepage.mission.projects.xiaoyuanBot.description'),
       href: 'https://github.com/kaiyuanshe/xiaoyuan'
     },
     {
       img: '/img/home/kybg.png',
-      title: '中国开源年度报告',
-      desc: '权威的中国开源发展趋势分析报告',
+      title: t('homepage.mission.projects.annualReport.title'),
+      desc: t('homepage.mission.projects.annualReport.description'),
       href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd'
     },
     {
       img: '/img/home/hackathon.png',
-      title: '开放黑客松',
-      desc: '促进创新与合作的开源竞赛平台',
+      title: t('homepage.mission.projects.hackathon.title'),
+      desc: t('homepage.mission.projects.hackathon.description'),
       href: 'https://hackathon.kaiyuanshe.cn/'
     }
   ]
@@ -109,8 +112,8 @@ export default function MissionSection() {
         {/* Our Mission */}
         <div className={styles.missionBlock}>
           <div className={styles.blockHeader}>
-            <div className={styles.blockNumber}>01</div>
-            <h2 className={styles.blockTitle}>我们的使命</h2>
+            <div className={styles.blockNumber}>{t('homepage.mission.blockNumber01')}</div>
+            <h2 className={styles.blockTitle}>{t('homepage.mission.ourMission')}</h2>
             <div className={styles.blockDivider}></div>
           </div>
           <div className={styles.missionGrid}>
@@ -127,8 +130,8 @@ export default function MissionSection() {
         {/* Our Principles */}
         <div className={styles.principlesBlock}>
           <div className={styles.blockHeader}>
-            <div className={styles.blockNumber}>02</div>
-            <h2 className={styles.blockTitle}>我们的原则</h2>
+            <div className={styles.blockNumber}>{t('homepage.mission.blockNumber02')}</div>
+            <h2 className={styles.blockTitle}>{t('homepage.mission.ourPrinciples')}</h2>
             <div className={styles.blockDivider}></div>
           </div>
           <div className={styles.principlesGrid}>
@@ -147,8 +150,8 @@ export default function MissionSection() {
         {/* Our Projects */}
         <div className={styles.appsBlock}>
           <div className={styles.blockHeader}>
-            <div className={styles.blockNumber}>03</div>
-            <h2 className={styles.blockTitle}>我们的项目</h2>
+            <div className={styles.blockNumber}>{t('homepage.mission.blockNumber03')}</div>
+            <h2 className={styles.blockTitle}>{t('homepage.mission.ourProjects')}</h2>
             <div className={styles.blockDivider}></div>
           </div>
           <div className={styles.appsGrid}>

@@ -75,11 +75,11 @@ export default function Home() {
                 className={styles.ctaPrimaryButton}
               >
                 <Rocket className={styles.buttonIcon} />
-                关注github
+                {t('homepage.cta.followGithub')}
               </Link>
               <Link href="/" className={styles.ctaSecondaryButton}>
                 <SiTelegram className={styles.buttonIcon} />
-                关注公众号
+                {t('homepage.cta.followWeChat')}
               </Link>
               <Link
                 href="https://x.com/kaiyuanshe"

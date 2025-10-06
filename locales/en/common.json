@@ -8,7 +8,7 @@
     "forum": "Community Forum",
     "mobile_menu": "Navigation Menu",
     "governance": {
-      "title": "Community Governance",
+      "title": "Governance",
       "governance_overview": "Governance Overview",
       "board": "Board of Directors",
       "advisory": "Advisory Committee",
@@ -21,7 +21,7 @@
       "proposal_library": "Proposal Library"
     },
     "honors": {
-      "title": "Community Honors",
+      "title": "Honors",
       "open_source_star": "Open Source Star",
       "annual_volunteer": "Annual Outstanding Volunteer",
       "coscon_star": "COSCon Star",
@@ -30,7 +30,7 @@
       "china_open_source_power_list": "China Open Source Power List"
     },
     "knowledge": {
-      "title": "Knowledge Resources",
+      "title": "Knowledge",
       "open_source_library": "Open Source Library",
       "cosc": "China Open Source Conference (COSC)",
       "kcc_library": "KaiYuanShe City Community (KCC)",
@@ -44,7 +44,7 @@
       "china_public_welfare_map": "China Public Welfare Map"
     },
     "activities": {
-      "title": "Activities & Projects",
+      "title": "Activities",
       "wonderful_activities": "Wonderful Activities",
       "hosted_activities": "Hosted Activities",
       "activity_calendar": "Activity Calendar",
@@ -63,60 +63,125 @@
   "homepage": {
     "hero": {
       "title": "KaiYuanShe",
-      "subtitle": "Rooted in China, contributing globally, promoting open source as a new era lifestyle.",
-      "learnMore": "Learn About DevPlaza",
-      "joinCommunity": "Join Community"
+      "subtitle": "Rooted in China, contributing globally.",
+      "heroHighlight": "Rooted in China, contributing globally,",
+      "heroSubtext": "promoting open source"
     },
-    "features": {
-      "title": "Core Features",
-      "description": "DevPlaza provides developers with an efficient one-stop experience by integrating Web3 multi-chain data, events, and community content",
-      "multiChain": {
-        "title": "Multi-chain Aggregation",
-        "description": "Unified integration of activities, articles, blogs, and community dynamics from multiple Web3 chains such as Ethereum"
+    "events": {
+      "title": "Community Events",
+      "description": "Discover exciting events, connect with more open source",
+      "status": {
+        "notStarted": "Not Started",
+        "inProgress": "In Progress", 
+        "ended": "Ended"
       },
-      "analytics": {
-        "title": "Developer Analytics",
-        "description": "Real-time collection and statistics of developer data to help discover ecosystem trends and activity"
+      "mode": {
+        "online": "Online Event",
+        "offline": "Offline Event"
       },
-      "content": {
-        "title": "Content Aggregation",
-        "description": "Cross-platform integration of the latest Web3 news and quality articles to reduce information fragmentation"
+      "learnMore": "Learn More",
+      "viewMore": "View More Events"
+    },
+    "articles": {
+      "title": "Featured Articles",
+      "description": "In-depth articles, inspiring thoughts, empowering growth",
+      "categories": {
+        "original": "Original",
+        "translation": "Translation", 
+        "archive": "Archive"
       },
-      "ecosystem": {
-        "title": "Ecosystem Navigation",
-        "description": "Panoramic display of ecosystem DApps and projects for developers to quickly understand and participate"
+      "readArticle": "Read Article",
+      "viewMore": "View More Articles",
+      "readingTime": "minute read",
+      "unknownAuthor": "Unknown Author",
+      "unpublished": "Unpublished"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "blockNumber01": "01",
+      "blockNumber02": "02", 
+      "blockNumber03": "03",
+      "ourMission": "Our Mission",
+      "ourPrinciples": "Our Principles",
+      "ourProjects": "Our Projects",
+      "missions": {
+        "governance": {
+          "title": "Open Source Governance",
+          "description": "Promoting standardized governance and sustainable development of open source projects"
+        },
+        "bridge": {
+          "title": "International Bridge",
+          "description": "Building communication bridges between China and global open source communities"
+        },
+        "community": {
+          "title": "Community Development",
+          "description": "Cultivating healthy open source community ecosystem and culture"
+        },
+        "incubation": {
+          "title": "Project Incubation",
+          "description": "Incubating excellent open source projects and innovative technologies"
+        }
+      },
+      "principles": {
+        "contribution": {
+          "title": "Contribution",
+          "description": "Making valuable contributions to open source projects through code, documentation, design, and other means"
+        },
+        "consensus": {
+          "title": "Consensus",
+          "description": "Establishing common vision, values, and development goals within the community"
+        },
+        "governance": {
+          "title": "Co-governance",
+          "description": "Establishing transparent and democratic community governance mechanisms and decision-making processes"
+        }
+      },
+      "projects": {
+        "covidPlatform": {
+          "title": "COVID Aid Platform",
+          "description": "Open source aid and coordination platform during the pandemic"
+        },
+        "officialWebsite": {
+          "title": "KaiYuanShe Official Website",
+          "description": "Official portal and information center of the open source community"
+        },
+        "ossChat": {
+          "title": "OSS.Chat",
+          "description": "Intelligent dialogue and collaboration platform for open source projects"
+        },
+        "chinaMap": {
+          "title": "China Open Source Map",
+          "description": "Panoramic display of China's open source projects and community distribution"
+        },
+        "kToken": {
+          "title": "KToken",
+          "description": "Blockchain-based open source contribution incentive system"
+        },
+        "xiaoyuanBot": {
+          "title": "Xiaoyuan Bot",
+          "description": "Intelligent community service and interaction robot"
+        },
+        "annualReport": {
+          "title": "China Open Source Annual Report",
+          "description": "Authoritative analysis report on China's open source development trends"
+        },
+        "hackathon": {
+          "title": "Open Hackathon",
+          "description": "Open source competition platform promoting innovation and cooperation"
+        }
       }
-    },
-    "resources": {
-      "title": "Learning Resources",
-      "description": "Help developers quickly transition from Web2 to Web3 through tutorials, articles, and documentation",
-      "tutorials": {
-        "title": "Tutorials",
-        "description": "Learn systematically how to build Web3 applications from scratch"
-      },
-      "codeExamples": {
-        "title": "Code Examples",
-        "description": "Reference open source projects and quickly master best practices"
-      },
-      "ecosystemGuide": {
-        "title": "Ecosystem Guide",
-        "description": "Comprehensive understanding of the latest Web3 developments and projects"
-      }
-    },
-    "milestones": {
-      "title": "DevPlaza Milestones"
     },
     "cta": {
-      "title": "Join DevPlaza · Witness Your Web3 Growth Journey",
-      "description": "Whether you are a Web2 developer or already committed to Web3, DevPlaza provides you with the most comprehensive resources and platform.",
-      "getStarted": "Get Started",
-      "joinTelegram": "Join Telegram",
+      "title": "Join KaiYuanShe · Witness Your Open Source Growth Journey",
+      "description": "Whether you are a developer passionate about open source or already committed to open source, KaiYuanShe provides you with the most comprehensive resources and platform.",
+      "followGithub": "Follow GitHub",
+      "followWeChat": "Follow WeChat",
       "followX": "Follow X"
     }
   },
   "footer": {
     "title": "KaiYuanShe",
-    "description": "KaiYuanShe is a one-stop plaza that aggregates Web3 events, communities, articles, and developer data.",
+    "description": "KaiYuanShe is a one-stop plaza that aggregates open source events, communities, articles, and developer data.",
     "copyright": "&copy; 2025 KaiYuanShe. All rights reserved"
   },
   "errors": {
