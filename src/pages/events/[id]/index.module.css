@@ -20,14 +20,18 @@
 }
 
 
+.mainImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-/* Hero Section */
 .coverImage {
-  object-fit: cover;
-  object-position: center;
   display: block;
-  margin: 20px auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
 }
 
 .navigation {
@@ -43,7 +47,7 @@
 .content {
   flex: 1;
   padding: 20px;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -88,7 +92,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 2rem;
-  text-align: center;
 }
 
 .sessionTitle {
@@ -101,6 +104,7 @@
 
 .sessionAddress {
   color: #666666;
+  font-weight: bold;
   font-size: 1.3rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -112,8 +116,7 @@
   margin-bottom: 2rem;
   color: #444444;
   font-size: 1.1rem;
-  text-align: center;
-  max-width: 900px;
+  text-align: start;
   margin-left: auto;
   margin-right: auto;
 }
@@ -137,7 +140,7 @@
 }
 
 .agendaTitle {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
@@ -182,12 +185,12 @@
   font-weight: 600;
   white-space: nowrap;
   min-width: 120px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .agendaTopic {
   flex: 1;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.4;
 }

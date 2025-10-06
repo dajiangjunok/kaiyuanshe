@@ -37,7 +37,6 @@ export default function EventDetailPage() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [event, setEvent] = useState<any>(null)
-  const [recap, setRecap] = useState<{ content: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'intro' | 'recap'>('intro')
 
@@ -57,14 +56,6 @@ export default function EventDetailPage() {
       })
     }
   }, [event?.description])
-
-  useEffect(() => {
-    if (recap?.content) {
-      sanitizeMarkdown(recap.content).then(htmlContent => {
-        setRecapContent(htmlContent)
-      })
-    }
-  }, [recap?.content])
 
   const handleUpdatePublishStatus = async () => {
     try {
@@ -90,20 +81,9 @@ export default function EventDetailPage() {
         const eventRes = await getEventById(rId)
         console.log('获取活动详情:', eventRes)
         setEvent(eventRes?.data ?? null)
-
-        // 获取活动回顾
-        const recapRes = await getRecapByEventId(rId)
-        console.log('获取活动回顾:', recapRes)
-
-        if (recapRes.success && recapRes.data) {
-          setRecap(recapRes.data)
-        } else {
-          setRecap(null) // 没有数据也清空
-        }
       } catch {
         message.error('加载失败')
         setEvent(null)
-        setRecap(null)
       } finally {
         setLoading(false)
       }
@@ -246,12 +226,15 @@ export default function EventDetailPage() {
 
   return (
     <div className={`${styles.container} nav-t-top`}>
-      <Image
-        src={event.cover_img || '/placeholder.svg'}
-        alt={event.title}
-        className={styles.coverImage}
-        preview={false}
-      />
+      <div className={styles.mainImage}>
+        <Image
+          src={event.cover_img || '/placeholder.svg'}
+          alt={event.title}
+          className={styles.coverImage}
+          preview={false}
+          width={1600}
+        />
+      </div>
 
       <div className={styles.navigation}>
         <Menu
@@ -330,7 +313,9 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
           </p>
           <p className={styles.sessionVolunteer}>
             <strong>志愿者：</strong>
-            {volunteer.join('、 ')}
+            {Array.isArray(volunteer)
+              ? volunteer.join('; ')
+              : volunteer}
           </p>
         </div>
         {/* 议程 */}
@@ -515,43 +500,43 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
       label: 'Open Reading, Open Mind 分论坛',
       children: 'Content of Tab Pane 3'
     },
-     {
+    {
       key: '7',
       label: '开源评价与数据洞察分论坛',
       children: 'Content of Tab Pane 3'
     },
-       {
+    {
       key: '8',
       label: '开源大数据分论坛',
       children: 'Content of Tab Pane 3'
     },
-     
-       {
+
+    {
       key: '8',
       label: '  开源 AI 论坛（LLM 应用方向）',
       children: 'Content of Tab Pane 3'
     },
-      {
+    {
       key: '9',
       label: '开源操作系统分论坛',
       children: 'Content of Tab Pane 3'
     },
-  {
+    {
       key: '9',
       label: 'RISC-V 分论坛',
       children: 'Content of Tab Pane 3'
     },
-      {
+    {
       key: '9',
       label: '汽车智能化开源创新论坛',
       children: 'Content of Tab Pane 3'
     },
-      {
+    {
       key: '10',
       label: '开源教育分论坛（AI 方向）',
       children: 'Content of Tab Pane 3'
     },
-      {
+    {
       key: '11',
       label: '开源教育分论坛（开源之夏与开源人才培养）',
       children: 'Content of Tab Pane 3'
@@ -573,7 +558,7 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
 }
 
 // 志愿者组件
-const VolunteerSection = ({}: SectionProps) => {
+const VolunteerSection = ({ }: SectionProps) => {
   const onChange = (key: string) => {
     console.log(key)
   }
@@ -709,7 +694,7 @@ const VolunteerSection = ({}: SectionProps) => {
 }
 
 // 礼品墙组件
-const GiftGallerySection = ({}: SectionProps) => {
+const GiftGallerySection = ({ }: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>礼品墙</h2>
@@ -722,7 +707,7 @@ const GiftGallerySection = ({}: SectionProps) => {
 }
 
 // 财务公开组件
-const OpenFinanceSection = ({}: SectionProps) => {
+const OpenFinanceSection = ({ }: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>财务公开</h2>
@@ -735,7 +720,7 @@ const OpenFinanceSection = ({}: SectionProps) => {
 }
 
 // 数据统计组件
-const DataStatisticSection = ({}: SectionProps) => {
+const DataStatisticSection = ({ }: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>活动数据统计</h2>
@@ -748,7 +733,7 @@ const DataStatisticSection = ({}: SectionProps) => {
 }
 
 // 往届活动组件
-const OtherEventsSection = ({}: SectionProps) => {
+const OtherEventsSection = ({ }: SectionProps) => {
   return (
     <div className={styles.tabContent}>
       <h2>往届活动</h2>

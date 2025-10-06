@@ -24,6 +24,12 @@ func init() {
 	db.AutoMigrate(&PostFavorite{})
 	db.AutoMigrate(&DailyStats{})
 	db.AutoMigrate(&Follow{})
+	db.AutoMigrate(&Session{})
+	db.AutoMigrate(&Agenda{})
+	db.AutoMigrate(&Speaker{})
+	db.AutoMigrate(&VolunteerCategory{})
+	db.AutoMigrate(&Volunteer{})
+	db.AutoMigrate(&Gift{})
 
 	InitRolesAndPermissions()
 	InitCategories()
