@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Tabs, Card, List, Avatar, Button, Space, Tag } from 'antd'
 import { MapPin, Heart, Users, Globe, Mail, Phone } from 'lucide-react'
-import Layout from '@/components/Layout'
 import LeafletMap from '@/components/common/LeafletMap'
 import styles from './index.module.css'
 
@@ -270,50 +269,48 @@ export default function NGOPage() {
   )
 
   return (
-    <Layout>
-      <div className={`${styles.ngoPage} nav-t-top`}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>
-            <Heart className={styles.iconLarge} />
-            公益地图
-          </h1>
-          <p className={styles.subtitle}>
-            发现身边的公益组织，参与社会公益事业，让爱心传递到每一个角落
-          </p>
-        </div>
-
-        <div className={styles.content}>
-          <Tabs
-            activeKey={activeTab}
-            onChange={setActiveTab}
-            size="large"
-            className={styles.tabs}
-          >
-            <TabPane 
-              tab={
-                <span>
-                  <MapPin className={styles.iconMediumMr2} />
-                  地图视图
-                </span>
-              } 
-              key="map"
-            >
-              {renderMapView()}
-            </TabPane>
-            <TabPane 
-              tab={
-                <span>
-                  <Heart className={styles.iconMediumMr2} />
-                  列表视图
-                </span>
-              } 
-              key="list"
-            >
-              {renderListView()}
-            </TabPane>
-          </Tabs>
-        </div>
+    <div className={`${styles.ngoPage} nav-t-top`}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>
+          <Heart className={styles.iconLarge} />
+          公益地图
+        </h1>
+        <p className={styles.subtitle}>
+          发现身边的公益组织，参与社会公益事业，让爱心传递到每一个角落
+        </p>
       </div>
-    </Layout>
+
+      <div className={styles.content}>
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          size="large"
+          className={styles.tabs}
+        >
+          <TabPane 
+            tab={
+              <span>
+                <MapPin className={styles.iconMediumMr2} />
+                地图视图
+              </span>
+            } 
+            key="map"
+          >
+            {renderMapView()}
+          </TabPane>
+          <TabPane 
+            tab={
+              <span>
+                <Heart className={styles.iconMediumMr2} />
+                列表视图
+              </span>
+            } 
+            key="list"
+          >
+            {renderListView()}
+          </TabPane>
+        </Tabs>
+      </div>
+    </div>
   )
 }
