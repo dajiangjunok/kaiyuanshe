@@ -67,6 +67,49 @@ func (s *Session) Delete() error {
 	return db.Delete(s).Error
 }
 
+// 创建会话及其关联的议程和嘉宾
+func (s *Session) CreateWithAgendasAndSpeakers() error {
+	tx := db.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+
+	// 首先创建会话
+	if err := tx.Create(s).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// 创建关联的议程
+	for i := range s.Agendas {
+		// 确保 Agenda 的 ID 为 0，让数据库自动生成
+		s.Agendas[i].ID = 0
+		s.Agendas[i].SessionID = s.ID
+
+		// 创建 Agenda
+		if err := tx.Create(&s.Agendas[i]).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+
+		// 创建关联的嘉宾
+		for j := range s.Agendas[i].Speakers {
+			// 确保 Speaker 的 ID 为 0，让数据库自动生成
+			s.Agendas[i].Speakers[j].ID = 0
+			s.Agendas[i].Speakers[j].AgendaID = s.Agendas[i].ID
+
+			if err := tx.Create(&s.Agendas[i].Speakers[j]).Error; err != nil {
+				tx.Rollback()
+				return err
+			}
+		}
+	}
+
+	return tx.Commit().Error
+}
+
 // 批量删除某个事件的所有会话
 func DeleteSessionsByEventID(eventID uint) error {
 	return db.Where("event_id = ?", eventID).Delete(&Session{}).Error
