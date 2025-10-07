@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Tabs, Card, List, Avatar, Button, Space, Tag } from 'antd'
 import { MapPin, Heart, Users, Globe, Mail, Phone } from 'lucide-react'
 import Layout from '@/components/Layout'
-import GoogleMap from '@/components/common/GoogleMap'
+import LeafletMap from '@/components/common/LeafletMap'
 import styles from './index.module.css'
 
 const { TabPane } = Tabs
@@ -148,7 +148,7 @@ export default function NGOPage() {
 
   const renderMapView = () => (
     <div className={styles.mapView}>
-      <GoogleMap
+      <LeafletMap
         latitude={35.8617}
         longitude={104.1954}
         city="全国公益组织分布"

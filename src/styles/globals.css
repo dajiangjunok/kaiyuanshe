@@ -1,6 +1,9 @@
 /* marked解析markdown文档，外包裹器样式 */
 @import url(./markedContainer.css);
 
+/* Leaflet CSS - 地图组件必需样式 */
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
 :root {
   /* 背景颜色 */
   --background: #ffffff;
