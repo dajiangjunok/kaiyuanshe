@@ -22,7 +22,6 @@ interface LeafletMapProps {
 
 // 缓存 Leaflet 实例
 let leafletModule: any = null
-let tileLayerCache: any = null
 
 export default function LeafletMap({
   latitude = 39.9042,
@@ -74,12 +73,17 @@ export default function LeafletMap({
     const L = leafletModule
     delete (L.Icon.Default.prototype as any)._getIconUrl
     
-    // 使用多个CDN源，包括国内镜像
+    // 使用多个CDN源，优先国内可访问的CDN
     const iconSources = [
       {
         iconRetinaUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
         iconUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
         shadowUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      },
+      {
+        iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
       },
       {
         iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
@@ -101,24 +105,29 @@ export default function LeafletMap({
 
   // 获取最佳的瓦片图层服务
   const getTileLayer = useCallback((L: any) => {
-    if (tileLayerCache) return tileLayerCache
-
-    // 多个备用瓦片图层，优先使用国内高德地图服务
+    // 不缓存图层，每次创建新实例避免缓存问题
+    
+    // 多个备用瓦片图层，优先使用国内可访问的服务
     const tileProviders = [
       {
-        url: 'https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
+        url: 'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
         options: {
           attribution: '© 高德地图',
           maxZoom: 18,
-          timeout: 10000
+          subdomains: ['1', '2', '3', '4'],
+          timeout: 10000,
+          retryDelay: 800,
+          errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
         }
       },
       {
         url: 'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}',
         options: {
-          attribution: '© GeoQ',
+          attribution: '© GeoQ 智图',
           maxZoom: 18,
-          timeout: 10000
+          timeout: 10000,
+          retryDelay: 800,
+          errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
         }
       },
       {
@@ -127,7 +136,10 @@ export default function LeafletMap({
           attribution: '© OpenStreetMap contributors',
           maxZoom: 19,
           subdomains: ['a', 'b', 'c'],
-          timeout: 10000
+          timeout: 15000,
+          retryDelay: 1000,
+          maxNativeZoom: 19,
+          errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
         }
       },
       {
@@ -135,25 +147,39 @@ export default function LeafletMap({
         options: {
           attribution: '© Esri',
           maxZoom: 18,
-          timeout: 10000
+          timeout: 15000,
+          retryDelay: 1000,
+          errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
         }
       }
     ]
 
-    // 尝试依次加载各个图层
+    // 测试瓦片可用性并返回第一个可用的
     for (let i = 0; i < tileProviders.length; i++) {
       try {
-        tileLayerCache = L.tileLayer(tileProviders[i].url, tileProviders[i].options)
-        return tileLayerCache
+        const layer = L.tileLayer(tileProviders[i].url, tileProviders[i].options)
+        
+        // 添加瓦片加载错误处理
+        layer.on('tileerror', (e: any) => {
+          console.warn(`瓦片加载失败: ${e.tile.src}`)
+          // 如果是网络错误，可以尝试重新加载
+          setTimeout(() => {
+            if (e.tile && e.tile.src) {
+              e.tile.src = e.tile.src
+            }
+          }, 1000)
+        })
+        
+        return layer
       } catch (error) {
-        console.warn(`瓦片图层 ${i + 1} 加载失败，尝试下一个`)
+        console.warn(`瓦片图层 ${i + 1} 初始化失败，尝试下一个`)
         if (i === tileProviders.length - 1) {
           throw new Error('所有瓦片图层都无法加载')
         }
       }
     }
     
-    return tileLayerCache
+    throw new Error('无法创建瓦片图层')
   }, [])
   
   // 清理标记点
@@ -248,23 +274,49 @@ export default function LeafletMap({
           maxBoundsViscosity: 1.0
         }).setView([latitude, longitude], zoom)
 
-        // 添加全球瓦片图层，带重试机制
-        let tileLayer
-        let retryCount = 0
-        const maxRetries = 3
+        // 添加瓦片图层，带智能重试机制
+        let tileLayer: any = null
+        let providerIndex = 0
+        const maxProviders = 4 // 对应4个瓦片服务提供商
         
-        while (retryCount < maxRetries) {
+        while (providerIndex < maxProviders) {
           try {
             tileLayer = getTileLayer(L)
+            
+            // 添加瓦片加载监听，确保瓦片正常加载
+            let tileLoadCount = 0
+            let tileErrorCount = 0
+            
+            tileLayer.on('tileload', () => {
+              tileLoadCount++
+            })
+            
+            tileLayer.on('tileerror', () => {
+              tileErrorCount++
+              // 如果错误率过高，切换到下一个提供商
+              if (tileErrorCount > 5 && tileLoadCount < tileErrorCount) {
+                console.warn(`瓦片错误率过高，切换提供商`)
+                map.removeLayer(tileLayer)
+                providerIndex++
+                if (providerIndex < maxProviders) {
+                  setTimeout(() => {
+                    const newLayer = getTileLayer(L)
+                    newLayer.addTo(map)
+                  }, 1000)
+                }
+                return
+              }
+            })
+            
             tileLayer.addTo(map)
             break
           } catch (error) {
-            retryCount++
-            console.warn(`瓦片图层加载失败，重试 ${retryCount}/${maxRetries}`)
-            if (retryCount >= maxRetries) {
-              throw new Error('所有瓦片图层重试后仍无法加载')
+            providerIndex++
+            console.warn(`瓦片图层提供商 ${providerIndex} 加载失败，尝试下一个`)
+            if (providerIndex >= maxProviders) {
+              throw new Error('所有瓦片图层提供商都无法加载')
             }
-            await new Promise(resolve => setTimeout(resolve, 1000)) // 等待1秒后重试
+            await new Promise(resolve => setTimeout(resolve, 1000))
           }
         }
 

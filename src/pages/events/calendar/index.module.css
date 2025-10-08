@@ -43,7 +43,6 @@
 
 /* �UC<�� */
 .calendarEvents {
-  min-height: 70px;
   padding: 4px;
   max-height: 120px;
   overflow-y: auto;
@@ -268,7 +267,6 @@
   }
 
   .calendarEvents {
-    min-height: 60px;
     max-height: 100px;
   }
 
