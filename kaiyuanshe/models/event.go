@@ -107,7 +107,7 @@ func QueryEvents(filter EventFilter) ([]Event, int64, error) {
 	}
 
 	if filter.StartDate != nil {
-		query = query.Where("events.created_at BETWEEN ? AND ?", filter.StartDate, filter.EndDate)
+		query = query.Where("events.start_time BETWEEN ? AND ?", filter.StartDate, filter.EndDate)
 	}
 
 	// 统计总数（不加 limit 和 offset）
