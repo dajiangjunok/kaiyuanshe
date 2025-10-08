@@ -70,14 +70,31 @@ export default function LeafletMap({
     
     leafletModule = await import('leaflet')
     
-    // 设置图标默认配置
+    // 设置图标默认配置，优先使用国内CDN
     const L = leafletModule
     delete (L.Icon.Default.prototype as any)._getIconUrl
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-    })
+    
+    // 使用多个CDN源，包括国内镜像
+    const iconSources = [
+      {
+        iconRetinaUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+        iconUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+        shadowUrl: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      },
+      {
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      }
+    ]
+    
+    // 尝试加载第一个源，失败时使用备用源
+    try {
+      L.Icon.Default.mergeOptions(iconSources[0])
+    } catch (error) {
+      console.warn('国内CDN图标加载失败，使用备用CDN')
+      L.Icon.Default.mergeOptions(iconSources[1])
+    }
     
     return leafletModule
   }, [])
@@ -86,33 +103,57 @@ export default function LeafletMap({
   const getTileLayer = useCallback((L: any) => {
     if (tileLayerCache) return tileLayerCache
 
-    // 多个备用瓦片图层，优先使用 OpenStreetMap
+    // 多个备用瓦片图层，优先使用国内高德地图服务
     const tileProviders = [
+      {
+        url: 'https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
+        options: {
+          attribution: '© 高德地图',
+          maxZoom: 18,
+          timeout: 10000
+        }
+      },
+      {
+        url: 'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}',
+        options: {
+          attribution: '© GeoQ',
+          maxZoom: 18,
+          timeout: 10000
+        }
+      },
       {
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         options: {
           attribution: '© OpenStreetMap contributors',
           maxZoom: 19,
-          subdomains: ['a', 'b', 'c']
+          subdomains: ['a', 'b', 'c'],
+          timeout: 10000
         }
       },
       {
         url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
         options: {
           attribution: '© Esri',
-          maxZoom: 18
+          maxZoom: 18,
+          timeout: 10000
         }
       }
     ]
 
-    try {
-      tileLayerCache = L.tileLayer(tileProviders[0].url, tileProviders[0].options)
-      return tileLayerCache
-    } catch (error) {
-      console.warn('主瓦片图层加载失败，使用备用图层')
-      tileLayerCache = L.tileLayer(tileProviders[1].url, tileProviders[1].options)
-      return tileLayerCache
+    // 尝试依次加载各个图层
+    for (let i = 0; i < tileProviders.length; i++) {
+      try {
+        tileLayerCache = L.tileLayer(tileProviders[i].url, tileProviders[i].options)
+        return tileLayerCache
+      } catch (error) {
+        console.warn(`瓦片图层 ${i + 1} 加载失败，尝试下一个`)
+        if (i === tileProviders.length - 1) {
+          throw new Error('所有瓦片图层都无法加载')
+        }
+      }
     }
+    
+    return tileLayerCache
   }, [])
   
   // 清理标记点
@@ -177,8 +218,20 @@ export default function LeafletMap({
       if (!mapRef.current || mapInstanceRef.current) return
 
       setIsLoading(true)
+      
+      // 设置超时处理
+      const timeoutId = setTimeout(() => {
+        console.error('地图加载超时')
+        setIsLoading(false)
+      }, 15000) // 15秒超时
+
       try {
-        const leaflet = await loadLeaflet()
+        const leaflet = await Promise.race([
+          loadLeaflet(),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Leaflet模块加载超时')), 10000)
+          )
+        ])
         const L = leaflet
 
         // 创建地图实例，优化性能设置
@@ -195,18 +248,56 @@ export default function LeafletMap({
           maxBoundsViscosity: 1.0
         }).setView([latitude, longitude], zoom)
 
-        // 添加全球瓦片图层
-        const tileLayer = getTileLayer(L)
-        tileLayer.addTo(map)
+        // 添加全球瓦片图层，带重试机制
+        let tileLayer
+        let retryCount = 0
+        const maxRetries = 3
+        
+        while (retryCount < maxRetries) {
+          try {
+            tileLayer = getTileLayer(L)
+            tileLayer.addTo(map)
+            break
+          } catch (error) {
+            retryCount++
+            console.warn(`瓦片图层加载失败，重试 ${retryCount}/${maxRetries}`)
+            if (retryCount >= maxRetries) {
+              throw new Error('所有瓦片图层重试后仍无法加载')
+            }
+            await new Promise(resolve => setTimeout(resolve, 1000)) // 等待1秒后重试
+          }
+        }
 
         mapInstanceRef.current = map
         
         // 添加标记点
         addMarkers(L, map)
 
+        clearTimeout(timeoutId)
         onMapReady?.(map)
       } catch (error) {
         console.error('地图初始化失败:', error)
+        clearTimeout(timeoutId)
+        
+        // 显示错误信息给用户
+        if (mapRef.current) {
+          mapRef.current.innerHTML = `
+            <div style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              background: #f5f5f5;
+              color: #666;
+              text-align: center;
+              padding: 20px;
+            ">
+              <div style="font-size: 16px; margin-bottom: 8px;">⚠️ 地图加载失败</div>
+              <div style="font-size: 14px;">请检查网络连接或稍后重试</div>
+            </div>
+          `
+        }
       } finally {
         setIsLoading(false)
       }
