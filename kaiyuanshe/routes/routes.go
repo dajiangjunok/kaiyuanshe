@@ -29,6 +29,9 @@ func SetupRouter(r *gin.Engine) {
 		event.GET("", controllers.QueryEvents)
 		event.GET("/:id", controllers.GetEvent)
 		event.PUT("/:id/status", middlewares.JWT("event:review"), controllers.UpdateEventPublishStatus)
+		event.POST("/:id/venues", middlewares.JWT(""), controllers.CreateSession)
+		event.GET("/:id/venues", controllers.GetSessionsByEvent)
+		event.DELETE("/:id/venues/:venueId", middlewares.JWT(""), controllers.DeleteSession)
 
 		// 发布博客是用户默认权限， 这里任何用户都可以添加recap
 		event.POST("/recap", middlewares.JWT("blog:write"), controllers.CreateReacp)

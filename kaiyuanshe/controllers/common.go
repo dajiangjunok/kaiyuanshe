@@ -300,3 +300,26 @@ type UpdateUserRequest struct {
 type FollowStatesRequest struct {
 	UserIDs []uint `json:"user_ids" binding:"required"`
 }
+
+type CreateSessionRequest struct {
+	Title       string          `json:"title" binding:"required"`
+	Description string          `json:"description"`
+	Producer    string          `json:"producer"`
+	Volunteer   string          `json:"volunteer"`
+	Agendas     []AgendaRequest `json:"agendas"`
+}
+
+type AgendaRequest struct {
+	Topic     string           `json:"topic" binding:"required"`
+	StartTime string           `json:"start_time" binding:"required"`
+	EndTime   string           `json:"end_time" binding:"required"`
+	Speakers  []SpeakerRequest `json:"speakers"`
+}
+
+type SpeakerRequest struct {
+	Name        string `json:"name" binding:"required"`
+	Avatar      string `json:"avatar"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Company     string `json:"company"`
+}

@@ -10,7 +10,7 @@ import type { TabsProps } from 'antd'
 import Link from 'next/link'
 import styles from './index.module.css'
 import { useAuth } from '@/contexts/AuthContext'
-import { getEventById, updateEventPublishStatus } from '@/pages/api/event'
+import { getEventById, updateEventPublishStatus, getSessionsByEvent } from '@/pages/api/event'
 import { SiX } from 'react-icons/si'
 import { getRecapByEventId } from '@/pages/api/recap'
 import { sanitizeMarkdown } from '@/lib/markdown'
@@ -23,13 +23,38 @@ type ContentTab =
   | 'dataStatistic'
   | 'otherEvents'
 
+// 定义类型
+interface Speaker {
+  name: string
+  title: string
+  avatar?: string
+}
+
+interface AgendaItem {
+  start_time: string
+  end_time: string
+  topic: string
+  speakers: Speaker[]
+}
+
+interface Session {
+  ID: number
+  title: string
+  description: string
+  producer: string
+  volunteer: string
+  agendas: AgendaItem[]
+}
+
 export default function EventDetailPage() {
   const { message } = AntdApp.useApp()
   const router = useRouter()
-  const { id } = router.query // 路由参数应该叫 id，不是 ids
+  const { id } = router.query
   const rId = Array.isArray(id) ? id[0] : id
 
   const [activeContentTab, setActiveContentTab] = useState<ContentTab>('detail')
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [sessionsLoading, setSessionsLoading] = useState(false)
 
   const changeContentTab: MenuProps['onClick'] = e => {
     setActiveContentTab(e.key as ContentTab)
@@ -56,6 +81,34 @@ export default function EventDetailPage() {
       })
     }
   }, [event?.description])
+
+  // 获取会场数据
+  const fetchSessions = async () => {
+    if (!rId) return
+
+    try {
+      setSessionsLoading(true)
+      const result = await getSessionsByEvent(rId)
+      if (result.success && result.data) {
+        setSessions(result.data)
+      } else {
+        message.error(result.message || '获取会场数据失败')
+        setSessions([])
+      }
+    } catch (error) {
+      console.error('获取会场数据异常:', error)
+      message.error('获取会场数据失败')
+      setSessions([])
+    } finally {
+      setSessionsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (activeContentTab === 'detail' && rId) {
+      fetchSessions()
+    }
+  }, [activeContentTab, rId])
 
   const handleUpdatePublishStatus = async () => {
     try {
@@ -204,7 +257,7 @@ export default function EventDetailPage() {
 
   // 渲染当前激活的组件
   const renderActiveSection = () => {
-    const sectionProps = { event, eventContent, recapContent }
+    const sectionProps = { event, eventContent, recapContent, sessions, sessionsLoading }
 
     switch (activeContentTab) {
       case 'detail':
@@ -232,7 +285,7 @@ export default function EventDetailPage() {
           alt={event.title}
           className={styles.coverImage}
           preview={false}
-          width={1600}
+          width={1400}
         />
       </div>
 
@@ -262,49 +315,30 @@ interface SectionProps {
   event?: any
   eventContent?: string
   recapContent?: string
+  sessions?: Session[]
+  sessionsLoading?: boolean
 }
 
 // 活动详情组件
-const DetailSection = ({ event, eventContent }: SectionProps) => {
+const DetailSection = ({ event, sessions = [], sessionsLoading }: SectionProps) => {
   const onChange = (key: string) => {
     console.log(key)
   }
 
-  interface Speaker {
-    name: string
-    title: string
-    avatarUrl?: string
-  }
-
-  interface AgendaItem {
-    startTime: string
-    endTime: string
-    topic: string
-    speakers: Speaker[]
-  }
-
-  interface SessionContentProps {
-    name: string
-    address: string
-    description: string
-    producer: string
-    volunteer: string[]
-    agenda?: AgendaItem[] // 替换原来的 schedule
-  }
-
-  // 会场
-  const SessionContent: React.FC<SessionContentProps> = ({
-    name,
-    address,
+  // 会场组件
+  const SessionContent: React.FC<Session> = ({
+    title: name,
     description,
     producer,
     volunteer,
-    agenda
+    agendas
   }) => {
+    // 将志愿者字符串转换为数组
+    const volunteerArray = volunteer ? volunteer.split(/[,;]/).map(v => v.trim()).filter(v => v) : []
+
     return (
       <div className={styles.sessionContent}>
         <h1 className={styles.sessionTitle}>{name}</h1>
-        <p className={styles.sessionAddress}>{address}</p>
         <p className={styles.sessionDescription}>{description}</p>
         <div className={styles.sessionAudit}>
           <p className={styles.sessionProducer}>
@@ -313,76 +347,67 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
           </p>
           <p className={styles.sessionVolunteer}>
             <strong>志愿者：</strong>
-            {Array.isArray(volunteer)
-              ? volunteer.join('; ')
-              : volunteer}
+            {volunteerArray.join('、 ')}
           </p>
         </div>
         {/* 议程 */}
-        {agenda && agenda.length > 0 && (
+        {agendas && agendas.length > 0 && (
           <div className={styles.agendaSection}>
             <h2 className={styles.agendaTitle}>议程</h2>
             <div className={styles.agendaList}>
-              {agenda.map((item, index) => {
-                // Check if this is a check-in or special event (no speakers)
-                const isSpecialEvent = item.speakers.length === 0
+              {agendas.map((item, index) => {
 
                 return (
                   <div
                     key={index}
-                    className={
-                      isSpecialEvent
-                        ? styles.agendaItemSpecial
-                        : styles.agendaItem
-                    }
+                    className={styles.agendaItem}
                   >
                     <div className={styles.agendaTime}>
-                      {item.startTime} - {item.endTime}
+                      {formatTime(item.start_time)} - {formatTime(item.end_time)}
                     </div>
                     <div className={styles.agendaTopic}>{item.topic}</div>
-                    {!isSpecialEvent && (
-                      <div className={styles.agendaSpeakers}>
-                        {item.speakers.map((speaker, speakerIndex) => (
-                          <div
-                            key={speakerIndex}
-                            className={styles.speakerCard}
-                          >
-                            <div className={styles.speakerAvatarContainer}>
-                              {speaker.avatarUrl ? (
-                                <img
-                                  src={speaker.avatarUrl}
-                                  alt={speaker.name}
-                                  className={styles.speakerAvatar}
-                                  onError={e => {
-                                    e.currentTarget.style.display = 'none'
-                                    const container =
-                                      e.currentTarget.parentElement
-                                    if (container) {
-                                      container.innerHTML =
-                                        '<div class="' +
-                                        styles.speakerAvatarIcon +
-                                        '"><svg></svg></div>'
-                                    }
-                                  }}
-                                />
-                              ) : (
-                                <div className={styles.speakerAvatarIcon}>
-                                  <User size={32} color="#666" />
-                                </div>
-                              )}
+
+                    <div className={styles.agendaSpeakers}>
+                      {item.speakers.map((speaker, speakerIndex) => (
+                        <div
+                          key={speakerIndex}
+                          className={styles.speakerCard}
+                        >
+                          <div className={styles.speakerAvatarContainer}>
+                            {speaker.avatar ? (
+                              <img
+                                src={speaker.avatar}
+                                alt={speaker.name}
+                                className={styles.speakerAvatar}
+                                onError={e => {
+                                  e.currentTarget.style.display = 'none'
+                                  const container =
+                                    e.currentTarget.parentElement
+                                  if (container) {
+                                    container.innerHTML =
+                                      '<div class="' +
+                                      styles.speakerAvatarIcon +
+                                      '"><svg></svg></div>'
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <div className={styles.speakerAvatarIcon}>
+                                <User size={32} color="#666" />
+                              </div>
+                            )}
+                          </div>
+                          <div className={styles.speakerInfo}>
+                            <div className={styles.speakerName}>
+                              {speaker.name}
                             </div>
-                            <div className={styles.speakerInfo}>
-                              <div className={styles.speakerName}>
-                                {speaker.name}
-                              </div>
-                              <div className={styles.speakerTitle}>
-                                {speaker.title}
-                              </div>
+                            <div className={styles.speakerTitle}>
+                              {speaker.title}
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )
               })}
@@ -393,161 +418,51 @@ const DetailSection = ({ event, eventContent }: SectionProps) => {
     )
   }
 
-  const sampleAgenda = [
-    {
-      startTime: '09:00',
-      endTime: '09:20',
-      topic: '开幕致辞',
-      speakers: [
-        {
-          name: '陈阳',
-          title: '开源社联合创始人',
-          avatarUrl: '/example.jpg'
-        }
-      ]
-    },
-    {
-      startTime: '09:20',
-      endTime: '09:40',
-      topic:
-        'openEuler：源于中国，融入全球，打造面向数智时代的开源数字基础设施根社区',
-      speakers: [
-        {
-          name: '郑振宇',
-          title: 'openEuler 华为社区运营总监',
-          avatarUrl: '/example.jpg'
-        }
-      ]
-    },
-    {
-      startTime: '09:40',
-      endTime: '10:00',
-      topic: '万物互联时代，探索新一代数据底座',
-      speakers: [
-        {
-          name: '魏可伟',
-          title: '浪潮CTO',
-          avatarUrl: '/example.jpg'
-        }
-      ]
-    },
-    {
-      startTime: '11:00',
-      endTime: '12:00',
-      topic: '国际社区和开发者聚会怎么玩',
-      speakers: [
-        {
-          name: '辛庆',
-          title: '开源社',
-          avatarUrl: '/example.jpg'
-        },
-        {
-          name: '庄表伟',
-          title: 'COSUP',
-          avatarUrl: '/example.jpg'
-        },
-        {
-          name: '陈阳',
-          title: '开源社、思否',
-          avatarUrl: '/example.jpg'
-        },
-        {
-          name: '江波',
-          title: '',
-          avatarUrl: '/example.jpg'
-        }
-      ]
+  // 格式化时间函数
+  const formatTime = (timeString: string) => {
+    if (!timeString) return ''
+    try {
+      const date = new Date(timeString)
+      return date.toLocaleTimeString('zh-CN', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    } catch {
+      return timeString
     }
-  ]
+  }
 
-  const items: TabsProps['items'] = [
-    {
-      key: '1',
-      label: '主论坛',
-      children: (
-        <SessionContent
-          name="主论坛(Plenary)"
-          address="7栋菁蓉汇永久会场主会场"
-          description='三年新冠疫情没有将我们击垮，开源同仁们在疫情后首聚四川成都，这“百川东到海”的壮丽景象正如开源汇聚众志、生生不息的生态图景，是谓”川流不息"。COSCon2021 携手成都本地开源社区，把露天草坪集市作为线下主会场，开华夏先河、引九州效仿。2023年成都成为完全的主会场，草坪集市依然会秉持”每个人是海里的一朵浪花"的宗旨，将这种“海会"形式与经典的演讲“峰会"有机结合，是谓“山海相映"。希望今年这一场中国开源界的饕餮盛宴，可以让社区、企业、基金会、政府等开源重要的参与方一道深入交流，为中国开源发展的下一个十年打开思路。大会要点。'
-          producer="庄表伟 - 开源社理事、执行长"
-          volunteer={['崔晨洋', '李欣欣', '刘炜']}
-          agenda={sampleAgenda}
-        />
-      )
-    },
-    {
-      key: '2',
-      label: '闪电演讲 Lightning Talk',
-      children: 'Content of Tab Pane 2'
-    },
-    {
-      key: '3',
-      label: '编程语言分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '4',
-      label: 'Rust技术分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '5',
-      label: 'Web3.0技术分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '6',
-      label: 'Open Reading, Open Mind 分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '7',
-      label: '开源评价与数据洞察分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '8',
-      label: '开源大数据分论坛',
-      children: 'Content of Tab Pane 3'
-    },
+  // 将会场数据转换为 Tabs 格式
+  const getSessionTabs = (): TabsProps['items'] => {
+    if (sessionsLoading) {
+      return [{
+        key: 'loading',
+        label: '加载中...',
+        children: <div className={styles.loading}>会场数据加载中...</div>
+      }]
+    }
 
-    {
-      key: '8',
-      label: '  开源 AI 论坛（LLM 应用方向）',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '9',
-      label: '开源操作系统分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '9',
-      label: 'RISC-V 分论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '9',
-      label: '汽车智能化开源创新论坛',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '10',
-      label: '开源教育分论坛（AI 方向）',
-      children: 'Content of Tab Pane 3'
-    },
-    {
-      key: '11',
-      label: '开源教育分论坛（开源之夏与开源人才培养）',
-      children: 'Content of Tab Pane 3'
-    },
-  ]
+    if (sessions.length === 0) {
+      return [{
+        key: 'empty',
+        label: '暂无会场',
+        children: <div className={styles.empty}>暂无会场数据</div>
+      }]
+    }
+
+    return sessions.map((session, index) => ({
+      key: session.ID.toString(),
+      label: session.title || `会场${index + 1}`,
+      children: <SessionContent {...session} />
+    }))
+  }
+
+  const items: TabsProps['items'] = getSessionTabs()
 
   return (
     <div className={styles.tabContent}>
-      {/* <div> detail </div>  活动详情， 地图等 */}
       <Tabs
-        defaultActiveKey="1"
+        defaultActiveKey={sessions.length > 0 ? sessions[0].ID.toString() : '1'}
         size="large"
         items={items}
         onChange={onChange}

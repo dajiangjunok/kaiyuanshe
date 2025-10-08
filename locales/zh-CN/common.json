@@ -44,10 +44,11 @@
       "china_public_welfare_map": "中国公益地图"
     },
     "activities": {
-      "title": "活动项目",
+      "title": "活动与项目",
       "wonderful_activities": "精彩活动",
       "hosted_activities": "主办活动",
       "activity_calendar": "活动日历",
+      "coscon_activities": "开源年会",
       "open_source_projects": "开源项目",
       "open_source_toolbox": "开源百宝箱",
       "open_hackathon_platform": "开放黑客松平台",

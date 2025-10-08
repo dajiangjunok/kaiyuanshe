@@ -465,3 +465,210 @@ export const formatDateTime = (date: unknown, time: unknown): string => {
     return '';
   }
 };
+
+
+// venue
+export interface Session {
+  ID: number;
+  title: string;
+  address: string;
+  description: string;
+  producer: string;
+  volunteer: string;
+  event_id: number;
+  created_at?: string;
+  updated_at?: string;
+  agendas: Agenda[];
+}
+
+export interface Agenda {
+  ID: number;
+  topic: string;
+  start_time: string;
+  end_time: string;
+  session_id: number;
+  created_at?: string;
+  updated_at?: string;
+  speakers: Speaker[];
+}
+
+export interface Speaker {
+  ID: number;
+  name: string;
+  avatar: string;
+  title: string;
+  description: string;
+  company: string;
+  agenda_id: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface CreateSessionParams {
+  title: string;
+  description: string;
+  address: string;
+  producer: string;
+  volunteer: string;
+  agendas: AgendaParams[];
+}
+
+export interface AgendaParams {
+  topic: string;
+  start_time: string;
+  end_time: string;
+  speakers: SpeakerParams[];
+}
+
+export interface SpeakerParams {
+  name: string;
+  avatar?: string;
+  title?: string;
+  description?: string;
+  company?: string;
+}
+
+export interface SessionResult {
+  success: boolean;
+  message: string;
+  data?: Session;
+}
+
+export interface SessionsResult {
+  success: boolean;
+  message: string;
+  data?: Session[];
+}
+
+
+export const createSession = async (
+  eventId: string,
+  params: CreateSessionParams
+): Promise<SessionResult> => {
+  try {
+    const body = {
+      title: params.title.trim(),
+      description: params.description.trim(),
+      producer: params.producer.trim(),
+      volunteer: params.volunteer.trim(),
+      agendas: params.agendas.map(agenda => ({
+        topic: agenda.topic.trim(),
+        start_time: agenda.start_time,
+        end_time: agenda.end_time,
+        speakers: agenda.speakers.map(speaker => ({
+          name: speaker.name.trim(),
+          avatar: speaker.avatar ?? '',
+          title: speaker.title ?? '',
+          description: speaker.description ?? '',
+          company: speaker.company ?? '',
+        })),
+      })),
+    };
+
+    const response = await apiRequest<SessionResult>(`/events/${eventId}/venues`, 'POST', body);
+
+    if (response.code === 200 && response.data) {
+      return {
+        success: true,
+        message: response.message ?? '会场创建成功',
+        data: response.data as unknown as Session,
+      };
+    }
+
+    return { success: false, message: response.message ?? '会场创建失败' };
+  } catch (error: unknown) {
+    console.error('创建会场异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
+
+export const getSessionsByEvent = async (eventId: string): Promise<SessionsResult> => {
+  try {
+    const response = await apiRequest<SessionsResult>(`/events/${eventId}/venues`, 'GET');
+
+    if (response.code === 200 && response.data) {
+      return {
+        success: true,
+        message: response.message ?? '获取会场列表成功',
+        data: response.data as unknown as Session[],
+      };
+    }
+
+    return { success: false, message: response.message ?? '获取会场列表失败' };
+  } catch (error: unknown) {
+    console.error('获取会场列表异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
+
+export const updateSession = async (
+  eventId: string,
+  venueId: string,
+  params: CreateSessionParams
+): Promise<SessionResult> => {
+  try {
+    const body = {
+      title: params.title.trim(),
+      description: params.description.trim(),
+      producer: params.producer.trim(),
+      volunteer: params.volunteer.trim(),
+      agendas: params.agendas.map(agenda => ({
+        topic: agenda.topic.trim(),
+        start_time: agenda.start_time,
+        end_time: agenda.end_time,
+        speakers: agenda.speakers.map(speaker => ({
+          name: speaker.name.trim(),
+          avatar: speaker.avatar ?? '',
+          title: speaker.title ?? '',
+          description: speaker.description ?? '',
+          company: speaker.company ?? '',
+        })),
+      })),
+    };
+
+    const response = await apiRequest<SessionResult>(`/events/${eventId}/venues/${venueId}`, 'PUT', body);
+
+    if (response.code === 200 && response.data) {
+      return {
+        success: true,
+        message: response.message ?? '会场更新成功',
+        data: response.data as unknown as Session,
+      };
+    }
+
+    return { success: false, message: response.message ?? '会场更新失败' };
+  } catch (error: unknown) {
+    console.error('更新会场异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
+
+export const deleteSession = async (eventId: string, venueId: string): Promise<SessionResult> => {
+  try {
+    const response = await apiRequest<SessionResult>(`/events/${eventId}/venues/${venueId}`, 'DELETE');
+
+    if (response.code === 200) {
+      return {
+        success: true,
+        message: response.message ?? '会场删除成功',
+      };
+    }
+
+    return { success: false, message: response.message ?? '会场删除失败' };
+  } catch (error: unknown) {
+    console.error('删除会场异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
