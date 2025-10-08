@@ -207,10 +207,8 @@ export default function NewEventPage() {
                   <Select
                     placeholder="请选择活动类型"
                     options={[
-                      { label: 'AMA', value: 'ama' },
-                      { label: '黑客松', value: 'hackathon' },
                       { label: '社区聚会', value: 'meetup' },
-                      { label: 'Workshop', value: 'workshop' },
+                      { label: '开源年会', value: 'coscon' },
                     ]}
                   />
                 </Form.Item>

@@ -26,17 +26,15 @@ import {
   LayoutGrid,
   List,
 } from 'lucide-react';
-import {    SiX,    } from 'react-icons/si';
+import { SiX, } from 'react-icons/si';
 import Link from 'next/link';
 import styles from './index.module.css';
 import { getEvents, deleteEvent } from '../api/event';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/contexts/AuthContext'; 
+import { useAuth } from '@/contexts/AuthContext';
 
 const { Search: AntSearch } = Input;
 const { Option } = Select;
-
- 
 
 type ViewMode = 'grid' | 'list';
 
@@ -44,7 +42,7 @@ export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY-MM-DD');
 }
 
-const allowedEventTypes = ['meetup', 'ama', 'hackathon', 'workshop'];
+const allowedEventTypes = ['meetup', 'coscon'];
 
 export default function EventsPage() {
   const { message } = AntdApp.useApp();
@@ -59,19 +57,21 @@ export default function EventsPage() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [wechatModalVisible, setWechatModalVisible] = useState(false);
   const [publishStatus, setPublishStatus] = useState(2);
- 
 
   const router = useRouter();
-  // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();
-
   const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
-  // 新增筛选状态
+  // 新增筛选状态 - 从 query 参数初始化 eventTypeFilter
   const [statusFilter, setStatusFilter] = useState('3');
   const [locationKeyword, setLocationKeyword] = useState('');
   const [eventModeFilter, setEventModeFilter] = useState('');
-  const [eventTypeFilter, setEventTypeFilter] = useState('');
+  const [eventTypeFilter, setEventTypeFilter] = useState(
+    // 从 URL query 参数初始化
+    (router.query.type as string) && allowedEventTypes.includes(router.query.type as string)
+      ? (router.query.type as string)
+      : ''
+  );
 
   // 加载事件列表
   const loadEvents = useCallback(async (params?: {
@@ -105,7 +105,6 @@ export default function EventsPage() {
       const result = await getEvents(queryParams);
 
       if (result.success && result.data) {
-        // 处理后端返回的数据结构
         if (result.data.events && Array.isArray(result.data.events)) {
           setEvents(result.data.events);
           setCurrentPage(result.data.page || 1);
@@ -133,13 +132,77 @@ export default function EventsPage() {
     }
   }, [searchKeyword, selectedTag, sortOrder, currentPage, pageSize, statusFilter, locationKeyword, eventModeFilter, eventTypeFilter, publishStatus]);
 
+  // 监听 query 参数变化
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const queryEventType = router.query.event_type as string;
+
+    if (queryEventType && allowedEventTypes.includes(queryEventType)) {
+      // 只有当 query 参数与当前筛选值不同时才更新
+      if (queryEventType !== eventTypeFilter) {
+        setEventTypeFilter(queryEventType);
+        setCurrentPage(1);
+
+        // 立即加载对应类型的事件
+        loadEvents({
+          event_type: queryEventType,
+          page: 1
+        });
+
+        // 可选：清除 URL 参数（如果需要一次性使用）
+        // router.replace(
+        //   {
+        //     pathname: router.pathname,
+        //     query: {},
+        //   },
+        //   undefined,
+        //   { shallow: true }
+        // );
+      }
+    } else if (!queryEventType && eventTypeFilter) {
+      // 如果 URL 中没有 type 参数但当前有筛选值，清空筛选
+      setEventTypeFilter('');
+      setCurrentPage(1);
+      loadEvents({ event_type: '', page: 1 });
+    }
+  }, [router.isReady, router.query.type, eventTypeFilter, loadEvents, router]);
+
+  // 根据登录状态更新 publishStatus
+  useEffect(() => {
+    if (status === 'authenticated' && permissions.includes('event:review')) {
+      setPublishStatus(0);
+    } else if (status === 'unauthenticated') {
+      setPublishStatus(2);
+    }
+  }, [status, permissions]);
+
+  // 主要的数据加载效果
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    loadEvents();
+  }, [
+    searchKeyword,
+    selectedTag,
+    sortOrder,
+    currentPage,
+    pageSize,
+    statusFilter,
+    locationKeyword,
+    eventModeFilter,
+    eventTypeFilter,
+    publishStatus,
+    loadEvents,
+    router.isReady,
+    router.query.type, // 添加这个依赖
+  ]);
+
   // 搜索事件
   const handleSearch = async (keyword: string) => {
     setSearchKeyword(keyword);
     setCurrentPage(1);
   };
-
- 
 
   // 排序切换
   const handleSortChange = async (order: 'asc' | 'desc') => {
@@ -159,15 +222,37 @@ export default function EventsPage() {
     setCurrentPage(1);
   };
 
-  // 活动类型筛选
+  // 活动形式筛选
   const handleEventModeFilter = async (event_mode: string) => {
     setEventModeFilter(event_mode);
     setCurrentPage(1);
   };
 
+  // 活动类型筛选 - 更新后同时更新 URL（可选）
   const handleEventTypeFilter = async (event_type: string) => {
     setEventTypeFilter(event_type);
     setCurrentPage(1);
+
+    // 可选：更新 URL 参数
+    if (event_type) {
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: { event_type: event_type },
+        },
+        undefined,
+        { shallow: true }
+      );
+    } else {
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: {},
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
   };
 
   // 分页处理
@@ -178,7 +263,7 @@ export default function EventsPage() {
     }
   };
 
-  // 清除筛选
+  // 清除筛选 - 同时清除 URL 参数
   const handleClearFilters = async () => {
     setSearchKeyword('');
     setSelectedTag('');
@@ -188,6 +273,16 @@ export default function EventsPage() {
     setEventModeFilter('');
     setEventTypeFilter('');
     setCurrentPage(1);
+
+    // 清除 URL 参数
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {},
+      },
+      undefined,
+      { shallow: true }
+    );
   };
 
   const handleSwitchViewMode = (mode: ViewMode) => {
@@ -199,7 +294,7 @@ export default function EventsPage() {
   const startIndex = (currentPage - 1) * pageSize + 1;
   const endIndex = Math.min(currentPage * pageSize, total);
 
-  const currentEvents = events; // 服务端已经处理了分页
+  const currentEvents = events;
 
   // 获取事件状态显示文本
   const getStatusText = (event: any) => {
@@ -224,78 +319,19 @@ export default function EventsPage() {
   };
 
   const handleDeleteEvent = async (id: number) => {
-    // 调用创建事件接口
     try {
       const result = await deleteEvent(id);
       if (result.success) {
         message.success(result.message);
         loadEvents();
       } else {
-        message.error(result.message || '创建活动失败');
+        message.error(result.message || '删除活动失败');
       }
     } catch {
       message.error('删除失败，请重试');
     }
   };
 
-  useEffect(() => {
-    if (!router.isReady) return;
-
-    const queryEventType = router.query.type as string;
-
-    if (
-      queryEventType &&
-      allowedEventTypes.includes(queryEventType) &&
-      queryEventType !== eventTypeFilter
-    ) {
-      // 更新筛选条件
-      setEventTypeFilter(queryEventType);
-      setCurrentPage(1);
-
-      loadEvents({ event_type: queryEventType, page: 1 });
-
-      // 清空 URL 参数
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: {},
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-  }, [router.isReady, router.query.type, eventTypeFilter, loadEvents, router]);
-
-  // 根据登录状态更新 publishStatus
-  useEffect(() => {
-    if (status === 'authenticated' && permissions.includes('event:review')) {
-      setPublishStatus(0);
-    } else if (status === 'unauthenticated') {
-      setPublishStatus(2);
-    }
-  }, [status, permissions, eventTypeFilter, loadEvents, router]);
-
-  useEffect(() => {
-    if (!router.isReady) return;
-
-    if (!router.query.type) {
-      loadEvents();
-    }
-  }, [
-    searchKeyword,
-    selectedTag,
-    sortOrder,
-    currentPage,
-    pageSize,
-    statusFilter,
-    locationKeyword,
-    eventModeFilter,
-    eventTypeFilter,
-    publishStatus,
-    loadEvents,
-    router.isReady,
-    router.query.type,
-  ]);
 
   return (
     <div className={`${styles.container} nav-t-top`}>
@@ -306,10 +342,10 @@ export default function EventsPage() {
             <h1 className={styles.title}>精彩活动</h1>
             <p className={styles.subtitle}>发现精彩活动，连接志同道合的人</p>
           </div>
-            <Link href="/events/new" className={styles.createButton}>
-              <Plus size={20} />
-              发布活动
-            </Link>
+          <Link href="/events/new" className={styles.createButton}>
+            <Plus size={20} />
+            发布活动
+          </Link>
         </div>
       </div>
 
@@ -338,10 +374,8 @@ export default function EventsPage() {
             onChange={handleEventTypeFilter}
           >
             <Option value="">所有</Option>
-            <Option value="hackathon">黑客松</Option>
-            <Option value="workshop">Workshop</Option>
-            <Option value="ama">AMA</Option>
             <Option value="meetup">社区聚会</Option>
+            <Option value="coscon">开源年会</Option>
           </Select>
           <Select
             size="large"
@@ -438,10 +472,10 @@ export default function EventsPage() {
           <div className={styles.emptyTitle}>暂无活动</div>
           <div className={styles.emptyDescription}>
             {searchKeyword ||
-            selectedTag ||
-            statusFilter ||
-            locationKeyword ||
-            eventModeFilter
+              selectedTag ||
+              statusFilter ||
+              locationKeyword ||
+              eventModeFilter
               ? '没有找到符合条件的活动'
               : '还没有创建任何活动'}
           </div>
@@ -488,7 +522,7 @@ export default function EventsPage() {
                       )}
                       <div className={styles.cardActions}>
                         {status === 'authenticated' &&
-                        permissions.includes('event:write') ? (
+                          permissions.includes('event:write') ? (
                           <Button
                             className={styles.actionIconButton}
                             onClick={(e) => {
@@ -526,7 +560,7 @@ export default function EventsPage() {
                     </div>
                   </div>
                 }
-                // variant={false}
+              // variant={false}
               >
                 <div className={styles.cardBody}>
                   <h3 className={styles.eventTitle}>{event.title}</h3>
@@ -666,7 +700,7 @@ export default function EventsPage() {
                       title="查看详情"
                     /> */}
                     {status === 'authenticated' &&
-                    permissions.includes('event:write') ? (
+                      permissions.includes('event:write') ? (
                       <Button
                         type="text"
                         size="small"
@@ -689,7 +723,7 @@ export default function EventsPage() {
                       title="分享活动"
                     />
                     {status === 'authenticated' &&
-                    permissions.includes('event:delete') ? (
+                      permissions.includes('event:delete') ? (
                       <Popconfirm
                         title="删除活动"
                         description="你确定删除这个活动吗？"
@@ -729,7 +763,7 @@ export default function EventsPage() {
           />
         </div>
       </div>
-      
+
       <Modal
         open={wechatModalVisible}
         onCancel={() => setWechatModalVisible(false)}

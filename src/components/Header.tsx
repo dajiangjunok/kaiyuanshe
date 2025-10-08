@@ -224,6 +224,12 @@ export default function Header() {
             ]
           },
           {
+            key: 'coscon',
+            label: t('navigation.activities.coscon_activities'),
+            icon: '🎉',
+            href: '/events?event_type=coscon'
+          },
+          {
             key: 'open-source-projects',
             label: t('navigation.activities.open_source_projects'),
             icon: '🚀',
