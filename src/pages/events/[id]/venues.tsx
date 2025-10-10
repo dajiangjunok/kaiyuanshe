@@ -798,6 +798,7 @@ export default function VenuesPage() {
                           updateAgenda(getUniqueId(activeVenue), getUniqueId(agenda), "start_time", time ? time.format("YYYY-MM-DD HH:mm:ss") : "")
                         }
                         className={styles.timePicker}
+                        disabled={agenda.ID !== null}
                       />
                     </div>
                     <div className={styles.timeGroup}>
@@ -813,6 +814,7 @@ export default function VenuesPage() {
                           updateAgenda(getUniqueId(activeVenue), getUniqueId(agenda), "end_time", time ? time.format("YYYY-MM-DD HH:mm:ss") : "")
                         }
                         className={styles.timePicker}
+                        disabled={agenda.ID !== null}
                       />
                     </div>
                   </div>
@@ -825,6 +827,7 @@ export default function VenuesPage() {
                       placeholder="请输入议程主题"
                       value={agenda.topic || ''}
                       onChange={(e) => updateAgenda(getUniqueId(activeVenue), getUniqueId(agenda), "topic", e.target.value)}
+                      disabled={agenda.ID !== null}
                     />
                   </div>
 
@@ -837,6 +840,7 @@ export default function VenuesPage() {
                         icon={<Plus size={14} />}
                         onClick={() => addSpeaker(getUniqueId(activeVenue), getUniqueId(agenda))}
                         className={styles.addSpeakerBtn}
+                        disabled={agenda.ID !== null}
                       >
                         添加嘉宾
                       </Button>
@@ -860,6 +864,7 @@ export default function VenuesPage() {
                                 onChange={(e) =>
                                   updateSpeaker(getUniqueId(activeVenue), getUniqueId(agenda), getUniqueId(speaker), "name", e.target.value)
                                 }
+                                disabled={speaker.ID !== null}
                               />
                             </div>
                             <div className={styles.speakerField}>
@@ -872,6 +877,7 @@ export default function VenuesPage() {
                                 onChange={(e) =>
                                   updateSpeaker(getUniqueId(activeVenue), getUniqueId(agenda), getUniqueId(speaker), "title", e.target.value)
                                 }
+                                disabled={speaker.ID !== null}
                               />
                             </div>
                           </div>
@@ -883,6 +889,7 @@ export default function VenuesPage() {
                               onChange={(e) =>
                                 updateSpeaker(getUniqueId(activeVenue), getUniqueId(agenda), getUniqueId(speaker), "avatar", e.target.value)
                               }
+                              disabled={speaker.ID !== null}
                             />
                           </div>
                           <Button
