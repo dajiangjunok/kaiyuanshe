@@ -1,299 +1,329 @@
 /* Complete redesign to match the exact layout from the images */
 
 .container {
-    min-height: 100vh;
-    background: #f5f5f5;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Add wrapper to constrain width */
 .contentWrapper {
-    width: 100%;
-    max-width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Tabs bar styling */
 .tabsBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 16px;
-    background: white;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
 }
 
 .tabsList {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    overflow-x: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  overflow-x: auto;
 }
 
 .tab {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
-    background: transparent;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #666;
-    transition: all 0.2s;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
 }
 
 .tab:hover {
-    color: #1677ff;
+  color: #1677ff;
 }
 
 .tabActive {
-    color: #1677ff;
-    font-weight: 500;
-    border-bottom: 2px solid #1677ff;
+  color: #1677ff;
+  font-weight: 500;
+  border-bottom: 2px solid #1677ff;
 }
 
 .tabClose {
-    opacity: 0;
-    transition: opacity 0.2s;
-    cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  cursor: pointer;
 }
 
 .tab:hover .tabClose {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .tabClose:hover {
-    opacity: 1;
-    color: #ff4d4f;
+  opacity: 1;
+  color: #ff4d4f;
 }
 
 .addVenueBtn {
-    height: 32px;
-    border-radius: 6px;
-    flex-shrink: 0;
-    background: #1677ff;
+  height: 32px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #1677ff;
 }
 
 /* Main form card */
 .formCard {
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e8e8e8;
-    padding: 32px;
-    margin-bottom: 16px;
-    /* Remove max-width since it's now controlled by contentWrapper */
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  padding: 32px;
+  margin-bottom: 16px;
+  /* Remove max-width since it's now controlled by contentWrapper */
 }
 
 /* Section styling */
 .section {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .section:last-of-type {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .sectionTitle {
-    font-size: 18px;
-    font-weight: 600;
-    color: #000;
-    margin: 0 0 24px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 24px 0;
 }
 
 .sectionHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 /* Form groups */
 .formGroup {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .label {
-    display: block;
-    font-size: 14px;
-    color: #000;
-    margin-bottom: 8px;
-    font-weight: normal;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
+  font-weight: normal;
 }
 
 .smallLabel {
-    display: block;
-    font-size: 14px;
-    color: #000;
-    margin-bottom: 8px;
-    font-weight: normal;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
+  font-weight: normal;
 }
 
 .required {
-    color: #ff4d4f;
-    margin-right: 4px;
+  color: #ff4d4f;
+  margin-right: 4px;
 }
 
 /* Buttons */
 .addAgendaBtn {
-    border: 1px dashed #d9d9d9;
-    color: #666;
+  border: 1px dashed #d9d9d9;
+  color: #666;
 }
 
 .addAgendaBtn:hover {
-    border-color: #1677ff;
-    color: #1677ff;
+  border-color: #1677ff;
+  color: #1677ff;
 }
 
 .deleteBtn {
-    padding: 0;
-    height: auto;
+  padding: 0;
+  height: auto;
 }
 
 /* Agenda card */
 .agendaCard {
-    border: 1px solid #e8e8e8;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 16px;
-    background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: #fafafa;
 }
 
 .agendaHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .agendaTitle {
-    font-size: 15px;
-    font-weight: 500;
-    color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 }
 
 /* Time row */
 .timeRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .timeGroup {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .timeLabel {
-    font-size: 14px;
-    color: #000;
-    margin-bottom: 8px;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
 }
 
 .timePicker {
-    width: 100%;
+  width: 100%;
 }
 
 /* Speakers section */
 .speakersSection {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e8e8e8;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e8e8;
 }
 
 .speakersHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .addSpeakerBtn {
-    border: 1px dashed #d9d9d9;
-    color: #666;
-    height: 28px;
-    font-size: 13px;
+  border: 1px dashed #d9d9d9;
+  color: #666;
+  height: 28px;
+  font-size: 13px;
 }
 
 .addSpeakerBtn:hover {
-    border-color: #1677ff;
-    color: #1677ff;
+  border-color: #1677ff;
+  color: #1677ff;
 }
 
 .speakerItem {
-    background: white;
-    border: 1px solid #e8e8e8;
-    border-radius: 6px;
-    padding: 16px;
-    margin-bottom: 12px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 12px;
 }
 
 .speakerRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .speakerField {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .deleteSpeakerBtn {
-    padding: 0;
-    height: auto;
-    font-size: 13px;
+  padding: 0;
+  height: auto;
+  font-size: 13px;
 }
 
 /* Submit section */
 .submitSection {
-    margin-top: 40px;
-    padding-top: 0;
+  margin-top: 40px;
+  padding-top: 0;
+}
+
+.submitTip {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #fff7e6;
+  border: 1px solid #ffd591;
+  border-radius: 6px;
+  color: #d46b08;
+  font-size: 14px;
+  text-align: center;
+}
+
+.formGroupBtn{
+    text-align: right;
 }
 
 .submitBtn {
-    height: 44px;
-    font-size: 16px;
-    border-radius: 6px;
-    background: #1677ff;
+  height: 44px;
+  font-size: 16px;
+  border-radius: 6px;
+  background: #1677ff;
+}
+
+.generateBtn {
+  box-shadow: 0 2px 8px rgba(82, 196, 26, 0.2);
+  transition: all 0.3s ease;
+}
+
+.generateBtn:hover {
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  transform: translateY(-1px);
+}
+
+.updateBtn {
+  background: #1677ff;
+  border-color: #1677ff;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
-        padding: 12px;
-    }
+  .container {
+    padding: 12px;
+  }
 
-    .tabsBar {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .tabsBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .tabsList {
-        overflow-x: auto;
-    }
+  .tabsList {
+    overflow-x: auto;
+  }
 
-    .addVenueBtn {
-        width: 100%;
-    }
+  .addVenueBtn {
+    width: 100%;
+  }
 
-    .formCard {
-        padding: 20px;
-    }
+  .formCard {
+    padding: 20px;
+  }
 
-    .timeRow,
-    .speakerRow {
-        grid-template-columns: 1fr;
-    }
+  .timeRow,
+  .speakerRow {
+    grid-template-columns: 1fr;
+  }
 }
