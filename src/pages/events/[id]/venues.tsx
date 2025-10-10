@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Button, DatePicker, Input, TimePicker, message, App as AntdApp } from "antd"
+import { Button, DatePicker, Input, TimePicker, message, App as AntdApp, Form } from "antd"
 import { Plus, Trash2 } from "lucide-react"
 import styles from "./venues.module.css"
 import dayjs from "dayjs"
@@ -35,6 +35,7 @@ interface Venue {
 
 export default function VenuesPage() {
   const { message } = AntdApp.useApp();
+  const [form] = Form.useForm();
   const router = useRouter();
   const { id } = router.query;
 
@@ -117,7 +118,41 @@ export default function VenuesPage() {
     }
   }, [router.isReady, eventId]);
 
+  const activeVenue = venues.find((v) => v.ID === activeVenueId) || (venues.length > 0 ? venues[0] : createEmptyVenue())
+
+  // 当切换会场时，同步表单值
+  useEffect(() => {
+    if (activeVenue) {
+      form.setFieldsValue({
+        name: activeVenue.name,
+        address: activeVenue.address,
+        description: activeVenue.description,
+        producer: activeVenue.producer,
+        volunteers: activeVenue.volunteers,
+      });
+    }
+  }, [activeVenue, form]);
+
   const addVenue = () => {
+    // 检查是否存在会场
+    if (venues.length === 0) {
+      const newVenue = createEmptyVenue();
+      setVenues([...venues, newVenue])
+      setActiveVenueId(newVenue.ID)
+      message.success("已添加新会场")
+      return;
+    }
+
+    // 获取最后一个会场
+    const lastVenue = venues[venues.length - 1];
+    
+    // 检查最后一个会场是否已经保存（具有后端生成的ID）
+    // 临时ID是纯数字字符串（时间戳），后端ID通常不是纯数字
+    if (/^\d+$/.test(lastVenue.ID)) {
+      message.warning("请先保存当前会场，然后再添加新会场");
+      return;
+    }
+
     const newVenue = createEmptyVenue();
     setVenues([...venues, newVenue])
     setActiveVenueId(newVenue.ID)
@@ -367,6 +402,102 @@ export default function VenuesPage() {
     }
   };
 
+  // 生成/更新单个会场
+  const handleSaveVenue = async () => {
+    try {
+      // 验证表单
+      await form.validateFields();
+      
+      const venue = activeVenue;
+      
+      // 如果 venue.ID 是临时ID（纯数字字符串），说明是新建的会场
+      if (/^\d+$/.test(venue.ID)) {
+        // 创建新会场
+        const result = await createSession(eventId, {
+          title: venue.name,
+          description: venue.description,
+          address: venue.address,
+          producer: venue.producer,
+          volunteer: venue.volunteers,
+          agendas: venue.agendas.map(agenda => ({
+            topic: agenda.topic,
+            start_time: agenda.start_time,
+            end_time: agenda.end_time,
+            speakers: agenda.speakers.map(speaker => ({
+              name: speaker.name,
+              avatar: speaker.avatar,
+              title: speaker.title,
+            })),
+          })),
+        });
+
+        if (result.success) {
+          message.success("会场生成成功");
+          // 重新获取最新的会场数据来更新本地状态
+          const latestResult = await getSessionsByEvent(eventId);
+          if (latestResult.success && latestResult.data) {
+            const updatedVenues: Venue[] = latestResult.data.map(session => ({
+              ID: session.ID.toString(),
+              name: session.title,
+              address: session.address,
+              description: session.description,
+              producer: session.producer,
+              volunteers: session.volunteer,
+              agendas: session.agendas.map(agenda => ({
+                ID: agenda.ID.toString(),
+                topic: agenda.topic,
+                start_time: agenda.start_time,
+                end_time: agenda.end_time,
+                speakers: agenda.speakers.map(speaker => ({
+                  ID: speaker.ID.toString(),
+                  name: speaker.name,
+                  title: speaker.title,
+                  avatar: speaker.avatar,
+                })),
+              })),
+            }));
+            setVenues(updatedVenues);
+            // 找到刚创建的会场并设为活动状态
+            const newVenue = updatedVenues.find(v => v.name === venue.name);
+            if (newVenue) {
+              setActiveVenueId(newVenue.ID);
+            }
+          }
+        } else {
+          message.error(result.message || "生成会场失败");
+        }
+      } else {
+        // 更新已存在的会场
+        const result = await updateSession(eventId, venue.ID, {
+          title: venue.name,
+          description: venue.description,
+          address: venue.address,
+          producer: venue.producer,
+          volunteer: venue.volunteers,
+          agendas: venue.agendas.map(agenda => ({
+            topic: agenda.topic,
+            start_time: agenda.start_time,
+            end_time: agenda.end_time,
+            speakers: agenda.speakers.map(speaker => ({
+              name: speaker.name,
+              avatar: speaker.avatar,
+              title: speaker.title,
+            })),
+          })),
+        });
+
+        if (result.success) {
+          message.success("会场更新成功");
+        } else {
+          message.error(result.message || "更新会场失败");
+        }
+      }
+    } catch (error) {
+      console.error("保存会场数据异常:", error);
+      message.error("网络错误，请稍后重试");
+    }
+  };
+
   // 等待路由参数加载
   if (!router.isReady || loading) {
     return (
@@ -383,8 +514,6 @@ export default function VenuesPage() {
       </div>
     );
   }
-
-  const activeVenue = venues.find((v) => v.ID === activeVenueId) || (venues.length > 0 ? venues[0] : createEmptyVenue())
 
   return (
     <div className={`${styles.container} nav-t-top`}>
@@ -419,57 +548,70 @@ export default function VenuesPage() {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>会场信息</h3>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>
-                <span className={styles.required}>*</span> 会场名称
-              </label>
-              <Input
-                placeholder="请输入会场名称"
-                value={activeVenue.name || ''}
-                onChange={(e) => updateVenue(activeVenue.ID, "name", e.target.value)}
-              />
-            </div>
+            <Form 
+              form={form} 
+              layout="vertical"
+              onValuesChange={(changedValues) => {
+                // 当表单值改变时，同步更新会场数据
+                Object.keys(changedValues).forEach(key => {
+                  updateVenue(activeVenue.ID, key as keyof Venue, changedValues[key]);
+                });
+              }}
+            >
+              <Form.Item
+                name="name"
+                label="会场名称"
+                rules={[{ required: true, message: '请输入会场名称' }]}
+                className={styles.formGroup}
+              >
+                <Input placeholder="请输入会场名称" />
+              </Form.Item>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>
-                <span className={styles.required}>*</span> 地址
-              </label>
-              <Input
-                placeholder="请输入会场地址"
-                value={activeVenue.address || ''}
-                onChange={(e) => updateVenue(activeVenue.ID, "address", e.target.value)}
-              />
-            </div>
+              <Form.Item
+                name="address"
+                label="地址"
+                rules={[{ required: true, message: '请输入会场地址' }]}
+                className={styles.formGroup}
+              >
+                <Input placeholder="请输入会场地址" />
+              </Form.Item>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>描述</label>
-              <TextArea
-                rows={4}
-                placeholder="请输入会场介绍"
-                value={activeVenue.description || ''}
-                onChange={(e) => updateVenue(activeVenue.ID, "description", e.target.value)}
-              />
-            </div>
+              <Form.Item
+                name="description"
+                label="描述"
+                className={styles.formGroup}
+              >
+                <TextArea rows={4} placeholder="请输入会场介绍" />
+              </Form.Item>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>
-                <span className={styles.required}>*</span> 出品人
-              </label>
-              <Input
-                placeholder="请输入出品人"
-                value={activeVenue.producer || ''}
-                onChange={(e) => updateVenue(activeVenue.ID, "producer", e.target.value)}
-              />
-            </div>
+              <Form.Item
+                name="producer"
+                label="出品人"
+                rules={[{ required: true, message: '请输入出品人' }]}
+                className={styles.formGroup}
+              >
+                <Input placeholder="请输入出品人" />
+              </Form.Item>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>志愿者（用逗号分隔）</label>
-              <Input
-                placeholder="请输入志愿者"
-                value={activeVenue.volunteers || ''}
-                onChange={(e) => updateVenue(activeVenue.ID, "volunteers", e.target.value)}
-              />
-            </div>
+              <Form.Item
+                name="volunteers"
+                label="志愿者（用逗号分隔）"
+                className={styles.formGroup}
+              >
+                <Input placeholder="请输入志愿者" />
+              </Form.Item>
+
+              <Form.Item className={styles.formGroup}>
+                <Button 
+                  className={styles.submitBtn}
+                  type="primary" 
+                  size="large"
+                  onClick={handleSaveVenue}
+                >
+                  {/^\d+$/.test(activeVenue.ID) ? "生成会场" : "更新会场"}
+                </Button>
+              </Form.Item>
+            </Form>
           </div>
         </div>
 
