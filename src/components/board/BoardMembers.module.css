@@ -1,0 +1,37 @@
+.boardMembers {
+  width: 100%;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  /* padding: 60px 0; */
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.sectionTitle {
+  text-align: left;
+  font-size: 36px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .boardMembers {
+    padding: 40px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
