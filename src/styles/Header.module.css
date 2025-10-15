@@ -6,63 +6,30 @@
 
 /* Header */
 .header {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 101;
-  padding: 0.75rem 1rem 0;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .headerContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 
-    0px 4px 20px rgba(0, 0, 0, 0.1),
-    0px 1px 0px rgba(255, 255, 255, 0.4) inset,
-    0px -1px 0px rgba(255, 255, 255, 0.2) inset;
-  border-radius: 72px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  min-height: 72px;
+  padding: 0.75rem 1.5rem;
+  min-height: 60px;
   position: relative;
-  overflow: hidden;
 }
 
-.headerContent::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 50%, 
-    rgba(255, 255, 255, 0.1) 100%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.headerContent:hover {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(25px) saturate(200%);
-  -webkit-backdrop-filter: blur(25px) saturate(200%);
-  box-shadow: 
-    0px 8px 32px rgba(0, 0, 0, 0.15),
-    0px 1px 0px rgba(255, 255, 255, 0.5) inset,
-    0px -1px 0px rgba(255, 255, 255, 0.3) inset;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
-}
 
 .logoInfo {
   display: flex;
@@ -72,12 +39,9 @@
 }
 
 .logoTitle {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--foreground) 0%, var(--primary) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: #000;
+  color: #1a1a1a;
   white-space: nowrap;
   letter-spacing: -0.02em;
 }
@@ -85,35 +49,40 @@
 .nav {
   display: none;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   flex: 1;
-  justify-content: flex-end;
-  margin: 0 2.5rem;
+  justify-content: center;
+  margin: 0 2rem;
 }
 
 .navItem {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #000;
-  font-size: 1rem;
+  color: #4a5568;
+  font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
   white-space: nowrap;
   position: relative;
 }
 
 .navItem:hover {
-  color:  #eee;
-  background: rgba(30, 58, 138, 0.1);
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
 }
 
 .navIcon {
-  width: 1rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform 0.2s ease;
+}
+
+.navItem:hover .navIcon {
+  transform: rotate(180deg);
 }
 
 .navButton {
@@ -414,18 +383,20 @@
 /* 移动端 Header 优化 */
 @media (max-width: 768px) {
   .header {
-    padding: 0.5rem 1rem 0;
+    padding: 0.5rem 0.75rem;
   }
   
   .headerContent {
-    max-width: calc(100% - 2rem);
-    padding: 0.75rem 1.25rem;
-    margin: 0 1rem;
-    min-height: 60px;
+    padding: 0.5rem 1rem;
+    min-height: 56px;
   }
   
   .logoTitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+  
+  .mobileSearchContainer {
+    display: flex;
   }
   
   .navButton {
@@ -436,18 +407,20 @@
 
 @media (max-width: 480px) {
   .header {
-    padding: 0.375rem 0.5rem 0;
+    padding: 0.25rem 0.5rem;
   }
   
   .headerContent {
-    padding: 0.6rem 1rem;
-    margin: 0 0.5rem;
-    max-width: calc(100% - 1rem);
-    min-height: 56px;
+    padding: 0.5rem 0.75rem;
+    min-height: 52px;
   }
   
   .logoTitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+  }
+  
+  .mobileSearchInput {
+    width: 100px;
   }
   
   .mobileMenuButton {
@@ -463,6 +436,321 @@
   .navButton {
     padding: 0.5rem 0.8rem;
     font-size: 0.8rem;
+  }
+  
+  .socialLinks {
+    gap: 0.5rem;
+  }
+  
+  .socialLink {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 搜索相关样式 */
+.searchContainer {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.searchInput {
+  width: 240px;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+.searchInput:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+}
+
+.searchInput:focus-within {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.searchIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+}
+
+/* 移动端搜索 */
+.mobileSearchContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.mobileSearchInput {
+  width: 120px;
+  border-radius: 15px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.mobileSearchIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #6b7280;
+}
+
+.mobileMenuSearch {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobileMenuSearchInput {
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 社交链接 */
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.socialLink {
+  padding: 0.5rem 1rem;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.socialLink:hover {
+  background: #2563eb;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* 全屏下拉菜单样式 */
+.fullscreenDropdownContainer {
+  position: relative;
+}
+
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #4a5568;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  position: relative;
+}
+
+.dropdownTrigger:hover {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.navIconActive {
+  transform: rotate(180deg);
+}
+
+.fullscreenDropdown {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.dropdownHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dropdownTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.dropdownDescription {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dropdownGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.dropdownSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: #1a1a1a;
+}
+
+.dropdownLink:hover {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: rgba(37, 99, 235, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownLinkContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdownLinkTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.dropdownLinkIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+  transition: all 0.3s ease;
+}
+
+.dropdownLink:hover .dropdownLinkIcon {
+  color: #2563eb;
+  transform: translateX(2px);
+}
+
+.dropdownGroupTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.dropdownSubLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+}
+
+.dropdownSubLink {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #6b7280;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdownSubLink:hover {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+  border-color: rgba(37, 99, 235, 0.1);
+  transform: translateX(4px);
+}
+
+/* 下拉菜单样式 */
+.navDropdown {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 全屏下拉菜单响应式设计 */
+@media (max-width: 1200px) {
+  .dropdownGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .dropdownContent {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .fullscreenDropdown {
+    display: none;
+  }
+  
+  .dropdownGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .dropdownContent {
+    padding: 1.5rem 1rem;
+  }
+  
+  .dropdownTitle {
+    font-size: 1.5rem;
+  }
+  
+  .dropdownDescription {
+    font-size: 1rem;
   }
 }
 

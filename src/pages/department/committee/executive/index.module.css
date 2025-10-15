@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    background: linear-gradient(to bottom right, #f5fbff, var(--primary-400));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    justify-content: center;
+    align-items: center;
+}

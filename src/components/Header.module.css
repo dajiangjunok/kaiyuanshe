@@ -1,0 +1,742 @@
+
+/* ===== 公告横幅样式 ===== */
+.announcementBanner {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 0.75rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+  height: 53px;
+  display: flex;
+  align-items: center;
+}
+
+.announcementContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.announcementText {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.announcementLink {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.375rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.announcementLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ===== 主导航栏样式 ===== */
+.header {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== Logo 样式 ===== */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoSquare {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logoSquareInner {
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 3px;
+  position: relative;
+}
+
+.logoSquareInner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 2px;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logoTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.025em;
+}
+
+.logoSubtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.025em;
+}
+
+/* ===== 导航菜单样式 ===== */
+.nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem;
+}
+
+.navDropdownContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navItem:hover,
+.navItemActive {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.navIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform 0.2s ease;
+}
+
+.navIconActive {
+  transform: rotate(180deg);
+}
+
+.navDropdownMenu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* 下拉菜单布局 */
+.dropdownLayout {
+  display: flex;
+  min-height: 350px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 左侧菜单区域 */
+.dropdownLeft {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.5rem;
+  align-items: start;
+}
+
+/* 关于我们菜单的两列布局 */
+.dropdownLeftTwoColumn {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  background: white;
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+}
+
+.aboutColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navDropdownItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-bottom: 0.25rem;
+  background: transparent;
+  border-radius: 6px;
+  border: none;
+}
+
+.navDropdownItem:last-child {
+  border-bottom: none;
+}
+
+.navDropdownItem:hover {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.dropdownItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.dropdownItemTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
+  margin-bottom: 0.25rem;
+}
+
+.dropdownItemDesc {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+
+/* ===== 右侧操作区样式 ===== */
+.headerActions {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+.joinButton {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+}
+
+.joinButton:hover {
+  background: linear-gradient(135deg, #be185d, #9d174d);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+}
+
+.searchButton {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.searchButton:hover {
+  background: rgba(107, 114, 128, 0.1);
+}
+
+.searchIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+/* ===== 搜索容器和功能样式 ===== */
+.searchContainer {
+  position: relative;
+}
+
+.searchBox {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  gap: 0.75rem;
+}
+
+.searchInputIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  color: #1f2937;
+  background: transparent;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.searchCloseButton {
+  background: transparent;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.searchCloseButton:hover {
+  background: rgba(107, 114, 128, 0.1);
+}
+
+.searchCloseIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+}
+
+/* ===== 搜索结果样式 ===== */
+.searchResults {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.searchResultsHeader {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f9fafb;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s ease;
+  gap: 1rem;
+}
+
+.searchResultItem:hover {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.searchResultTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.searchResultParent {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.searchResultDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.searchResultScore {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.searchNoResults {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* ===== 移动端导航样式 ===== */
+.mobileNav {
+  display: flex;
+  align-items: center;
+}
+
+.mobileMenuButton {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobileMenuButton:hover {
+  background: rgba(107, 114, 128, 0.05);
+  border-color: #9ca3af;
+}
+
+.mobileMenuIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #4b5563;
+}
+
+/* ===== 移动端菜单样式 ===== */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.mobileMenuOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.mobileMenuContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  background: white;
+  box-shadow: -10px 0 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.mobileMenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.mobileMenuTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.mobileMenuClose {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.mobileMenuBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.mobileMenuSection {
+  margin-bottom: 2rem;
+}
+
+.mobileMenuSectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.mobileMenuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileMenuItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #4b5563;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.mobileMenuItem:hover {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* ===== 响应式设计 ===== */
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+  
+  .headerActions {
+    display: flex;
+  }
+  
+  .mobileNav {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .dropdownLeft {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dropdownLayout {
+    min-height: 300px;
+    padding: 0 0.75rem;
+  }
+  
+  .dropdownLeft {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 1rem;
+    gap: 0.25rem;
+  }
+  
+  .dropdownLeftTwoColumn {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .navDropdownItem {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.125rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .dropdownLeft {
+    grid-template-columns: 1fr;
+  }
+  
+  .dropdownLeftTwoColumn {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .aboutColumn {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navDropdownMenu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .headerContent {
+    height: 64px;
+    padding: 0 0.75rem;
+  }
+  
+  .navDropdownMenu {
+    top: calc(64px + 40px);
+  }
+  
+  .announcementBanner {
+    height: 40px;
+  }
+  
+  .logoTitle {
+    font-size: 1rem;
+  }
+  
+  .logoSubtitle {
+    font-size: 0.75rem;
+  }
+  
+  .announcementText {
+    font-size: 0.75rem;
+  }
+  
+  .announcementContent {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.75rem;
+  }
+}
+
+/* ===== 搜索功能响应式样式 ===== */
+@media (max-width: 768px) {
+  .searchBox {
+    width: 320px;
+    right: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    display: none;
+  }
+  
+  .mobileMenuContent {
+    width: 280px;
+  }
+  
+  .announcementBanner {
+    padding: 0.5rem 0;
+  }
+  
+  .announcementText {
+    font-size: 0.6875rem;
+  }
+  
+  .announcementLink {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+  
+  .searchBox {
+    width: 280px;
+    right: -2rem;
+  }
+  
+  .searchResultTitle {
+    font-size: 0.8125rem;
+  }
+  
+  .searchResultDesc {
+    font-size: 0.6875rem;
+  }
+}
