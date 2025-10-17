@@ -30,22 +30,7 @@ export default function Header() {
 
   // 主导航菜单配置 - 按照开源社新结构
   const mainNavItems = useMemo(() => [
-    {
-      key: 'about',
-      label: '关于我们',
-      children: [
-        { key: 'intro', label: '开源社简介', href: '/about', description: '了解开源社的历史、使命和发展历程', group: 'basic' },
-        { key: 'vision', label: '愿景使命', href: '/', description: '开源社的愿景、使命和核心价值观', group: 'basic' },
-        { key: 'organization', label: '组织架构', href: '/department', description: '了解开源社的组织结构和治理体系', group: 'basic' },
-        { key: 'charter', label: '开源社章程', href: '/', description: '开源社的章程和管理制度', group: 'basic' },
-        { key: 'contact', label: '联系我们', href: '/', description: '获取开源社的联系方式和地址信息', group: 'basic' },
-        { key: 'board', label: '理事会', href: '/department/board', description: '开源社理事会成员介绍', group: 'departments' },
-        { key: 'advisory', label: '顾问委员会', href: '/department/committee/advisory', description: '顾问委员会成员介绍', group: 'departments' },
-        { key: 'legal', label: '法律咨询委员会', href: '/department/committee/legal', description: '法律咨询委员会介绍', group: 'departments' },
-        { key: 'executive', label: '执行委员会', href: '/department/executive', description: '执行委员会介绍', group: 'departments' },
-        { key: 'project-committee', label: '项目委员会', href: '/department/project-committee', description: '项目委员会介绍', group: 'departments' }
-      ]
-    },
+  
     {
       key: 'governance',
       label: '社区治理',
@@ -109,7 +94,23 @@ export default function Header() {
         { key: 'videos', label: '视频（跳转B站）', href: 'https://space.bilibili.com/525037122', description: '观看开源社相关视频内容', group: 'brand' },
         { key: 'photos', label: '照片（历届照片墙）', href: '/', description: '历届活动照片展示', group: 'brand' }
       ]
-    }
+    },
+      {
+      key: 'about',
+      label: '关于我们',
+      children: [
+        { key: 'intro', label: '开源社简介', href: '/about', description: '了解开源社的历史、使命和发展历程', group: 'basic' },
+        { key: 'vision', label: '愿景使命', href: '/', description: '开源社的愿景、使命和核心价值观', group: 'basic' },
+        { key: 'organization', label: '组织架构', href: '/department', description: '了解开源社的组织结构和治理体系', group: 'basic' },
+        { key: 'charter', label: '开源社章程', href: '/', description: '开源社的章程和管理制度', group: 'basic' },
+        { key: 'contact', label: '联系我们', href: '/', description: '获取开源社的联系方式和地址信息', group: 'basic' },
+        { key: 'board', label: '理事会', href: '/department/board', description: '开源社理事会成员介绍', group: 'departments' },
+        { key: 'advisory', label: '顾问委员会', href: '/department/committee/advisory', description: '顾问委员会成员介绍', group: 'departments' },
+        { key: 'legal', label: '法律咨询委员会', href: '/department/committee/legal', description: '法律咨询委员会介绍', group: 'departments' },
+        { key: 'executive', label: '执行委员会', href: '/department/executive', description: '执行委员会介绍', group: 'departments' },
+        { key: 'project-committee', label: '项目委员会', href: '/department/project-committee', description: '项目委员会介绍', group: 'departments' }
+      ]
+    },
   ], [])
 
   // 模糊搜索算法
