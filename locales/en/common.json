@@ -172,6 +172,12 @@
         }
       }
     },
+    "introduction": {
+      "title": "About KaiYuanShe",
+      "paragraph1": "KaiYuanShe was established in 2014 as an open source community composed of individual volunteers who contribute to the open source cause, organized around the principles of \"Contribution, Consensus, and Co-governance\". KaiYuanShe consistently maintains the philosophy of \"vendor neutrality, public welfare, and non-profit\", with the vision of \"rooted in China, contributing globally, promoting open source as a lifestyle of the new era\", and the mission of \"open source governance, international integration, community development, and project incubation\", aiming to co-create a healthy and sustainable open source ecosystem.",
+      "paragraph2": "KaiYuanShe actively collaborates with open source supporting communities, universities, enterprises, and relevant government units, and is also the first member of the global open source license certification organization - OSI in China.",
+      "paragraph3": "Since 2016, KaiYuanShe has continuously organized the China Open Source Conference (COSCon), continuously published the \"China Open Source Annual Report\", and jointly launched the \"China Open Source Pioneer List\", \"China Open Source Power List\", etc., generating widespread influence both domestically and internationally."
+    },
     "cta": {
       "title": "Join KaiYuanShe · Witness Your Open Source Growth Journey",
       "description": "Whether you are a developer passionate about open source or already committed to open source, KaiYuanShe provides you with the most comprehensive resources and platform.",
