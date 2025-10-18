@@ -46,7 +46,7 @@ export const loginUser = async (params: LoginParams): Promise<LoginResult> => {
 
     const data = await response.json();
 
-    if (response.ok && data.code === 200 && data.data) {
+    if (response.ok && data.code === 200) {
       return {
         success: true,
         message: data.message ?? '登录成功',
@@ -110,7 +110,7 @@ export const registerUser = async (params: RegisterParams): Promise<RegisterResu
 
     const data = await response.json();
 
-    if (response.ok && data.code === 200 && data.data) {
+    if (response.ok && data.code === 200) {
       return {
         success: true,
         message: data.message ?? '注册成功',

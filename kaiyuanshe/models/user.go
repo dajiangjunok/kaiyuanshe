@@ -8,6 +8,7 @@ type User struct {
 	gorm.Model
 	Email    string    `gorm:"unique;not null" json:"email"`
 	Username string    `json:"username"`
+	Password string    `json:"-"`
 	Avatar   string    `json:"avatar"`
 	Github   string    `json:"github"`
 	Twitter  string    `json:"twitter"`
@@ -57,11 +58,12 @@ func UpdateUser(u *User) error {
 	return nil
 }
 
-func GetUserByEmail(u *User) error {
-	if err := db.Where("email = ?", u.Email).First(u).Error; err != nil {
-		return err
+func GetUserByEmail(email string) (*User, error) {
+	var u User
+	if err := db.Where("email = ?", email).First(&u).Error; err != nil {
+		return &u, err
 	}
-	return nil
+	return &u, nil
 }
 
 func GetUserWithPermissions(uid uint) ([]string, error) {
