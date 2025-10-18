@@ -1,0 +1,85 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0 0;
+    text-align: left;
+}
+
+.mainTitle {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.englishTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.description {
+    max-width: 800px;
+}
+
+.intro {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #334155;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.details {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 0;
+}
+
+.link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header {
+        padding: 40px 16px;
+        text-align: center;
+    }
+    
+    .mainTitle {
+        font-size: 36px;
+    }
+    
+    .englishTitle {
+        font-size: 24px;
+        margin-bottom: 32px;
+    }
+    
+    .intro {
+        font-size: 18px;
+    }
+    
+    .details {
+        font-size: 15px;
+    }
+}

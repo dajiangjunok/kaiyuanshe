@@ -85,14 +85,14 @@ export default function Header() {
           {
             key: 'advisory',
             label: '顾问委员会',
-            href: '/department/committee/advisory',
+            href: '/department/advisory',
             description: '顾问委员会成员介绍',
             group: 'departments'
           },
           {
             key: 'legal',
             label: '法律咨询委员会',
-            href: '/department/committee/legal',
+            href: '/department/legal',
             description: '法律咨询委员会介绍',
             group: 'departments'
           },
@@ -106,7 +106,7 @@ export default function Header() {
           {
             key: 'project-committee',
             label: '项目委员会',
-            href: '/department/project-committee',
+            href: '/department/project',
             description: '项目委员会介绍',
             group: 'departments'
           },      
@@ -210,7 +210,8 @@ export default function Header() {
             label: '中国开源年度报告',
             href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
             description: '中国开源年度报告',
-            group: 'reports'
+            group: 'reports',
+            target: '_blank'
           },
           {
             key: 'china-oss-pioneer',
@@ -224,14 +225,16 @@ export default function Header() {
             label: '中国开源码力榜',
             href: 'https://opensource.win/',
             description: '中国开源码力榜',
-            group: 'reports'
+            group: 'reports',
+            target: '_blank'
           },
           {
             key: 'forum',
             label: '开源社论坛',
             href: 'https://github.com/orgs/kaiyuanshe/discussions',
             description: '开源社社区论坛',
-            group: 'reports'
+            group: 'reports',
+            target: '_blank'
           }
         ]
       },
@@ -292,7 +295,8 @@ export default function Header() {
             label: '开放黑客松平台',
             href: 'https://hackathon.kaiyuanshe.cn/',
             description: '组织和参与开源黑客松活动',
-            group: 'main'
+            group: 'main',
+            target: '_blank'
           },
           {
             key: 'ktoken',
