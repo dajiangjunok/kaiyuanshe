@@ -6,6 +6,7 @@ import styles from './index.module.css';
 import { useRouter } from 'next/router';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { registerUser } from '../api/login';
+import GitHubLoginButton from '@/components/GitHubLoginButton';
 
 type LoginFieldType = {
   email?: string;
@@ -154,6 +155,34 @@ const LoginPage: React.FC = () => {
                 注册
               </Button>
             </Form.Item>
+
+            <div style={{ 
+              margin: '16px 0', 
+              textAlign: 'center', 
+              position: 'relative' 
+            }}>
+              <div style={{ 
+                height: '1px', 
+                backgroundColor: '#d9d9d9', 
+                position: 'absolute', 
+                top: '50%', 
+                left: 0, 
+                right: 0 
+              }} />
+              <span style={{ 
+                backgroundColor: '#fff', 
+                padding: '0 12px', 
+                color: '#999', 
+                fontSize: '14px' 
+              }}>
+                或
+              </span>
+            </div>
+
+            <GitHubLoginButton 
+              loading={loading}
+              onLoading={setLoading}
+            />
           </Form>
         ) : (
           <Form
@@ -189,6 +218,34 @@ const LoginPage: React.FC = () => {
                 登录
               </Button>
             </Form.Item>
+
+            <div style={{ 
+              margin: '16px 0', 
+              textAlign: 'center', 
+              position: 'relative' 
+            }}>
+              <div style={{ 
+                height: '1px', 
+                backgroundColor: '#d9d9d9', 
+                position: 'absolute', 
+                top: '50%', 
+                left: 0, 
+                right: 0 
+              }} />
+              <span style={{ 
+                backgroundColor: '#fff', 
+                padding: '0 12px', 
+                color: '#999', 
+                fontSize: '14px' 
+              }}>
+                或
+              </span>
+            </div>
+
+            <GitHubLoginButton 
+              loading={loading}
+              onLoading={setLoading}
+            />
           </Form>
         )}
 

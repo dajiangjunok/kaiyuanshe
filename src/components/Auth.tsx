@@ -7,6 +7,7 @@ import styles from '../styles/Auth.module.css';
 import Image from 'next/image';
 import AuthManager from '@/lib/authManager';
 import { useAuth } from '@/contexts/AuthContext';
+import GitHubLoginButton from '@/components/GitHubLoginButton';
 
 const Auth: React.FC = () => {
     const { message } = AntdApp.useApp();
@@ -117,14 +118,44 @@ const Auth: React.FC = () => {
           </Dropdown>
         </>
       ) : (
-        <Button
-          type="primary"
-          className={styles.navButton}
-          onClick={handleSignIn}
-          loading={loading} // 显示加载中状态
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: 'email',
+                label: (
+                  <Button
+                    type="text"
+                    style={{ width: '100%', textAlign: 'left' }}
+                    onClick={handleSignIn}
+                    loading={loading}
+                  >
+                    邮箱登录
+                  </Button>
+                ),
+              },
+              {
+                key: 'github',
+                label: (
+                  <GitHubLoginButton 
+                    loading={loading}
+                    onLoading={setLoading}
+                    className={styles.githubBtn}
+                  />
+                ),
+              }
+            ]
+          }}
+          trigger={['click']}
         >
-          登录
-        </Button>
+          <Button
+            type="primary"
+            className={styles.navButton}
+            loading={loading}
+          >
+            登录 ▼
+          </Button>
+        </Dropdown>
       )}
     </div>
   );
