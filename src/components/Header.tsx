@@ -152,7 +152,7 @@ export default function Header() {
               {
             key: 'members',
             label: '正式成员',
-            href: '/member',
+            href: '/department/members',
             description: '查看开源社正式成员列表',
             group: 'recognition'
           },

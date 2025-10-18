@@ -1,0 +1,176 @@
+.modal :global(.ant-modal-content) {
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal :global(.ant-modal-close) {
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal :global(.ant-modal-close:hover) {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  min-height: 600px;
+}
+
+.header {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.avatarSection {
+  flex-shrink: 0;
+}
+
+.avatar {
+  border-radius: 16px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  object-fit: cover;
+}
+
+.basicInfo {
+  flex: 1;
+  padding-top: 20px;
+}
+
+.nameSection {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.pronouns {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.organization {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.content {
+  background: #fff;
+  color: #333;
+  padding: 40px;
+  /* border-radius: 24px 24px 0 0; */
+  margin-top: -20px;
+  position: relative;
+  z-index: 1;
+}
+
+.bioSection {
+  margin-bottom: 32px;
+}
+
+.bio {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+  text-align: justify;
+}
+
+.detailsSection {
+  margin-top: 24px;
+}
+
+.detail {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2d3748;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.detail:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  .avatarSection {
+    align-self: center;
+  }
+  
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .name {
+    font-size: 2rem;
+  }
+  
+  .organization {
+    font-size: 1.2rem;
+  }
+  
+  .content {
+    padding: 24px;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+}

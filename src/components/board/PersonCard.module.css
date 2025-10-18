@@ -61,12 +61,61 @@
   margin-bottom: 12px;
 }
 
+.roleContainer {
+  margin: 8px 0;
+}
+
+.roleBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+}
+
+.roleBadge.leader {
+  background: #ff4d4f;
+}
+
+.roleBadge.member {
+  background: #1677ff;
+}
+
+.roleBadge.secretary {
+  background: #52c41a;
+}
+
+.roleBadge.treasurer {
+  background: #fa8c16;
+}
+
 .title {
   font-size: 16px;
   font-weight: 600;
   color: #333333;
   margin: 0 0 8px 0;
   line-height: 1.3;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #666666;
+  border: 1px solid #d9d9d9;
 }
 
 .organization {
