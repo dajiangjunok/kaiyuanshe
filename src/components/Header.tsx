@@ -52,7 +52,7 @@ export default function Header() {
         key: 'governance',
         label: '社区治理',
         children: [
-           {
+          {
             key: 'vision',
             label: '愿景使命',
             href: '/about',
@@ -74,7 +74,7 @@ export default function Header() {
             group: 'basic',
             target: '_blank'
           },
-        
+
           {
             key: 'board',
             label: '理事会',
@@ -109,7 +109,7 @@ export default function Header() {
             href: '/department/project',
             description: '项目委员会介绍',
             group: 'departments'
-          },      
+          },
           {
             key: 'member-rights',
             label: '正式成员权利与义务',
@@ -141,15 +141,14 @@ export default function Header() {
             description: '查看开源社的年度工作报告和成果',
             group: 'policies',
             target: '_blank'
-          },
-        
+          }
         ]
       },
       {
         key: 'community-development',
         label: '社区发展',
         children: [
-              {
+          {
             key: 'members',
             label: '正式成员',
             href: '/department/members',
@@ -245,7 +244,7 @@ export default function Header() {
           {
             key: 'coscon',
             label: '中国开源年会',
-            href: '/',
+            href: '/articles',
             description: '中国最大的开源技术年度盛会',
             group: 'annual'
           },
@@ -286,7 +285,7 @@ export default function Header() {
           {
             key: 'toolbox',
             label: '开源百宝箱',
-            href: '/',
+            href: 'https://oss-toolbox.kaiyuanshe.cn/',
             description: '收集和整理各种开源工具和资源',
             group: 'main'
           },
@@ -301,9 +300,10 @@ export default function Header() {
           {
             key: 'ktoken',
             label: 'KToken',
-            href: '/',
+            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnnpaFGG3anuwxIfsp4M9c0c',
             description: '基于区块链的开源贡献激励机制',
-            group: 'tech'
+            group: 'tech',
+            target: '_blank'
           }
         ]
       },
@@ -346,15 +346,15 @@ export default function Header() {
           //   description: '开源社品牌使用指南',
           //   group: 'brand'
           // },
-        
+
           {
             key: 'videos',
             label: '视频',
             href: 'https://space.bilibili.com/525037536?spm_id_from=333.337.search-card.all.click',
             description: '观看开源社相关视频内容',
             group: 'brand',
-            target:'_blank'
-          },
+            target: '_blank'
+          }
           // {
           //   key: 'photos',
           //   label: '照片',
@@ -375,32 +375,28 @@ export default function Header() {
             description: '了解开源社的历史、使命和发展历程',
             group: 'basic'
           },
-        
-
-            {
+          {
             key: 'brand-download',
             label: '品牌标识下载',
             href: '/',
             description: '下载开源社品牌标识',
             group: 'basic'
           },
-              {
+          {
             key: 'contact',
             label: '联系我们',
             href: '/about',
             description: '获取开源社的联系方式和地址信息',
             group: 'brand'
           },
-            {
+          {
             key: 'join-us',
             label: '如何加入我们',
             href: 'https://kaiyuanshe.feishu.cn/wiki/NVExwJkvFiMbnwkhuW1ciUYineg',
             description: '了解如何加入开源社',
             group: 'brand',
             target: '_blank'
-          },
-
-         
+          }
         ]
       }
     ],

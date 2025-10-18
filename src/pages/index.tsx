@@ -11,7 +11,7 @@ import MissionSection from '@/components/home/mission/Mission'
 import EventSection from '@/components/home/events/Events'
 import ArticleSection from '@/components/home/article/Article'
 import CarouselSession from '@/components/home/carousel/Carousel'
-import Introduction from '@/components/home/introduction/Introduction'
+ 
 
 export default function Home() {
   const { t } = useTranslation()
@@ -57,8 +57,7 @@ export default function Home() {
         <Hero />
         <CarouselSession />
       </div>
-      {/* Introduction Section */}
-      <Introduction />
+ 
       {/* Activities Section */}
       <EventSection />
       <ArticleSection />
