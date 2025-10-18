@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true, // 忽略 TypeScript 检查
   },
+  webpack: (config, { isServer }) => {
+    // 禁用缓存序列化警告
+    config.infrastructureLogging = {
+      level: 'error',
+    };
+    return config;
+  },
   reactStrictMode: true,
   transpilePackages: [
     '@ant-design',

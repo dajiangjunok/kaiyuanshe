@@ -1,51 +1,4 @@
 
-/* ===== 公告横幅样式 ===== */
-.announcementBanner {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: white;
-  padding: 0.75rem 0;
-  text-align: center;
-  position: relative;
-  z-index: 1000;
-  height: 53px;
-  display: flex;
-  align-items: center;
-}
-
-.announcementContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-.announcementText {
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.announcementLink {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 0.375rem 1rem;
-  border-radius: 20px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.announcementLink:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-1px);
-}
-
 /* ===== 主导航栏样式 ===== */
 .header {
   background: white;
@@ -73,37 +26,6 @@
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
-}
-
-.logoSquare {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.logoSquareInner {
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 3px;
-  position: relative;
-}
-
-.logoSquareInner::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  border-radius: 2px;
 }
 
 .logoText {
@@ -269,23 +191,26 @@
   gap: 1rem;
 }
 
-.joinButton {
-  background: linear-gradient(135deg, #ec4899, #be185d);
+/* 登录按钮样式 */
+.loginButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-700);
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.joinButton:hover {
-  background: linear-gradient(135deg, #be185d, #9d174d);
+.loginButton:hover {
+  background-color: var(--primary-800);
+  color: white;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.25);
 }
 
 .searchButton {
@@ -598,6 +523,29 @@
   background: rgba(37, 99, 235, 0.05);
 }
 
+/* 移动端登录按钮样式 */
+.mobileLoginButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-700);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.mobileLoginButton:hover {
+  background-color: var(--primary-800);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.25);
+}
+
 /* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
   .nav {
@@ -671,11 +619,7 @@
   }
   
   .navDropdownMenu {
-    top: calc(64px + 40px);
-  }
-  
-  .announcementBanner {
-    height: 40px;
+    top: 64px;
   }
   
   .logoTitle {
@@ -686,15 +630,6 @@
     font-size: 0.75rem;
   }
   
-  .announcementText {
-    font-size: 0.75rem;
-  }
-  
-  .announcementContent {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0 0.75rem;
-  }
 }
 
 /* ===== 搜索功能响应式样式 ===== */
@@ -714,18 +649,6 @@
     width: 280px;
   }
   
-  .announcementBanner {
-    padding: 0.5rem 0;
-  }
-  
-  .announcementText {
-    font-size: 0.6875rem;
-  }
-  
-  .announcementLink {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
-  }
   
   .searchBox {
     width: 280px;

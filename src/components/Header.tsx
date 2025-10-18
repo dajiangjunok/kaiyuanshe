@@ -556,16 +556,24 @@ export default function Header() {
 
           {/* 右侧操作区 */}
           <div className={styles.headerActions}>
+            {/* 登录按钮 */}
+            <Link 
+              href="/login" 
+              className={styles.loginButton}
+            >
+              登录
+            </Link>
+            
             <div className={styles.searchContainer}>
-              {!searchOpen ? (
-                <button
-                  className={styles.searchButton}
-                  onClick={() => setSearchOpen(true)}
-                  aria-label="搜索菜单"
-                >
-                  <Search className={styles.searchIcon} />
-                </button>
-              ) : (
+              <button
+                className={styles.searchButton}
+                onClick={() => setSearchOpen(true)}
+                aria-label="搜索菜单"
+              >
+                <Search className={styles.searchIcon} />
+              </button>
+              
+              {searchOpen && (
                 <div className={styles.searchBox}>
                   <div className={styles.searchInputContainer}>
                     <Search className={styles.searchInputIcon} />
@@ -667,6 +675,17 @@ export default function Header() {
               </button>
             </div>
             <div className={styles.mobileMenuBody}>
+              {/* 移动端登录按钮 */}
+              <div className={styles.mobileMenuSection}>
+                <Link
+                  href="/login"
+                  className={styles.mobileLoginButton}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  登录
+                </Link>
+              </div>
+              
               {mainNavItems.map(item => (
                 <div key={item.key} className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>{item.label}</div>
