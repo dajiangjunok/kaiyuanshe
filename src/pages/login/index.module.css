@@ -19,7 +19,7 @@
 
 .title {
   text-align: center;
-  background: linear-gradient(90deg, var(--primary), #e45fcb);
+  background: linear-gradient(90deg, var(--primary), var(--primary-400));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -38,9 +38,22 @@
   text-decoration: none;
 }
 
+.switchLink {
+  color: var(--primary) !important;
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.switchLink:hover {
+  color: var(--primary-400) !important;
+  text-decoration: underline;
+}
+
 .loginButton {
   width: 100%;
-  background: linear-gradient(to right, var(--primary), #e45fcb);
+  background: linear-gradient(to right, var(--primary), var(--primary-400));
   border: none;
   border-radius: 0.5rem;
   font-weight: bold;
@@ -49,7 +62,7 @@
 }
 
 .loginButton:hover {
-  background: linear-gradient(to right, var(--primary), #e45fcb) !important;
+  background: linear-gradient(to right, var(--primary), var(--primary-400)) !important;
   opacity: 0.9;
   transform: translateY(-1px);
 }
