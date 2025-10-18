@@ -67,6 +67,7 @@ export interface RegisterParams {
   email: string;
   password: string;
   username: string;
+  verificationToken?: string; // 验证码验证成功后的token
 }
 
 // 注册响应数据
@@ -96,6 +97,7 @@ export const registerUser = async (params: RegisterParams): Promise<RegisterResu
       email: params.email.trim(),
       password: params.password,
       username: params.username.trim(),
+      verificationToken: params.verificationToken,
     };
 
     const response = await fetch(`${apiUrl}/register`, {
