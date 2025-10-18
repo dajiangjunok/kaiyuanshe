@@ -1,7 +1,9 @@
-import { ChevronDown, Menu as MenuIcon, Search, X } from 'lucide-react'
+import { ChevronDown, Menu as MenuIcon, Search, X, User, LogOut } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
+import { signOut } from 'next-auth/react'
+import { useAuth } from '../contexts/AuthContext'
 import styles from './Header.module.css'
 
 interface MenuItem {
@@ -25,8 +27,13 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const userMenuRef = useRef<HTMLDivElement>(null)
+  
+  // 获取用户认证状态
+  const { session, isAuthenticated, isLoading } = useAuth()
 
   // 主导航菜单配置 - 按照开源社新结构
   const mainNavItems = useMemo(() => [
@@ -244,6 +251,29 @@ export default function Header() {
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [searchOpen])
+
+  // 点击外部关闭用户菜单
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false)
+      }
+    }
+    
+    if (userMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [userMenuOpen])
+
+  // 处理退出登录
+  const handleSignOut = async () => {
+    try {
+      await signOut({ callbackUrl: '/' })
+    } catch (error) {
+      console.error('退出登录失败:', error)
+    }
+  }
 
   // CNCF风格下拉菜单组件
   const NavDropdown = ({ item }: { item: MenuItem }) => {
@@ -556,13 +586,74 @@ export default function Header() {
 
           {/* 右侧操作区 */}
           <div className={styles.headerActions}>
-            {/* 登录按钮 */}
-            <Link 
-              href="/login" 
-              className={styles.loginButton}
-            >
-              登录
-            </Link>
+            {/* 用户认证区域 */}
+            {isLoading ? (
+              <div className={styles.loginButton}>
+                加载中...
+              </div>
+            ) : isAuthenticated && session?.user ? (
+              <div className={styles.userMenu} ref={userMenuRef}>
+                <div
+                  className={styles.userContainer}
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  aria-label="用户菜单"
+                >
+                  {(session.user.avatar||session.user.image) ? (
+                    <Image
+                      src={session.user.avatar||session.user.image!}
+                      alt={session.user.name || session.user.username || '用户头像'}
+                      width={38}
+                      height={38}
+                      className={styles.userAvatar}
+                    />
+                  ) : (
+                    <User className={styles.userIcon} />
+                  )}
+                  
+              
+                </div>
+                
+                {userMenuOpen && (
+                  <div className={styles.userDropdown}>
+                    <div className={styles.userDropdownHeader}>
+                      <div className={styles.userInfo}>
+                        <div className={styles.userInfoName}>
+                          {session.user.name || session.user.username}
+                        </div>
+                        <div className={styles.userInfoEmail}>
+                          {session.user.email}
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.userDropdownDivider} />
+                    <div className={styles.userDropdownActions}>
+                      <Link
+                        href="/dashboard"
+                        className={styles.userDropdownItem}
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <User className={styles.userDropdownIcon} />
+                        个人中心
+                      </Link>
+                      <button
+                        className={styles.userDropdownItem}
+                        onClick={handleSignOut}
+                      >
+                        <LogOut className={styles.userDropdownIcon} />
+                        退出登录
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link 
+                href="/login" 
+                className={styles.loginButton}
+              >
+                登录
+              </Link>
+            )}
             
             <div className={styles.searchContainer}>
               <button
@@ -675,15 +766,63 @@ export default function Header() {
               </button>
             </div>
             <div className={styles.mobileMenuBody}>
-              {/* 移动端登录按钮 */}
+              {/* 移动端用户认证区域 */}
               <div className={styles.mobileMenuSection}>
-                <Link
-                  href="/login"
-                  className={styles.mobileLoginButton}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  登录
-                </Link>
+                {isLoading ? (
+                  <div className={styles.mobileLoginButton}>
+                    加载中...
+                  </div>
+                ) : isAuthenticated && session?.user ? (
+                  <div className={styles.mobileUserSection}>
+                    <div className={styles.mobileUserInfo}>
+                      {session.user.avatar ? (
+                        <Image
+                          src={session.user.avatar}
+                          alt={session.user.name || session.user.username || '用户头像'}
+                          width={40}
+                          height={40}
+                          className={styles.mobileUserAvatar}
+                        />
+                      ) : (
+                        <User className={styles.mobileUserIcon} />
+                      )}
+                      <div className={styles.mobileUserDetails}>
+                        <div className={styles.mobileUserName}>
+                          {session.user.name || session.user.username}
+                        </div>
+                        <div className={styles.mobileUserEmail}>
+                          {session.user.email}
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.mobileUserActions}>
+                      <Link
+                        href="/dashboard"
+                        className={styles.mobileUserAction}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        个人中心
+                      </Link>
+                      <button
+                        className={styles.mobileUserAction}
+                        onClick={() => {
+                          setMobileMenuOpen(false)
+                          handleSignOut()
+                        }}
+                      >
+                        退出登录
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    className={styles.mobileLoginButton}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    登录
+                  </Link>
+                )}
               </div>
               
               {mainNavItems.map(item => (
