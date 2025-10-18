@@ -1,9 +1,9 @@
-import { Rocket } from 'lucide-react'
+import { Github } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 import styles from './index.module.css'
-import { SiTelegram, SiX } from 'react-icons/si'
+import { SiWechat, SiX } from 'react-icons/si'
 
 import { useTranslation } from '../hooks/useTranslation'
 import Hero from '@/components/home/hero/Hero'
@@ -74,11 +74,11 @@ export default function Home() {
                 target="_blank"
                 className={styles.ctaPrimaryButton}
               >
-                <Rocket className={styles.buttonIcon} />
+                <Github className={styles.buttonIcon} />
                 {t('homepage.cta.followGithub')}
               </Link>
               <Link href="/" className={styles.ctaSecondaryButton}>
-                <SiTelegram className={styles.buttonIcon} />
+                <SiWechat className={styles.buttonIcon} />
                 {t('homepage.cta.followWeChat')}
               </Link>
               <Link
