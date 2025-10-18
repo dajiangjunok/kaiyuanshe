@@ -1,11 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
+	"fmt"
 	"kaiyuanshe/logger"
 	"kaiyuanshe/models"
 	"kaiyuanshe/utils"
-	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -127,5 +127,85 @@ func HandleLogin(c *gin.Context) {
 		return
 	}
 	loginResp.Token = token
+	utils.SuccessResponse(c, http.StatusOK, "success", loginResp)
+}
+
+func HandleRegister(c *gin.Context) {
+	var req RegisterRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		logger.Log.Errorf("Invalid register request: %v", err)
+		utils.ErrorResponse(c, http.StatusBadRequest, "Invalid input data", nil)
+		return
+	}
+
+	_, err := models.GetUserByEmail(req.Email)
+	if err == nil {
+		utils.ErrorResponse(c, http.StatusBadRequest, "Email already registered", nil)
+		return
+	}
+
+	hashedPassword, err := utils.HashPassword(req.Password)
+	if err != nil {
+		logger.Log.Errorf("Hash password error: %v", err)
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Internal server error", nil)
+		return
+	}
+
+	user := models.User{
+		Username: req.Username,
+		Email:    req.Email,
+		Password: hashedPassword,
+	}
+
+	if err := models.CreateUser(&user); err != nil {
+		logger.Log.Errorf("Create user error: %v", err)
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Could not create user", nil)
+		return
+	}
+
+	utils.SuccessResponse(c, http.StatusOK, "Registration successful", nil)
+}
+
+func HandleLoginV2(c *gin.Context) {
+	var req LoginRequestV2
+	if err := c.ShouldBindJSON(&req); err != nil {
+		logger.Log.Errorf("Invalid login request: %v", err)
+		utils.ErrorResponse(c, http.StatusBadRequest, "Invalid input data", nil)
+		return
+	}
+
+	user, err := models.GetUserByEmail(req.Email)
+	if err != nil || user == nil {
+		logger.Log.Warnf("User not found: %s", req.Email)
+		utils.ErrorResponse(c, http.StatusUnauthorized, "Invalid email or password", nil)
+		return
+	}
+
+	if !utils.CheckPasswordHash(req.Password, user.Password) {
+		logger.Log.Warnf("Wrong password for user: %s", req.Email)
+		utils.ErrorResponse(c, http.StatusUnauthorized, "Invalid email or password", nil)
+		return
+	}
+
+	perms, err := models.GetUserWithPermissions(user.ID)
+	if err != nil {
+		logger.Log.Errorf("get permissions error: %v", err)
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Failed to load permissions", nil)
+		return
+	}
+
+	var loginResp LoginResponse
+	loginResp.User = *user
+	loginResp.Permissions = perms
+
+	token, err := utils.GenerateTokenV2(user.ID, user.Email, user.Username, perms)
+	if err != nil {
+		logger.Log.Errorf("Generate token error: %v", err)
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Token generation failed", nil)
+		return
+	}
+
+	loginResp.Token = token
+
 	utils.SuccessResponse(c, http.StatusOK, "success", loginResp)
 }

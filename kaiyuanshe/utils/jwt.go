@@ -22,6 +22,14 @@ type Claims struct {
 	jwt.RegisteredClaims
 }
 
+type ClaimsV2 struct {
+	ID          uint     `json:"id"`
+	Email       string   `json:"email"`
+	Username    string   `json:"username"`
+	Permissions []string `json:"permissions"`
+	jwt.RegisteredClaims
+}
+
 // 生成 JWT 令牌
 func GenerateToken(uid uint, email, avatar, username, github string, permissions []string) (string, error) {
 	expirationTime := time.Now().Add(24 * time.Hour * 7)
@@ -31,6 +39,23 @@ func GenerateToken(uid uint, email, avatar, username, github string, permissions
 		Avatar:      avatar,
 		Username:    username,
 		Github:      github,
+		Permissions: permissions,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(expirationTime),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(jwtSecret)) // 生成 Token
+}
+
+func GenerateTokenV2(id uint, email, username string, permissions []string) (string, error) {
+	expirationTime := time.Now().Add(24 * time.Hour * 7)
+	claims := ClaimsV2{
+		ID:          id,
+		Email:       email,
+		Username:    username,
 		Permissions: permissions,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(expirationTime),
@@ -53,6 +78,24 @@ func ParseToken(tokenString string) (*Claims, error) {
 	}
 
 	claims, ok := token.Claims.(*Claims)
+	if !ok {
+		return nil, errors.New("invalid claims")
+	}
+
+	return claims, nil
+}
+
+// 解析 JWT 令牌
+func ParseTokenV2(tokenString string) (*ClaimsV2, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &ClaimsV2{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(jwtSecret), nil
+	})
+
+	if err != nil || !token.Valid {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(*ClaimsV2)
 	if !ok {
 		return nil, errors.New("invalid claims")
 	}
