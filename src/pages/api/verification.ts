@@ -26,9 +26,10 @@ export interface VerificationResult {
 // 发送验证码
 export const sendVerificationCode = async (params: SendCodeParams): Promise<VerificationResult> => {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const isDev = process.env.NODE_ENV === 'development';
+    const apiUrl = isDev ? '' : process.env.NEXT_PUBLIC_API_URL;
     
-    if (!apiUrl) {
+    if (!isDev && !apiUrl) {
       throw new Error('API URL is not defined');
     }
 
@@ -37,7 +38,8 @@ export const sendVerificationCode = async (params: SendCodeParams): Promise<Veri
       type: params.type,
     };
 
-    const response = await fetch(`${apiUrl}/send-verification-code`, {
+    const endpoint = isDev ? '/api/send-verification-code' : `${apiUrl}/send-verification-code`;
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,9 +68,10 @@ export const sendVerificationCode = async (params: SendCodeParams): Promise<Veri
 // 验证验证码
 export const verifyCode = async (params: VerifyCodeParams): Promise<VerificationResult> => {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const isDev = process.env.NODE_ENV === 'development';
+    const apiUrl = isDev ? '' : process.env.NEXT_PUBLIC_API_URL;
     
-    if (!apiUrl) {
+    if (!isDev && !apiUrl) {
       throw new Error('API URL is not defined');
     }
 
@@ -78,7 +81,8 @@ export const verifyCode = async (params: VerifyCodeParams): Promise<Verification
       type: params.type,
     };
 
-    const response = await fetch(`${apiUrl}/verify-code`, {
+    const endpoint = isDev ? '/api/verify-code' : `${apiUrl}/verify-code`;
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

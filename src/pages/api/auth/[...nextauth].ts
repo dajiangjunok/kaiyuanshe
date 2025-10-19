@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
-import { loginUser } from '../login';
+import { loginUser, loginWithEmail } from '../login';
 
 declare module 'next-auth' {
   interface Session {
@@ -36,7 +36,8 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
-      name: 'Credentials',
+      id: 'code-login',
+      name: 'Code Login',
       credentials: {
         code: { label: 'Code', type: 'text' },
       },
@@ -47,6 +48,36 @@ export default NextAuth({
         const loginParams = { code };
 
         const res = await loginUser(loginParams);
+
+        if (res.success && res.data?.ID) {
+          return {
+            id: res.data.ID.toString(),
+            email: res.data.email,
+            username: res.data.username,
+            github: res.data.github,
+            avatar: res.data.avatar,
+            permissions: res.data.permissions,
+            token: res.data.token,
+          };
+        }
+
+        return null;
+      },
+    }),
+    CredentialsProvider({
+      id: 'email-login',
+      name: 'Email Login',
+      credentials: {
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials) {
+        if (!credentials) return null;
+
+        const { email, password } = credentials;
+        const loginParams = { email, password };
+
+        const res = await loginWithEmail(loginParams);
 
         if (res.success && res.data?.ID) {
           return {

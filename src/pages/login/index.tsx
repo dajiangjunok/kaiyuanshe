@@ -1,179 +1,181 @@
-'use client';
-import React, { useState } from 'react';
-import { Form, Input, Button, App as AntdApp } from 'antd';
-import { signIn } from 'next-auth/react';
-import styles from './index.module.css';
-import { useRouter } from 'next/router';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { registerUser } from '../api/login';
-import { sendVerificationCode, verifyCode } from '../api/verification';
-import GitHubLoginButton from '@/components/GitHubLoginButton';
+'use client'
+import React, { useState } from 'react'
+import { Form, Input, Button, App as AntdApp } from 'antd'
+import { signIn } from 'next-auth/react'
+import styles from './index.module.css'
+import { useRouter } from 'next/router'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { registerUser } from '../api/login'
+import { sendVerificationCode, verifyCode } from '../api/verification'
+import GitHubLoginButton from '@/components/GitHubLoginButton'
 
 type LoginFieldType = {
-  email?: string;
-  password?: string;
-};
+  email?: string
+  password?: string
+}
 
 type RegisterFieldType = {
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-  username?: string;
-  verificationCode?: string;
-};
+  email?: string
+  password?: string
+  confirmPassword?: string
+  username?: string
+  verificationCode?: string
+}
 
 const LoginPage: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
-  const [registerStep, setRegisterStep] = useState<'email' | 'verification' | 'password'>('email');
-  const [countdown, setCountdown] = useState(0);
-  const [verificationToken, setVerificationToken] = useState<string>('');
-  const [tempEmail, setTempEmail] = useState<string>('');
-  const router = useRouter();
-  const { set, get } = useLocalStorage('user');
-  const { message } = AntdApp.useApp();
+  const [loading, setLoading] = useState(false)
+  const [isRegister, setIsRegister] = useState(false)
+  const [registerStep, setRegisterStep] = useState<
+    'email' | 'verification' | 'password'
+  >('email')
+  const [countdown, setCountdown] = useState(0)
+  const [verificationToken, setVerificationToken] = useState<string>('')
+  const [tempEmail, setTempEmail] = useState<string>('')
+  const router = useRouter()
+  const { set, get } = useLocalStorage('user')
+  const { message } = AntdApp.useApp()
   const initialValues = {
-    email: get()?.email,
-  };
+    email: (get() as { email?: string } | null)?.email
+  }
 
   const onLoginFinish = async (values: LoginFieldType) => {
     try {
-      const { email, password } = values;
-      setLoading(true);
+      const { email, password } = values
+      setLoading(true)
 
-      const res = await signIn('credentials', {
+      const res = await signIn('email-login', {
         redirect: false,
         email,
-        password,
-      });
+        password
+      })
 
       if (res?.ok) {
         set({
-          email: email,
-        });
-        router.push('/');
+          email: email
+        })
+        router.push('/')
       } else {
-        message.warning('登录失败...');
+        message.warning('登录失败...')
       }
     } catch {
-      message.error('网络错误...');
+      message.error('网络错误...')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // 发送验证码
   const handleSendCode = async (email: string) => {
     try {
-      setLoading(true);
+      setLoading(true)
       const res = await sendVerificationCode({
         email,
         type: 'register'
-      });
+      })
 
       if (res.success) {
-        message.success('验证码已发送到您的邮箱');
-        setTempEmail(email);
-        setRegisterStep('verification');
-        setCountdown(60);
-        
+        message.success('验证码已发送到您的邮箱')
+        setTempEmail(email)
+        setRegisterStep('verification')
+        setCountdown(60)
+
         // 倒计时
         const timer = setInterval(() => {
-          setCountdown((prev) => {
+          setCountdown(prev => {
             if (prev <= 1) {
-              clearInterval(timer);
-              return 0;
+              clearInterval(timer)
+              return 0
             }
-            return prev - 1;
-          });
-        }, 1000);
+            return prev - 1
+          })
+        }, 1000)
       } else {
-        message.error(res.message || '发送验证码失败');
+        message.error(res.message || '发送验证码失败')
       }
     } catch {
-      message.error('网络错误...');
+      message.error('网络错误...')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // 验证验证码
   const handleVerifyCode = async (code: string) => {
     try {
-      setLoading(true);
+      setLoading(true)
       const res = await verifyCode({
         email: tempEmail,
         code,
         type: 'register'
-      });
+      })
 
       if (res.success && res.data?.token) {
-        message.success('验证成功');
-        setVerificationToken(res.data.token);
-        setRegisterStep('password');
+        message.success('验证成功')
+        setVerificationToken(res.data.token)
+        setRegisterStep('password')
       } else {
-        message.error(res.message || '验证码错误');
+        message.error(res.message || '验证码错误')
       }
     } catch {
-      message.error('网络错误...');
+      message.error('网络错误...')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const onRegisterFinish = async (values: RegisterFieldType) => {
     try {
       if (registerStep === 'email') {
-        const { email } = values;
+        const { email } = values
         if (!email) {
-          message.error('请输入邮箱');
-          return;
+          message.error('请输入邮箱')
+          return
         }
-        await handleSendCode(email);
-        return;
+        await handleSendCode(email)
+        return
       }
 
       if (registerStep === 'verification') {
-        const { verificationCode } = values;
+        const { verificationCode } = values
         if (!verificationCode) {
-          message.error('请输入验证码');
-          return;
+          message.error('请输入验证码')
+          return
         }
-        await handleVerifyCode(verificationCode);
-        return;
+        await handleVerifyCode(verificationCode)
+        return
       }
 
       // 最终注册步骤
-      const { password, username } = values;
+      const { password, username } = values
       if (!password || !username) {
-        message.error('请填写完整信息');
-        return;
+        message.error('请填写完整信息')
+        return
       }
-      
-      setLoading(true);
+
+      setLoading(true)
 
       const res = await registerUser({
         email: tempEmail,
         password,
         username,
-        verificationToken,
-      });
+        verificationToken
+      })
 
       if (res.success) {
-        message.success('注册成功！请登录');
-        setIsRegister(false);
-        setRegisterStep('email');
-        setVerificationToken('');
-        setTempEmail('');
+        message.success('注册成功！请登录')
+        setIsRegister(false)
+        setRegisterStep('email')
+        setVerificationToken('')
+        setTempEmail('')
       } else {
-        message.error(res.message || '注册失败');
+        message.error(res.message || '注册失败')
       }
     } catch {
-      message.error('网络错误...');
+      message.error('网络错误...')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className={styles.loginPage}>
@@ -181,10 +183,7 @@ const LoginPage: React.FC = () => {
         <h2 className={styles.title}>{isRegister ? '欢迎注册' : '欢迎登录'}</h2>
 
         {isRegister ? (
-          <Form
-            layout="vertical"
-            onFinish={onRegisterFinish}
-          >
+          <Form layout="vertical" onFinish={onRegisterFinish}>
             {registerStep === 'email' && (
               <>
                 <Form.Item
@@ -213,10 +212,10 @@ const LoginPage: React.FC = () => {
 
             {registerStep === 'verification' && (
               <>
-                <div style={{ marginBottom: '16px', color: '#666', fontSize: '14px' }}>
+                <div className={styles.verificationInfo}>
                   验证码已发送至 {tempEmail}
                 </div>
-                
+
                 <Form.Item
                   name="verificationCode"
                   rules={[
@@ -224,10 +223,10 @@ const LoginPage: React.FC = () => {
                     { len: 6, message: '验证码为6位数字' }
                   ]}
                 >
-                  <Input 
-                    placeholder="请输入6位验证码" 
+                  <Input
+                    placeholder="请输入6位验证码"
                     maxLength={6}
-                    style={{ letterSpacing: '2px', textAlign: 'center' }}
+                    className={styles.verificationInput}
                   />
                 </Form.Item>
 
@@ -243,29 +242,29 @@ const LoginPage: React.FC = () => {
                   </Button>
                 </Form.Item>
 
-                <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                <div className={styles.resendSection}>
                   {countdown > 0 ? (
-                    <span style={{ color: '#999' }}>
+                    <span className={styles.countdownText}>
                       {countdown}s 后可重新发送
                     </span>
                   ) : (
-                    <a 
+                    <a
                       onClick={() => handleSendCode(tempEmail)}
-                      style={{ color: '#1890ff' }}
+                      className={styles.resendLink}
                     >
                       重新发送验证码
                     </a>
                   )}
                 </div>
 
-                <div style={{ textAlign: 'center', marginTop: '12px' }}>
-                  <a 
+                <div className={styles.resendSection}>
+                  <a
                     onClick={() => {
-                      setRegisterStep('email');
-                      setTempEmail('');
-                      setCountdown(0);
+                      setRegisterStep('email')
+                      setTempEmail('')
+                      setCountdown(0)
                     }}
-                    style={{ color: '#999' }}
+                    className={styles.backLink}
                   >
                     ← 返回上一步
                   </a>
@@ -275,7 +274,7 @@ const LoginPage: React.FC = () => {
 
             {registerStep === 'password' && (
               <>
-                <div style={{ marginBottom: '16px', color: '#666', fontSize: '14px' }}>
+                <div className={styles.verificationInfo}>
                   邮箱验证成功：{tempEmail}
                 </div>
 
@@ -308,11 +307,11 @@ const LoginPage: React.FC = () => {
                     ({ getFieldValue }) => ({
                       validator(_, value) {
                         if (!value || getFieldValue('password') === value) {
-                          return Promise.resolve();
+                          return Promise.resolve()
                         }
-                        return Promise.reject(new Error('两次输入的密码不一致'));
-                      },
-                    }),
+                        return Promise.reject(new Error('两次输入的密码不一致'))
+                      }
+                    })
                   ]}
                 >
                   <Input.Password placeholder="确认密码" />
@@ -330,15 +329,15 @@ const LoginPage: React.FC = () => {
                   </Button>
                 </Form.Item>
 
-                <div style={{ textAlign: 'center', marginTop: '12px' }}>
-                  <a 
+                <div className={styles.resendSection}>
+                  <a
                     onClick={() => {
-                      setRegisterStep('email');
-                      setTempEmail('');
-                      setVerificationToken('');
-                      setCountdown(0);
+                      setRegisterStep('email')
+                      setTempEmail('')
+                      setVerificationToken('')
+                      setCountdown(0)
                     }}
-                    style={{ color: '#999' }}
+                    className={styles.backLink}
                   >
                     ← 重新开始
                   </a>
@@ -348,33 +347,12 @@ const LoginPage: React.FC = () => {
 
             {registerStep === 'email' && (
               <>
-                <div style={{ 
-                  margin: '16px 0', 
-                  textAlign: 'center', 
-                  position: 'relative' 
-                }}>
-                  <div style={{ 
-                    height: '1px', 
-                    backgroundColor: '#d9d9d9', 
-                    position: 'absolute', 
-                    top: '50%', 
-                    left: 0, 
-                    right: 0 
-                  }} />
-                  <span style={{ 
-                    backgroundColor: '#fff', 
-                    padding: '0 12px', 
-                    color: '#999', 
-                    fontSize: '14px' 
-                  }}>
-                    或
-                  </span>
+                <div className={styles.divider}>
+                  <div className={styles.dividerLine} />
+                  <span className={styles.dividerText}>或</span>
                 </div>
 
-                <GitHubLoginButton 
-                  loading={loading}
-                  onLoading={setLoading}
-                />
+                <GitHubLoginButton loading={loading} onLoading={setLoading} />
               </>
             )}
           </Form>
@@ -413,39 +391,18 @@ const LoginPage: React.FC = () => {
               </Button>
             </Form.Item>
 
-            <div style={{ 
-              margin: '16px 0', 
-              textAlign: 'center', 
-              position: 'relative' 
-            }}>
-              <div style={{ 
-                height: '1px', 
-                backgroundColor: '#d9d9d9', 
-                position: 'absolute', 
-                top: '50%', 
-                left: 0, 
-                right: 0 
-              }} />
-              <span style={{ 
-                backgroundColor: '#fff', 
-                padding: '0 12px', 
-                color: '#999', 
-                fontSize: '14px' 
-              }}>
-                或
-              </span>
+            <div className={styles.divider}>
+              <div className={styles.dividerLine} />
+              <span className={styles.dividerText}>或</span>
             </div>
 
-            <GitHubLoginButton 
-              loading={loading}
-              onLoading={setLoading}
-            />
+            <GitHubLoginButton loading={loading} onLoading={setLoading} />
           </Form>
         )}
 
         <div className={styles.link}>
           {isRegister ? '已有账号？' : '还没有账号？'}
-          <a 
+          <a
             onClick={() => setIsRegister(!isRegister)}
             className={styles.switchLink}
           >
@@ -454,7 +411,7 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage
