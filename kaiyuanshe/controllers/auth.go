@@ -24,11 +24,15 @@ func HandleLogin(c *gin.Context) {
 	accessRequest.ClientId = viper.GetString("oauth.clientId")
 	accessRequest.ClientSecret = viper.GetString("oauth.clientSecret")
 	accessRequest.Code = req.Code
+	accessRequest.RedirectURI = viper.GetString("oauth.redireceUrl")
 
 	var reqArgs utils.HTTPRequestParams
 	reqArgs.URL = viper.GetString("oauth.accessApi")
 	reqArgs.Method = "POST"
 	reqArgs.Body = accessRequest
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	reqArgs.Headers = headers
 
 	var result string
 	var err error
@@ -39,7 +43,8 @@ func HandleLogin(c *gin.Context) {
 		return
 	}
 
-	var tokenResp AccessTokenResponse
+	var tokenResp AccessTokenResponseV2
+
 	err = json.Unmarshal([]byte(result), &tokenResp)
 	if err != nil {
 		logger.Log.Errorf("ServerError: %v", err)
@@ -47,13 +52,7 @@ func HandleLogin(c *gin.Context) {
 		return
 	}
 
-	if tokenResp.Status != 200 {
-		logger.Log.Errorf("ServerError: %v", tokenResp)
-		utils.ErrorResponse(c, http.StatusInternalServerError, "Network error, please try again later.", nil)
-		return
-	}
-
-	accessToken := tokenResp.Data.Token
+	accessToken := tokenResp.AccessToken
 	reqArgs.URL = viper.GetString("oauth.getUser")
 	reqArgs.Method = "GET"
 
@@ -68,7 +67,7 @@ func HandleLogin(c *gin.Context) {
 		return
 	}
 
-	var resp GetUserResponse
+	var resp GetUserResponseV2
 	err = json.Unmarshal([]byte(userResult), &resp)
 	if err != nil {
 		logger.Log.Errorf("Unmarshal err: %v", err)
@@ -76,30 +75,22 @@ func HandleLogin(c *gin.Context) {
 		return
 	}
 
-	if resp.Status != 200 {
-		logger.Log.Errorf("ServerError: %v", resp)
-		utils.ErrorResponse(c, http.StatusInternalServerError, resp.Message, nil)
-		return
-	}
-
 	var user *models.User
 
-	userId := resp.Data.Uid
-	user, err = models.GetUserByUid(userId)
+	user, err = models.GetUserByEmail(resp.Email)
 	if err == nil {
-		user.Uid = resp.Data.Uid
 		// user.Avatar = resp.Data.Avatar
 		// user.Username = resp.Data.UserName
-		user.Email = resp.Data.Email
-		user.Github = resp.Data.Github
+		user.Email = resp.Email
+		user.Username = resp.Name
+		user.Avatar = resp.AvatarURL
 		err = models.UpdateUser(user)
 	} else {
 		var u models.User
-		u.Uid = resp.Data.Uid
-		u.Avatar = resp.Data.Avatar
-		u.Email = resp.Data.Email
-		u.Username = resp.Data.UserName
-		u.Github = resp.Data.Github
+		u.Uid = uint(resp.ID)
+		u.Avatar = resp.AvatarURL
+		u.Email = resp.Email
+		u.Username = resp.Name
 		user = &u
 		err = models.CreateUser(user)
 	}

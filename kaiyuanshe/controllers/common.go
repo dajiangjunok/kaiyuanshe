@@ -89,6 +89,7 @@ type AccessTokenRequest struct {
 	ClientId     string `json:"client_id"`
 	ClientSecret string `json:"client_secret"`
 	Code         string `json:"code"`
+	RedirectURI  string `json:"redirect_uri"`
 }
 
 // 定义响应的结构体
@@ -101,6 +102,24 @@ type AccessTokenResponse struct {
 	Time    int64  `json:"time"`
 	Message string `json:"message"`
 	ID      string `json:"id"`
+}
+
+type AccessTokenResponseV2 struct {
+	AccessToken string `json:"access_token"`
+	Scope       string `json:"scope"`
+	TokenType   string `json:"token_type"`
+}
+
+type GithubAccessTokenResponse struct {
+	Login     string `json:"login"`
+	ID        int64  `json:"id"`
+	AvatarURL string `json:"avatar_url"`
+	Email     string `json:"email"`
+	Name      string `json:"name"`
+	Bio       string `json:"bio"`
+	Blog      string `json:"blog"`
+	Company   string `json:"company"`
+	Location  string `json:"location"`
 }
 
 // 定义数据部分的结构体
@@ -120,6 +139,18 @@ type GetUserResponse struct {
 	Data    UserData `json:"data"`
 	Time    int64    `json:"time"`
 	Message string   `json:"message"`
+}
+
+type GetUserResponseV2 struct {
+	Login     string `json:"login"`
+	ID        int64  `json:"id"`
+	AvatarURL string `json:"avatar_url"`
+	Email     string `json:"email"`
+	Name      string `json:"name"`
+	Bio       string `json:"bio"`
+	Blog      string `json:"blog"`
+	Company   string `json:"company"`
+	Location  string `json:"location"`
 }
 
 // article
