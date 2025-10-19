@@ -14,6 +14,7 @@ export interface PersonCardProps {
   wechat?: string
   twitter?: string
   github?: string
+  email?:string
   bio?: string
   details?: string[]
   onDetailClick?: () => void
@@ -58,7 +59,9 @@ export default function PersonCard({
         {/* Person Info */}
         <div className={styles.personInfo}>
           <h3 className={styles.name}>{name}</h3>
-          {pronouns && <span className={styles.pronouns}>({pronouns})</span>}
+          <span className={`${styles.pronouns} ${!pronouns ? styles.empty : ''}`}>
+            {pronouns ? `(${pronouns})` : ''}
+          </span>
 
           <p className={styles.title}>{title}</p>
 

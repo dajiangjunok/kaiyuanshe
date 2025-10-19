@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import { X } from 'lucide-react';
+import { X, Mail } from 'lucide-react';
 import { FaTwitter, FaGithub } from 'react-icons/fa';
 import { SiWechat } from 'react-icons/si';
 import Image from 'next/image';
@@ -55,6 +55,15 @@ export default function BoardMemberDetail({
             
             {/* Social Links */}
             <div className={styles.socialLinks}>
+              {member.email && (
+                <a
+                  href={`mailto:${member.email}`}
+                  className={styles.socialLink}
+                  title="Email"
+                >
+                  <Mail size={24} />
+                </a>
+              )}
               {member.wechat && (
                 <a
                   href={member.wechat}

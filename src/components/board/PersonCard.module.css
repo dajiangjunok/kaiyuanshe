@@ -61,6 +61,10 @@
   margin-bottom: 12px;
 }
 
+.pronouns.empty {
+  opacity: 0;
+}
+
 .roleContainer {
   margin: 8px 0;
 }

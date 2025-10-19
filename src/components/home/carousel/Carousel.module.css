@@ -72,8 +72,8 @@
 
 .imageWrapper {
   flex-shrink: 0;
-  width: 400px;
-  height: 266px;
+  width: 387px;
+  height: 258px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
@@ -84,8 +84,8 @@
 
 @media (min-width: 1800px) {
   .imageWrapper {
-    width: 420px;
-    height: 280px;
+    width: 405px;
+    height: 270px;
   }
 }
 

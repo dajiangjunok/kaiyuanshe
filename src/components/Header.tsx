@@ -52,20 +52,20 @@ export default function Header() {
         key: 'governance',
         label: '社区治理',
         children: [
-          {
-            key: 'vision',
-            label: '愿景使命',
-            href: '/about',
-            description: '开源社的愿景、使命和核心价值观',
-            group: 'basic'
-          },
-          {
-            key: 'organization',
-            label: '组织架构',
-            href: '/about',
-            description: '了解开源社的组织结构和治理体系',
-            group: 'basic'
-          },
+          // {
+          //   key: 'vision',
+          //   label: '愿景使命',
+          //   href: '/about',
+          //   description: '开源社的愿景、使命和核心价值观',
+          //   group: 'basic'
+          // },
+          // {
+          //   key: 'organization',
+          //   label: '组织架构',
+          //   href: '/about',
+          //   description: '了解开源社的组织结构和治理体系',
+          //   group: 'basic'
+          // },
           {
             key: 'charter',
             label: '开源社章程',
@@ -193,9 +193,10 @@ export default function Header() {
           {
             key: 'individual-sponsors',
             label: '个人赞助',
-            href: '/',
+            href: 'https://kaiyuanshe.feishu.cn/wiki/V8QfwIblXibIjoksERYcL6R6nDh?from=space_search',
             description: '个人赞助者列表',
-            group: 'cooperation'
+            group: 'cooperation',
+            target: '_blank'
           },
           {
             key: 'kcc',
@@ -261,14 +262,14 @@ export default function Header() {
             href: '/events/calendar',
             description: '查看即将举行的开源活动和会议',
             group: 'calendar'
-          },
-          {
-            key: 'meetings',
-            label: '社区会议',
-            href: '/',
-            description: '社区定期会议',
-            group: 'calendar'
           }
+          // {
+          //   key: 'meetings',
+          //   label: '社区会议',
+          //   href: '/',
+          //   description: '社区定期会议',
+          //   group: 'calendar'
+          // }
         ]
       },
       {
@@ -287,7 +288,8 @@ export default function Header() {
             label: '开源百宝箱',
             href: 'https://oss-toolbox.kaiyuanshe.cn/',
             description: '收集和整理各种开源工具和资源',
-            group: 'main'
+            group: 'main',
+            target: '_blank'
           },
           {
             key: 'hackathon',
@@ -378,7 +380,8 @@ export default function Header() {
           {
             key: 'brand-download',
             label: '品牌标识下载',
-            href: '/',
+            href: '/logo.png',
+            target: '_blank',
             description: '下载开源社品牌标识',
             group: 'basic'
           },

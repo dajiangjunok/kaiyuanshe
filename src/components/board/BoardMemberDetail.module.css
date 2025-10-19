@@ -23,6 +23,8 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   min-height: 600px;
@@ -110,6 +112,8 @@
   margin-top: -20px;
   position: relative;
   z-index: 1;
+  height: 100%;
+  flex:1;
 }
 
 .bioSection {
