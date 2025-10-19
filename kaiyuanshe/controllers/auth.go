@@ -24,7 +24,7 @@ func HandleLogin(c *gin.Context) {
 	accessRequest.ClientId = viper.GetString("oauth.clientId")
 	accessRequest.ClientSecret = viper.GetString("oauth.clientSecret")
 	accessRequest.Code = req.Code
-	accessRequest.RedirectURI = "http://localhost:3000"
+	accessRequest.RedirectURI = viper.GetString("oauth.redireceUrl")
 
 	var reqArgs utils.HTTPRequestParams
 	reqArgs.URL = viper.GetString("oauth.accessApi")
