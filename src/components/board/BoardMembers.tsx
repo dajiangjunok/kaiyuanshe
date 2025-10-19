@@ -18,7 +18,7 @@ export default function BoardMembers({ members, title = "理事会成员" }: Boa
             <Col
               key={index}
               xs={24}
-              sm={12}
+              sm={24}
               md={8}
               lg={6}
               xl={6}

@@ -81,11 +81,9 @@
 }
 
 .volunteersGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    columns: 4;
+    column-gap: 32px;
     width: 100%;
-    justify-items: center;
     padding: 0 20px;
 }
 
@@ -121,8 +119,8 @@
 
 @media (max-width: 1200px) {
     .volunteersGrid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        columns: 3;
+        column-gap: 24px;
     }
 }
 
@@ -146,8 +144,8 @@
     }
     
     .volunteersGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        columns: 2;
+        column-gap: 20px;
         padding: 0 8px;
     }
     

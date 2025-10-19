@@ -1,12 +1,14 @@
 .volunteerCard {
-  width: 280px;
+  width: 100%;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: all 0.3s ease;
   background: #fff;
-  margin: 16px;
+  margin-bottom: 32px;
   cursor: pointer;
+  break-inside: avoid;
+  display: inline-block;
 }
 
 .volunteerCard:hover {
@@ -82,7 +84,7 @@
 @media (max-width: 768px) {
   .volunteerCard {
     width: 100%;
-    margin: 8px 0;
+    margin-bottom: 20px;
   }
   
   .avatar {
