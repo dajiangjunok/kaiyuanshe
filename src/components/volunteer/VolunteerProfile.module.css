@@ -1,0 +1,215 @@
+.volunteerCard {
+  width: 280px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #fff;
+  margin: 16px;
+  cursor: pointer;
+}
+
+.volunteerCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cardContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatarContainer {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f0f9ff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.volunteerInfo {
+  width: 100%;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.nickname {
+  font-size: 14px;
+  color: #666;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.recommendation {
+  margin-top: 12px;
+}
+
+ 
+
+.recommendationContent {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.recommendation p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+  text-align: left;
+  font-style: italic;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .volunteerCard {
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .cardContent {
+    padding: 20px;
+  }
+  
+  .name {
+    font-size: 16px;
+  }
+  
+  .recommendation {
+    margin-top: 14px;
+  }
+  
+  .recommendationContent {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+  
+  .recommendation::before {
+    font-size: 28px;
+    top: -6px;
+    left: 14px;
+  }
+  
+  .recommendation p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+/* 弹窗样式 */
+.detailModal :global(.ant-modal-content) {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detailModal :global(.ant-modal-body) {
+  padding: 0;
+}
+
+.modalContent {
+  padding: 24px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modalAvatarContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.modalAvatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f0f9ff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modalUserInfo {
+  flex: 1;
+}
+
+.modalName {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.modalNickname {
+  font-size: 16px;
+  color: #666;
+  font-weight: normal;
+}
+
+.modalRecommendation {
+  margin-top: 8px;
+}
+
+.modalRecommendationHeader {
+  margin-bottom: 12px;
+}
+
+.modalRecommendationTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+}
+
+.modalRecommendationTitle::before {
+  content: '"';
+  font-size: 20px;
+  margin-right: 6px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.modalRecommendationContent {
+  padding: 0;
+}
+
+.modalRecommendationContent p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #374151;
+  margin: 0;
+  text-align: left;
+  font-style: italic;
+  word-wrap: break-word;
+  hyphens: auto;
+}
