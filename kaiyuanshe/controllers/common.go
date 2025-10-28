@@ -344,11 +344,11 @@ type FollowStatesRequest struct {
 }
 
 type CreateSessionRequest struct {
-	Title       string          `json:"title" binding:"required"`
-	Description string          `json:"description"`
-	Producer    string          `json:"producer"`
-	Volunteer   string          `json:"volunteer"`
-	Agendas     []AgendaRequest `json:"agendas"`
+	Title       string `json:"title" binding:"required"`
+	Address     string `json:"address" binding:"required"`
+	Description string `json:"description"`
+	Producer    string `json:"producer"`
+	Volunteer   string `json:"volunteer"`
 }
 
 type AgendaRequest struct {

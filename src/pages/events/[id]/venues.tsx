@@ -3,8 +3,10 @@ import { Button, DatePicker, Input, App as AntdApp, Form, Modal } from "antd"
 import { Plus, Trash2, Sparkles, X, Trash } from "lucide-react"
 import styles from "./venues.module.css"
 import dayjs from "dayjs"
-import { createSession, deleteSession, getSessionsByEvent, updateSession } from "@/pages/api/event"
+import { addAgendaToSession, createSession, deleteAgenda, deleteSession, getSessionsByEvent, updateSession } from "@/pages/api/event"
 import { useRouter } from 'next/router';
+
+
 
 const { TextArea } = Input
 
@@ -82,7 +84,7 @@ export default function VenuesPage() {
           const fetchedVenues: Venue[] = result.data.map(session => ({
             ID: session.ID.toString(),
             name: session.title,
-            address: "", // 如果后端没有这个字段，保持为空
+            address: session.address,
             description: session.description,
             producer: session.producer,
             volunteers: session.volunteer,
@@ -163,7 +165,7 @@ export default function VenuesPage() {
 
     // 获取最后一个会场
     const lastVenue = venues[venues.length - 1];
-    
+
     // 检查最后一个会场是否已经保存（具有后端生成的ID）
     // null 表示未保存的新会场
     if (lastVenue.ID === null) {
@@ -185,12 +187,12 @@ export default function VenuesPage() {
       if (result.success) {
         // 接口删除成功，更新本地状态
         const updatedVenues = venues.filter((v) => getUniqueId(v) !== venueId);
-        
+
         // 如果删除了当前激活的会场，切换到第一个会场
         if (activeVenueId === venueId && updatedVenues.length > 0) {
           setActiveVenueId(getUniqueId(updatedVenues[0]));
         }
-        
+
         setVenues(updatedVenues);
         message.success("已删除会场");
       } else {
@@ -228,7 +230,7 @@ export default function VenuesPage() {
   const removeAgenda = (venueId: string, agendaId: string) => {
     // 检查议程是否已保存（具有后端生成的ID）
     const isBackendAgenda = agendaId !== null;
-    
+
     if (isBackendAgenda) {
       // 后端删除 - 弹窗确认
       Modal.confirm({
@@ -239,9 +241,9 @@ export default function VenuesPage() {
         okType: 'danger',
         onOk: async () => {
           try {
-            // TODO: 调用后端删除议程接口
-            // const result = await deleteAgenda(eventId, venueId, agendaId);
-            // if (result.success) {
+            // 调用后端删除议程接口
+            const result = await deleteAgenda(agendaId);
+            if (result.success) {
               // 删除成功，更新本地状态
               setVenues(
                 venues.map((v) => {
@@ -252,9 +254,9 @@ export default function VenuesPage() {
                 }),
               )
               message.success("已删除议程")
-            // } else {
-            //   message.error(result.message || "删除议程失败");
-            // }
+            } else {
+              message.error(result.message || "删除议程失败");
+            }
           } catch (error) {
             console.error("删除议程异常:", error);
             message.error("网络错误，请稍后重试");
@@ -315,13 +317,16 @@ export default function VenuesPage() {
     )
   }
 
+  const [modal, contextHolder] = Modal.useModal();
+
+
   const removeSpeaker = (venueId: string, agendaId: string, speakerId: string) => {
     // 检查嘉宾是否已保存（具有后端生成的ID）
     const isBackendSpeaker = speakerId !== null;
-    
+
     if (isBackendSpeaker) {
       // 后端删除 - 弹窗确认
-      Modal.confirm({
+      modal.confirm({
         title: '确认删除嘉宾',
         content: '此操作将永久删除该嘉宾，确定要继续吗？',
         okText: '确定删除',
@@ -332,24 +337,24 @@ export default function VenuesPage() {
             // TODO: 调用后端删除嘉宾接口
             // const result = await deleteSpeaker(eventId, venueId, agendaId, speakerId);
             // if (result.success) {
-              // 删除成功，更新本地状态
-              setVenues(
-                venues.map((v) => {
-                  if (getUniqueId(v) === venueId) {
-                    return {
-                      ...v,
-                      agendas: v.agendas.map((a) => {
-                        if (getUniqueId(a) === agendaId) {
-                          return { ...a, speakers: a.speakers.filter((s) => getUniqueId(s) !== speakerId) }
-                        }
-                        return a
-                      }),
-                    }
+            // 删除成功，更新本地状态
+            setVenues(
+              venues.map((v) => {
+                if (getUniqueId(v) === venueId) {
+                  return {
+                    ...v,
+                    agendas: v.agendas.map((a) => {
+                      if (getUniqueId(a) === agendaId) {
+                        return { ...a, speakers: a.speakers.filter((s) => getUniqueId(s) !== speakerId) }
+                      }
+                      return a
+                    }),
                   }
-                  return v
-                }),
-              )
-              message.success("已删除嘉宾")
+                }
+                return v
+              }),
+            )
+            message.success("已删除嘉宾")
             // } else {
             //   message.error(result.message || "删除嘉宾失败");
             // }
@@ -508,41 +513,94 @@ export default function VenuesPage() {
   // };
 
   // 提交议程
+  // 提交议程 - 为当前会场添加单个议程
   const handleSubmitAgendas = async () => {
-    // 再次检查当前会场是否已生成
-    if (!currentVenueGenerated) {
-      message.warning("请先生成当前会场后再提交议程");
+    // 检查当前激活的会场
+    if (!activeVenue) {
+      message.warning("请先选择一个会场");
       return;
     }
 
-    // 检查是否有会场数据
-    if (venues.length === 0) {
-      message.warning("请至少添加一个会场");
+    // 检查当前会场是否已保存
+    if (activeVenue.ID === null) {
+      message.warning("请先保存当前会场后再添加议程");
+      return;
+    }
+
+    // 获取第一个未保存的议程
+    const newAgenda = activeVenue.agendas.find(agenda => agenda.ID === null);
+
+    if (!newAgenda) {
+      message.warning("当前会场没有新议程需要添加");
       return;
     }
 
     try {
-      message.success("议程提交成功");
-      console.log("提交的议程数据:", venues);
-      
-      // 这里可以添加实际的提交逻辑
-      // 例如调用API提交所有会场的议程数据
-      
+      // 调用添加议程接口
+      const result = await addAgendaToSession(activeVenue.ID, {
+        topic: newAgenda.topic,
+        start_time: newAgenda.start_time,
+        end_time: newAgenda.end_time,
+        speakers: newAgenda.speakers.map(speaker => ({
+          name: speaker.name,
+          avatar: speaker.avatar || '',
+          title: speaker.title || '',
+        })),
+      });
+
+      if (result.success) {
+        message.success(`成功为会场 "${activeVenue.name}" 添加议程: ${newAgenda.topic}`);
+
+        // 重新获取数据更新本地状态
+        const latestResult = await getSessionsByEvent(eventId);
+        if (latestResult.success && latestResult.data) {
+          const updatedVenues: Venue[] = latestResult.data.map(session => ({
+            ID: session.ID.toString(),
+            name: session.title,
+            address: session.address,
+            description: session.description,
+            producer: session.producer,
+            volunteers: session.volunteer,
+            agendas: session.agendas.map(agenda => ({
+              ID: agenda.ID.toString(),
+              topic: agenda.topic,
+              start_time: agenda.start_time,
+              end_time: agenda.end_time,
+              speakers: agenda.speakers.map(speaker => ({
+                ID: speaker.ID.toString(),
+                name: speaker.name,
+                title: speaker.title,
+                avatar: speaker.avatar,
+              })),
+            })),
+          }));
+          setVenues(updatedVenues);
+
+          // 保持当前激活的会场
+          const currentVenue = updatedVenues.find(v => v.ID === activeVenue.ID);
+          if (currentVenue) {
+            setActiveVenueId(getUniqueId(currentVenue));
+          }
+        }
+      } else {
+        message.error(result.message || "添加议程失败");
+      }
+
     } catch (error) {
-      console.error("提交议程异常:", error);
-      message.error("提交失败，请稍后重试");
+      console.error("添加议程异常:", error);
+      message.error("添加失败，请稍后重试");
     }
   }
 
   // 生成/更新单个会场
-  const handleSaveVenue = async   () => {
+  const handleSaveVenue = async () => {
     try {
       // 验证表单
-         await form.validateFields();
-  
-      
+      await form.validateFields();
+
+
       const venue = activeVenue;
-      
+
       // 如果 venue.ID 是 null，说明是新建的会场
       if (venue.ID === null) {
         // 创建新会场
@@ -649,6 +707,7 @@ export default function VenuesPage() {
 
   return (
     <div className={`${styles.container} nav-t-top`}>
+      {contextHolder}
       <div className={styles.contentWrapper}>
         <div className={styles.tabsBar}>
           <div className={styles.tabsList}>
@@ -680,8 +739,8 @@ export default function VenuesPage() {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>会场信息</h3>
 
-            <Form 
-              form={form} 
+            <Form
+              form={form}
               layout="vertical"
               onValuesChange={(changedValues) => {
                 // 当表单值改变时，同步更新会场数据
@@ -734,9 +793,9 @@ export default function VenuesPage() {
               </Form.Item>
 
               <Form.Item className={styles.formGroupBtn}>
-                <Button 
+                <Button
                   className={`${styles.submitBtn} ${activeVenue.ID === null ? styles.generateBtn : styles.updateBtn}`}
-                  type="primary" 
+                  type="primary"
                   size="large"
                   icon={activeVenue.ID === null ? <Sparkles size={16} /> : undefined}
                   onClick={handleSaveVenue}
@@ -912,12 +971,12 @@ export default function VenuesPage() {
           </div>
 
           <div className={styles.submitSection}>
-            <Button 
-              type="primary" 
-              size="large" 
-              block 
+            <Button
+              type="primary"
+              size="large"
+              block
               disabled={!currentVenueGenerated}
-              onClick={handleSubmitAgendas} 
+              onClick={handleSubmitAgendas}
               className={styles.submitBtn}
             >
               提交议程
