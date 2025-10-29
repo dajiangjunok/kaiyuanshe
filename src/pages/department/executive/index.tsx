@@ -10,7 +10,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "执行委员会主席",
         organization: "开源社",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/zhuangbiaowei",
         github: "https://github.com/zhuangbiaowei",
         bio: "庄表伟是开源社的创始人之一，长期致力于开源技术的推广和社区建设。",
@@ -26,7 +26,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "执行委员",
         organization: "华为技术",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/liming",
         github: "https://github.com/liming"
     },
@@ -35,7 +35,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "She/Her",
         title: "执行委员",
         organization: "阿里巴巴",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/wangli",
         github: "https://github.com/wangli"
     },
@@ -44,7 +44,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "执行委员",
         organization: "腾讯科技",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/zhangwei",
         github: "https://github.com/zhangwei"
     },
@@ -53,7 +53,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "She/Her",
         title: "执行委员",
         organization: "百度公司",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/liufang",
         github: "https://github.com/liufang"
     },
@@ -62,7 +62,7 @@ const executiveMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "执行委员",
         organization: "字节跳动",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/chenjun",
         github: "https://github.com/chenjun"
     }

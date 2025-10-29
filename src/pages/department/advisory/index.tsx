@@ -6,65 +6,838 @@ import styles from "./index.module.css"
 
 const advisoryMembers: PersonCardProps[] = [
     {
-        name: "张三",
-        pronouns: "He/Him",
-        title: "顾问委员会主席",
+        name: "赖安妮 Anni",
+        pronouns: "Santa Clara",
+        title: "顾问",
         organization: "开源基金会",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/zhangsan",
-        github: "https://github.com/zhangsan",
-        bio: "张三是开源技术领域的资深专家，在开源软件开发和社区建设方面拥有丰富经验。",
+        avatar: "https://res.cloudinary.com/dqaizhakm/image/upload/v1761753233/anni_cbz1r3.png",
+        twitter: "",
+        github: "https://github.com/kaiyuanshe",
+        email:'anni.lai@futurewei.com',
+        bio: "过去 15 年，在多个开源基金会和组织参与贡献，包括 CNCF、OCI、LF Edge 和 OpenStack 基金会等。目前参与贡献重点为开源人工智能战略、许可和流程。",
         details: [
-            "拥有超过15年的开源软件开发经验，主导过多个重要开源项目的发展。",
-            "在开源社区治理和生态建设方面具有深刻洞察，帮助多家企业制定开源战略。",
-            "积极推动开源技术在企业中的应用和落地，促进开源文化的传播。"
+          "现任开源社顾问委员会顾问委员，Linux 基金会 (LF) AI & Data 基金会董事，LF 欧洲顾问委员会、LF Open Metaverse 基金会委员会。 工作上，现任 Futurewei 开源运营和营销主管，负责开源项目管理、流程、合规性、培训、项目协调和生态系统建设。"
         ]
-    },
-    {
-        name: "李四",
-        pronouns: "She/Her",
-        title: "技术顾问",
-        organization: "云原生联盟",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/lisi",
-        github: "https://github.com/lisi"
-    },
-    {
-        name: "王五",
-        pronouns: "He/Him",
-        title: "战略顾问",
-        organization: "开源研究院",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/wangwu",
-        github: "https://github.com/wangwu"
-    },
-    {
-        name: "赵六",
-        pronouns: "She/Her",
-        title: "产业顾问",
-        organization: "科技公司",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/zhaoliu",
-        github: "https://github.com/zhaoliu"
-    },
-    {
-        name: "钱七",
-        pronouns: "He/Him",
-        title: "学术顾问",
-        organization: "清华大学",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/qianqi",
-        github: "https://github.com/qianqi"
-    },
-    {
-        name: "孙八",
-        pronouns: "She/Her",
-        title: "国际顾问",
-        organization: "Linux基金会",
-        avatar: "/img/cblecker.jpeg",
-        twitter: "https://twitter.com/sunba",
-        github: "https://github.com/sunba"
-    }
+    }, {
+        name: "Hong Phuc Dang",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "安旭",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "白宦成",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "常雷",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "晁倩",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "陈昱",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "陈泽辉",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "段少婷",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "段夕华",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "堵俊平",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "范斌",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "龚宇华",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "郭雪",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "郭悦",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "惠世冀",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "霍泰稳",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "靳宏梅",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "蒋涛",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "姜宁",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "康悦",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "康馨月",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "刘冬",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "刘敏",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "李晨",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "刘昭",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "李娜",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "李震宁",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "马乐",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "马红伟",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "慕睿涛",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "潘娟",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "任旭东",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "沈朝华",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "宋春雪",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "宋青见",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "李震宁",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "谭中意",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "孙乐",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王晶煜",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王蓉",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王晓璇",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王小虎",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王蕴博",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "向阳",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "吴晟",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "谢超",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "薛植元",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "杨丽蕴",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "杨娜",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "严澎屹",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "余杰",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "张鑫",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "张志文",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "钟燕清",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "杨丽蕴",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "慕睿涛",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "李明康",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "王皓月",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "朱庆裕",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "单致豪",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "庄表伟",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "林旅强",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    },{
+        name: "刘天栋",
+        pronouns: "",
+        title: "顾问",
+        organization: "",
+        avatar: "/img/cblecker.png",
+        twitter: "",
+        github: "",
+        email:'',
+        bio: "",
+        details: [
+          ""
+        ]
+    }, 
 ];
 
 export default function AdvisoryPage() {

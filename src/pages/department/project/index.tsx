@@ -10,7 +10,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "项目委员会主席",
         organization: "开源项目基金会",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/sunzhigang",
         github: "https://github.com/sunzhigang",
         bio: "孙志岗是开源项目管理和技术架构方面的专家，具有丰富的大型开源项目经验。",
@@ -26,7 +26,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "技术项目负责人",
         organization: "云原生基金会",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/xulei",
         github: "https://github.com/xulei"
     },
@@ -35,7 +35,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "She/Her",
         title: "社区项目负责人",
         organization: "Apache基金会",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/maxiao",
         github: "https://github.com/maxiao"
     },
@@ -44,7 +44,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "基础设施项目负责人",
         organization: "Linux基金会",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/linqiang",
         github: "https://github.com/linqiang"
     },
@@ -53,7 +53,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "She/Her",
         title: "教育项目负责人",
         organization: "开源教育联盟",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/humin",
         github: "https://github.com/humin"
     },
@@ -62,7 +62,7 @@ const projectMembers: PersonCardProps[] = [
         pronouns: "He/Him",
         title: "研究项目负责人",
         organization: "开源研究中心",
-        avatar: "/img/cblecker.jpeg",
+        avatar: "/img/cblecker.png",
         twitter: "https://twitter.com/huangtao",
         github: "https://github.com/huangtao"
     }
