@@ -5,9 +5,9 @@
 }
 
 .header {
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 0 0;
     text-align: left;
 }
 
@@ -30,6 +30,7 @@
 
 .description {
     max-width: 800px;
+    
 }
 
 .intro {
