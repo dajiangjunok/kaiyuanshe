@@ -245,7 +245,7 @@ export default function Header() {
           {
             key: 'coscon',
             label: '中国开源年会',
-            href: '/articles',
+            href: '/events',
             description: '中国最大的开源技术年度盛会',
             group: 'annual'
           },

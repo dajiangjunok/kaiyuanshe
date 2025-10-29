@@ -672,3 +672,114 @@ export const deleteSession = async (eventId: string, venueId: string): Promise<S
     };
   }
 };
+
+
+export interface AddAgendaParams {
+  topic: string;
+  start_time: string;
+  end_time: string;
+  speakers: SpeakerParams[];
+}
+
+export interface AgendaResult {
+  success: boolean;
+  message: string;
+  data?: Agenda;
+}
+
+/**
+ * 为会场添加议程
+ */
+export const addAgendaToSession = async (
+  sessionId: string,
+  params: AddAgendaParams
+): Promise<AgendaResult> => {
+  try {
+    const body = {
+      topic: params.topic.trim(),
+      start_time: params.start_time,
+      end_time: params.end_time,
+      speakers: params.speakers.map(speaker => ({
+        name: speaker.name.trim(),
+        avatar: speaker.avatar ?? '',
+        title: speaker.title ?? '',
+        description: speaker.description ?? '',
+        company: speaker.company ?? '',
+      })),
+    };
+
+    const response = await apiRequest<AgendaResult>(`/venues/${sessionId}/agendas`, 'POST', body);
+
+    if (response.code === 200 && response.data) {
+      return {
+        success: true,
+        message: response.message ?? '议程添加成功',
+        data: response.data as unknown as Agenda,
+      };
+    }
+
+    return { success: false, message: response.message ?? '议程添加失败' };
+  } catch (error: unknown) {
+    console.error('添加议程异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
+
+/**
+ * 获取会场的所有议程
+ */
+export const getAgendasBySession = async (
+  sessionId: string
+): Promise<SessionsResult> => {
+  try {
+    const response = await apiRequest<SessionsResult>(`/sessions/${sessionId}/agendas`, 'GET');
+
+    if (response.code === 200 && response.data) {
+      return {
+        success: true,
+        message: response.message ?? '获取议程成功',
+        data: response.data as unknown as Session[],
+      };
+    }
+
+    return { success: false, message: response.message ?? '获取议程失败' };
+  } catch (error: unknown) {
+    console.error('获取议程异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
+
+/**
+ * 删除议程
+ */
+export const deleteAgenda = async (
+  agendaId: string
+): Promise<{ success: boolean; message: string }> => {
+  try {
+    const response = await apiRequest<{ success: boolean; message: string }>(
+      `/venues/agendas/${agendaId}`,
+      'DELETE'
+    );
+
+    if (response.code === 200) {
+      return {
+        success: true,
+        message: response.message ?? '议程删除成功',
+      };
+    }
+
+    return { success: false, message: response.message ?? '议程删除失败' };
+  } catch (error: unknown) {
+    console.error('删除议程异常:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : '网络错误，请稍后重试',
+    };
+  }
+};
