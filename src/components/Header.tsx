@@ -380,7 +380,7 @@ export default function Header() {
           {
             key: 'brand-download',
             label: '品牌标识下载',
-            href: '/logo_2.svg',
+            href: '/logo.zip',
             target: '_blank',
             description: '下载开源社品牌标识',
             group: 'basic'
