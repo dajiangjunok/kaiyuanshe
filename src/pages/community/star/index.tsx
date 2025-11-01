@@ -136,7 +136,7 @@ export default function StarPage() {
         
 
         <div className={styles.filterSection}>
-          <div className={styles.filterLabel}>按年份筛选：</div>
+   
           <div className={styles.yearFilter}>
             {uniqueYears.map(year => (
               <button

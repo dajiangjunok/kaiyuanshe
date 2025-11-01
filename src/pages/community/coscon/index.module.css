@@ -101,6 +101,65 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.filterLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.yearFilter {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.yearButton {
+    padding: 8px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.yearButton:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.yearButtonActive {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+    border-color: #ffffff;
+    color: #667eea;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.yearButtonActive:hover {
+    background: linear-gradient(135deg, #f8faff 0%, #e8f0ff 100%);
+    border-color: #f0f4ff;
+    color: #5a67d8;
+}
+
 .statItem {
     text-align: center;
 }
@@ -154,6 +213,20 @@
         gap: 24px;
         padding: 20px 16px;
         margin-bottom: 32px;
+    }
+    
+    .filterSection {
+        margin-bottom: 32px;
+        padding: 20px 16px;
+    }
+
+    .filterLabel {
+        font-size: 0.9rem;
+    }
+
+    .yearButton {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
     
     .statNumber {

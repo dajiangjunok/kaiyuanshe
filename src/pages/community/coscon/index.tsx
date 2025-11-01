@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react'
 import VolunteerProfile from '../../../components/volunteer/VolunteerProfile'
 import styles from './index.module.css'
 
@@ -334,6 +334,16 @@ const yearlyStars = [
 const totalStars = cosconStars2023.length + cosconStars2022.length + cosconStars2021.length + cosconStars2020.length + cosconStars2019.length
 
 export default function COSConStarPage() {
+  const [selectedYear, setSelectedYear] = useState('2023')
+  
+  const uniqueYears = useMemo(() => {
+    return yearlyStars.map(item => item.year).sort((a, b) => parseInt(b) - parseInt(a))
+  }, [])
+  
+  const selectedStars = useMemo(() => {
+    return yearlyStars.find(item => item.year === selectedYear)?.stars || cosconStars2023
+  }, [selectedYear])
+
   return (
     <div className={styles.container}>
       <div className={styles.contentWrapper}>
@@ -344,41 +354,38 @@ export default function COSConStarPage() {
           </p>
         </div>
 
-        <div className={styles.statsBar}>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>{totalStars}</div>
-            <div className={styles.statLabel}>COSCon之星</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>5</div>
-            <div className={styles.statLabel}>年度表彰</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>∞</div>
-            <div className={styles.statLabel}>贡献精神</div>
+  
+
+        <div className={styles.filterSection}>
+       
+          <div className={styles.yearFilter}>
+            {uniqueYears.map(year => (
+              <button
+                key={year}
+                className={`${styles.yearButton} ${selectedYear === year ? styles.yearButtonActive : ''}`}
+                onClick={() => setSelectedYear(year)}
+              >
+                {year}
+              </button>
+            ))}
           </div>
         </div>
 
-        {yearlyStars.map(({ year, stars }) => (
-          <div key={year} className={styles.volunteersSection}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>{year}年 COSCon之星</h2>
-              <p className={styles.sectionDescription}>表彰在{year}年中国开源年会中有卓越贡献的志愿者</p>
-            </div>
+        <div className={styles.volunteersSection}>
+          
 
-            <div className={styles.volunteersGrid}>
-              {stars.map((star, index) => (
-                <VolunteerProfile
-                  key={`${year}-${index}`}
-                  name={star.name}
-                  nickname={star.nickname}
-                  avatar={star.avatar}
-                  recommendation={star.recommendation}
-                />
-              ))}
-            </div>
+          <div className={styles.volunteersGrid}>
+            {selectedStars.map((star, index) => (
+              <VolunteerProfile
+                key={`${selectedYear}-${index}`}
+                name={star.name}
+                nickname={star.nickname}
+                avatar={star.avatar}
+                recommendation={star.recommendation}
+              />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )
