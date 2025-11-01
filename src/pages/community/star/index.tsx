@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react'
 import VolunteerProfile from '../../../components/volunteer/VolunteerProfile'
 import styles from './index.module.css'
 
@@ -112,6 +112,17 @@ const volunteers = [
 ]
 
 export default function StarPage() {
+  const [selectedYear, setSelectedYear] = useState<number>(2024)
+
+  const uniqueYears = useMemo(() => {
+    const years = [...new Set(volunteers.map(v => v.date))].sort((a, b) => b - a)
+    return years
+  }, [])
+
+  const filteredVolunteers = useMemo(() => {
+    return volunteers.filter(volunteer => volunteer.date === selectedYear)
+  }, [selectedYear])
+
   return (
     <div className={styles.container}>
       <div className={styles.contentWrapper}>
@@ -122,29 +133,28 @@ export default function StarPage() {
           </p>
         </div>
 
-        <div className={styles.statsBar}>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>{volunteers.length}</div>
-            <div className={styles.statLabel}>开源之星</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>2024</div>
-            <div className={styles.statLabel}>年度表彰</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>⭐</div>
-            <div className={styles.statLabel}>闪耀贡献</div>
+        
+
+        <div className={styles.filterSection}>
+          <div className={styles.filterLabel}>按年份筛选：</div>
+          <div className={styles.yearFilter}>
+            {uniqueYears.map(year => (
+              <button
+                key={year}
+                className={`${styles.yearButton} ${selectedYear === year ? styles.yearButtonActive : ''}`}
+                onClick={() => setSelectedYear(year)}
+              >
+                {year}
+              </button>
+            ))}
           </div>
         </div>
 
         <div className={styles.volunteersSection}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>明星风采</h2>
-            <p className={styles.sectionDescription}>每一份杰出贡献都值得被赞誉</p>
-          </div>
+         
           
           <div className={styles.volunteersGrid}>
-            {volunteers.map((volunteer, index) => (
+            {filteredVolunteers.map((volunteer, index) => (
               <VolunteerProfile
                 key={index}
                 name={volunteer.name}

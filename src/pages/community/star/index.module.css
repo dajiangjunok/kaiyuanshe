@@ -119,6 +119,65 @@
     font-weight: 500;
 }
 
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(139, 90, 60, 0.2);
+}
+
+.filterLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(139, 90, 60, 0.9);
+}
+
+.yearFilter {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.yearButton {
+    padding: 8px 16px;
+    border: 2px solid rgba(139, 90, 60, 0.3);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    color: rgba(139, 90, 60, 0.8);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.yearButton:hover {
+    border-color: rgba(139, 90, 60, 0.6);
+    background: rgba(255, 255, 255, 0.8);
+    color: rgba(139, 90, 60, 1);
+    transform: translateY(-2px);
+}
+
+.yearButtonActive {
+    background: linear-gradient(135deg, #8b5a3c 0%, #6d4c41 100%);
+    border-color: #8b5a3c;
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 90, 60, 0.3);
+}
+
+.yearButtonActive:hover {
+    background: linear-gradient(135deg, #6d4c41 0%, #5d4037 100%);
+    border-color: #6d4c41;
+    color: white;
+}
+
 @media (max-width: 1200px) {
     .volunteersGrid {
         grid-template-columns: repeat(3, 1fr);
@@ -162,6 +221,20 @@
     }
     
     .statLabel {
+        font-size: 0.8rem;
+    }
+
+    .filterSection {
+        margin-bottom: 32px;
+        padding: 20px 16px;
+    }
+
+    .filterLabel {
+        font-size: 0.9rem;
+    }
+
+    .yearButton {
+        padding: 6px 12px;
         font-size: 0.8rem;
     }
 }
