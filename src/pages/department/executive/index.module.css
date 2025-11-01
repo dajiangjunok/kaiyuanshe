@@ -59,6 +59,32 @@
     text-decoration: underline;
 }
 
+.workingGroups {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.workingGroup {
+    margin-bottom: 60px;
+}
+
+.groupTitle {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.groupDescription {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 24px;
+    text-align: center;
+    font-style: italic;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .header {
@@ -81,5 +107,17 @@
     
     .details {
         font-size: 15px;
+    }
+
+    .workingGroups {
+        padding: 40px 16px;
+    }
+
+    .groupTitle {
+        font-size: 24px;
+    }
+
+    .groupDescription {
+        font-size: 14px;
     }
 }
