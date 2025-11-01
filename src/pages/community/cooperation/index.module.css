@@ -1,15 +1,268 @@
 .container {
     width: 100%;
-    height: 100vh;
-    padding-top: 100px;
-    background: linear-gradient(to bottom right, #f5fbff, var(--primary-400));
+    min-height: 100vh;
+    padding: 120px 20px 60px;
+    background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(165, 180, 252, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(165, 180, 252, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.contentWrapper {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.titleSection {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.volunteersSection {
+    width: 100%;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+}
+
+.sectionDescription {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+}
+
+.volunteersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
+    gap: 32px;
+    width: 100%;
+    padding: 0 20px;
+    justify-content: center;
+}
+
+.statsBar {
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 48px;
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.filterLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.yearFilter {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.yearButton {
+    padding: 8px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.yearButton:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.yearButtonActive {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border-color: #ffffff;
+    color: #4f46e5;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.yearButtonActive:hover {
+    background: linear-gradient(135deg, #f8faff 0%, #f1f5f9 100%);
+    border-color: #f1f5f9;
+    color: #3730a3;
+}
+
+.statItem {
+    text-align: center;
+}
+
+.statNumber {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.statLabel {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+    .volunteersGrid {
+        grid-template-columns: repeat(auto-fill, 250px);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 16px 40px;
+    }
+    
+    .titleSection {
+        margin-bottom: 40px;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 16px;
+    }
+    
+    .volunteersGrid {
+        grid-template-columns: repeat(auto-fill, 200px);
+        gap: 20px;
+        padding: 0 8px;
+    }
+    
+    .statsBar {
+        gap: 24px;
+        padding: 20px 16px;
+        margin-bottom: 32px;
+    }
+    
+    .filterSection {
+        margin-bottom: 32px;
+        padding: 20px 16px;
+    }
+
+    .filterLabel {
+        font-size: 0.9rem;
+    }
+
+    .yearButton {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .statNumber {
+        font-size: 2rem;
+    }
+    
+    .statLabel {
+        font-size: 0.8rem;
+    }
+    
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .statsBar {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .statItem {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .statNumber {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+    }
 }
 
