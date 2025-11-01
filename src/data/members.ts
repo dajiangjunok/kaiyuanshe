@@ -4,7 +4,7 @@ export const members: Member[] = [
   {
     name: '白宦成',
     gender: '男',
-    avatar: '31705630533_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'huancheng.bai@kaiyuanshe.org',
     website: 'https://www.ixiqin.com',
@@ -17,7 +17,7 @@ export const members: Member[] = [
   {
     name: '蔡芳芳',
     gender: '女',
-    avatar: '201705583869_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     website: 'https://www.infoq.cn/u/caifangfang/publish',
     position: '编辑',
@@ -26,7 +26,7 @@ export const members: Member[] = [
   {
     name: '晁倩',
     gender: '女',
-    avatar: 'cq.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'queenachao@kaiyuanshe.org',
     github: 'https://github.com/QueenaChao',
@@ -39,7 +39,7 @@ export const members: Member[] = [
   {
     name: '陈莉君',
     gender: '女',
-    avatar: '陈莉君.png',
+    avatar: '/img/cblecker.png',
     city: '西安',
     github: 'https://github.com/cljcore',
     githubUsername: 'cljcore',
@@ -48,7 +48,7 @@ export const members: Member[] = [
   {
     name: '陈玄',
     gender: '男',
-    avatar: '陈玄.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'chenxuan@kaiyuanshe.org',
     github: 'https://github.com/AmbitionCX',
@@ -61,7 +61,7 @@ export const members: Member[] = [
   {
     name: '陈阳',
     gender: '女',
-    avatar: '13501705582826_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'emily@kaiyuanshe.org',
     github: 'https://github.com/sssuyx',
@@ -74,7 +74,7 @@ export const members: Member[] = [
   {
     name: '陈轶姝',
     gender: '女',
-    avatar: '陈轶姝.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'chenyishu@kaiyuanshe.org',
     bio: 'INFJ魔法绿老头，半吊子新闻选手\n兴趣爱好比较广泛，爱剪辑，喜爱阅读网络文学和剧本杀，追番和追剧两不误。\n希望能与大家线上交流，请多多关心吧！',
@@ -84,7 +84,7 @@ export const members: Member[] = [
   {
     name: '陈梓立',
     gender: '男',
-    avatar: '陈梓立 Tison.png',
+    avatar: '/img/cblecker.png',
     city: '广州',
     email: 'tison@kaiyuanshe.org',
     website: 'https://www.tisonkun.org/',
@@ -99,7 +99,7 @@ export const members: Member[] = [
   {
     name: '崔晨洋',
     gender: '男',
-    avatar: '崔晨洋.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'cuichenyang@kaiyuanshe.org',
     bio: '城市：北京\n地址：https://github.com/yoshino-s\n介绍：百度基础安全部/DevSecOps',
@@ -108,7 +108,7 @@ export const members: Member[] = [
   {
     name: '代立冬',
     gender: '男',
-    avatar: '代立冬.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'dailidong@kaiyuanshe.org',
     github: 'https://github.com/davidzollo',
@@ -121,7 +121,7 @@ export const members: Member[] = [
   {
     name: '丁文昊',
     gender: '男',
-    avatar: '止戈.jpg',
+    avatar: '/img/cblecker.png',
     city: '湖南',
     email: 'dingwenhao@kaiyuanshe.org',
     github: 'https://github.com/stevending1st',
@@ -133,7 +133,7 @@ export const members: Member[] = [
   {
     name: '堵俊平',
     gender: '男',
-    avatar: '堵俊平.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     github: 'https://github.com/JunpingDu',
     achievements: ['2020 中国开源先锋 33 人'],
@@ -143,7 +143,7 @@ export const members: Member[] = [
   {
     name: '段夕华',
     gender: '男',
-    avatar: '19941705764933_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '新加坡',
     github: 'https://github.com/xihuaduan',
     bio: '曾任阿里集团开源计划办公室 (OSPO)',
@@ -153,7 +153,7 @@ export const members: Member[] = [
   {
     name: '范晶晶',
     gender: '男',
-    avatar: '3001705583447_.pic_hd.jpg',
+    avatar: '/img/cblecker.png',
     city: '杭州',
     email: 'fanjingjing@kaiyuanshe.org',
     position: '创始人',
@@ -162,7 +162,7 @@ export const members: Member[] = [
   {
     name: '高天贺',
     gender: '男',
-    avatar: 'tianheg.jpg',
+    avatar: '/img/cblecker.png',
     city: '阜阳',
     email: 'i@tianheg.co',
     website: 'https://tianheg.co',
@@ -174,7 +174,7 @@ export const members: Member[] = [
   {
     name: '高须正和',
     gender: '男',
-    avatar: '033高须正和.png',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'tks@kaiyuanshe.org',
     website: 'tks.medium.com',
@@ -189,7 +189,7 @@ export const members: Member[] = [
   {
     name: '高阳',
     gender: '男',
-    avatar: '301706956329_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'sunny@kaiyuanshe.org',
     github: 'https://github.com/sunshineg',
@@ -201,7 +201,7 @@ export const members: Member[] = [
   {
     name: '耿航',
     gender: '男',
-    avatar: '耿航.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'devin@kaiyuanshe.org',
     github: 'https://github.com/gh-Devin',
@@ -212,7 +212,7 @@ export const members: Member[] = [
   {
     name: '郭浩赟',
     gender: '男',
-    avatar: '截屏2024-01-19 14.12.22.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'haoyun@kaiyuanshe.org',
     github: 'https://github.com/0x68616f79756e',
@@ -223,7 +223,7 @@ export const members: Member[] = [
   {
     name: '郭炜',
     gender: '男',
-    avatar: '郭炜.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'william-guowei@qq.com',
     github: 'https://github.com/William-GuoWei',
@@ -234,7 +234,7 @@ export const members: Member[] = [
   {
     name: '郭旭东',
     gender: '男',
-    avatar: '6ffdfcbae5371cde6cb83e9208b105fc.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'guoxudong.dev@gmail.com',
     website: 'guoxudong.io',
@@ -246,7 +246,7 @@ export const members: Member[] = [
   {
     name: '郭雪',
     gender: '女',
-    avatar: '郭雪.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'guoxue@kaiyuanshe.org',
     alternativeEmail: 'guoxue@caict.ac.cn',
@@ -265,7 +265,7 @@ export const members: Member[] = [
   {
     name: '韩骏',
     gender: '男',
-    avatar: '韩骏.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     github: 'https://github.com/formulahendry',
     bio: 'VS Code 中文社区创始人, 微软软件工程师',
@@ -276,7 +276,7 @@ export const members: Member[] = [
   {
     name: '何莹',
     gender: '女',
-    avatar: '24831705659662_.pic_hd.jpg',
+    avatar: '/img/cblecker.png',
     city: '英国',
     email: 'hying1201@kaiyuanshe.org',
     details: []
@@ -284,7 +284,7 @@ export const members: Member[] = [
   {
     name: '和灿阳',
     gender: '女',
-    avatar: '和灿阳.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'hecanyang@kaiyuanshe.org',
     bio: '撰写人生笔记本正在进行时 动静多面体 乐于思考探索世界的ENFJ！',
@@ -293,7 +293,7 @@ export const members: Member[] = [
   {
     name: '胡欣元',
     gender: '女',
-    avatar: 'F78CDB0A-0C8B-48F5-902C-122B3028AE26.jpeg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'sowllwos@foxmail.com',
     skills: ['剪辑'],
@@ -315,7 +315,7 @@ export const members: Member[] = [
   {
     name: '黄鸿文',
     gender: '男',
-    avatar: '黄鸿文.jpg',
+    avatar: '/img/cblecker.png',
     city: '台北',
     email: 'kevinhuang@kaiyuanshe.org',
     github: 'https://github.com/kevinwhang',
@@ -328,14 +328,14 @@ export const members: Member[] = [
   {
     name: '黄培晟',
     gender: '男',
-    avatar: 'WechatIMG6.jpg',
+    avatar: '/img/cblecker.png',
     position: '技术架构师',
     details: []
   },
   {
     name: '惠世冀',
     gender: '男',
-    avatar: 'hsj.jpg',
+    avatar: '/img/cblecker.png',
     city: '广州',
     email: 'huishiji@kaiyuanshe.org',
     github: 'https://github.com/1Namaste96',
@@ -345,7 +345,7 @@ export const members: Member[] = [
   {
     name: '姜宁',
     gender: '男',
-    avatar: '姜宁.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     github: 'https://github.com/WillemJiang',
     bio: 'ASF 董事, 字节跳动首席开源布道师',
@@ -356,7 +356,7 @@ export const members: Member[] = [
   {
     name: '江波',
     gender: '女',
-    avatar: '001江波.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'nadia@kaiyuanshe.org',
     github: 'https://github.com/jiangbonadia',
@@ -367,7 +367,7 @@ export const members: Member[] = [
   {
     name: '康悦',
     gender: '女',
-    avatar: '3051705905637_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'rita@kaiyuanshe.org',
     github: 'https://github.com/Ritakang0451',
@@ -380,7 +380,7 @@ export const members: Member[] = [
   {
     name: '李海龙',
     gender: '男',
-    avatar: '381705583970_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '成都',
     github: 'https://github.com/five-great',
     bio: '3年专职前端，tinymce-plugin社区发起人，CSDN 前端优质领域创作者，CSDN博客专家。阿里云，InfoQ 签约作者，退役ACMer，IT技术狂热爱好者。擅长领域，web前端，算法, 业务架构，可视化，富文本编辑器等。',
@@ -392,7 +392,7 @@ export const members: Member[] = [
   {
     name: '李佳欣',
     gender: '女',
-    avatar: 'IMG_20240128_221359.jpg',
+    avatar: '/img/cblecker.png',
     city: '呼和浩特',
     email: '1395322525@qq.com',
     website: 'l52110420',
@@ -410,7 +410,7 @@ export const members: Member[] = [
   {
     name: '李建盛',
     gender: '男',
-    avatar: '李建盛.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'lijiansheng@kaiyuanshe.org',
     website: 'http://www.ocselected.org',
@@ -424,7 +424,7 @@ export const members: Member[] = [
   {
     name: '李明康',
     gender: '男',
-    avatar: 'lmk.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'slibre@kaiyuanshe.org',
     github: 'https://github.com/Nliver',
@@ -438,7 +438,7 @@ export const members: Member[] = [
   {
     name: '李楠',
     gender: '女',
-    avatar: '1280X1280.JPEG',
+    avatar: '/img/cblecker.png',
     city: '长沙',
     email: 'linan@kaiyuanshe.org',
     github: 'https://github.com/Leeli-like',
@@ -460,7 +460,7 @@ export const members: Member[] = [
   {
     name: '李思颖',
     gender: '女',
-    avatar: 'WechatIMG9761.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'mabel@kaiyuanshe.org',
     github: 'https://github.com/cynbarby',
@@ -472,7 +472,7 @@ export const members: Member[] = [
   {
     name: '李扬',
     gender: '男',
-    avatar: '2871705592151_.pic_hd.jpg',
+    avatar: '/img/cblecker.png',
     city: '杭州',
     email: 'yangli@kaiyuanshe.org',
     github: 'https://github.com/yangli',
@@ -485,7 +485,7 @@ export const members: Member[] = [
   {
     name: '李卓桓',
     gender: '男',
-    avatar: '李卓桓.jpg',
+    avatar: '/img/cblecker.png',
     city: '旧金山',
     email: 'huan@kaiyuanshe.org',
     website: 'https://pre-angel.com/peoples/zhuohuan-li/?from=groupmessage',
@@ -499,7 +499,7 @@ export const members: Member[] = [
   {
     name: '梁尧',
     gender: '男',
-    avatar: '梁尧.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京​',
     email: 'ly@kaiyuanshe.org',
     github: 'https://github.com/WallaceOS',
@@ -512,7 +512,7 @@ export const members: Member[] = [
   {
     name: '林旅强',
     gender: '男',
-    avatar: '3961705646438_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'richard@kaiyuanshe.org',
     github: 'https://github.com/richardllin',
@@ -525,7 +525,7 @@ export const members: Member[] = [
   {
     name: '林夏',
     gender: '男',
-    avatar: '微信图片_20240125222545.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'finkywu@163.com',
     skills: ['编程', '写作'],
@@ -535,7 +535,7 @@ export const members: Member[] = [
   {
     name: '刘冬',
     gender: '男',
-    avatar: '红薯.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'gitee@kaiyuanshe.org',
     position: '创始人 & CTO',
@@ -547,7 +547,7 @@ export const members: Member[] = [
   {
     name: '刘敏',
     gender: '女',
-    avatar: '57766ACA-BFDC-4963-9F3F-7E5DFBC50DAD.jpeg',
+    avatar: '/img/cblecker.png',
     city: '长沙',
     email: 'liumin@kaiyuanshe.org',
     github: 'https://github.com/liumin0322',
@@ -558,7 +558,7 @@ export const members: Member[] = [
   {
     name: '刘天栋',
     gender: '男',
-    avatar: 'Ted.png',
+    avatar: '/img/cblecker.png',
     city: '高雄',
     email: 'ted@kaiyuanshe.org',
     website: 'https://tedliu.org/',
@@ -572,7 +572,7 @@ export const members: Member[] = [
   {
     name: '刘晓东',
     gender: '男',
-    avatar: '023刘晓东.png',
+    avatar: '/img/cblecker.png',
     city: '长沙',
     email: 'liuxiaodong@kaiyuanshe.org',
     bio: '刘晓东，国防科技大学博士，优麒麟开源项目技术负责人、openKylin 开源社区 TC 委员，2022年中国开源先锋 33 人之心尖上的开源人物。长期从事 Linux 桌面操作系统相关关键技术突破和开源项目开发，取得国际论文和国家专利近 20 项。通过构建桌面环境 UKUI，让中国用户获得更好的体验；通过积极在国际开源社区的交流，推动 UKUI 进入 OpenSUSE 和 Gentoo 两大国际主流社区并成为其可选的桌面环境之一。',
@@ -581,7 +581,7 @@ export const members: Member[] = [
   {
     name: '刘绪光',
     gender: '男',
-    avatar: '21705638157_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '成都',
     website: 'https://guanngxu.com/',
     github: 'https://github.com/Guanngxu',
@@ -592,7 +592,7 @@ export const members: Member[] = [
   {
     name: '刘雪洁',
     gender: '女',
-    avatar: '刘雪洁.jpg',
+    avatar: '/img/cblecker.png',
     city: '山东',
     email: 'liuxuejie@kaiyuanshe.org',
     details: []
@@ -600,7 +600,7 @@ export const members: Member[] = [
   {
     name: '刘于瑜',
     gender: '女',
-    avatar: '刘于瑜.png',
+    avatar: '/img/cblecker.png',
     city: '成都',
     github: 'https://github.com/miyaliu666',
     position: 'FreeCodeCamp',
@@ -613,7 +613,7 @@ export const members: Member[] = [
   {
     name: '罗蕊艳',
     gender: '女',
-    avatar: 'IMG_20231002_141241.jpg',
+    avatar: '/img/cblecker.png',
     city: '西安',
     email: '3537888106@qq.com',
     skills: ['设计', '写作'],
@@ -623,7 +623,7 @@ export const members: Member[] = [
   {
     name: '马全一',
     gender: '男',
-    avatar: 'genedna.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'eli@kaiyuanshe.org',
     website: 'https://maquanyi.com',
@@ -637,7 +637,7 @@ export const members: Member[] = [
   {
     name: '慕睿涛',
     gender: '男',
-    avatar: '191705638054_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     nickname: '慕睿涛.Max',
     details: []
@@ -645,7 +645,7 @@ export const members: Member[] = [
   {
     name: '聂子涵',
     gender: '女',
-    avatar: '聂子涵.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'niezihan@kaiyuanshe.org',
     details: []
@@ -653,7 +653,7 @@ export const members: Member[] = [
   {
     name: '牛勇杰',
     gender: '男',
-    avatar: '51705650671_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'niuyongjie@kaiyuanshe.org',
     github: 'https://github.com/niuyongjie',
@@ -666,7 +666,7 @@ export const members: Member[] = [
   {
     name: '潘娟',
     gender: '女',
-    avatar: '潘娟.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     github: 'https://github.com/tristaZero',
     position: '联合创始人',
@@ -678,7 +678,7 @@ export const members: Member[] = [
   {
     name: '钱睿',
     gender: '女',
-    avatar: '钱睿.jpg',
+    avatar: '/img/cblecker.png',
     city: '安徽省',
     email: 'qianrui@kaiyuanshe.org',
     bio: '毕业于上海杉达学院新闻系，在开源社所属媒体组',
@@ -687,7 +687,7 @@ export const members: Member[] = [
   {
     name: '秦圆圆',
     gender: '女',
-    avatar: 'WechatIMG9.jpg',
+    avatar: '/img/cblecker.png',
     city: '广州',
     github: 'https://github.com/scarqin',
     bio: '四年多⼤型企业级应⽤开发经验，API 全⽣命周期管理⽅案有较为丰富的经验。参与团队开源项⽬ Eoapi 的业务研发、项⽬管理，⽬前是该项⽬技术负责⼈。',
@@ -698,7 +698,7 @@ export const members: Member[] = [
   {
     name: '任潇',
     gender: '男',
-    avatar: '1寸.JPG',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'shawn_rx@163.com',
     website: 'Spidey-Shawn.github.io',
@@ -709,7 +709,7 @@ export const members: Member[] = [
   {
     name: '沈于蓝',
     gender: '女',
-    avatar: 'syl.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'shenyulan@kaiyuanshe.org',
     nickname: '蓝蓝',
@@ -718,7 +718,7 @@ export const members: Member[] = [
   {
     name: '史璞金',
     gender: '男',
-    avatar: '截屏2024-01-19 15.08.29.png',
+    avatar: '/img/cblecker.png',
     city: '南京',
     email: 'shipujin@kaiyuanshe.org',
     github: 'https://github.com/shipujin',
@@ -730,7 +730,7 @@ export const members: Member[] = [
   {
     name: '舒敏',
     gender: '女',
-    avatar: '舒敏.jpg',
+    avatar: '/img/cblecker.png',
     city: '新加坡',
     email: 's56124669@kaiyuanshe.org',
     github: 'https://github.com/ch-shumin',
@@ -743,7 +743,7 @@ export const members: Member[] = [
   {
     name: '苏帅',
     gender: '男',
-    avatar: 'WechatIMG36.jpg',
+    avatar: '/img/cblecker.png',
     city: '香港',
     email: 'sushuai@kaiyuanshe.org',
     github: 'https://github.com/MuskSu',
@@ -755,7 +755,7 @@ export const members: Member[] = [
   {
     name: '苏子馨',
     gender: '女',
-    avatar: '苏子馨.jpg',
+    avatar: '/img/cblecker.png',
     city: '江苏',
     email: 'suzixin@kaiyuanshe.org',
     bio: '沉迷游戏游泳的深漂打工人，目标是攒够Money回家撸猫',
@@ -764,7 +764,7 @@ export const members: Member[] = [
   {
     name: '孙乐',
     gender: '男',
-    avatar: '511705585829_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '南京',
     email: 'sunle@kaiyuanshe.org',
     github: 'https://github.com/easyranger',
@@ -776,7 +776,7 @@ export const members: Member[] = [
   {
     name: '谭中意',
     gender: '男',
-    avatar: '谭中意.png,tanzhongyi003.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'tanzhongyi@kaiyuanshe.org',
     github: 'https://github.com/tanzhongyi003',
@@ -796,7 +796,7 @@ export const members: Member[] = [
   {
     name: '王东芳',
     gender: '女',
-    avatar: '王东芳.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'wangdongfang@kaiyuanshe.org',
     achievements: ['2020 中国开源先锋 33 人'],
@@ -806,7 +806,7 @@ export const members: Member[] = [
   {
     name: '王福政',
     gender: '男',
-    avatar: '王福政.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'wangfz@kaiyuanshe.org',
     github: 'https://github.com/QuakeWang',
@@ -818,7 +818,7 @@ export const members: Member[] = [
   {
     name: '王皓月',
     gender: '女',
-    avatar: 'WechatIMG5364.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'haoyuemingo@kaiyuanshe.org',
     github: 'https://github.com/sunshinemingo',
@@ -829,7 +829,7 @@ export const members: Member[] = [
   {
     name: '王军',
     gender: '男',
-    avatar: 'IMG_20240122_130402.png',
+    avatar: '/img/cblecker.png',
     city: '武汉',
     email: '1391850841@qq.com',
     skills: ['管理', '写作'],
@@ -839,7 +839,7 @@ export const members: Member[] = [
   {
     name: '王俊波',
     gender: '男',
-    avatar: '246361705652255_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'junbowang@kaiyuanshe.org',
     github: 'https://github.com/juniwang',
@@ -853,7 +853,7 @@ export const members: Member[] = [
   {
     name: '王梦玉',
     gender: '女',
-    avatar: '王梦玉.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'wangmengyu@kaiyuanshe.org',
     bio: '努力早睡早起，喜欢美食和追剧，偶尔发呆但热爱生活的i人',
@@ -874,7 +874,7 @@ export const members: Member[] = [
   {
     name: '王伟',
     gender: '男',
-    avatar: '王伟.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'wwang@kaiyuanshe.org',
     github: 'https://github.com/will-ww',
@@ -886,7 +886,7 @@ export const members: Member[] = [
   {
     name: '王文竹',
     gender: '男',
-    avatar: '101705652763_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '天津',
     bio: 'openKylin社区技术委员会委员，Architecture SIG Owner，RISC-V SIG Owner，InternationalPromotion SIG Owner。',
     details: []
@@ -894,7 +894,7 @@ export const members: Member[] = [
   {
     name: '王晓珂',
     gender: '女',
-    avatar: '5071705751337_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'nicoco.w@kaiyuanshe.org',
     nickname: 'Nicoco',
@@ -903,7 +903,7 @@ export const members: Member[] = [
   {
     name: '王萱',
     gender: '女',
-    avatar: '王萱.jpg',
+    avatar: '/img/cblecker.png',
     city: '郑州',
     email: 'wangxuan@kaiyuanshe.org',
     bio: '半开半闭（ENFP / INTJ），一个清澈且愚蠢，脆弱且难杀的经管在读大学生✌️',
@@ -913,7 +913,7 @@ export const members: Member[] = [
   {
     name: '王永雷',
     gender: '男',
-    avatar: '91705645514_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     github: 'https://github.com/wangleo61',
     bio: '新思科技首席开源软件治理专家，资深软件安全架构师。2016年加入 BlackDuck，2018 年初新思收购 BlackDuck, 加入新思软件质量与安全部门，Synopsys 资深软件安全架构师,首席开源软件治理专家，为大中华区的企业客户提供企业级的软件安全和开源合规治理解决方案。',
@@ -925,7 +925,7 @@ export const members: Member[] = [
   {
     name: '王玥敏',
     gender: '女',
-    avatar: '王玥敏.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'wangminyuebing@kaiyuanshe.org',
     bio: '在上海的长势良好的音乐剧韭菜，优点是一般精神状态都很稳定，早睡早起，十点半之后一般不回消息',
@@ -935,7 +935,7 @@ export const members: Member[] = [
   {
     name: '王蕴博',
     gender: '男',
-    avatar: '王蕴博.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'wangyunbo@kaiyuanshe.org',
     achievements: ['2020 中国开源先锋 33 人'],
@@ -944,7 +944,7 @@ export const members: Member[] = [
   {
     name: '卫剑钒',
     gender: '男',
-    avatar: '卫sir.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'weisir@kaiyuanshe.org',
     github: 'https://github.com/weijianfan',
@@ -956,7 +956,7 @@ export const members: Member[] = [
   {
     name: '吴晟',
     gender: '男',
-    avatar: '吴晟.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'wusheng@kaiyuanshe.org',
     github: 'https://github.com/wu-sheng',
@@ -969,7 +969,7 @@ export const members: Member[] = [
   {
     name: '夏小雅',
     gender: '女',
-    avatar: '夏小雅.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'xiaoya@kaiyuanshe.org',
     achievements: ['2021 中国开源先锋 33 人'],
@@ -978,7 +978,7 @@ export const members: Member[] = [
   {
     name: '项曙明',
     gender: '男',
-    avatar: '017项曙明.png',
+    avatar: '/img/cblecker.png',
     city: '南京',
     position: '开源合规&安全治理总监',
     achievements: ['2022 中国开源先锋 33 人'],
@@ -987,7 +987,7 @@ export const members: Member[] = [
   {
     name: '辛庆',
     gender: '女',
-    avatar: '辛庆.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'cynthia@kaiyuanshe.org',
     github: 'https://github.com/CynthiaXin1',
@@ -1001,7 +1001,7 @@ export const members: Member[] = [
   {
     name: '徐普',
     gender: '男',
-    avatar: 'WechatIMG7.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'xp@kaiyuanshe.org',
     github: 'https://github.com/hsupu',
@@ -1013,7 +1013,7 @@ export const members: Member[] = [
   {
     name: '徐硕博',
     gender: '男',
-    avatar: '101705651137_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '济南',
     email: 'shuobo@kaiyuanshe.org',
     github: 'https://github.com/vrdragon',
@@ -1024,7 +1024,7 @@ export const members: Member[] = [
   {
     name: '许银',
     gender: '男',
-    avatar: '013许银.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'xuyin@kaiyuanshe.org',
     github: 'https://github.com/jueduizone',
@@ -1037,7 +1037,7 @@ export const members: Member[] = [
   {
     name: '薛亮',
     gender: '女',
-    avatar: 'WechatIMG4.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'liang.xue@kaiyuanshe.org',
     position: '北京集慧智佳知识产权管理咨询(有) 互联网事业部总监',
@@ -1046,7 +1046,7 @@ export const members: Member[] = [
   {
     name: '严澎屹',
     gender: '男',
-    avatar: '561707103945_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '杭州',
     email: 'yanpengyi@kaiyuanshe.org',
     website: 'https://steemblog.github.io/@robertyan/',
@@ -1059,7 +1059,7 @@ export const members: Member[] = [
   {
     name: '杨丽蕴',
     gender: '女',
-    avatar: '杨丽蕴.png',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'yangly@kaiyuanshe.org',
     achievements: ['2021 中国开源先锋 33 人'],
@@ -1068,7 +1068,7 @@ export const members: Member[] = [
   {
     name: '姚瑶',
     gender: '女',
-    avatar: '2261706449651_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '唐山',
     email: '2413148553@qq.com',
     website: '5- 长按复制此条消息，打开抖音搜索，查看TA的更多作品。 https://v.douyin.com/iLxebFjG/ 9@4.com :8pm',
@@ -1079,7 +1079,7 @@ export const members: Member[] = [
   {
     name: '叶凯',
     gender: '男',
-    avatar: 'WechatIMG3973.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'yekai@kaiyuanshe.org',
     github: 'https://github.com/zjlsyk',
@@ -1090,7 +1090,7 @@ export const members: Member[] = [
   {
     name: '余杰',
     gender: '男',
-    avatar: '余杰.jpg',
+    avatar: '/img/cblecker.png',
     city: '长沙',
     website: 'www.ubuntukylin.com',
     github: 'https://github.com/JackYu_UbuntuKylin',
@@ -1103,7 +1103,7 @@ export const members: Member[] = [
   {
     name: '袁睿斌',
     gender: '男',
-    avatar: '截屏2024-01-19 15.02.32.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'yuanruibin@kaiyuanshe.org',
     nickname: '小袁',
@@ -1112,7 +1112,7 @@ export const members: Member[] = [
   {
     name: '袁艺',
     gender: '女',
-    avatar: 'WechatIMG138.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     bio: '袁滚滚，CSDN 人工智能技术主编\n\n开源社正式成员、谷歌开发者社区组织者、谷歌女性开发者大使，本科毕业于同济大学数字媒体专业，获得中国传媒大学法学（知识产权）双学位。',
     nickname: '滚滚',
@@ -1122,7 +1122,7 @@ export const members: Member[] = [
   {
     name: '臧鹏',
     gender: '男',
-    avatar: '3471705587006_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'pcwl@kaiyuanshe.org',
     website: 'http://pcwl.github.io/',
@@ -1135,7 +1135,7 @@ export const members: Member[] = [
   {
     name: '张俊霞',
     gender: '女',
-    avatar: '451705584666_.pic_hd.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'zhangjunxia@kaiyuanshe.org',
     details: []
@@ -1143,7 +1143,7 @@ export const members: Member[] = [
   {
     name: '张婷婷',
     gender: '女',
-    avatar: 'WechatIMG55.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'sukunxi@kaiyuanshe.org',
     details: []
@@ -1151,7 +1151,7 @@ export const members: Member[] = [
   {
     name: '张炜',
     gender: '男',
-    avatar: '13451705631145_.pic.jpg',
+    avatar: '/img/cblecker.png',
     city: '福州',
     email: 'lzw@kaiyuanshe.org',
     github: 'https://github.com/dz85',
@@ -1163,7 +1163,7 @@ export const members: Member[] = [
   {
     name: '张琰彬',
     gender: '女',
-    avatar: '104-Q11-张琰彬_1-941139.png',
+    avatar: '/img/cblecker.png',
     city: '上海',
     github: 'https://github.com/AliceCodeZhang',
     bio: '张琰彬，华东师范大学数据科学与工程学院教师，CCF 开源发展委员会执行委员，担任本科课程《开源软件开发与实践》与研究生课程《开源软件开发与社区运营》的主讲老师之一，有 10 年+ 开源项目参与经验，前英特尔开源项目 OpenWebRTCToolkit 测试负责人与测试架构师，致力于软件过程、软件流程与研发效能等工程研究领域。',
@@ -1174,7 +1174,7 @@ export const members: Member[] = [
   {
     name: '赵玭月',
     gender: '女',
-    avatar: '月.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'zhaopinyue@kaiyuanshe.org',
     bio: '爱音乐 爱美食 爱旅游 不成熟的搬砖人 努力提升自己ing',
@@ -1183,7 +1183,7 @@ export const members: Member[] = [
   {
     name: '赵生宇',
     gender: '男',
-    avatar: '赵生宇.jpg',
+    avatar: '/img/cblecker.png',
     city: '杭州',
     email: 'frank@kaiyuanshe.org',
     website: 'https://blog.frankzhao.cn/',
@@ -1197,7 +1197,7 @@ export const members: Member[] = [
   {
     name: '赵文涵',
     gender: '女',
-    avatar: '赵文涵.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: '2214032189@qq.com',
     skills: ['摄影', '设计', '编程'],
@@ -1207,7 +1207,7 @@ export const members: Member[] = [
   {
     name: '赵云虎',
     gender: '男',
-    avatar: 'mmexport1705804665082.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'yunhu.zhao@dentons.cn',
     skills: ['演讲', '写作'],
@@ -1217,7 +1217,7 @@ export const members: Member[] = [
   {
     name: '赵政瑛',
     gender: '女',
-    avatar: '9D431D54-C7CF-486C-B256-48107C3BDF3F.jpeg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'xxxyin_lee@qq.com',
     skills: ['写作'],
@@ -1227,7 +1227,7 @@ export const members: Member[] = [
   {
     name: '钟燕清',
     gender: '男',
-    avatar: '钟燕清.png',
+    avatar: '/img/cblecker.png',
     city: '深圳',
     email: 'zhongyq@kaiyuanshe.org',
     github: 'https://github.com/ivanzhongyq',
@@ -1238,7 +1238,7 @@ export const members: Member[] = [
   {
     name: '周琦',
     gender: '男',
-    avatar: '1221705585265_.pic_hd.jpg',
+    avatar: '/img/cblecker.png',
     city: '珠海',
     email: 'zq@kaiyuanshe.org',
     website: 'zoomquiet.io',
@@ -1252,7 +1252,7 @@ export const members: Member[] = [
   {
     name: '朱庆裕',
     gender: '女',
-    avatar: 'WechatIMG3970.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'corrie@kaiyuanshe.org',
     github: 'https://github.com/corrie9835',
@@ -1264,7 +1264,7 @@ export const members: Member[] = [
   {
     name: '朱亿钦',
     gender: '女',
-    avatar: 'zyq.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'zhuyiqin@kaiyuanshe.org',
     nickname: '居居',
@@ -1273,7 +1273,7 @@ export const members: Member[] = [
   {
     name: '庄表伟',
     gender: '男',
-    avatar: 'zbw.jpg',
+    avatar: '/img/cblecker.png',
     city: '上海',
     email: 'zbw@kaiyuanshe.org',
     website: 'http://www.zhuangbiaowei.com/blog/',
@@ -1286,7 +1286,7 @@ export const members: Member[] = [
   {
     name: '左文瑒',
     gender: '女',
-    avatar: '左.jpg',
+    avatar: '/img/cblecker.png',
     city: '北京',
     email: 'zuowen@kaiyuanshe.org',
     website: 'https://blog.csdn.net/weixin_44716769',
