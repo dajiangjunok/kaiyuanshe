@@ -50,8 +50,7 @@ export default function PersonCard({
           <Image
             src={avatar}
             alt={`${name} avatar`}
-            width={300}
-            height={300}
+            fill
             className={styles.avatar}
             priority
           />

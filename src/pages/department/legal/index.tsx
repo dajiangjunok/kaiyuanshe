@@ -110,12 +110,10 @@ export default function LegalPage() {
 
         <div className={styles.description}>
           <p className={styles.intro}>
-            开源社法律咨询委员会由开源法律领域的专业律师组成，为开源社及其成员提供法律咨询和合规指导。
+            开源社法律咨询委员会
           </p>
 
-          <p className={styles.details}>
-            委员会专注于开源软件许可证、知识产权保护、合规性审查等法律事务，帮助开源项目和企业规避法律风险，促进开源生态的健康发展。委员会定期发布开源法律指南和最佳实践。
-          </p>
+          
         </div>
       </div>
 

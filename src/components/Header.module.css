@@ -1,4 +1,3 @@
-
 /* ===== 主导航栏样式 ===== */
 .header {
   background: white;
@@ -26,26 +25,6 @@
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
-}
-
-.logoText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.logoTitle {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #1f2937;
-  letter-spacing: -0.025em;
-}
-
-.logoSubtitle {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #6b7280;
-  letter-spacing: 0.025em;
 }
 
 /* ===== 导航菜单样式 ===== */
@@ -183,7 +162,6 @@
   font-weight: 400;
 }
 
-
 /* ===== 右侧操作区样式 ===== */
 .headerActions {
   display: none;
@@ -221,8 +199,6 @@
 .userContainer {
   cursor: pointer;
 }
-
- 
 
 .userAvatar {
   border-radius: 50%;
@@ -741,11 +717,11 @@
   .nav {
     display: flex;
   }
-  
+
   .headerActions {
     display: flex;
   }
-  
+
   .mobileNav {
     display: none;
   }
@@ -763,18 +739,18 @@
     min-height: 300px;
     padding: 0 0.75rem;
   }
-  
+
   .dropdownLeft {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     padding: 1rem;
     gap: 0.25rem;
   }
-  
+
   .dropdownLeftTwoColumn {
     padding: 1rem;
     gap: 1rem;
   }
-  
+
   .navDropdownItem {
     padding: 0.5rem 0.75rem;
     margin-bottom: 0.125rem;
@@ -785,12 +761,12 @@
   .dropdownLeft {
     grid-template-columns: 1fr;
   }
-  
+
   .dropdownLeftTwoColumn {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .aboutColumn {
     gap: 0.25rem;
   }
@@ -807,19 +783,10 @@
     height: 64px;
     padding: 0 0.75rem;
   }
-  
+
   .navDropdownMenu {
     top: 64px;
   }
-  
-  .logoTitle {
-    font-size: 1rem;
-  }
-  
-  .logoSubtitle {
-    font-size: 0.75rem;
-  }
-  
 }
 
 /* ===== 搜索功能响应式样式 ===== */
@@ -831,24 +798,19 @@
 }
 
 @media (max-width: 480px) {
-  .logoText {
-    display: none;
-  }
-  
   .mobileMenuContent {
     width: 280px;
   }
-  
-  
+
   .searchBox {
     width: 280px;
     right: -2rem;
   }
-  
+
   .searchResultTitle {
     font-size: 0.8125rem;
   }
-  
+
   .searchResultDesc {
     font-size: 0.6875rem;
   }

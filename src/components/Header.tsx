@@ -380,7 +380,7 @@ export default function Header() {
           {
             key: 'brand-download',
             label: '品牌标识下载',
-            href: '/logo.png',
+            href: '/logo_2.svg',
             target: '_blank',
             description: '下载开源社品牌标识',
             group: 'basic'
@@ -1054,16 +1054,12 @@ export default function Header() {
           {/* Logo 区域 */}
           <Link href="/" className={styles.logoContainer}>
             <Image
-              src="/logo.png"
+              src="/logo_2.svg"
               alt="开源社 Logo"
-              width={40}
-              height={40}
+              width={100}
+              height={100}
               className={styles.logoImage}
             />
-            <div className={styles.logoText}>
-              <div className={styles.logoTitle}>开源社</div>
-              <div className={styles.logoSubtitle}>KAIYUAN SHE</div>
-            </div>
           </Link>
 
           {/* 桌面导航菜单 */}
