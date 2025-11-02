@@ -1,11 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { Button, App as AntdApp } from 'antd';
-
+import React from 'react';
+import { Button } from 'antd';
 import { signIn } from 'next-auth/react';
 import { Github } from 'lucide-react';
-import { useRouter } from 'next/router';
-import { useAuth } from '@/contexts/AuthContext';
-import AuthManager from '@/lib/authManager';
 
 interface GitHubLoginButtonProps {
   loading?: boolean;
@@ -13,20 +9,23 @@ interface GitHubLoginButtonProps {
   className?: string;
 }
 
-const GitHubLoginButton: React.FC<GitHubLoginButtonProps> = ({
-  loading = false,
+const GitHubLoginButton: React.FC<GitHubLoginButtonProps> = ({ 
+  loading = false, 
   onLoading,
-  className
+  className 
 }) => {
-  const router = useRouter();
-
-  const handleGitHubSignIn = () => {
-    onLoading?.(true);
-    const currentUrl = window.location.origin + router.pathname;
-    const oauthUrl = `${process.env.NEXT_PUBLIC_OAUTH}&redirect_uri=${currentUrl}&scope=read:user`;
-    router.push(oauthUrl); // 跳转 OAuth 授权页
+  const handleGitHubSignIn = async () => {
+    try {
+      onLoading?.(true);
+      await signIn('github', { 
+        callbackUrl: '/' 
+      });
+    } catch (error) {
+      console.error('GitHub 登录失败:', error);
+    } finally {
+      onLoading?.(false);
+    }
   };
-
 
   return (
     <Button
