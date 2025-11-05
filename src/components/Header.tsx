@@ -69,10 +69,10 @@ export default function Header() {
           {
             key: 'charter',
             label: '开源社章程',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/T4s3wEQWqibKDtkiB9icam6znTe',
+            href: '/charter',
             description: '开源社的章程和管理制度',
             group: 'basic',
-            target: '_blank'
+            
           },
 
           {
@@ -113,26 +113,23 @@ export default function Header() {
           {
             key: 'member-rights',
             label: '正式成员权利与义务',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcn6ksFU0HhNBqnEyTODHagFl',
+            href: '/governance/member-rights',
             description: '正式成员的权利与义务说明',
-            group: 'policies',
-            target: '_blank'
+            group: 'policies'
           },
           {
             key: 'code-of-conduct',
             label: '开源社行为守则',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/UCrmwQ0oqilra0ki3tNcP4xonLe',
+            href: '/governance/code-of-conduct',
             description: '社区行为准则和规范',
-            group: 'policies',
-            target: '_blank'
+            group: 'policies'
           },
           {
             key: 'open-source-manifesto',
             label: '开源人宣言',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/Oq07wJtvQiykMykQuqMc8Dj0nBe',
+            href: '/governance/open-source-manifesto',
             description: '开源人宣言',
-            group: 'policies',
-            target: '_blank'
+            group: 'policies'
           },
           {
             key: 'annual-report',
@@ -201,7 +198,7 @@ export default function Header() {
           {
             key: 'kcc',
             label: '开源社城市社区（KCC）',
-            href: '/articles?keyword=kcc-library',
+            href: '/community',
             description: '各地开源社城市社区',
             group: 'cooperation'
           },
@@ -395,10 +392,9 @@ export default function Header() {
           {
             key: 'join-us',
             label: '如何加入我们',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/NVExwJkvFiMbnwkhuW1ciUYineg',
+            href: '/join-us',
             description: '了解如何加入开源社',
-            group: 'brand',
-            target: '_blank'
+            group: 'brand'
           }
         ]
       }

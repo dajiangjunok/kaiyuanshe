@@ -1,4 +1,4 @@
-import { Member } from '../types/member';
+import { Member } from '../types/member'
 
 export const members: Member[] = [
   {
@@ -256,6 +256,7 @@ export const members: Member[] = [
   },
   {
     name: '郭悦',
+    avatar: '/img/cblecker.png',
     gender: '女',
     city: '北京',
     github: 'https://github.com/guoyuecn',
@@ -302,6 +303,7 @@ export const members: Member[] = [
   },
   {
     name: '胡智勇',
+    avatar: '/img/cblecker.png',
     gender: '男',
     city: '上海',
     website: 'https://hutusi.com',
@@ -403,6 +405,7 @@ export const members: Member[] = [
   {
     name: '李剑峰',
     gender: '男',
+      avatar: '/img/cblecker.png',
     city: '长沙',
     bio: '从14年开始参于社区，主要活跃在Debian/Ubuntu社区，是优麒麟核心开发者，Debian Maintainer，Ubuntu developer，现为openkylin技术委员会成员。',
     details: []
@@ -451,6 +454,7 @@ export const members: Member[] = [
     name: '李冉',
     gender: '男',
     city: '青岛',
+      avatar: '/img/cblecker.png',
     email: 'liran@kaiyuanshe.org',
     github: 'githab.com/liran-code',
     nickname: 'ranlee',
@@ -949,7 +953,7 @@ export const members: Member[] = [
     email: 'weisir@kaiyuanshe.org',
     github: 'https://github.com/weijianfan',
     achievements: ['2021 中国开源先锋 33 人'],
-    nickname: '卫\'r',
+    nickname: "卫'r",
     githubUsername: 'weijianfan',
     details: []
   },
@@ -1071,7 +1075,8 @@ export const members: Member[] = [
     avatar: '/img/cblecker.png',
     city: '唐山',
     email: '2413148553@qq.com',
-    website: '5- 长按复制此条消息，打开抖音搜索，查看TA的更多作品。 https://v.douyin.com/iLxebFjG/ 9@4.com :8pm',
+    website:
+      '5- 长按复制此条消息，打开抖音搜索，查看TA的更多作品。 https://v.douyin.com/iLxebFjG/ 9@4.com :8pm',
     skills: ['摄影', '录像', '剪辑'],
     bio: '有点社恐的小绿老头一枚，喜欢剪辑、摄影、主持、学习新技能等，欢迎大家和我交朋友！我们一起进步耶~',
     details: []
@@ -1296,72 +1301,72 @@ export const members: Member[] = [
     alternativeEmail: 'WebSecurityLoop',
     details: []
   }
-];
+]
 
 // 工具函数：根据姓名查找成员
 export const findMemberByName = (name: string): Member | undefined => {
-  return members.find(member => member.name === name);
-};
+  return members.find(member => member.name === name)
+}
 
 // 工具函数：根据昵称查找成员
 export const findMemberByNickname = (nickname: string): Member | undefined => {
-  return members.find(member => member.nickname === nickname);
-};
+  return members.find(member => member.nickname === nickname)
+}
 
 // 工具函数：根据城市筛选成员
 export const findMembersByCity = (city: string): Member[] => {
-  return members.filter(member => member.city === city);
-};
+  return members.filter(member => member.city === city)
+}
 
 // 工具函数：根据性别筛选成员
 export const findMembersByGender = (gender: '男' | '女'): Member[] => {
-  return members.filter(member => member.gender === gender);
-};
+  return members.filter(member => member.gender === gender)
+}
 
 // 工具函数：筛选有GitHub的成员
 export const findMembersWithGithub = (): Member[] => {
-  return members.filter(member => member.github || member.githubUsername);
-};
+  return members.filter(member => member.github || member.githubUsername)
+}
 
 // 工具函数：筛选有网站的成员
 export const findMembersWithWebsite = (): Member[] => {
-  return members.filter(member => member.website);
-};
+  return members.filter(member => member.website)
+}
 
 // 工具函数：搜索成员
 export const searchMembers = (keyword: string): Member[] => {
-  const lowercaseKeyword = keyword.toLowerCase();
-  return members.filter(member => 
-    member.name.toLowerCase().includes(lowercaseKeyword) ||
-    member.nickname?.toLowerCase().includes(lowercaseKeyword) ||
-    member.bio?.toLowerCase().includes(lowercaseKeyword) ||
-    member.city?.toLowerCase().includes(lowercaseKeyword) ||
-    member.position?.toLowerCase().includes(lowercaseKeyword) ||
-    member.company?.toLowerCase().includes(lowercaseKeyword)
-  );
-};
+  const lowercaseKeyword = keyword.toLowerCase()
+  return members.filter(
+    member =>
+      member.name.toLowerCase().includes(lowercaseKeyword) ||
+      member.nickname?.toLowerCase().includes(lowercaseKeyword) ||
+      member.bio?.toLowerCase().includes(lowercaseKeyword) ||
+      member.city?.toLowerCase().includes(lowercaseKeyword) ||
+      member.position?.toLowerCase().includes(lowercaseKeyword) ||
+      member.company?.toLowerCase().includes(lowercaseKeyword)
+  )
+}
 
 // 获取所有城市列表
 export const getAllCities = (): string[] => {
   const cities = members
     .map(member => member.city)
-    .filter((city): city is string => city !== undefined);
-  return [...new Set(cities)].sort();
-};
+    .filter((city): city is string => city !== undefined)
+  return [...new Set(cities)].sort()
+}
 
 // 获取所有职位列表
 export const getAllPositions = (): string[] => {
   const positions = members
     .map(member => member.position)
-    .filter((position): position is string => position !== undefined);
-  return [...new Set(positions)].sort();
-};
+    .filter((position): position is string => position !== undefined)
+  return [...new Set(positions)].sort()
+}
 
 // 获取所有公司列表
 export const getAllCompanies = (): string[] => {
   const companies = members
     .map(member => member.company)
-    .filter((company): company is string => company !== undefined);
-  return [...new Set(companies)].sort();
-};
- 
+    .filter((company): company is string => company !== undefined)
+  return [...new Set(companies)].sort()
+}

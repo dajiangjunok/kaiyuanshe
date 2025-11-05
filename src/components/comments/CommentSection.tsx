@@ -21,10 +21,10 @@ interface CommentSectionProps {
 }
 
 const CommentSection: React.FC<CommentSectionProps> = ({
-  repo,
-  repoId,
+  repo = 'kaiyuanshe/website',
+  repoId = 'R_kgDOQHmDoA',
   category = 'General',
-  categoryId = '',
+  categoryId = 'DIC_kwDOQHmDoM4CxYEV',
   mapping = 'pathname',
   term,
   reactionsEnabled = '1',

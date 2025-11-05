@@ -1,0 +1,363 @@
+/* Open Source Manifesto Page Styles */
+.manifestoPage {
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  height: 40vh;
+  min-height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #27ae60 0%, #2e8b57 100%);
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content */
+.mainContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  min-height: calc(100vh - 40vh);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Area */
+.contentArea {
+  padding: 3rem 4rem;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #27ae60, #2e8b57);
+  border-radius: 2px;
+}
+
+.sectionContent {
+  line-height: 1.8;
+  color: #495057;
+}
+
+/* Image Container */
+.imageContainer {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.manifestoImage {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Introduction Text */
+.introText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
+  margin-bottom: 2rem;
+}
+
+.introText p {
+  margin-bottom: 1.5rem;
+}
+
+/* Values Grid */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.valueCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  border-left: 5px solid #27ae60;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 30px rgba(39, 174, 96, 0.15);
+  transform: translateY(-2px);
+}
+
+.valueHeader {
+  margin-bottom: 1.5rem;
+}
+
+.valueTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #27ae60;
+  margin: 0;
+}
+
+.valueContent {
+  line-height: 1.8;
+  color: #495057;
+}
+
+.valueContent p {
+  margin: 0;
+}
+
+/* Call to Action */
+.callToActionIntro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+  color: #2c3e50;
+}
+
+.actionList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.actionItem {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #3498db;
+  transition: all 0.3s ease;
+}
+
+.actionItem:hover {
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+}
+
+.actionTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.actionItem p {
+  line-height: 1.8;
+  color: #495057;
+  margin: 0;
+}
+
+/* Conclusion Box */
+.conclusionBox {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  box-shadow: 0 4px 20px rgba(243, 156, 18, 0.2);
+}
+
+.conclusionBox p {
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Special Text Styles */
+.highlight {
+  background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.emphasis {
+  font-weight: 600;
+  color: #27ae60;
+}
+
+.quote {
+  font-style: italic;
+  font-weight: 500;
+  color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contentArea {
+    padding: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .valuesGrid {
+    gap: 1.5rem;
+  }
+  
+  .valueCard {
+    padding: 1.5rem;
+  }
+  
+  .actionItem {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 30vh;
+    min-height: 250px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  
+  .contentArea {
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .valueCard {
+    padding: 1.2rem;
+  }
+  
+  .valueTitle {
+    font-size: 1.3rem;
+  }
+  
+  .actionItem {
+    padding: 1.2rem;
+  }
+  
+  .actionTitle {
+    font-size: 1.2rem;
+  }
+  
+  .conclusionBox {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .contentArea {
+    padding: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+  
+  .valueCard {
+    padding: 1rem;
+  }
+  
+  .valueTitle {
+    font-size: 1.2rem;
+  }
+  
+  .actionItem {
+    padding: 1rem;
+  }
+  
+  .actionTitle {
+    font-size: 1.1rem;
+  }
+  
+  .conclusionBox {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .introText {
+    font-size: 1rem;
+  }
+  
+  .callToActionIntro {
+    font-size: 1rem;
+  }
+}

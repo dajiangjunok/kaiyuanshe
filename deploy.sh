@@ -8,7 +8,7 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPROXY=https://goproxy.cn,direct
 
 # ================= 配置 =================
-BASE_DIR=/root/kaiyuanshe
+BASE_DIR=$HOME/website
 TMP_DIR=/tmp/deploy_$(date +%s)
 
 mkdir -p $TMP_DIR
@@ -42,7 +42,7 @@ echo "♻️ 替换后端二进制..."
 mv $TMP_DIR/backend/app $BASE_DIR/kaiyuanshe/app
 
 echo "♻️ 重启后端服务..."
-systemctl restart kaiyuanshe
+sudo systemctl restart kaiyuanshe
 
 # ================= 清 =================
 rm -rf $TMP_DIR

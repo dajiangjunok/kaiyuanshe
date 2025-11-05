@@ -28,7 +28,7 @@ export default function MembersPage() {
       >
         <div className={styles.avatar}>
           <img 
-            src={member.avatar ? `/img/members/${member.avatar}` : "/img/cblecker.png"} 
+            src={member.avatar ? member.avatar : "/img/cblecker.png"} 
             alt={member.name} 
             onError={(e) => {
               const target = e.target as HTMLImageElement

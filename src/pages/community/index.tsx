@@ -25,8 +25,7 @@ const cities: CityData[] = [
 
 const CommunityPage: React.FC = () => {
   const handleCreateCommunity = () => {
-    // Handle community creation application
-    console.log("申请创建社区")
+    window.open("https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe", "_blank")
   }
 
   return (
