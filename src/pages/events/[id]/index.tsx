@@ -255,6 +255,67 @@ export default function EventDetailPage() {
   const eventStatus = getEventStatus()
   const dateTimeRange = formatDateTimeRange(event.start_time, event.end_time)
 
+  if (event?.event_type === 'community') {
+  return (
+   <div className={`${styles.container} nav-t-top`}>
+  {/* ======== 社区活动专属布局 ======== */}
+  <div className={styles.communityLayout}>
+    {/* 活动标题与关键信息 */}
+    <div className={styles.communityHeader}>
+      <h1 className={styles.communityTitle}>
+        {event.title}
+      </h1>
+
+      <div className={styles.communityMeta}>
+        <span className={styles.metaItem}>
+          📍 {event.location}
+        </span>
+        <span className={styles.metaDivider}>·</span>
+        <span className={styles.metaItem}>
+          🗓️ {new Date(event.start_time).toLocaleDateString('zh-CN', {
+            month: 'long',
+            day: 'numeric',
+          })} — {new Date(event.end_time).toLocaleDateString('zh-CN', {
+            month: 'long',
+            day: 'numeric',
+          })}
+        </span>
+      </div>
+    </div>
+
+    {/* 简介 */}
+    <div className="marked-paper">
+          {/* <h2 className={styles.sectionTitle}>{article.title}</h2> */}
+          <div
+            className="prose"
+            dangerouslySetInnerHTML={{ __html: eventContent }}
+          />
+        </div>
+
+    {/* <div className={styles.communityActions}>
+      <Button
+        type="primary"
+        size="large"
+        onClick={() => window.open(event.twitter, '_blank')}
+      >
+        查看详情
+      </Button>
+
+      {event.registration_link && (
+        <Button
+          size="large"
+          onClick={() => window.open(event.registration_link, '_blank')}
+        >
+          立即报名
+        </Button>
+      )}
+    </div> */}
+  </div>
+</div>
+  )
+}
+
+
   // 渲染当前激活的组件
   const renderActiveSection = () => {
     const sectionProps = { event, eventContent, recapContent, sessions, sessionsLoading }

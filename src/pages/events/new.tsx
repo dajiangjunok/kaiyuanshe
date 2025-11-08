@@ -207,7 +207,7 @@ export default function NewEventPage() {
                   <Select
                     placeholder="请选择活动类型"
                     options={[
-                      { label: '社区聚会', value: 'meetup' },
+                      { label: '社区活动', value: 'community' },
                       { label: '开源年会', value: 'coscon' },
                     ]}
                   />
