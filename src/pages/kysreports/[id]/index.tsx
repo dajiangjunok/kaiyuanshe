@@ -94,10 +94,10 @@ export default function ArticleDetailPage() {
   if (!article || (isUnderReview && !isPublisher && !canReview)) {
     return (
       <div className={styles.error}>
-        <h2>文章不存在</h2>
-        <p>抱歉，找不到您要查看的文章</p>
-        <Link href="/articles" className={styles.backButton}>
-          返回文章列表
+        <h2>年度报告不存在</h2>
+        <p>抱歉，找不到您要查看的年度报告</p>
+        <Link href="/kysreports" className={styles.backButton}>
+          返回年度报告列表
         </Link>
       </div>
     );
@@ -108,9 +108,9 @@ export default function ArticleDetailPage() {
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <Link href="/articles" className={styles.backLink}>
+          <Link href="/kysreports" className={styles.backLink}>
             <ArrowLeft className={styles.backIcon} />
-            返回文章列表
+            返回年度报告列表
           </Link>
           <div className={styles.headerActions}>
             {status === 'authenticated' &&
@@ -118,7 +118,7 @@ export default function ArticleDetailPage() {
               <Button
                 icon={<Edit size={16} className={styles.actionIcon} />}
                 className={styles.actionButton}
-                onClick={() => router.push(`/articles/${article.ID}/edit`)}
+                onClick={() => router.push(`/kysreports/${article.ID}/edit`)}
               >
                 编辑
               </Button>

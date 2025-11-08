@@ -43,6 +43,7 @@ export default function EditArticlePage() {
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cloudinaryImg, setCloudinaryImg] = useState<Record<string, unknown>>();
+  const [category] = useState('blog');
 
 
   // 编辑器处理
@@ -63,7 +64,7 @@ export default function EditArticlePage() {
         description: values.description || '',
         content: values.content || '',
         source_link: values.source || '',
-        category: values.category || '',
+        category: category,
         cover_img: cloudinaryImg?.secure_url || previewUrl, // 当用户未修改封面则使用详情返回的previewUrl
         tags: tags,
         license: values.license || '',
@@ -75,13 +76,13 @@ export default function EditArticlePage() {
       const result = await updateArticle(article.ID, updateArticleRequest);
       if (result.success) {
         message.success(result.message);
-        router.push('/articles');
+        router.push('/blogs');
       } else {
-        message.error(result.message || '更新文章失败');
+        message.error(result.message || '更新博客失败');
       }
     } catch (error: unknown) {
-      console.error('更新文章失败:', error);
-      message.error('更新文章出错，请重试');
+      console.error('更新博客失败:', error);
+      message.error('更新博客出错，请重试');
     } finally {
       setIsSubmitting(false);
     }
@@ -117,7 +118,7 @@ export default function EditArticlePage() {
             description: response.data?.description,
             content: response.data?.content,
             source: response.data?.source_link,
-            category: response.data?.category,
+            category: category,
             cover: response.data?.cover_img,
             author: response.data?.author,
             translator: response.data?.translator || '',
@@ -141,10 +142,10 @@ export default function EditArticlePage() {
   if (!loading && !article) {
     return (
       <div className={styles.error}>
-        <h2>文章不存在</h2>
-        <p>抱歉，找不到您要查看的文章</p>
-        <Link href="/articles" className={styles.backButton}>
-          返回文章列表
+        <h2>博客不存在</h2>
+        <p>抱歉，找不到您要查看的博客</p>
+        <Link href="/blogs" className={styles.backButton}>
+          返回博客列表
         </Link>
       </div>
     );
@@ -153,9 +154,9 @@ export default function EditArticlePage() {
   return (
     <div className={`${styles.container} nav-t-top`}>
       <div className={styles.header}>
-        <Link href="/articles" className={styles.backButton}>
+        <Link href="/blogs" className={styles.backButton}>
           <ArrowLeft className={styles.backIcon} />
-          返回文章列表
+          返回博客列表
         </Link>
       </div>
 
@@ -179,33 +180,33 @@ export default function EditArticlePage() {
               </h2>
 
               <Form.Item
-                label="文章标题"
+                label="博客标题"
                 name="title"
-                rules={[{ required: true, message: '请输入文章标题' }]}
+                rules={[{ required: true, message: '请输入博客标题' }]}
               >
                 <Input
-                  placeholder="请输入文章标题"
+                  placeholder="请输入博客标题"
                   className={styles.input}
                   maxLength={30}
                   showCount
                 />
               </Form.Item>
               <Form.Item
-                label="文章描述"
+                label="博客描述"
                 name="description"
-                rules={[{ required: true, message: '请输入文章描述' }]}
+                rules={[{ required: true, message: '请输入博客描述' }]}
               >
                 <TextArea
                   rows={2}
                   maxLength={60}
                   showCount
-                  placeholder="请输入文章描述"
+                  placeholder="请输入博客描述"
                 />
               </Form.Item>
               <Form.Item
-                label="文章内容"
+                label="博客内容"
                 name="content"
-                rules={[{ required: true, message: '请输入文章内容' }]}
+                rules={[{ required: true, message: '请输入博客内容' }]}
               >
                 <VditorEditor
                   value={form.getFieldValue('content')}
@@ -218,15 +219,15 @@ export default function EditArticlePage() {
 
           {/* 右侧表单 */}
           <div className={styles.rightColumn}>
-            {/* 文章封面 */}
+            {/* 博客封面 */}
             <Card className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <ImageIcon className={styles.sectionIcon} />
-                文章封面
+                博客封面
               </h2>
               <Form.Item
                 name="cover"
-                rules={[{ required: true, message: '请上传文章封面' }]}
+                rules={[{ required: true, message: '请上传博客封面' }]}
               >
                 <UploadCardImg
                   previewUrl={previewUrl}
@@ -255,14 +256,14 @@ export default function EditArticlePage() {
               <Form.Item
                 label="版权声明"
                 name="license"
-                rules={[{ required: true, message: '请选择版权声明' }]}
+                rules={[{ message: '请选择版权声明' }]}
               >
                 <Select placeholder="请选择版权声明">
                   <Select.Option value="CCO">CCO(公共领域贡献)</Select.Option>
                   <Select.Option value="CC-4.0">CC-4.0(知识共享 4.0 国际许可协议)</Select.Option>
                 </Select>
               </Form.Item>
-              <Form.Item
+              {/* <Form.Item
                 label="分类"
                 name="category"
                 rules={[{ required: true, message: '请选择分类' }]}
@@ -272,7 +273,7 @@ export default function EditArticlePage() {
                   <Select.Option value="translation">翻译</Select.Option>
                   <Select.Option value="archive">归档</Select.Option>
                 </Select>
-              </Form.Item>
+              </Form.Item> */}
             </Card>
 
             {/* 参与人员 */}
@@ -316,7 +317,7 @@ export default function EditArticlePage() {
             <Card className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <Plus className={styles.sectionIcon} />
-                文章标签
+                博客标签
               </h2>
 
               <div className={styles.tagsContainer}>
@@ -370,7 +371,7 @@ export default function EditArticlePage() {
             disabled={isSubmitting}
           >
             <Save className={styles.submitIcon} />
-            {isSubmitting ? '更新中...' : '更新文章'}
+            {isSubmitting ? '更新中...' : '更新博客'}
           </Button>
         </div>
       </Form>

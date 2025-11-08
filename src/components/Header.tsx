@@ -137,7 +137,7 @@ export default function Header() {
           {
             key: 'annual-report',
             label: '开源社年度报告',
-            href: '/annual-reports',
+            href: '/kysreports',
             description: '查看开源社的年度工作报告和成果',
             group: 'policies'
           }
@@ -201,10 +201,9 @@ export default function Header() {
           {
             key: 'china-oss-report',
             label: '中国开源年度报告',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
+            href: '/osreports',
             description: '中国开源年度报告',
             group: 'reports',
-            target: '_blank'
           },
           {
             key: 'china-oss-pioneer',
@@ -271,14 +270,14 @@ export default function Header() {
           {
             key: 'articles',
             label: '博客',
-            href: '/articles',
+            href: '/blogs',
             description: '阅读最新的博客信息',
             group: 'content'
           },
           {
             key: 'notice',
             label: '公告',
-            href: '/',
+            href: '/announcement',
             description: '获取最新公告',
             group: 'brand'
           }

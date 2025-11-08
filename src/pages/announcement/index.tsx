@@ -38,7 +38,7 @@ export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY-MM-DD HH:mm');
 }
 
-export default function ArticlesPage() {
+export default function AnnouncementPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
@@ -50,6 +50,8 @@ export default function ArticlesPage() {
   const [sortOrder] = useState<'asc' | 'desc'>('desc');
   const [wechatModalVisible, setWechatModalVisible] = useState(false);
   const [publishStatus, setPublishStatus] = useState(0);
+  const [category] = useState('announcement');
+
   // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();
 
@@ -57,7 +59,7 @@ export default function ArticlesPage() {
 
   const { message } = AntdApp.useApp();
 
-  // 加载文章列表
+  // 加载公告列表
   const loadArticles = useCallback(async (params?: {
     keyword?: string;
     tag?: string;
@@ -65,6 +67,7 @@ export default function ArticlesPage() {
     page?: number;
     page_size?: number;
     publish_status?: number;
+    category?: string;
   }) => {
     try {
       setLoading(true);
@@ -76,6 +79,7 @@ export default function ArticlesPage() {
         page: params?.page ?? currentPage,
         page_size: params?.page_size ?? pageSize,
         publish_status: params?.publish_status ?? publishStatus,
+        category: params?.category ?? category,
       };
 
       const result = await getArticles(queryParams);
@@ -96,12 +100,12 @@ export default function ArticlesPage() {
           setTotal(0);
         }
       } else {
-        console.error('获取文章列表失败:', result.message);
+        console.error('获取公告列表失败:', result.message);
         setArticles([]);
         setTotal(0);
       }
     } catch (error: unknown) {
-      console.error('加载文章列表异常:', error);
+      console.error('加载公告列表异常:', error);
       setArticles([]);
       setTotal(0);
     } finally {
@@ -109,7 +113,7 @@ export default function ArticlesPage() {
     }
   }, [searchKeyword, selectedTag, sortOrder, currentPage, pageSize, publishStatus]);
 
-  // 搜索文章
+  // 搜索公告
   const handleSearch = async (keyword: string) => {
     setSearchKeyword(keyword);
     setCurrentPage(1); // 重置到第一页
@@ -125,21 +129,21 @@ export default function ArticlesPage() {
     await loadArticles({ page, page_size: size || pageSize });
   };
 
-  // 计算当前显示的文章
+  // 计算当前显示的公告
   const startIndex = (currentPage - 1) * pageSize + 1;
   const endIndex = Math.min(currentPage * pageSize, total);
 
   const currentArticles = articles; // 服务端已经处理了分页
 
   const handleDeleteEvent = async (id: number) => {
-    // 调用创建文章接口
+    // 调用创建公告接口
     try {
       const result = await deleteEvent(id);
       if (result.success) {
         message.success(result.message);
         loadArticles();
       } else {
-        message.error(result.message || '创建文章失败');
+        message.error(result.message || '发布公告失败');
       }
     } catch {
       message.error('删除失败，请重试');
@@ -167,15 +171,16 @@ export default function ArticlesPage() {
       {/* Title Section */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <div className={styles.titleSection}>
-            <h1 className={styles.title}>文章</h1>
+          {/* <div className={styles.titleSection}>
+            <h1 className={styles.title}>公告</h1>
             <p className={styles.subtitle}>写下所思所感，遇见共鸣之人</p>
-          </div>
-          {/* {status === 'authenticated' && permissions.includes('article:write') ? ( */}
-            <Link href="/articles/new" className={styles.createButton}>
+          </div> */}
+          {status === 'authenticated' && permissions.includes('article:write') && (
+            <Link href="/announcement/new" className={styles.createButton}>
               <Plus size={20} />
-              创建文章
+              发布公告
             </Link>
+          )}
         </div>
       </div>
 
@@ -183,7 +188,7 @@ export default function ArticlesPage() {
       <div className={styles.searchSection}>
         <div className={styles.searchBar}>
           <AntSearch
-            placeholder="搜索文章标题、描述..."
+            placeholder="搜索公告标题、描述..."
             allowClear
             size="large"
             enterButton="搜索"
@@ -236,16 +241,16 @@ export default function ArticlesPage() {
       ) : articles.length === 0 ? (
         <div className={styles.emptyContainer}>
           <div className={styles.emptyIcon}>📖</div>
-          <div className={styles.emptyTitle}>暂无文章</div>
+          <div className={styles.emptyTitle}>暂无公告</div>
           <div className={styles.emptyDescription}>
             {searchKeyword || selectedTag
-              ? '没有找到符合条件的文章'
-              : '还没有创建任何文章'}
+              ? '没有找到符合条件的公告'
+              : '还没有创建任何公告'}
           </div>
           {!searchKeyword && !selectedTag && (
-            <Link href="/articles/new" className={styles.createButton}>
+            <Link href="/announcement/new" className={styles.createButton}>
               <Plus className={styles.buttonIcon} />
-              创建第一个文章
+              发布第一个公告
             </Link>
           )}
         </div>
@@ -253,7 +258,7 @@ export default function ArticlesPage() {
         <div className={styles.articlesGrid}>
           {articles.map((article) => (
             <Link
-              href={`/articles/${article.ID}`}
+              href={`/announcement/${article.ID}`}
               key={article.ID}
               className={styles.cardLink}
             >
@@ -275,17 +280,17 @@ export default function ArticlesPage() {
                         <Tag className={styles.noPublishStatus}>待审核</Tag>
                       )}
                       <div className={styles.cardActions}>
-                        {/* 只有文章作者才可以编辑 */}
+                        {/* 只有公告作者才可以编辑 */}
                         {status === 'authenticated' &&
                           article.publisher_id.toString() === session?.user?.uid ? (
                           <Button
                             className={styles.actionIconButton}
                             onClick={(e) => {
                               e.preventDefault();
-                              router.push(`/articles/${article.ID}/edit`);
+                              router.push(`/announcement/${article.ID}/edit`);
                             }}
                             icon={<Edit className={styles.actionIcon} />}
-                            title="编辑活动"
+                            title="编辑公告"
                           />
                         ) : null}
 
@@ -299,7 +304,7 @@ export default function ArticlesPage() {
                             message.success('链接已复制到剪贴板');
                           }}
                           icon={<Share2 className={styles.actionIcon} />}
-                          title="分享文章"
+                          title="分享公告"
                         />
                       </div>
                     </div>
@@ -352,7 +357,7 @@ export default function ArticlesPage() {
           {/* articles List */}
           <div className={styles.articlesList}>
             <div className={styles.listHeader}>
-              <div className={styles.listHeaderCell}>文章信息</div>
+              <div className={styles.listHeaderCell}>公告信息</div>
               <div className={styles.listHeaderCell}>作者</div>
               <div className={styles.listHeaderCell}>时间</div>
               <div className={styles.listHeaderCell}>浏览量</div>
@@ -364,7 +369,7 @@ export default function ArticlesPage() {
                 <div className={styles.listCell}>
                   <div className={styles.articleInfo}>
                     <Link
-                      href={`/articles/${article.ID}`}
+                      href={`/announcement/${article.ID}`}
                       key={article.ID}
                       className={styles.listLink}
                     >
@@ -410,14 +415,14 @@ export default function ArticlesPage() {
 
                 <div className={styles.listCell}>
                   <div className={styles.listActions}>
-                    {/* 只有文章发布者才可以编辑 */}
+                    {/* 只有公告发布者才可以编辑 */}
                     {status === 'authenticated' &&
                       article.publisher_id.toString() === session?.user?.uid ? (
                       <Button
                         type="text"
                         size="small"
                         icon={<Edit className={styles.listActionIcon} />}
-                        title="编辑文章"
+                        title="编辑公告"
                         onClick={() => router.push(`/articles/${article.ID}/edit`)}
                       />
                     ) : null}
@@ -432,14 +437,14 @@ export default function ArticlesPage() {
                         message.success('链接已复制到剪贴板');
                       }}
                       icon={<Share2 className={styles.listActionIcon} />}
-                      title="分享活动"
+                      title="分享公告"
                     />
-                    {/* 只有文章发布者才可以删除*/}
+                    {/* 只有公告发布者才可以删除*/}
                     {status === 'authenticated' &&
                       article.publisher_id?.toString() === session?.user?.uid ? (
                       <Popconfirm
-                        title="删除文章"
-                        description="你确定删除这个文章吗？"
+                        title="删除公告"
+                        description="你确定删除这个公告吗？"
                         okText="是"
                         cancelText="否"
                         onConfirm={() => handleDeleteEvent(article.ID)}
@@ -449,7 +454,7 @@ export default function ArticlesPage() {
                           size="small"
                           danger
                           icon={<Trash2 className={styles.listActionIcon} />}
-                          title="删除文章"
+                          title="删除公告"
                         />
                       </Popconfirm>
                     ) : null}
