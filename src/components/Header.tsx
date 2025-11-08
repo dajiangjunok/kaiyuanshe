@@ -98,11 +98,11 @@ export default function Header() {
           },
 
           {
-            key: 'brand-download',
+            key: 'brand',
             label: '品牌资源',
             href: '/logo.zip',
             target: '_blank',
-            description: '下载开源社品牌标识',
+            description: '开源社品牌资源',
             group: 'brand'
           }
         ]
