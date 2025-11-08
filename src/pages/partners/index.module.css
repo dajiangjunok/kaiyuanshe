@@ -259,7 +259,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  place-items: center;
+  /* place-items: center; */
 }
 
 .partnerCard {

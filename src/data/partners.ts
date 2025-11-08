@@ -1877,5 +1877,31 @@ export const levelOrder = [
   // '元宇宙会场赞助'
 ]
 
+// Function to organize partners by year
+export const organizePartnersByYear = (
+  data: Partner[]
+): { [year: string]: Partner[] } => {
+  const organized: { [year: string]: Partner[] } = {}
+
+  data.forEach(partner => {
+    const year = partner.year
+    if (!organized[year]) {
+      organized[year] = []
+    }
+    organized[year].push(partner)
+  })
+
+  // Sort years in descending order (newest first)
+  const sortedYears: { [year: string]: Partner[] } = {}
+  Object.keys(organized)
+    .sort((a, b) => parseInt(b) - parseInt(a))
+    .forEach(year => {
+      sortedYears[year] = organized[year]
+    })
+
+  return sortedYears
+}
+
 // Get organized partners data
 export const partnersData = organizePartnersByLevel(partnersRawData)
+export const partnersByYear = organizePartnersByYear(partnersRawData)

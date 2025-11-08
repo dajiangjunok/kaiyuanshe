@@ -3,15 +3,32 @@ import Image from 'next/image'
 import { Dropdown, type MenuProps } from 'antd'
 import { ChevronDown } from 'lucide-react'
 import styles from './index.module.css'
-import { Partner, partnersData, levelOrder } from '@/data/partners'
+import { Partner, partnersRawData, levelOrder, organizePartnersByLevel } from '@/data/partners'
 
 
 const PartnersPage: React.FC = () => {
-  const availableLevels = useMemo(() => {
-    return levelOrder.filter(level => partnersData[level] && partnersData[level].length > 0)
+  // Get available years from data
+  const availableYears = useMemo(() => {
+    const years = [...new Set(partnersRawData.map(partner => partner.year))]
+    return years.sort((a, b) => parseInt(b) - parseInt(a)) // Sort descending (newest first)
   }, [])
 
+  // Set default year to the latest year
+  const [selectedYear, setSelectedYear] = useState<string>(availableYears[0] || '2024')
   const [selectedLevel, setSelectedLevel] = useState<string>('全部')
+
+  // Filter data by selected year and organize by level
+  const yearFilteredData = useMemo(() => {
+    return partnersRawData.filter(partner => partner.year === selectedYear)
+  }, [selectedYear])
+
+  const partnersData = useMemo(() => {
+    return organizePartnersByLevel(yearFilteredData)
+  }, [yearFilteredData])
+
+  const availableLevels = useMemo(() => {
+    return levelOrder.filter(level => partnersData[level] && partnersData[level].length > 0)
+  }, [partnersData])
 
   const levelMenuItems: MenuProps['items'] = [
     {
@@ -26,6 +43,12 @@ const PartnersPage: React.FC = () => {
     }))
   ]
 
+  const yearMenuItems: MenuProps['items'] = availableYears.map(year => ({
+    key: year,
+    label: year,
+    onClick: () => setSelectedYear(year)
+  }))
+
   const filteredPartners = useMemo(() => {
     if (selectedLevel === '全部') {
       const allPartners: Partner[] = []
@@ -38,7 +61,7 @@ const PartnersPage: React.FC = () => {
     } else {
       return partnersData[selectedLevel] || []
     }
-  }, [selectedLevel])
+  }, [selectedLevel, partnersData])
 
   const renderPartnerCard = (partner: Partner) => (
     <div key={partner.title} className={`${styles.partnerCard} ${!partner.tag ? styles.partnerCardNoTag : ''}`}>
@@ -113,6 +136,18 @@ const PartnersPage: React.FC = () => {
           <div className={styles.statItem}>
             <div className={styles.statNumber}>{filteredPartners.length}</div>
             <div className={styles.statLabel}>合作伙伴</div>
+          </div>
+          <div className={styles.statItem}>
+            <Dropdown 
+              menu={{ items: yearMenuItems }}
+              trigger={['click','hover']}
+            >
+              <div className={styles.levelSelect}>
+                <span>{selectedYear}</span>
+                <ChevronDown size={28} />
+              </div>
+            </Dropdown>
+            <div className={styles.statLabel}>年份筛选</div>
           </div>
           <div className={styles.statItem}>
             <Dropdown 
