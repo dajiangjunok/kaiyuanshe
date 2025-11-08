@@ -374,7 +374,7 @@ export default function EventsPage() {
             onChange={handleEventTypeFilter}
           >
             <Option value="">所有</Option>
-            <Option value="meetup">社区聚会</Option>
+            <Option value="community">社区活动</Option>
             <Option value="coscon">开源年会</Option>
           </Select>
           <Select

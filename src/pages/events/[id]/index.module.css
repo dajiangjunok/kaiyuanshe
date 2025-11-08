@@ -397,3 +397,93 @@
   line-height: 1.6;
   color: #666;
 }
+
+
+
+.communityLayout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 100px;
+  /* background: #fafafa; */
+  /* border-radius: 24px; */
+  /* box-shadow: 0 8px 24px rgba(0,0,0,0.05); */
+}
+
+.communityHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.communityTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #111;
+  margin-bottom: 16px;
+}
+
+.communityMeta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.metaDivider {
+  color: #ccc;
+}
+
+.communityIntro {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.communityIntro strong {
+  color: #0078ff;
+}
+
+.communityHighlights {
+  margin: 50px auto;
+  max-width: 720px;
+}
+
+.communityHighlights h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #111;
+  text-align: center;
+}
+
+.communityHighlights ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.communityHighlights li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.communityHighlights li::before {
+  content: "✨";
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+
+.communityActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 60px;
+}
