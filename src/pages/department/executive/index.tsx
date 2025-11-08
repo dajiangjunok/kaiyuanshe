@@ -96,6 +96,10 @@ export default function ExecutivePage() {
     setSelectedMember(null)
   }
 
+  const generateId = (name: string) => {
+    return name.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '').toLowerCase()
+  }
+
   const renderWorkingGroup = (group: WorkingGroup) => {
     const allMembers: PersonCardProps[] = []
     
@@ -117,12 +121,25 @@ export default function ExecutivePage() {
     }))
 
     return (
-      <div key={group.name} className={styles.workingGroup}>
+      <div key={group.name} id={generateId(group.name)} className={styles.workingGroup}>
         <h3 className={styles.groupTitle}>{group.name}</h3>
         <p className={styles.groupDescription}>介绍：{group.description}</p>
         <BoardMembers members={membersWithClickHandlers} title="" />
       </div>
     )
+  }
+
+  const scrollToGroup = (groupName: string) => {
+    const element = document.getElementById(generateId(groupName))
+    if (element) {
+      const elementPosition = element.offsetTop
+      const offsetPosition = elementPosition - 80
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
   }
 
   return (
@@ -147,8 +164,30 @@ export default function ExecutivePage() {
         </div>
       </div>
 
-      <div className={styles.workingGroups}>
-        {workingGroups.map(group => renderWorkingGroup(group))}
+      <div className={styles.contentWrapper}>
+        <div className={styles.mainContent}>
+          <div className={styles.workingGroups}>
+            {workingGroups.map(group => renderWorkingGroup(group))}
+          </div>
+        </div>
+
+        <div className={styles.sidebar}>
+          <nav className={styles.navigation}>
+            <h3 className={styles.navTitle}>工作组导航</h3>
+            <ul className={styles.navList}>
+              {workingGroups.map((group) => (
+                <li key={group.name} className={styles.navItem}>
+                  <button
+                    className={styles.navLink}
+                    onClick={() => scrollToGroup(group.name)}
+                  >
+                    {group.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
 
       <BoardMemberDetail
