@@ -49,30 +49,15 @@ export default function Header() {
   const mainNavItems = useMemo(
     () => [
       {
-        key: 'governance',
-        label: '社区治理',
+        key: 'about',
+        label: '关于我们',
         children: [
-          // {
-          //   key: 'vision',
-          //   label: '愿景使命',
-          //   href: '/about',
-          //   description: '开源社的愿景、使命和核心价值观',
-          //   group: 'basic'
-          // },
-          // {
-          //   key: 'organization',
-          //   label: '组织架构',
-          //   href: '/about',
-          //   description: '了解开源社的组织结构和治理体系',
-          //   group: 'basic'
-          // },
           {
-            key: 'charter',
-            label: '开源社章程',
-            href: '/charter',
-            description: '开源社的章程和管理制度',
-            group: 'basic',
-            
+            key: 'intro',
+            label: '开源社简介',
+            href: '/about',
+            description: '了解开源社的历史、使命和发展历程',
+            group: 'basic'
           },
 
           {
@@ -87,36 +72,60 @@ export default function Header() {
             label: '顾问委员会',
             href: '/department/advisory',
             description: '顾问委员会成员介绍',
-            group: 'departments'
+            group: 'basic'
           },
           {
             key: 'legal',
             label: '法律咨询委员会',
             href: '/department/legal',
             description: '法律咨询委员会介绍',
-            group: 'departments'
+            group: 'basic'
           },
+
           {
             key: 'executive',
             label: '执行委员会',
             href: '/department/executive',
             description: '执行委员会介绍',
-            group: 'departments'
+            group: 'brand'
           },
           {
             key: 'project-committee',
             label: '项目委员会',
             href: '/department/project',
             description: '项目委员会介绍',
-            group: 'departments'
+            group: 'brand'
+          },
+
+          {
+            key: 'brand-download',
+            label: '品牌资源',
+            href: '/logo.zip',
+            target: '_blank',
+            description: '下载开源社品牌标识',
+            group: 'brand'
+          }
+        ]
+      },
+      {
+        key: 'governance',
+        label: '社区治理',
+        children: [
+          {
+            key: 'charter',
+            label: '开源社章程',
+            href: '/charter',
+            description: '开源社的章程和管理制度',
+            group: 'basic'
           },
           {
-            key: 'member-rights',
-            label: '正式成员权利与义务',
-            href: '/governance/member-rights',
-            description: '正式成员的权利与义务说明',
-            group: 'policies'
+            key: 'open-source-manifesto',
+            label: '开源人宣言',
+            href: '/governance/open-source-manifesto',
+            description: '开源人宣言',
+            group: 'basic'
           },
+
           {
             key: 'code-of-conduct',
             label: '开源社行为守则',
@@ -124,20 +133,13 @@ export default function Header() {
             description: '社区行为准则和规范',
             group: 'policies'
           },
-          {
-            key: 'open-source-manifesto',
-            label: '开源人宣言',
-            href: '/governance/open-source-manifesto',
-            description: '开源人宣言',
-            group: 'policies'
-          },
+
           {
             key: 'annual-report',
             label: '开源社年度报告',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
+            href: '/annual-reports',
             description: '查看开源社的年度工作报告和成果',
-            group: 'policies',
-            target: '_blank'
+            group: 'policies'
           }
         ]
       },
@@ -181,27 +183,20 @@ export default function Header() {
             group: 'cooperation'
           },
           {
-            key: 'partners',
-            label: '赞助伙伴、合作社区、合作媒体',
-            href: '/',
-            description: '赞助伙伴、合作社区、合作媒体',
-            group: 'cooperation'
-          },
-          {
-            key: 'individual-sponsors',
-            label: '个人赞助',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/V8QfwIblXibIjoksERYcL6R6nDh?from=space_search',
-            description: '个人赞助者列表',
-            group: 'cooperation',
-            target: '_blank'
-          },
-          {
             key: 'kcc',
             label: '开源社城市社区（KCC）',
             href: '/community',
             description: '各地开源社城市社区',
             group: 'cooperation'
           },
+          {
+            key: 'partners',
+            label: '合作伙伴',
+            href: '/partners',
+            description: '赞助伙伴、合作媒体、合作社区',
+            group: 'cooperation'
+          },
+         
           {
             key: 'china-oss-report',
             label: '中国开源年度报告',
@@ -222,14 +217,6 @@ export default function Header() {
             label: '中国开源码力榜',
             href: 'https://opensource.win/',
             description: '中国开源码力榜',
-            group: 'reports',
-            target: '_blank'
-          },
-          {
-            key: 'forum',
-            label: '开源社论坛',
-            href: 'https://github.com/orgs/kaiyuanshe/discussions',
-            description: '开源社社区论坛',
             group: 'reports',
             target: '_blank'
           }
@@ -260,140 +247,38 @@ export default function Header() {
             description: '查看即将举行的开源活动和会议',
             group: 'calendar'
           }
-          // {
-          //   key: 'meetings',
-          //   label: '社区会议',
-          //   href: '/',
-          //   description: '社区定期会议',
-          //   group: 'calendar'
-          // }
         ]
       },
-      {
-        key: 'projects',
-        label: '开源项目',
-        children: [
-          {
-            key: 'china-oss-map',
-            label: '中国开源地区',
-            href: '/organization',
-            description: '展示中国开源项目和组织的分布情况',
-            group: 'main'
-          },
-          {
-            key: 'toolbox',
-            label: '开源百宝箱',
-            href: 'https://oss-toolbox.kaiyuanshe.cn/',
-            description: '收集和整理各种开源工具和资源',
-            group: 'main',
-            target: '_blank'
-          },
-          {
-            key: 'hackathon',
-            label: '开放黑客松平台',
-            href: 'https://hackathon.kaiyuanshe.cn/',
-            description: '组织和参与开源黑客松活动',
-            group: 'main',
-            target: '_blank'
-          },
-          {
-            key: 'ktoken',
-            label: 'KToken',
-            href: 'https://kaiyuanshe.feishu.cn/wiki/wikcnnpaFGG3anuwxIfsp4M9c0c',
-            description: '基于区块链的开源贡献激励机制',
-            group: 'tech',
-            target: '_blank'
-          }
-        ]
-      },
+      // {
+      //   key: 'projects',
+      //   label: '开源项目',
+      //   children: [
+      //     {
+      //       key: 'china-oss-map',
+      //       label: '中国开源地图',
+      //       href: '/organization',
+      //       description: '展示中国开源项目和组织的分布情况',
+      //       group: 'main'
+      //     },
+
+      //   ]
+      // },
       {
         key: 'articles-media',
-        label: '文章&媒体',
+        label: '博客&公告',
         children: [
           {
             key: 'articles',
-            label: '文章',
+            label: '博客',
             href: '/articles',
-            description: '阅读最新的技术文章和社区动态',
+            description: '阅读最新的博客信息',
             group: 'content'
           },
-          // {
-          //   key: 'announcements',
-          //   label: '公告',
-          //   href: '/',
-          //   description: '获取开源社的重要公告和通知',
-          //   group: 'content'
-          // },
-          // {
-          //   key: 'news',
-          //   label: '新闻动态',
-          //   href: '/',
-          //   description: '了解开源社区的最新发展和动态',
-          //   group: 'content'
-          // },
-          // {
-          //   key: 'meeting-minutes',
-          //   label: '会议纪要',
-          //   href: '/',
-          //   description: '社区会议记录和纪要',
-          //   group: 'content'
-          // },
-          // {
-          //   key: 'brand-guide',
-          //   label: '品牌使用指南',
-          //   href: '/',
-          //   description: '开源社品牌使用指南',
-          //   group: 'brand'
-          // },
-
           {
-            key: 'videos',
-            label: '视频',
-            href: 'https://space.bilibili.com/525037536?spm_id_from=333.337.search-card.all.click',
-            description: '观看开源社相关视频内容',
-            group: 'brand',
-            target: '_blank'
-          }
-          // {
-          //   key: 'photos',
-          //   label: '照片',
-          //   href: '/photos',
-          //   description: '历届活动照片展示',
-          //   group: 'brand'
-          // }
-        ]
-      },
-      {
-        key: 'about',
-        label: '关于我们',
-        children: [
-          {
-            key: 'intro',
-            label: '开源社简介',
-            href: '/about',
-            description: '了解开源社的历史、使命和发展历程',
-            group: 'basic'
-          },
-          {
-            key: 'brand-download',
-            label: '品牌标识下载',
-            href: '/logo.zip',
-            target: '_blank',
-            description: '下载开源社品牌标识',
-            group: 'basic'
-          },
-          {
-            key: 'contact',
-            label: '联系我们',
-            href: '/about',
-            description: '获取开源社的联系方式和地址信息',
-            group: 'brand'
-          },
-          {
-            key: 'join-us',
-            label: '如何加入我们',
-            href: '/join-us',
-            description: '了解如何加入开源社',
+            key: 'notice',
+            label: '公告',
+            href: '/',
+            description: '获取最新公告',
             group: 'brand'
           }
         ]

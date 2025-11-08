@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react'
+import { Dropdown, type MenuProps } from 'antd'
+import { ChevronDown } from 'lucide-react'
 import VolunteerProfile from '../../../components/volunteer/VolunteerProfile'
 import styles from './index.module.css'
 
@@ -112,15 +114,21 @@ const volunteers = [
 ]
 
 export default function StarPage() {
-  const [selectedYear, setSelectedYear] = useState<number>(2024)
-
   const uniqueYears = useMemo(() => {
     const years = [...new Set(volunteers.map(v => v.date))].sort((a, b) => b - a)
-    return years
+    return years.map(year => year.toString())
   }, [])
 
+  const [selectedYear, setSelectedYear] = useState<string>(uniqueYears[0] || '2024')
+
+  const yearMenuItems: MenuProps['items'] = uniqueYears.map(year => ({
+    key: year,
+    label: year,
+    onClick: () => setSelectedYear(year)
+  }))
+
   const filteredVolunteers = useMemo(() => {
-    return volunteers.filter(volunteer => volunteer.date === selectedYear)
+    return volunteers.filter(volunteer => volunteer.date === parseInt(selectedYear))
   }, [selectedYear])
 
   return (
@@ -135,18 +143,26 @@ export default function StarPage() {
 
         
 
-        <div className={styles.filterSection}>
-   
-          <div className={styles.yearFilter}>
-            {uniqueYears.map(year => (
-              <button
-                key={year}
-                className={`${styles.yearButton} ${selectedYear === year ? styles.yearButtonActive : ''}`}
-                onClick={() => setSelectedYear(year)}
-              >
-                {year}
-              </button>
-            ))}
+        <div className={styles.statsBar}>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{filteredVolunteers.length}</div>
+            <div className={styles.statLabel}>开源之星</div>
+          </div>
+          <div className={styles.statItem}>
+            <Dropdown 
+              menu={{ items: yearMenuItems }}
+              trigger={['click','hover']}
+            >
+              <div className={styles.yearSelect}>
+                <span>{selectedYear}</span>
+                <ChevronDown size={28} />
+              </div>
+            </Dropdown>
+            <div className={styles.statLabel}>年度表彰</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>∞</div>
+            <div className={styles.statLabel}>开源精神</div>
           </div>
         </div>
 

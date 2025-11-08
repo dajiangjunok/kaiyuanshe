@@ -119,6 +119,25 @@
     font-weight: 500;
 }
 
+.yearSelect {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #8b5a3c;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.yearSelect:hover {
+    color: #6d4c41;
+}
+
 .filterSection {
     display: flex;
     flex-direction: column;

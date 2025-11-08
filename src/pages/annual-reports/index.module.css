@@ -1,0 +1,349 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* 页面标题部分 */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/images/pattern.svg') repeat;
+  opacity: 0.1;
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  background: linear-gradient(45deg, #fff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin: 0 0 40px 0;
+  line-height: 1.6;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* 内容区域 */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.reportsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 30px;
+}
+
+.reportCard {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  background: white;
+}
+
+.reportCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cardCover {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.reportCard:hover .coverImage {
+  transform: scale(1.1);
+}
+
+.coverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reportCard:hover .coverOverlay {
+  opacity: 1;
+}
+
+.coverActions {
+  display: flex;
+  gap: 16px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background: white;
+  transform: translateY(-2px);
+  color: #333;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.titleIcon {
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  padding: 0;
+}
+
+.cardDescription {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.cardAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.cardAction a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.cardAction a:hover {
+  color: #4f46e5;
+}
+
+/* 底部说明 */
+.footer {
+  background: #f8fafc;
+  padding: 60px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.footerContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.footerTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 24px;
+}
+
+.footerText {
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.footerText:last-child {
+  margin-bottom: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .stats {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .reportsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .content {
+    padding: 40px 16px;
+  }
+  
+  .header {
+    padding: 60px 0;
+  }
+  
+  .headerContent {
+    padding: 0 16px;
+  }
+  
+  .coverActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .actionButton {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .stats {
+    gap: 20px;
+  }
+  
+  .statNumber {
+    font-size: 1.75rem;
+  }
+  
+  .footerTitle {
+    font-size: 1.5rem;
+  }
+  
+  .footerContent {
+    padding: 0 16px;
+  }
+}
+
+/* Ant Design Card 样式覆盖 */
+.reportCard :global(.ant-card-body) {
+  padding: 24px;
+}
+
+.reportCard :global(.ant-card-actions) {
+  border-top: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.reportCard :global(.ant-card-actions > li) {
+  margin: 8px 0;
+}
+
+.reportCard :global(.ant-card-actions > li:not(:last-child)) {
+  border-right: 1px solid #f0f0f0;
+}
+
+.reportCard :global(.ant-card-meta-title) {
+  margin-bottom: 0;
+}
+
+.reportCard :global(.ant-card-meta-description) {
+  margin-top: 0;
+}

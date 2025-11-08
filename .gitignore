@@ -5,6 +5,7 @@ ansible.sh
 pnpm-lock.yaml
 CLAUDE.md
 .claude
+.github
 
 
 # Next.js 构建输出

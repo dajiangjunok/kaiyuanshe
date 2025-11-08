@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from 'antd'
-import { FaTwitter, FaGithub } from 'react-icons/fa'
+import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiWechat } from 'react-icons/si'
 import Image from 'next/image'
 import styles from './PersonCard.module.css'
@@ -14,6 +14,7 @@ export interface PersonCardProps {
   wechat?: string
   twitter?: string
   github?: string
+  linkedin?: string
   email?:string
   bio?: string
   details?: string[]
@@ -32,6 +33,7 @@ export default function PersonCard({
   wechat,
   twitter,
   github,
+  linkedin,
   onDetailClick,
   role,
   tags
@@ -119,6 +121,17 @@ export default function PersonCard({
               title="GitHub"
             >
               <FaGithub size={20} />
+            </a>
+          )}
+          {linkedin && (
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+              title="LinkedIn"
+            >
+              <FaLinkedin size={20} />
             </a>
           )}
         </div>

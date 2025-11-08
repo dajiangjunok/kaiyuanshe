@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 import { X, Mail } from 'lucide-react';
-import { FaTwitter, FaGithub } from 'react-icons/fa';
+import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiWechat } from 'react-icons/si';
 import Image from 'next/image';
 import { PersonCardProps } from './PersonCard';
@@ -95,6 +95,17 @@ export default function BoardMemberDetail({
                   title="GitHub"
                 >
                   <FaGithub size={24} />
+                </a>
+              )}
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                  title="LinkedIn"
+                >
+                  <FaLinkedin size={24} />
                 </a>
               )}
             </div>

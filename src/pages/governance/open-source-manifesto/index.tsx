@@ -144,7 +144,7 @@ const OpenSourceManifestoPage = () => {
             <h2 className={styles.sectionTitle}>结语</h2>
             <div className={styles.conclusionBox}>
               <p>
-                面对一个急速变幻、急速下坠、甚至可能变得撕裂的世界，我们更应该推广开源精神，凝聚众人向善之力，汇聚众人向善之智，开放协作、互惠共赢，<span className={styles.highlight}>为这个世界变得更好做出贡献！</span>
+                面对一个急速变幻、急速下坠、甚至可能变得撕裂的世界，我们更应该推广开源精神，凝聚众人向善之力，汇聚众人向善之智，开放协作、互惠共赢，<span>为这个世界变得更好做出贡献！</span>
               </p>
             </div>
           </section>

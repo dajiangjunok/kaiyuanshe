@@ -13,6 +13,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/5.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'emily@kaiyuanshe.org',
     bio: '',
     details: [
@@ -28,6 +29,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/1.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'jiangbo@kaiyuanshe.org',
     bio: '',
     details: [
@@ -42,6 +44,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/6.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'slibre@kaiyuanshe.org',
     bio: '',
     details: [
@@ -57,6 +60,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/4.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'ly@kaiyuanshe.org',
     bio: '',
     details: [
@@ -71,6 +75,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/2.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'richard@kaiyuanshe.org',
     bio: '',
     details: [
@@ -85,6 +90,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/7.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'xuyin@kaiyuanshe.org',
     bio: '',
     details: [
@@ -99,6 +105,7 @@ const boardMembers: PersonCardProps[] = [
     avatar: '/img/board/3.webp',
     twitter: '',
     github: '',
+    linkedin: '',
     email: 'zbw@kaiyuanshe.org',
     bio: '',
     details: [
