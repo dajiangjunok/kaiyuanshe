@@ -105,69 +105,68 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* 暗色模式背景 */
-    --background: #0a0a0a;
+    /* --background: #0a0a0a;
     --background-secondary: #111827;
-    --background-tertiary: #1f2937;
+    --background-tertiary: #1f2937; */
     
     /* 暗色模式前景 */
-    --foreground: #ededed;
+    /* --foreground: #ededed;
     --foreground-secondary: #d1d5db;
-    --foreground-muted: #9ca3af;
+    --foreground-muted: #9ca3af; */
     
     /* 暗色模式主色调 */
-    --primary: #3b82f6;
+    /* --primary: #3b82f6;
     --primary-50: #1e293b;
     --primary-100: #334155;
     --primary-200: #475569;
-    --primary-400: #64748b;
     --primary-400: #94a3b8;
     --primary-500: #cbd5e1;
     --primary-600: #e2e8f0;
     --primary-700: #f1f5f9;
     --primary-800: #f8fafc;
     --primary-900: #ffffff;
-    --primary-950: #ffffff;
+    --primary-950: #ffffff; */
     
     /* 暗色模式辅助色 */
-    --secondary: #6b7280;
+    /* --secondary: #6b7280;
     --secondary-light: #9ca3af;
-    --secondary-dark: #4b5563;
+    --secondary-dark: #4b5563; */
     
     /* 暗色模式状态色 */
-    --success: #10b981;
+    /* --success: #10b981;
     --success-bg: #064e3b;
     --warning: #f59e0b;
     --warning-bg: #78350f;
     --danger: #ef4444;
     --danger-bg: #7f1d1d;
     --info: #06b6d4;
-    --info-bg: #164e63;
+    --info-bg: #164e63; */
     
     /* 暗色模式边框 */
-    --border: #374151;
+    /* --border: #374151;
     --border-light: #4b5563;
-    --border-dark: #1f2937;
+    --border-dark: #1f2937; */
     
     /* 暗色模式选择 */
-    --selection-bg: rgba(59, 130, 246, 0.4);
-    --selection-color: #ffffff;
+    /* --selection-bg: rgba(59, 130, 246, 0.4);
+    --selection-color: #ffffff; */
     
     /* 暗色模式卡片 */
-    --card-bg: #111827;
-    --card-border: #374151;
+    /* --card-bg: #111827;
+    --card-border: #374151; */
     
     /* 暗色模式输入框 */
-    --input-bg: #1f2937;
+    /* --input-bg: #1f2937;
     --input-border: #4b5563;
-    --input-border-focus: #3b82f6;
+    --input-border-focus: #3b82f6; */
     
-    /* 暗色模式按钮 */
-    --button-primary-bg: #3b82f6;
-    --button-primary-hover: #2563eb;
+    /* 暗色模式按钮 - 保持与浅色模式一致 */
+    /* --button-primary-bg: #1e3a8a;
+    --button-primary-hover: #1d4ed8;
     --button-primary-text: #ffffff;
     --button-secondary-bg: #374151;
     --button-secondary-hover: #4b5563;
-    --button-secondary-text: #e5e7eb;
+    --button-secondary-text: #e5e7eb; */
   }
 }
 
