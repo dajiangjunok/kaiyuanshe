@@ -634,18 +634,7 @@ export default function VenuesPage() {
               description: session.description,
               producer: session.producer,
               volunteers: session.volunteer,
-              agendas: session.agendas.map(agenda => ({
-                ID: agenda.ID.toString(),
-                topic: agenda.topic,
-                start_time: agenda.start_time,
-                end_time: agenda.end_time,
-                speakers: agenda.speakers.map(speaker => ({
-                  ID: speaker.ID.toString(),
-                  name: speaker.name,
-                  title: speaker.title,
-                  avatar: speaker.avatar,
-                })),
-              })),
+              agendas: [],
             }));
             setVenues(updatedVenues);
             // 找到刚创建的会场并设为活动状态
