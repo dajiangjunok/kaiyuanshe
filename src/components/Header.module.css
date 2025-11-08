@@ -96,7 +96,7 @@
 /* 左侧菜单区域 */
 .dropdownLeft {
   flex: 1;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0rem;
   background: white;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -107,7 +107,7 @@
 /* 关于我们菜单的三列布局 */
 .dropdownLeftTwoColumn {
   flex: 1;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0rem;
   background: white;
   display: flex;
   gap: 1.5rem;

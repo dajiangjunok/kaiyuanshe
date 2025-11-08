@@ -147,6 +147,13 @@ export default function Header() {
         key: 'community-development',
         label: '社区发展',
         children: [
+           {
+            key: 'partners',
+            label: '合作伙伴',
+            href: '/partners',
+            description: '赞助伙伴、合作媒体、合作社区',
+            group: 'recognition'
+          },
           {
             key: 'members',
             label: '正式成员',
@@ -173,7 +180,7 @@ export default function Header() {
             label: 'COSCon之星',
             href: '/community/coscon',
             description: 'COSCon会议之星',
-            group: 'recognition'
+            group: 'cooperation'
           },
           {
             key: 'cooperation-star',
@@ -189,13 +196,7 @@ export default function Header() {
             description: '各地开源社城市社区',
             group: 'cooperation'
           },
-          {
-            key: 'partners',
-            label: '合作伙伴',
-            href: '/partners',
-            description: '赞助伙伴、合作媒体、合作社区',
-            group: 'cooperation'
-          },
+         
          
           {
             key: 'china-oss-report',
