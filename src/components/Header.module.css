@@ -84,6 +84,16 @@
   overflow: hidden;
 }
 
+.navDropdownMenu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+
 /* 下拉菜单布局 */
 .dropdownLayout {
   display: flex;
