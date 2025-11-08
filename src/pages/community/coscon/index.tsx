@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react'
+import { Dropdown, type MenuProps } from 'antd'
+import { ChevronDown } from 'lucide-react'
 import VolunteerProfile from '../../../components/volunteer/VolunteerProfile'
 import styles from './index.module.css'
 
@@ -339,6 +341,12 @@ export default function COSConStarPage() {
   const uniqueYears = useMemo(() => {
     return yearlyStars.map(item => item.year).sort((a, b) => parseInt(b) - parseInt(a))
   }, [])
+
+  const yearMenuItems: MenuProps['items'] = uniqueYears.map(year => ({
+    key: year,
+    label: year,
+    onClick: () => setSelectedYear(year)
+  }))
   
   const selectedStars = useMemo(() => {
     return yearlyStars.find(item => item.year === selectedYear)?.stars || cosconStars2023
@@ -354,20 +362,26 @@ export default function COSConStarPage() {
           </p>
         </div>
 
-  
-
-        <div className={styles.filterSection}>
-       
-          <div className={styles.yearFilter}>
-            {uniqueYears.map(year => (
-              <button
-                key={year}
-                className={`${styles.yearButton} ${selectedYear === year ? styles.yearButtonActive : ''}`}
-                onClick={() => setSelectedYear(year)}
-              >
-                {year}
-              </button>
-            ))}
+        <div className={styles.statsBar}>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{selectedStars.length}</div>
+            <div className={styles.statLabel}>COSCon之星</div>
+          </div>
+          <div className={styles.statItem}>
+            <Dropdown 
+              menu={{ items: yearMenuItems }}
+              trigger={['click','hover']}
+            >
+              <div className={styles.yearSelect}>
+                <span>{selectedYear}</span>
+                <ChevronDown size={28} />
+              </div>
+            </Dropdown>
+            <div className={styles.statLabel}>年度表彰</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{totalStars}</div>
+            <div className={styles.statLabel}>历史总数</div>
           </div>
         </div>
 

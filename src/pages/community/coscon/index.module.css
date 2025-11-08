@@ -178,6 +178,30 @@
     font-weight: 500;
 }
 
+.yearSelect {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 4px;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.yearSelect option {
+    background: #667eea;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
 @media (max-width: 1200px) {
     .volunteersGrid {
         grid-template-columns: repeat(3, 1fr);

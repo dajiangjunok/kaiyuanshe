@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react'
+import { Dropdown, type MenuProps } from 'antd'
+import { ChevronDown } from 'lucide-react'
 import VolunteerProfile from '../../../components/volunteer/VolunteerProfile'
 import styles from './index.module.css'
 
@@ -89,6 +91,12 @@ export default function CooperationPage() {
   const uniqueYears = useMemo(() => {
     return yearlyStars.map(item => item.year).sort((a, b) => parseInt(b) - parseInt(a))
   }, [])
+
+  const yearMenuItems: MenuProps['items'] = uniqueYears.map(year => ({
+    key: year,
+    label: year,
+    onClick: () => setSelectedYear(year)
+  }))
   
   const selectedStars = useMemo(() => {
     return yearlyStars.find(item => item.year === selectedYear)?.stars || cooperationStars2023
@@ -104,17 +112,26 @@ export default function CooperationPage() {
           </p>
         </div>
 
-        <div className={styles.filterSection}>
-          <div className={styles.yearFilter}>
-            {uniqueYears.map(year => (
-              <button
-                key={year}
-                className={`${styles.yearButton} ${selectedYear === year ? styles.yearButtonActive : ''}`}
-                onClick={() => setSelectedYear(year)}
-              >
-                {year}
-              </button>
-            ))}
+        <div className={styles.statsBar}>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{selectedStars.length}</div>
+            <div className={styles.statLabel}>社区合作之星</div>
+          </div>
+          <div className={styles.statItem}>
+            <Dropdown 
+              menu={{ items: yearMenuItems }}
+              trigger={['click','hover']}
+            >
+              <div className={styles.yearSelect}>
+                <span>{selectedYear}</span>
+                <ChevronDown size={28} />
+              </div>
+            </Dropdown>
+            <div className={styles.statLabel}>年度表彰</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>∞</div>
+            <div className={styles.statLabel}>合作精神</div>
           </div>
         </div>
 
