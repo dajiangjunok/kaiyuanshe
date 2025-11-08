@@ -40,6 +40,7 @@ interface AgendaItem {
 interface Session {
   ID: number
   title: string
+  address: string
   description: string
   producer: string
   volunteer: string
@@ -389,6 +390,7 @@ const DetailSection = ({ event, sessions = [], sessionsLoading }: SectionProps) 
   // 会场组件
   const SessionContent: React.FC<Session> = ({
     title: name,
+    address,
     description,
     producer,
     volunteer,
@@ -400,6 +402,7 @@ const DetailSection = ({ event, sessions = [], sessionsLoading }: SectionProps) 
     return (
       <div className={styles.sessionContent}>
         <h1 className={styles.sessionTitle}>{name}</h1>
+        <p className={styles.sessionAddress}>{address}</p>
         <p className={styles.sessionDescription}>{description}</p>
         <div className={styles.sessionAudit}>
           <p className={styles.sessionProducer}>
