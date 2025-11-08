@@ -510,7 +510,6 @@ export interface CreateSessionParams {
   address: string;
   producer: string;
   volunteer: string;
-  agendas: AgendaParams[];
 }
 
 export interface AgendaParams {
@@ -548,21 +547,10 @@ export const createSession = async (
   try {
     const body = {
       title: params.title.trim(),
+      address: params.address.trim(),
       description: params.description.trim(),
       producer: params.producer.trim(),
       volunteer: params.volunteer.trim(),
-      agendas: params.agendas.map(agenda => ({
-        topic: agenda.topic.trim(),
-        start_time: agenda.start_time,
-        end_time: agenda.end_time,
-        speakers: agenda.speakers.map(speaker => ({
-          name: speaker.name.trim(),
-          avatar: speaker.avatar ?? '',
-          title: speaker.title ?? '',
-          description: speaker.description ?? '',
-          company: speaker.company ?? '',
-        })),
-      })),
     };
 
     const response = await apiRequest<SessionResult>(`/events/${eventId}/venues`, 'POST', body);
@@ -618,18 +606,6 @@ export const updateSession = async (
       description: params.description.trim(),
       producer: params.producer.trim(),
       volunteer: params.volunteer.trim(),
-      agendas: params.agendas.map(agenda => ({
-        topic: agenda.topic.trim(),
-        start_time: agenda.start_time,
-        end_time: agenda.end_time,
-        speakers: agenda.speakers.map(speaker => ({
-          name: speaker.name.trim(),
-          avatar: speaker.avatar ?? '',
-          title: speaker.title ?? '',
-          description: speaker.description ?? '',
-          company: speaker.company ?? '',
-        })),
-      })),
     };
 
     const response = await apiRequest<SessionResult>(`/events/${eventId}/venues/${venueId}`, 'PUT', body);
