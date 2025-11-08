@@ -610,16 +610,16 @@ export default function VenuesPage() {
           address: venue.address,
           producer: venue.producer,
           volunteer: venue.volunteers,
-          agendas: venue.agendas.map(agenda => ({
-            topic: agenda.topic,
-            start_time: agenda.start_time,
-            end_time: agenda.end_time,
-            speakers: agenda.speakers.map(speaker => ({
-              name: speaker.name,
-              avatar: speaker.avatar,
-              title: speaker.title,
-            })),
-          })),
+          // agendas: venue.agendas.map(agenda => ({
+          //   topic: agenda.topic,
+          //   start_time: agenda.start_time,
+          //   end_time: agenda.end_time,
+          //   speakers: agenda.speakers.map(speaker => ({
+          //     name: speaker.name,
+          //     avatar: speaker.avatar,
+          //     title: speaker.title,
+          //   })),
+          // })),
         });
 
         if (result.success) {
@@ -665,16 +665,6 @@ export default function VenuesPage() {
           address: venue.address,
           producer: venue.producer,
           volunteer: venue.volunteers,
-          agendas: venue.agendas.map(agenda => ({
-            topic: agenda.topic,
-            start_time: agenda.start_time,
-            end_time: agenda.end_time,
-            speakers: agenda.speakers.map(speaker => ({
-              name: speaker.name,
-              avatar: speaker.avatar,
-              title: speaker.title,
-            })),
-          })),
         });
 
         if (result.success) {

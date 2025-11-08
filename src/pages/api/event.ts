@@ -510,7 +510,6 @@ export interface CreateSessionParams {
   address: string;
   producer: string;
   volunteer: string;
-  agendas: AgendaParams[];
 }
 
 export interface AgendaParams {
