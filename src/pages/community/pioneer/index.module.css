@@ -33,12 +33,46 @@
     line-height: 1.6;
 }
 
+/* Year section styles */
+.yearSection {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 80px;
+}
+
+.yearSection:last-child {
+    margin-bottom: 0;
+}
+
+.yearHeader {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.yearTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 24px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.yearDivider {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
 /* Grid layout */
 .pioneersGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 24px;
-    max-width: 1200px;
     width: 100%;
 }
 
@@ -51,6 +85,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
 }
 
 .pioneerCard:hover {
@@ -114,6 +149,18 @@
         font-size: 1rem;
     }
     
+    .yearSection {
+        margin-bottom: 60px;
+    }
+    
+    .yearTitle {
+        font-size: 1.5rem;
+    }
+    
+    .yearHeader {
+        margin-bottom: 32px;
+    }
+    
     .pioneersGrid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -129,6 +176,18 @@
         font-size: 1.875rem;
     }
     
+    .yearSection {
+        margin-bottom: 40px;
+    }
+    
+    .yearTitle {
+        font-size: 1.25rem;
+    }
+    
+    .yearHeader {
+        margin-bottom: 24px;
+    }
+    
     .pioneerCard {
         padding: 16px;
     }
@@ -136,6 +195,233 @@
     .avatar {
         width: 60px;
         height: 60px;
+    }
+}
+
+/* Modal styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #374151;
+}
+
+.modalContent {
+    padding: 32px;
+    overflow-y: auto;
+    max-height: calc(80vh - 120px);
+}
+
+.modalAvatarContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.modalAvatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.modalInfo {
+    text-align: center;
+}
+
+.modalName {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+}
+
+.modalJobTitle {
+    font-size: 1rem;
+    color: #667eea;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+}
+
+.modalYear {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.modalDescription {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modalDescription h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 12px 0;
+}
+
+.modalDescription p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Modal responsive styles */
+@media (max-width: 768px) {
+    .modalOverlay {
+        padding: 12px;
+    }
+    
+    .modal {
+        max-height: 90vh;
+    }
+    
+    .modalHeader {
+        padding: 20px 24px 12px;
+    }
+    
+    .modalTitle {
+        font-size: 1.25rem;
+    }
+    
+    .modalContent {
+        padding: 24px;
+        max-height: calc(90vh - 100px);
+    }
+    
+    .modalAvatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .modalName {
+        font-size: 1.5rem;
+    }
+    
+    .modalDescription {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modalHeader {
+        padding: 16px 20px 8px;
+    }
+    
+    .modalTitle {
+        font-size: 1.125rem;
+    }
+    
+    .modalContent {
+        padding: 20px;
+    }
+    
+    .modalAvatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .modalName {
+        font-size: 1.25rem;
+    }
+    
+    .modalJobTitle {
+        font-size: 0.875rem;
     }
 }
 
