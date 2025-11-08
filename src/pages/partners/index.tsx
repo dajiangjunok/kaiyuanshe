@@ -133,10 +133,7 @@ const PartnersPage: React.FC = () => {
         </div>
 
         <div className={styles.statsBar}>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>{filteredPartners.length}</div>
-            <div className={styles.statLabel}>合作伙伴</div>
-          </div>
+         
           <div className={styles.statItem}>
             <Dropdown 
               menu={{ items: yearMenuItems }}
@@ -144,7 +141,7 @@ const PartnersPage: React.FC = () => {
             >
               <div className={styles.levelSelect}>
                 <span>{selectedYear}</span>
-                <ChevronDown size={28} />
+                <ChevronDown size={26} />
               </div>
             </Dropdown>
             <div className={styles.statLabel}>年份筛选</div>
@@ -156,10 +153,14 @@ const PartnersPage: React.FC = () => {
             >
               <div className={styles.levelSelect}>
                 <span>{selectedLevel}</span>
-                <ChevronDown size={28} />
+                <ChevronDown size={26} />
               </div>
             </Dropdown>
             <div className={styles.statLabel}>合作级别</div>
+          </div>
+           <div className={styles.statItem}>
+            <div className={styles.statNumber}>{filteredPartners.length}</div>
+            <div className={styles.statLabel}>合作伙伴</div>
           </div>
           <div className={styles.statItem}>
             <div className={styles.statNumber}>{availableLevels.length}</div>

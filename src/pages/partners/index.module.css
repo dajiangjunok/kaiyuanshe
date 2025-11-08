@@ -108,6 +108,7 @@
   font-weight: 600;
   letter-spacing: 0.025em;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .levelSelect {
@@ -232,7 +233,7 @@
 
 
 .sectionTitle {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #374151;
   margin: 0 0 1rem 0;
@@ -273,8 +274,8 @@
   border-radius: 1rem;
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 180px;
-  height: 180px;
+  width: 190px;
+  height: 190px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
 }
@@ -323,10 +324,7 @@
   line-height: 1.4;
   max-width: 100%;
   margin-top: 0.5rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -409,7 +407,7 @@
   }
 
   .sectionTitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .partnersGrid {
