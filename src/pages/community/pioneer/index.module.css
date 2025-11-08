@@ -71,21 +71,24 @@
 /* Grid layout */
 .pioneersGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
     width: 100%;
+    justify-content: start;
 }
 
 /* Pioneer card styles */
 .pioneerCard {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 12px;
+    padding: 16px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
+    min-height: 200px;
+    max-width: 240px;
 }
 
 .pioneerCard:hover {
@@ -96,15 +99,15 @@
 .avatarContainer {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .avatar {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -113,27 +116,20 @@
 }
 
 .pioneerName {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #1f2937;
     margin: 0 0 8px 0;
 }
 
 .pioneerTitle {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: #667eea;
     font-weight: 500;
-    margin: 0 0 16px 0;
+    margin: 0;
     line-height: 1.4;
 }
 
-.pioneerDescription {
-    font-size: 0.875rem;
-    color: #4b5563;
-    line-height: 1.6;
-    margin: 0;
-    text-align: left;
-}
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -162,12 +158,13 @@
     }
     
     .pioneersGrid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
     }
     
     .pioneerCard {
-        padding: 20px;
+        padding: 16px;
+        min-height: 180px;
     }
 }
 
@@ -188,13 +185,19 @@
         margin-bottom: 24px;
     }
     
+    .pioneersGrid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    
     .pioneerCard {
-        padding: 16px;
+        padding: 12px;
+        min-height: 160px;
     }
     
     .avatar {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 }
 
