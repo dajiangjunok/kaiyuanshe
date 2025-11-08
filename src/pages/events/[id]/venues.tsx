@@ -43,6 +43,7 @@ export default function VenuesPage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const { id } = router.query;
+  const [modal, contextHolder] = Modal.useModal();
 
   // 将 eventId 转换为字符串
   const eventId = id as string;
@@ -233,7 +234,7 @@ export default function VenuesPage() {
 
     if (isBackendAgenda) {
       // 后端删除 - 弹窗确认
-      Modal.confirm({
+      modal.confirm({
         title: '确认删除议程',
         content: '此操作将永久删除该议程，确定要继续吗？',
         okText: '确定删除',
@@ -316,9 +317,6 @@ export default function VenuesPage() {
       }),
     )
   }
-
-  const [modal, contextHolder] = Modal.useModal();
-
 
   const removeSpeaker = (venueId: string, agendaId: string, speakerId: string) => {
     // 检查嘉宾是否已保存（具有后端生成的ID）
