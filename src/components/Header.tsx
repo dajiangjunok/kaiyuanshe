@@ -590,35 +590,11 @@ export default function Header() {
                     </div>
                   </>
                 ) : item.key === 'governance' ? (
-                  // 社区治理的特殊三列布局
+                  // 社区治理的特殊两列布局
                   <>
                     <div className={styles.aboutColumn}>
                       {item.children
                         ?.filter(child => child.group === 'basic')
-                        .map(child => (
-                          <Link
-                            key={child.key}
-                            href={child.href || '/'}
-                            className={styles.navDropdownItem}
-                            onClick={() => setActiveDropdown(null)}
-                            target={child.target}
-                          >
-                            <div className={styles.dropdownItemContent}>
-                              <span className={styles.dropdownItemTitle}>
-                                {child.label}
-                              </span>
-                              {child.description && (
-                                <span className={styles.dropdownItemDesc}>
-                                  {child.description}
-                                </span>
-                              )}
-                            </div>
-                          </Link>
-                        ))}
-                    </div>
-                    <div className={styles.aboutColumn}>
-                      {item.children
-                        ?.filter(child => child.group === 'departments')
                         .map(child => (
                           <Link
                             key={child.key}
