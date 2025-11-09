@@ -339,7 +339,7 @@
 }
 
 .partnerTag {
-  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  background: linear-gradient(45deg, var(--primary-700), #8b5cf6);
   color: white;
   font-size: 0.7rem;
   font-weight: 500;
