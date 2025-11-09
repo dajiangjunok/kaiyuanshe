@@ -11,6 +11,8 @@
   padding: 4rem 1rem;
 }
 
+ 
+
 /* 移动端 Footer 优化 */
 @media (max-width: 768px) {
   .footer {

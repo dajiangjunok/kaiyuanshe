@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Facebook, Linkedin, X } from 'lucide-react'
+import { useTranslation } from '../hooks/useTranslation'
+import { FacebookIcon, LinkedinIcon, X } from 'lucide-react'
 import { SiBilibili, SiWechat } from 'react-icons/si'
 import { useState } from 'react'
 import { Modal } from 'antd'
@@ -19,7 +20,8 @@ interface MenuSection {
 
 export default function Footer() {
   const [isWeChatModalOpen, setIsWeChatModalOpen] = useState(false)
-  
+  const { t } = useTranslation()
+
   // 基于开源社 Header 组件中的主导航菜单项
   const menuSections: MenuSection[] = [
     {
@@ -55,7 +57,11 @@ export default function Footer() {
         { label: '开源社城市社区（KCC）', href: '/community' },
         { label: '中国开源年度报告', href: '/osreports' },
         { label: '中国开源先锋榜', href: '/community/pioneer' },
-        { label: '中国开源码力榜', href: 'https://opensource.win/', target: '_blank' }
+        {
+          label: '中国开源码力榜',
+          href: 'https://opensource.win/',
+          target: '_blank'
+        }
       ]
     },
     {
@@ -88,53 +94,57 @@ export default function Footer() {
                 width={200}
                 height={100}
                 className={styles.footerLogo}
-              /> 
+              />
               <p className={styles.aboutDescription}>
-                开源社（"KAIYUANSHE®"）成立于 2014 年，是由志愿贡献于开源事业的个人成员，依 "贡献、共识、共治" 原则所组成，始终维持 "厂商中立、公益、非营利" 的理念，以 "立足中国、贡献全球，推动开源成为新时代的生活方式" 为愿景，以"开源治理、国际接轨、社区发展、项目孵化"为使命，旨在共创健康可持续发展的开源生态体系。
+                开源社（"KAIYUANSHE®"）成立于 2014
+                年，是由志愿贡献于开源事业的个人成员，依 "贡献、共识、共治"
+                原则所组成，始终维持 "厂商中立、公益、非营利" 的理念，以
+                "立足中国、贡献全球，推动开源成为新时代的生活方式"
+                为愿景，以"开源治理、国际接轨、社区发展、项目孵化"为使命，旨在共创健康可持续发展的开源生态体系。
               </p>
             </div>
-            
+
             {/* Social media icons */}
             <div className={styles.socialSection}>
               <div className={styles.socialLinks}>
-                <Link 
-                  href="https://x.com/kaiyuanshe" 
-                  target="_blank" 
+                <Link
+                  href="https://x.com/kaiyuanshe"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialButton} 
+                  className={styles.socialButton}
                   aria-label="X (Twitter)"
                 >
                   <X className={styles.socialIcon} />
                 </Link>
-                <Link 
-                  href="https://www.facebook.com/kaiyuanshe.china" 
-                  target="_blank" 
+                <Link
+                  href="https://www.facebook.com/kaiyuanshe.china"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialButton} 
+                  className={styles.socialButton}
                   aria-label="Facebook"
                 >
-                  <Facebook className={styles.socialIcon} />
+                  <FacebookIcon className={styles.socialIcon} />
                 </Link>
-                <Link 
-                  href="https://www.linkedin.com/company/kaiyuanshe/" 
-                  target="_blank" 
+                <Link
+                  href="https://www.linkedin.com/company/kaiyuanshe/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialButton} 
+                  className={styles.socialButton}
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className={styles.socialIcon} />
+                  <LinkedinIcon className={styles.socialIcon} />
                 </Link>
-                <Link 
-                  href="https://space.bilibili.com/500938314" 
-                  target="_blank" 
+                <Link
+                  href="https://space.bilibili.com/500938314"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialButton} 
+                  className={styles.socialButton}
                   aria-label="Bilibili"
                 >
                   <SiBilibili className={styles.socialIcon} />
                 </Link>
-                <button 
-                  className={styles.socialButton} 
+                <button
+                  className={styles.socialButton}
                   aria-label="微信公众号"
                   onClick={() => setIsWeChatModalOpen(true)}
                 >
@@ -152,8 +162,8 @@ export default function Footer() {
                 <ul className={styles.menuList}>
                   {section.items.map((item, itemIndex) => (
                     <li key={itemIndex}>
-                      <Link 
-                        href={item.href} 
+                      <Link
+                        href={item.href}
                         className={styles.menuLink}
                         target={item.target}
                       >
@@ -170,10 +180,13 @@ export default function Footer() {
         {/* Footer bottom with copyright */}
         <div className={styles.footerBottom}>
           <p className={styles.copyright}>
-            Copyright © 2025 The Linux Foundation®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For more information, including terms of use, privacy policy, and trademark usage, please see our{' '}
-            <Link href="/policies" className={styles.policyLink}>Policies page</Link>.{' '}
-            <Link href="/privacy" className={styles.policyLink}>Privacy Policy</Link> |{' '}
-            <Link href="/trademarks" className={styles.policyLink}>Trademark Usage</Link>
+            <span>
+              <span style={{ marginRight: '2rem' }}>
+                © 2025 开源社. 保留所有权利
+              </span>
+              <span style={{ marginRight: '2rem' }}>沪 ICP 备 19006015 号</span>
+              <span>公安备案 31011202006203 号</span>
+            </span>
           </p>
         </div>
       </div>
