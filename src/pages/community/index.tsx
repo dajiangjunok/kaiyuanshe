@@ -1,33 +1,97 @@
 import type React from "react"
-import { Button } from "antd"
+import { Button, Spin, message } from "antd"
 import { MapPin, Users, Globe, Building2, Sparkles, ArrowRight } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
 import styles from "./index.module.css"
+import { getCommunities, Community } from "../api/comunity"
 
+// 基于 Community 接口定义 CityData
 interface CityData {
-  name: string
-  id: string
-  hasSpecialLogo?: boolean
-  isInternational?: boolean
+  ID: number;
+  city: string;
+  intro: string;
+  cover: string;
+  register_link: string;
+  start_date: string;
+  created_at: string;
+  updated_at: string;
+  isInternational?: boolean;
 }
 
-const cities: CityData[] = [
-  { name: "北京", id: "beijing" },
-  { name: "长沙", id: "changsha" },
-  { name: "成都", id: "chengdu", hasSpecialLogo: true },
-  { name: "大连", id: "dalian" },
-  { name: "广州", id: "guangzhou" },
-  { name: "杭州", id: "hangzhou" },
-  { name: "南京", id: "nanjing" },
-  { name: "上海", id: "shanghai" },
-  { name: "深圳", id: "shenzhen" },
-  { name: "新加坡", id: "singapore", hasSpecialLogo: true, isInternational: true },
-]
-
 const CommunityPage: React.FC = () => {
+  const [cities, setCities] = useState<CityData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [stats, setStats] = useState({
+    cityCount: 0,
+    developerCount: 0,
+    projectCount: 0
+  })
+
+  // 加载社区数据
+  const loadCommunities = useCallback(async (params?: {
+    city?: string;
+    page?: number;
+    page_size?: number;
+    order_by?: 'created_at' | 'start_date';
+    order?: 'asc' | 'desc';
+  }) => {
+    try {
+      setLoading(true);
+
+      const queryParams = {
+        city: params?.city ?? '',
+        page: params?.page ?? 1,
+        page_size: params?.page_size ?? 50,
+        order_by: params?.order_by ?? 'created_at',
+        order: params?.order ?? 'desc',
+      };
+
+      const result = await getCommunities(queryParams);
+
+      if (result.success && result.data) {
+        // 直接使用接口返回的 Community 数据
+        const communitiesData: Community[] = result.data.communities || [];
+        console.log('社区数据:', communitiesData);
+
+        setCities(communitiesData);
+
+      } else {
+        console.error('获取社区列表失败:', result.message);
+        message.warning(result.message || '获取社区数据失败');
+        setCities([]);
+      }
+    } catch (error: unknown) {
+      console.error('加载社区列表异常:', error);
+      message.error('获取社区数据失败');
+      setCities([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // 从接口获取社区数据
+  useEffect(() => {
+    loadCommunities();
+  }, [loadCommunities]);
+
   const handleCreateCommunity = () => {
     window.open("https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe", "_blank")
   }
 
+  const handleCityClick = (city: CityData) => {
+    console.log('点击城市:', city)
+    // 可以根据 city.id 跳转到详情页
+    // router.push(`/communities/${city.id}`)
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <Spin size="large" />
+        <div className={styles.loadingText}>加载社区数据中...</div>
+      </div>
+    )
+  }
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -37,10 +101,6 @@ const CommunityPage: React.FC = () => {
           <div className={styles.floatingElement}></div>
         </div>
         <div className={styles.titleSection}>
-          {/* <div className={styles.titleIconWrapper}>
-            <Globe className={styles.titleIcon} />
-            <Sparkles className={styles.sparkleIcon} />
-          </div> */}
           <div className={styles.titleContainer}>
             <h1 className={styles.title}>开源社城市社区</h1>
             <div className={styles.titleBadge}>KCC</div>
@@ -51,17 +111,17 @@ const CommunityPage: React.FC = () => {
           </div>
           <div className={styles.statsBar}>
             <div className={styles.stat}>
-              <span className={styles.statNumber}>10+</span>
+              <span className={styles.statNumber}>{stats.cityCount}+</span>
               <span className={styles.statLabel}>活跃城市</span>
             </div>
             <div className={styles.statDivider}></div>
             <div className={styles.stat}>
-              <span className={styles.statNumber}>1000+</span>
+              <span className={styles.statNumber}>{stats.developerCount}+</span>
               <span className={styles.statLabel}>开发者</span>
             </div>
             <div className={styles.statDivider}></div>
             <div className={styles.stat}>
-              <span className={styles.statNumber}>50+</span>
+              <span className={styles.statNumber}>{stats.projectCount}+</span>
               <span className={styles.statLabel}>项目</span>
             </div>
           </div>
@@ -76,33 +136,43 @@ const CommunityPage: React.FC = () => {
           </h2>
           <div className={styles.citiesGrid}>
             {cities.map((city, index) => (
-              <div key={city.id} className={styles.cityCard} style={{ animationDelay: `${index * 0.1}s` }}>
+              <div
+                key={city.ID}
+                className={styles.cityCard}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleCityClick(city)}
+              >
                 <div className={styles.cardGlow}></div>
-                <div className={`${styles.cityLogo} ${city.hasSpecialLogo ? styles.specialLogo : ""}`}>
-                  {city.hasSpecialLogo ? (
-                    <div className={styles.specialLogoContent}>
-                      <div className={styles.logoBase}>
-                        <Building2 size={28} />
-                      </div>
-                      <div className={styles.mascot}>{city.id === "chengdu" ? "🐼" : "🦁"}</div>
-                    </div>
-                  ) : (
-                    <div className={styles.standardLogo}>
-                      <div className={styles.logoPattern}>
-                        <div className={styles.logoLines}>
-                          <div className={styles.line}></div>
-                          <div className={styles.line}></div>
-                          <div className={styles.line}></div>
+                <div className={styles.cityLogo}>
+                  <div className={styles.coverLogo}>
+                    <img
+                      src={city.cover}
+                      alt={city.city}
+                      className={styles.coverImage}
+                      onError={(e) => {
+                        // 图片加载失败时显示默认图标
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    {/* 如果图片加载失败，显示默认图标 */}
+                    {!city.cover && (
+                      <div className={styles.standardLogo}>
+                        <div className={styles.logoPattern}>
+                          <div className={styles.logoLines}>
+                            <div className={styles.line}></div>
+                            <div className={styles.line}></div>
+                            <div className={styles.line}></div>
+                          </div>
+                          <div className={styles.logoCircle}></div>
                         </div>
-                        <div className={styles.logoCircle}></div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 <div className={styles.cityInfo}>
                   <div className={styles.cityName}>
                     <MapPin size={16} className={styles.locationIcon} />
-                    <span>{city.name}</span>
+                    <span>{city.city}</span>
                     {city.isInternational && <Globe size={14} className={styles.internationalIcon} />}
                   </div>
                   <div className={styles.cityStatus}>活跃社区</div>

@@ -47,9 +47,9 @@ func SetupRouter(r *gin.Engine) {
 		venue.DELETE("/agendas/:id", middlewares.JWT("event:delete"), controllers.DeleteAgenda)
 	}
 
-	community := r.Group("/v1/communitys")
+	community := r.Group("/v1/communities")
 	{
-		community.POST("/", middlewares.JWT("event:write"), controllers.CreatCommunity)
+		community.POST("", middlewares.JWT("event:write"), controllers.CreatCommunity)
 		community.DELETE("/:id", middlewares.JWT("event:delete"), controllers.DeleteCommunity)
 		community.PUT("/:id", middlewares.JWT("event:write"), controllers.UpdateCommunity)
 		community.GET("", controllers.QueryCommunity)

@@ -376,10 +376,10 @@ type CreateCommunityRequest struct {
 }
 
 type QueryCommunityResponse struct {
-	Communitys []models.Community `json:"communitys"`
-	Page       int                `json:"page"`
-	PageSize   int                `json:"page_size"`
-	Total      int64              `json:"total"`
+	Communities []models.Community `json:"communities"`
+	Page        int                `json:"page"`
+	PageSize    int                `json:"page_size"`
+	Total       int64              `json:"total"`
 }
 
 type UpdateCommunityRequest struct {

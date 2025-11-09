@@ -90,17 +90,17 @@ func QueryCommunity(c *gin.Context) {
 		PageSize:  pageSize,
 	}
 
-	communitys, total, err := models.QueryCommunitys(filter)
+	communities, total, err := models.QueryCommunitys(filter)
 	if err != nil {
 		utils.ErrorResponse(c, http.StatusInternalServerError, err.Error(), nil)
 		return
 	}
 
 	var response = QueryCommunityResponse{
-		Communitys: communitys,
-		Page:       page,
-		PageSize:   pageSize,
-		Total:      total,
+		Communities: communities,
+		Page:        page,
+		PageSize:    pageSize,
+		Total:       total,
 	}
 
 	utils.SuccessResponse(c, http.StatusOK, "query success", response)

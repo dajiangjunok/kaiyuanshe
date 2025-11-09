@@ -15,7 +15,7 @@ type Community struct {
 	Active       uint       `json:"active"`
 	StartDate    *time.Time `json:"start_date"`
 	RegisterLink string     `json:"register_link"`
-	Events       []Event    `gorm:"foreignKey:EventID" json:"events"`
+	Events       []Event    `gorm:"foreignKey:CommunityID" json:"events"`
 	Members      []Member   `gorm:"foreignKey:CommunityID" json:"members"`
 	UserId       uint       `json:"user_id"`
 	User         *User      `gorm:"foreignKey:UserId" json:"user"`
@@ -65,7 +65,7 @@ func QueryCommunitys(filter CommunityFilter) ([]Community, int64, error) {
 	var communitys []Community
 	var total int64
 
-	query := db.Model(&Event{})
+	query := db.Model(&Community{})
 
 	if filter.Keyword != "" {
 		likePattern := "%" + filter.Keyword + "%"
@@ -81,9 +81,9 @@ func QueryCommunitys(filter CommunityFilter) ([]Community, int64, error) {
 
 	// 排序
 	if filter.OrderDesc {
-		query = query.Order("start_time desc")
+		query = query.Order("start_date desc")
 	} else {
-		query = query.Order("start_time asc")
+		query = query.Order("start_date asc")
 	}
 
 	// 分页
