@@ -365,3 +365,39 @@ type SpeakerRequest struct {
 	Description string `json:"description"`
 	Company     string `json:"company"`
 }
+
+// Community
+type CreateCommunityRequest struct {
+	City         string `json:"city" binding:"required"`
+	Intro        string `json:"intro" binding:"required"`
+	Cover        string `json:"cover" binding:"required"`
+	RegisterLink string `json:"register_link" binging:"required"`
+	StartDate    string `json:"start_date" binging:"required"`
+}
+
+type QueryCommunityResponse struct {
+	Communitys []models.Community `json:"communitys"`
+	Page       int                `json:"page"`
+	PageSize   int                `json:"page_size"`
+	Total      int64              `json:"total"`
+}
+
+type UpdateCommunityRequest struct {
+	City         string `json:"city" binding:"required"`
+	Intro        string `json:"intro" binding:"required"`
+	Cover        string `json:"cover" binding:"required"`
+	RegisterLink string `json:"register_link" binging:"required"`
+	StartDate    string `json:"start_date" binging:"required"`
+}
+
+type CreateMemberRequest struct {
+	Name   string `json:"name" binding:"required"`
+	Avatar string `json:"avatar" binding:"required"`
+	Title  string `json:"title" binding:"required"`
+}
+
+type UpdateMemberRequest struct {
+	Name   string `json:"name" binding:"required"`
+	Avatar string `json:"avatar" binding:"required"`
+	Title  string `json:"title" binding:"required"`
+}
