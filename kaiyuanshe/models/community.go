@@ -29,6 +29,16 @@ func (c *Community) GetByID(id uint) error {
 	return db.Preload("Members").Preload("Events").First(c, id).Error
 }
 
+func GetCommunityByCity(city string) (Community, error) {
+	var community Community
+	err := db.Model(&Community{}).Where("city LIKE ?", "%"+city+"%").First(community).Error
+	if err != nil {
+		return community, err
+	}
+	return community, nil
+
+}
+
 func (c *Community) Update() error {
 	if c.ID == 0 {
 		return errors.New("missing community ID")

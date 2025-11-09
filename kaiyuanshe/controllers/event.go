@@ -65,6 +65,13 @@ func CreateEvent(c *gin.Context) {
 		return
 	}
 
+	if event.EventType == "community" {
+		community, err := models.GetCommunityByCity(event.Location)
+		if err == nil {
+			event.CommunityID = community.ID
+		}
+	}
+
 	event.UserId = userId
 	// 创建数据库记录
 	if err := event.Create(); err != nil {
