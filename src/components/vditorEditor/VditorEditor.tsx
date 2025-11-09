@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useId } from 'react';
 import { uploadImgToCloud } from '@/lib/cloudinary';
 import { emoji } from './emoji';
 
@@ -68,6 +68,7 @@ const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
+    const editorId = useId();
 
     useEffect(() => {
       setMounted(true);
@@ -82,7 +83,7 @@ const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
           // 动态导入 Vditor 及其依赖
           const { default: Vditor } = await import('vditor');
 
-          const vditor = new Vditor('vditor', {
+          const vditor = new Vditor(editorId, {
             height,
             width,
             mode,
@@ -302,7 +303,7 @@ const VditorEditor = React.forwardRef<VditorInstance, VditorEditorProps>(
     return (
       <div className={styles.container}>
         <div
-          id="vditor"
+          id={editorId}
           style={{ opacity: isLoading ? 0 : 1 }}
           className={`vditor ${styles.editor}`}
         />
