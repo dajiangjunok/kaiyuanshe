@@ -100,8 +100,7 @@ export default function Header() {
           {
             key: 'brand',
             label: '品牌资源',
-            href: '/logo.zip',
-            target: '_blank',
+            href: '/brand',
             description: '开源社品牌资源',
             group: 'brand'
           }
