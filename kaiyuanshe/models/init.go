@@ -30,6 +30,8 @@ func init() {
 	db.AutoMigrate(&VolunteerCategory{})
 	db.AutoMigrate(&Volunteer{})
 	db.AutoMigrate(&Gift{})
+	db.AutoMigrate(&Community{})
+	db.AutoMigrate(&Member{})
 
 	InitRolesAndPermissions()
 	InitCategories()
