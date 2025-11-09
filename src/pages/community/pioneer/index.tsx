@@ -171,6 +171,13 @@ export default function PioneerPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>开源先锋榜</h1>
+        <div className={styles.sponsor}>
+          <span className={styles.sponsorText}>发起单位</span>
+          <div className={styles.sponsorLogos}>
+            <img src="/logo_2.svg" alt="发起单位Logo" className={styles.sponsorLogo} />
+            <img src="/logo.png" alt="发起单位Logo" className={styles.sponsorLogo} />
+          </div>
+        </div>
         <p className={styles.subtitle}>致敬那些推动开源发展的杰出贡献者</p>
       </div>
 
