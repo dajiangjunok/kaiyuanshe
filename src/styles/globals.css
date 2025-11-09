@@ -230,7 +230,7 @@ a {
 
 /* 配合浮动导航栏加一个上内边距样式类 */
 .nav-t-top {
-  padding-top: 6rem !important;
+  padding-top: 1rem !important;
 }
 
 .nav-t-top > ._id__header__HaQyS {
