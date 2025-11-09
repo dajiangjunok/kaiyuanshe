@@ -27,6 +27,8 @@ type Event struct {
 	PublishStatus        uint                `gorm:"default:1" json:"publish_status"` // 0: 所有  1: 待审核 2: 已发布
 	PublishTime          *time.Time          `json:"publish_time"`
 	Twitter              string              `json:"twitter"`
+	CommunityID          uint                `json:"community_id"`
+	Community            *Community          `gorm:"foreignKey:CommunityID" json:"community"`
 	UserId               uint                `json:"user_id"`
 	User                 *User               `gorm:"foreignKey:UserId" json:"user"`
 	Sessions             []Session           `gorm:"foreignKey:EventID" json:"sessions"`
