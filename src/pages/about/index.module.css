@@ -462,6 +462,192 @@
   line-height: 1.6;
 }
 
+/* Image and Text Styles */
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.subsectionTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.imageContainer {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.contentImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  display: block;
+}
+
+.imageCaption {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+}
+
+.imageGrid {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  margin: 2rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: #3498db #f1f1f1;
+}
+
+.imageGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.imageGrid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.imageGrid::-webkit-scrollbar-thumb {
+  background: #3498db;
+  border-radius: 4px;
+}
+
+.imageGrid::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
+}
+
+.gridImage {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gridImage:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.list a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.list a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.subList {
+  list-style-type: circle;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contactList > li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.contactList a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactList a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.highlightBox {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border: 1px solid #3498db;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.highlightBox h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.highlightBox p {
+  color: #495057;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.briefSection {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.briefBox {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.briefTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.briefText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contentArea {
