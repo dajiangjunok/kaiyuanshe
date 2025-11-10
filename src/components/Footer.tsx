@@ -184,8 +184,8 @@ export default function Footer() {
               <span style={{ marginRight: '2rem' }}>
                 © 2025 开源社. 保留所有权利
               </span>
-              <span style={{ marginRight: '2rem' }}>沪 ICP 备 19006015 号</span>
-              <span>公安备案 31011202006203 号</span>
+              {/* <span style={{ marginRight: '2rem' }}>沪 ICP 备 19006015 号</span>
+              <span>公安备案 31011202006203 号</span> */}
             </span>
           </p>
         </div>
