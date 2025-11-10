@@ -193,7 +193,7 @@ const CommunityPage: React.FC = () => {
   }, [loadCommunities]);
 
   const handleCreateCommunity = () => {
-    window.open("https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe", "_blank")
+       router.push(`/community/new`)
   }
 
   const handleCityClick = (city: CityData) => {

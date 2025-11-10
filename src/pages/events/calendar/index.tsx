@@ -304,7 +304,7 @@ const EventsCalendar: React.FC = () => {
           open={modalVisible}
           onCancel={() => setModalVisible(false)}
           footer={[
-            <Button key="close" onClick={() => setModalVisible(false)}>
+            <Button style={{marginRight:'8px'}} key="close" onClick={() => setModalVisible(false)}>
               关闭
             </Button>,
             selectedEvent && (
