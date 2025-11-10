@@ -60,7 +60,8 @@ export default function ArticleSection() {
       const queryParams = {
         page: 1,
         page_size: 3,
-        publish_status: 2
+        publish_status: 2,
+        category:'blog'
       }
 
       const result = await getArticles(queryParams)
@@ -165,7 +166,7 @@ export default function ArticleSection() {
                         ))}
                     </div>
                   )}
-                  <Link href={`/articles/${article.ID}`} passHref>
+                  <Link href={`/blogs/${article.ID}`} passHref>
                     <button className={styles.articleButton}>
                       {t('homepage.articles.readArticle')}
                       <ArrowRight className={styles.buttonIcon} />
@@ -177,7 +178,7 @@ export default function ArticleSection() {
           })}
         </div>
         <div className={styles.sectionFooter}>
-          <Link href="/articles">
+          <Link href="/blogs">
             <button className={styles.moreButton}>
               <BookOpen className={styles.buttonIcon} />
               {t('homepage.articles.viewMore')}
