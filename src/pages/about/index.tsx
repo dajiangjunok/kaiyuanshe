@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './index.module.css'
 
 const AboutPage = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [imageAlt, setImageAlt] = useState<string>('')
+
+  const openModal = (imageSrc: string, alt: string = '') => {
+    setSelectedImage(imageSrc)
+    setImageAlt(alt)
+  }
+
+  const closeModal = () => {
+    setSelectedImage(null)
+    setImageAlt('')
+  }
   return (
     <div className={styles.aboutPage}>
       {/* Hero Section */}
@@ -128,6 +140,7 @@ const AboutPage = () => {
               <li>Amazon Web Services（AWS）</li>
               <li>Google</li>
               <li>Microsoft</li>
+              <li>...</li>
             </ul>
 
             <p className={styles.text}>
@@ -156,10 +169,30 @@ const AboutPage = () => {
 
             <div className={styles.imageGrid}>
             
-              <img src="/img/about/coscon-1.webp"  className={styles.gridImage} />
-              <img src="/img/about/coscon-2.webp"  className={styles.gridImage} />
-              <img src="/img/about/coscon-3.webp"  className={styles.gridImage} />
-              <img src="/img/about/coscon-4.webp"  className={styles.gridImage} />
+              <img 
+                src="/img/about/coscon-1.webp"  
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/coscon-1.webp', 'COSCon 合影')}
+                alt="COSCon 合影"
+              />
+              <img 
+                src="/img/about/coscon-2.webp"  
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/coscon-2.webp', 'COSCon 合影')}
+                alt="COSCon 合影"
+              />
+              <img 
+                src="/img/about/coscon-3.webp"  
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/coscon-3.webp', 'COSCon 合影')}
+                alt="COSCon 合影"
+              />
+              <img 
+                src="/img/about/coscon-4.webp"  
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/coscon-4.webp', 'COSCon 合影')}
+                alt="COSCon 合影"
+              />
              
             </div>
             <p className={styles.imageCaption}>COSCon 合影</p>
@@ -169,12 +202,42 @@ const AboutPage = () => {
             </p>
 
             <div className={styles.imageGrid}>
-              <img src="/img/about/community-1.webp" alt="社区合作活动" className={styles.gridImage} />
-              <img src="/img/about/community-2.webp" alt="社区合作活动" className={styles.gridImage} />
-              <img src="/img/about/community-3.webp" alt="社区合作活动" className={styles.gridImage} />
-              <img src="/img/about/community-4.webp" alt="社区合作活动" className={styles.gridImage} />
-              <img src="/img/about/community-5.webp" alt="社区合作活动" className={styles.gridImage} />
-              <img src="/img/about/community-6.webp" alt="社区合作活动" className={styles.gridImage} />
+              <img 
+                src="/img/about/community-1.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-1.webp', '社区合作活动')}
+              />
+              <img 
+                src="/img/about/community-2.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-2.webp', '社区合作活动')}
+              />
+              <img 
+                src="/img/about/community-3.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-3.webp', '社区合作活动')}
+              />
+              <img 
+                src="/img/about/community-4.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-4.webp', '社区合作活动')}
+              />
+              <img 
+                src="/img/about/community-5.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-5.webp', '社区合作活动')}
+              />
+              <img 
+                src="/img/about/community-6.webp" 
+                alt="社区合作活动" 
+                className={styles.gridImage} 
+                onClick={() => openModal('/img/about/community-6.webp', '社区合作活动')}
+              />
             </div>
             <p className={styles.imageCaption}>社区合作活动合影</p>
 
@@ -322,6 +385,23 @@ const AboutPage = () => {
           </section>
         </main>
       </div>
+      
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.modalCloseButton} onClick={closeModal}>
+              ×
+            </button>
+            <img 
+              src={selectedImage} 
+              alt={imageAlt} 
+              className={styles.modalImage}
+            />
+            {imageAlt && <p className={styles.modalCaption}>{imageAlt}</p>}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
