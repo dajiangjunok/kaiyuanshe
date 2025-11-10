@@ -13,7 +13,7 @@ const AboutPage = () => {
           className={styles.heroImage}
         />
         <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>开源社</h1>
+          <h1 className={styles.heroTitle}>你好， 开源社</h1>
           <p className={styles.heroSubtitle}>
             KAIYUANSHE - 致力于推动开源发展的社区
           </p>
@@ -26,10 +26,10 @@ const AboutPage = () => {
         <main className={styles.contentArea}>
           {/* Introduction Section */}
           <section id="introduction" className={styles.section}>
-            <h2 className={styles.sectionTitleCentered}>简介</h2>
+            <h2 className={styles.sectionTitleCentered}>一、我们从何而来</h2>
             <div className={styles.sectionContent}>
               <p className={styles.description}>
-                开源社（KAIYUANSHE）是中国最具影响力的开源社区之一，致力于推动开源软件在中国的发展与普及。作为一个非营利性组织，开源社汇聚了众多开源爱好者、开发者、企业和学术机构，共同构建健康可持续的开源生态系统。
+              开源社（“KAIYUANSHE®”）成立于 2014 年，是由志愿贡献于开源事业的个人成员，依 “贡献、共识、共治” 原则所组成，始终维持 “厂商中立、公益、非营利” 的理念，以 “立足中国、贡献全球，推动开源成为新时代的生活方式” 为愿景，以 “开源治理、国际接轨、社区发展、项目孵化” 为使命，旨在共创健康可持续发展的开源生态体系。
               </p>
               <p className={styles.description}>
                 我们秉承"开放、协作、共享"的开源精神，通过举办技术交流活动、推广开源文化、孵化优秀项目、制定行业标准等方式，为中国开源事业的发展贡献力量。开源社不仅是技术交流的平台，更是推动开源理念在各行各业落地实践的重要力量。
