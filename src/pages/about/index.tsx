@@ -163,7 +163,9 @@ const AboutPage = () => {
 
             <div className={styles.imageContainer}>
               <img src="/img/about/exhibition1.webp" alt="2021-2024年中国开源年会" className={styles.contentImage} />
-                <img src="/img/about/exhibition2.webp"  className={styles.gridImage} />
+
+                <img src="/img/about/exhibition2.webp"  className={styles.contentImage} />
+
               <p className={styles.imageCaption}>2021-2024年中国开源年会</p>
             </div>
 
