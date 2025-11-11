@@ -35,63 +35,69 @@
   padding: 20px;
 }
 
-.navigation {
+.actionButtons {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  background: #f0f2f5;
-  border-radius: 12px;
-  margin: 20px auto;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #f0f2f5 0%, #fafbfc 100%);
+  border-radius: 16px;
+  margin: 30px auto;
+  max-width: 1400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   max-width: 1200px;
+}
+
+.actionButton {
+  min-width: 200px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.actionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.actionButton:not(.ant-btn-primary) {
+  background: white;
+  border: 2px solid #d9d9d9;
+  color: #262626;
+}
+
+.actionButton:not(.ant-btn-primary):hover {
+  border-color: #4096ff;
+  color: #4096ff;
 }
 
 .content {
   flex: 1;
   padding: 20px;
-  max-width: 1600px;
-    min-width: 1400px;
+  max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
-.navigationMenu {
-  background: transparent !important;
-  border-bottom: none !important;
-  flex: 1;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 500;
-}
- 
-.navigationMenu :global(.ant-menu-item) {
-  font-size: 1rem !important;
-  font-weight: 500 !important;
-  padding: 8px 16px !important;
-  border-radius: 8px !important;
-  margin: 0 4px !important;
-}
-
-.navigationMenu :global(.ant-menu-item:hover) {
-  color: #595959 !important;
-  background: rgba(64, 150, 255, 0.1) !important;
-}
-
-.navigationMenu :global(.ant-menu-item-selected) {
-  background: #4096ff !important;
-  color: white !important;
-  box-shadow: 0 2px 8px rgba(64, 150, 255, 0.3) !important;
-}
-
-.navigationMenu :global(.ant-menu-item-selected:hover) {
-  background: #4096ff !important;
-  color: white !important;
-}
-
-.navigationMenu :global(.ant-menu-item::after) {
-  display: none !important;
-}
 
 .sessionContent {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
@@ -258,7 +264,62 @@
 }
 
 /* Responsive design */
+@media (max-width: 1400px) {
+  .actionButtons {
+    max-width: 100%;
+    margin: 30px 20px;
+    padding: 24px 16px;
+  }
+  
+  .buttonContainer {
+    gap: 16px;
+  }
+  
+  .actionButton {
+    min-width: 180px;
+    height: 50px;
+    font-size: 14px;
+  }
+  
+  .content {
+    max-width: 100%;
+    padding: 16px;
+  }
+  
+  .sessionContent {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .buttonContainer {
+    gap: 12px;
+  }
+  
+  .actionButton {
+    min-width: 160px;
+    height: 48px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
+  .actionButtons {
+    padding: 20px 12px;
+  }
+  
+  .buttonContainer {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .actionButton {
+    min-width: 100%;
+    max-width: 300px;
+    height: 52px;
+    font-size: 15px;
+  }
 
   .agendaItem,
   .agendaItemSpecial {
@@ -276,120 +337,14 @@
   }
 }
 
-.volunteerContent {
-  max-width: 1200px;
-  min-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  width: 100%;
-}
 
-.volunteerTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-}
-
-.volunteerSpeakersList {
-  display: flex;
-  flex-wrap: wrap; /* 允许换行 */
-  gap: 1.5rem; /* 头像之间的间隔 */
-  justify-content: flex-start; /* 左对齐 */
-}
-
-.volunteerSpeakerCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: center;
-}
-
-.volunteerAvatarContainer {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.volunteerSpeakerAvatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #f0f0f0;
-  transition: transform 0.2s ease;
-  display: block;
-}
-
-.volunteerAvatarIcon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid #e0e0e0;
-  transition: transform 0.2s ease;
-}
-
-.volunteerSpeakerAvatar:hover {
-  transform: scale(1.05); /* 悬停效果 */
-}
-
-.volunteerSpeakerInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.volunteerSpeakerName {
-  font-weight: 600;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.volunteerSpeakerTitle {
-  font-size: 0.875rem;
-  color: #666;
-  white-space: nowrap;
-}
-
-/* Tab content styling for consistency */
+/* Tab content styling for DetailSection */
 .tabContent {
   padding: 20px;
   min-height: 500px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-}
-
-/* Volunteer section specific styling */
-.volunteerTabContent {
-  padding: 0;
-  min-height: 500px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* Volunteer tabs alignment */
-.volunteerTabContent :global(.ant-tabs) {
-  margin: 0 20px;
-}
-
-.volunteerTabContent :global(.ant-tabs-nav) {
-  margin-left: 0 !important;
-  padding-left: 20px;
-}
-
-.volunteerTabContent :global(.ant-tabs-content-holder) {
-  padding: 0 !important;
 }
 
 /* Global tab styling overrides */
@@ -405,27 +360,6 @@
 
 .tabContent :global(.ant-tabs-content-holder) {
   padding: 20px 0;
-}
-
-/* Section content styling */
-.sectionContent {
-  padding: 20px;
-  background: #fafafa;
-  border-radius: 8px;
-  margin-top: 16px;
-}
-
-.sectionContent h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-}
-
-.sectionContent p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #666;
 }
 
 
