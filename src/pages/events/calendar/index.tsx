@@ -18,14 +18,17 @@ import {
   Users, 
   Globe, 
   Eye, 
-  Share2
+  Share2,
+  CalendarPlus
 } from 'lucide-react';
 import dayjs, { Dayjs } from 'dayjs';
 import Link from 'next/link';
 import { getEvents } from '../../api/event';
 import type { Event } from '../../api/event';
 import { useAuth } from '@/contexts/AuthContext';
+import { addToGoogleCalendar } from '@/lib/google-calendar';
 import styles from './index.module.css';
+import { useRouter } from 'next/router';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -41,6 +44,7 @@ const EventsCalendar: React.FC = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const router = useRouter()
   
   const { session, status } = useAuth();
   const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
@@ -113,6 +117,17 @@ const EventsCalendar: React.FC = () => {
       'meetup': '#52c41a',
     };
     return colors[type] || '#1890ff';
+  };
+
+  // 添加到谷歌日历
+  const handleAddToGoogleCalendar = (event: Event) => {
+    addToGoogleCalendar({
+      title: event.title,
+      description: event.description,
+      location: event.event_mode === '线上活动' ? '线上活动' : event.location,
+      startTime: event.start_time,
+      endTime: event.end_time,
+    });
   };
 
   // 日历单元格渲染
@@ -228,9 +243,16 @@ const EventsCalendar: React.FC = () => {
                   className={styles.eventCard}
                   hoverable
                   actions={[
-                    <Link href={`/events/${event.ID}`} key="view">
-                      <Eye size={16} /> 查看详情
-                    </Link>,
+                     <Button 
+                      key="share" 
+                      type="text" 
+                      icon={<Eye size={16} />}
+                      onClick={() => {
+                       router.push(`/events/${event.ID}`)
+                      }}
+                    >
+                      查看详情
+                    </Button>,
                     <Button 
                       key="share" 
                       type="text" 
@@ -240,6 +262,14 @@ const EventsCalendar: React.FC = () => {
                       }}
                     >
                       分享
+                    </Button>,
+                    <Button 
+                      key="calendar" 
+                      type="text" 
+                      icon={<CalendarPlus size={16} />}
+                      onClick={() => handleAddToGoogleCalendar(event)}
+                    >
+                      加入日历
                     </Button>
                   ]}
                 >
@@ -307,6 +337,16 @@ const EventsCalendar: React.FC = () => {
             <Button style={{marginRight:'8px'}} key="close" onClick={() => setModalVisible(false)}>
               关闭
             </Button>,
+            selectedEvent && (
+              <Button 
+                key="calendar"
+                icon={<CalendarPlus size={16} />}
+                onClick={() => handleAddToGoogleCalendar(selectedEvent)}
+                style={{marginRight:'8px'}}
+              >
+                加入日历
+              </Button>
+            ),
             selectedEvent && (
               <Link href={`/events/${selectedEvent.ID}`} key="view">
                 <Button type="primary">
