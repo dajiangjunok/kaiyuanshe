@@ -20,14 +20,14 @@ export default function Carousel() {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      const scrollDistance = window.innerWidth >= 1800 ? 425 : 407
+      const scrollDistance = window.innerWidth >= 1800 ? 425 : window.innerWidth >= 1300 ? 320 : 407
       scrollContainerRef.current.scrollBy({ left: -scrollDistance, behavior: 'smooth' })
     }
   }
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      const scrollDistance = window.innerWidth >= 1800 ? 425 : 407
+      const scrollDistance = window.innerWidth >= 1800 ? 425 : window.innerWidth >= 1300 ? 320 : 407
       scrollContainerRef.current.scrollBy({ left: scrollDistance, behavior: 'smooth' })
     }
   }
