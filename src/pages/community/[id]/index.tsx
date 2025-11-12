@@ -254,22 +254,33 @@ const CommunityDetailPage: React.FC = () => {
             {/* 社区统计 */}
             <div className={styles.statsContainer}>
               <div className={styles.stat}>
-                <Users size={20} />
+                
                 <span className={styles.statNumber}>{community.memberCount}</span>
                 <span className={styles.statLabel}>成员</span>
               </div>
               <div className={styles.stat}>
-                <GitBranch size={20} />
+             
                 <span className={styles.statNumber}>{community.projectCount}</span>
                 <span className={styles.statLabel}>项目</span>
               </div>
               <div className={styles.stat}>
-                <Calendar size={20} />
+            
                 <span className={styles.statNumber}>{community.eventCount}</span>
                 <span className={styles.statLabel}>活动</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
+      {/* 社区成员列表 */}
+      <div className={styles.content}>
+        <div className={styles.membersSection}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <Users size={24} />
+              社区成员 ({community.members.length})
+            </h2>
             <Button 
               type="primary" 
               size="large" 
@@ -280,16 +291,6 @@ const CommunityDetailPage: React.FC = () => {
               加入社区
             </Button>
           </div>
-        </div>
-      </div>
-
-      {/* 社区成员列表 */}
-      <div className={styles.content}>
-        <div className={styles.membersSection}>
-          <h2 className={styles.sectionTitle}>
-            <Users size={24} />
-            社区成员 ({community.members.length})
-          </h2>
           
           <div className={styles.membersGrid}>
             {community.members.map((member) => (

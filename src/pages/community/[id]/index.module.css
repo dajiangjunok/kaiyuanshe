@@ -7,8 +7,8 @@
 
 .backButton {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 100px;
+  left: 60px;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -50,7 +50,8 @@
 /* 头部区域 */
 .header {
   position: relative;
-  height: 60vh;
+  height: max(240px, 30vh);
+  min-height: 240px;
   overflow: hidden;
 }
 
@@ -93,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5%;
+  padding: 20px 5%;
 }
 
 .communityInfo {
@@ -104,17 +105,17 @@
 
 .communityTitle {
   display: flex;
-  flex-direction: column;
+ justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .cityName {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 3rem;
+  gap: 8px;
+  font-size: 2.2rem;
   font-weight: 700;
   margin: 0;
   color: white;
@@ -140,11 +141,11 @@
 }
 
 .communityIntro {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin: 20px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 12px 0;
   opacity: 0.95;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -152,11 +153,11 @@
 .statsContainer {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin: 30px 0;
-  padding: 20px;
+  gap: 24px;
+  margin: 16px 0;
+  padding: 12px 16px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border-radius: 12px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -170,7 +171,7 @@
 }
 
 .statNumber {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #ffd700;
 }
@@ -181,20 +182,33 @@
 }
 
 .joinButton {
-  margin-top: 20px;
-  height: 48px;
-  padding: 0 32px;
-  font-size: 16px;
-  border-radius: 24px;
+  margin-top: 16px;
+  height: 40px;
+  padding: 0 24px;
+  font-size: 14px;
+  border-radius: 20px;
   border: none;
   background: linear-gradient(135deg, #ff6b6b, #feca57);
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
   transition: all 0.3s ease;
 }
 
+.sectionHeader .joinButton {
+  margin-top: 0;
+  height: 36px;
+  padding: 0 20px;
+  font-size: 13px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
 .joinButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+.sectionHeader .joinButton:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
 }
 
 /* 内容区域 */
@@ -214,6 +228,13 @@
   margin: 0 auto;
 }
 
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
 .sectionTitle {
   display: flex;
   align-items: center;
@@ -221,9 +242,7 @@
   font-size: 2rem;
   font-weight: 600;
   color: #2d3748;
-  margin-bottom: 30px;
-  text-align: center;
-  justify-content: center;
+  margin: 0;
 }
 
 .membersGrid {
@@ -347,21 +366,34 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .header {
+    height: max(200px, 25vh);
+    min-height: 200px;
+  }
+  
   .cityName {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    gap: 6px;
   }
   
   .communityIntro {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 8px 0;
   }
   
   .statsContainer {
-    gap: 20px;
-    padding: 16px;
+    gap: 16px;
+    padding: 10px 12px;
+    margin: 12px 0;
   }
   
   .statNumber {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
   }
   
   .content {
@@ -374,7 +406,62 @@
   }
   
   .backButton {
-    top: 10px;
-    left: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* 针对极小高度屏幕的特殊处理 */
+@media (max-height: 500px) {
+  .header {
+    height: 70vh;
+    min-height: 220px;
+  }
+  
+  .backButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .headerContent {
+    padding: 40px 5% 20px;
+  }
+  
+  .communityInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .cityName {
+    font-size: 1.8rem;
+  }
+  
+  .communityIntro {
+    font-size: 0.9rem;
+    margin: 8px 0;
+  }
+  
+  .statsContainer {
+    margin: 12px 0;
+    padding: 8px 12px;
+  }
+  
+  .joinButton {
+    margin-top: 12px;
+    height: 36px;
   }
 }
