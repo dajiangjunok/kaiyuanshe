@@ -27,7 +27,7 @@ export default function ArticleDetailPage() {
   const { id } = router.query; // 路由参数应该叫 id，不是 ids
   const rId = Array.isArray(id) ? id[0] : id;
 
-  const [article, setArticle] = useState<Record<string, unknown> | null>(null);
+  const [article, setArticle] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   // 使用统一的认证上下文，避免重复调用 useSession
   const { session, status } = useAuth();

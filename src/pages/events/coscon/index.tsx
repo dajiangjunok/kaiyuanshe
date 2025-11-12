@@ -145,7 +145,7 @@ export default function CosconEventsPage() {
           </div>
           <Link href="/events/new?event_type=coscon" className={styles.createButton}>
             <Plus size={20} />
-            发布活动
+            发布开源年会
           </Link>
         </div>
       </div>
