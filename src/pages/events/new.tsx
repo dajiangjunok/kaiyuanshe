@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import {
   Form,
   Input,
@@ -24,7 +24,7 @@ import {
   X,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import styles from './new.module.css';
 import { createEvent } from '../api/event';
 import UploadCardImg from '@/components/uploadCardImg/UploadCardImg';
@@ -44,10 +44,22 @@ export default function NewEventPage() {
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [eventType, setEventType] = useState<string>('community');
 
   // 封面图片
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [cloudinaryImg, setCloudinaryImg] = useState<{ secure_url: string } | undefined>();
+
+  // 初始化时获取 URL 参数
+  useEffect(() => {
+    if (!router.isReady) return;
+    
+    const queryEventType = router.query.event_type as string;
+    if (queryEventType) {
+      setEventType(queryEventType);
+      form.setFieldValue('eventType', queryEventType);
+    }
+  }, [router.isReady, router.query.event_type, form]);
 
   // 格式化时间为字符串
   const formatDateTime = (date: { format: (format: string) => string }, time: { format: (format: string) => string }) => {
@@ -140,6 +152,7 @@ export default function NewEventPage() {
         className={styles.form}
         initialValues={{
           eventMode: '线上活动',
+          eventType: eventType,
           publishImmediately: true,
         }}
       >
@@ -206,6 +219,8 @@ export default function NewEventPage() {
                 >
                   <Select
                     placeholder="请选择活动类型"
+                    disabled
+                    value={eventType}
                     options={[
                       { label: '社区活动', value: 'community' },
                       { label: '开源年会', value: 'coscon' },

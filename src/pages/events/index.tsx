@@ -42,7 +42,6 @@ export function formatTime(isoTime: string): string {
   return dayjs(isoTime).format('YYYY-MM-DD');
 }
 
-const allowedEventTypes = ['meetup', 'coscon'];
 
 export default function EventsPage() {
   const { message } = AntdApp.useApp();
@@ -62,16 +61,11 @@ export default function EventsPage() {
   const { session, status } = useAuth();
   const permissions = useMemo(() => session?.user?.permissions || [], [session?.user?.permissions]);
 
-  // 新增筛选状态 - 从 query 参数初始化 eventTypeFilter
+  // 新增筛选状态
   const [statusFilter, setStatusFilter] = useState('3');
   const [locationKeyword, setLocationKeyword] = useState('');
   const [eventModeFilter, setEventModeFilter] = useState('');
-  const [eventTypeFilter, setEventTypeFilter] = useState(
-    // 从 URL query 参数初始化
-    (router.query.type as string) && allowedEventTypes.includes(router.query.type as string)
-      ? (router.query.type as string)
-      : ''
-  );
+  const [eventTypeFilter] = useState('community'); // 写死为社区活动
 
   // 加载事件列表
   const loadEvents = useCallback(async (params?: {
@@ -132,41 +126,6 @@ export default function EventsPage() {
     }
   }, [searchKeyword, selectedTag, sortOrder, currentPage, pageSize, statusFilter, locationKeyword, eventModeFilter, eventTypeFilter, publishStatus]);
 
-  // 监听 query 参数变化
-  useEffect(() => {
-    if (!router.isReady) return;
-
-    const queryEventType = router.query.event_type as string;
-
-    if (queryEventType && allowedEventTypes.includes(queryEventType)) {
-      // 只有当 query 参数与当前筛选值不同时才更新
-      if (queryEventType !== eventTypeFilter) {
-        setEventTypeFilter(queryEventType);
-        setCurrentPage(1);
-
-        // 立即加载对应类型的事件
-        loadEvents({
-          event_type: queryEventType,
-          page: 1
-        });
-
-        // 可选：清除 URL 参数（如果需要一次性使用）
-        // router.replace(
-        //   {
-        //     pathname: router.pathname,
-        //     query: {},
-        //   },
-        //   undefined,
-        //   { shallow: true }
-        // );
-      }
-    } else if (!queryEventType && eventTypeFilter) {
-      // 如果 URL 中没有 type 参数但当前有筛选值，清空筛选
-      setEventTypeFilter('');
-      setCurrentPage(1);
-      loadEvents({ event_type: '', page: 1 });
-    }
-  }, [router.isReady, router.query.type, eventTypeFilter, loadEvents, router]);
 
   // 根据登录状态更新 publishStatus
   useEffect(() => {
@@ -195,7 +154,6 @@ export default function EventsPage() {
     publishStatus,
     loadEvents,
     router.isReady,
-    router.query.type, // 添加这个依赖
   ]);
 
   // 搜索事件
@@ -228,32 +186,6 @@ export default function EventsPage() {
     setCurrentPage(1);
   };
 
-  // 活动类型筛选 - 更新后同时更新 URL（可选）
-  const handleEventTypeFilter = async (event_type: string) => {
-    setEventTypeFilter(event_type);
-    setCurrentPage(1);
-
-    // 可选：更新 URL 参数
-    if (event_type) {
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: { event_type: event_type },
-        },
-        undefined,
-        { shallow: true }
-      );
-    } else {
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: {},
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-  };
 
   // 分页处理
   const handlePageChange = async (page: number, size?: number) => {
@@ -271,18 +203,8 @@ export default function EventsPage() {
     setStatusFilter('3');
     setLocationKeyword('');
     setEventModeFilter('');
-    setEventTypeFilter('');
     setCurrentPage(1);
 
-    // 清除 URL 参数
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: {},
-      },
-      undefined,
-      { shallow: true }
-    );
   };
 
   const handleSwitchViewMode = (mode: ViewMode) => {
@@ -342,7 +264,7 @@ export default function EventsPage() {
             <h1 className={styles.title}>精彩活动</h1>
             <p className={styles.subtitle}>发现精彩活动，连接志同道合的人</p>
           </div>
-          <Link href="/events/new" className={styles.createButton}>
+          <Link href={`/events/new?event_type=${eventTypeFilter}`} className={styles.createButton}>
             <Plus size={20} />
             发布活动
           </Link>
@@ -365,18 +287,6 @@ export default function EventsPage() {
           />
         </div>
         <div className={styles.filterButtons}>
-          <Select
-            size="large"
-            placeholder="活动类型"
-            allowClear
-            style={{ width: 120 }}
-            value={eventTypeFilter}
-            onChange={handleEventTypeFilter}
-          >
-            <Option value="">所有</Option>
-            <Option value="community">社区活动</Option>
-            <Option value="coscon">开源年会</Option>
-          </Select>
           <Select
             size="large"
             value={sortOrder}
@@ -475,7 +385,8 @@ export default function EventsPage() {
               selectedTag ||
               statusFilter ||
               locationKeyword ||
-              eventModeFilter
+              eventModeFilter ||
+              eventTypeFilter
               ? '没有找到符合条件的活动'
               : '还没有创建任何活动'}
           </div>
@@ -483,8 +394,9 @@ export default function EventsPage() {
             !selectedTag &&
             !statusFilter &&
             !locationKeyword &&
-            !eventModeFilter && (
-              <Link href="/events/new" className={styles.createButton}>
+            !eventModeFilter &&
+            !eventTypeFilter && (
+              <Link href={`/events/new?event_type=${eventTypeFilter}`} className={styles.createButton}>
                 <Plus className={styles.buttonIcon} />
                 创建第一个活动
               </Link>
@@ -527,7 +439,7 @@ export default function EventsPage() {
                             className={styles.actionIconButton}
                             onClick={(e) => {
                               e.preventDefault();
-                              router.push(`/events/${event.ID}/edit`);
+                              router.push(`/events/${event.ID}/edit?event_type=${eventTypeFilter}`);
                             }}
                             icon={<Edit className={styles.actionIcon} />}
                             title="编辑活动"
@@ -706,7 +618,7 @@ export default function EventsPage() {
                         size="small"
                         icon={<Edit className={styles.listActionIcon} />}
                         title="编辑活动"
-                        onClick={() => router.push(`/events/${event.ID}/edit`)}
+                        onClick={() => router.push(`/events/${event.ID}/edit?event_type=${eventTypeFilter}`)}
                       />
                     ) : null}
                     <Button

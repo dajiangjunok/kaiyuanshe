@@ -91,6 +91,7 @@ export default function EditEventPage() {
   const [inputValue, setInputValue] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [eventType, setEventType] = useState<string>('');
   const [cloudinaryImg, setCloudinaryImg] = useState<{ secure_url: string } | undefined>();
   const [event, setEvent] = useState<{ ID: string; title: string; description: string; event_mode: string; event_type: string; link: string; location: string; start_time: string; end_time: string; cover_img: string; tags: string[]; twitter: string; registration_link: string; registration_deadline: string } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -213,6 +214,16 @@ export default function EditEventPage() {
     fetchData();
   }, [router.isReady, rId, form, message]);
 
+  // 初始化时获取 URL 参数
+  useEffect(() => {
+    if (!router.isReady) return;
+    
+    const queryEventType = router.query.event_type as string;
+    if (queryEventType) {
+      setEventType(queryEventType);
+    }
+  }, [router.isReady, router.query.event_type]);
+
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -315,11 +326,10 @@ export default function EditEventPage() {
                 >
                   <Select
                     placeholder="请选择活动类型"
+                    disabled={!!eventType}
                     options={[
-                      { label: '见面会', value: 'meetup' },
-                      { label: 'AMA', value: 'ama' },
-                      { label: '黑客松', value: 'hackathon' },
-                      { label: 'Workshop', value: 'workshop' },
+                      { label: '社区活动', value: 'community' },
+                      { label: '开源年会', value: 'coscon' },
                     ]}
                   />
                 </Form.Item>
