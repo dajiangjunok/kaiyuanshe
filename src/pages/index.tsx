@@ -1,11 +1,6 @@
-import { Github } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
-import { Modal } from 'antd'
-import Image from 'next/image'
 
 import styles from './index.module.css'
-import { SiWechat, SiX } from 'react-icons/si'
 
 import { useTranslation } from '../hooks/useTranslation'
 import Hero from '@/components/home/hero/Hero'

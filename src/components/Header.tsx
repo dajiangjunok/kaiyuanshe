@@ -388,7 +388,7 @@ export default function Header() {
   const handleMouseLeave = useCallback(() => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null)
-    }, 500) // 500ms 延迟，给用户更多时间移动到浮窗
+    }, 200) // 200ms 延迟，给用户更多时间移动到浮窗
   }, [])
 
   // 清理定时器
