@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // 忽略 eslint 检查
   },
+  experimental: {
+    turbo: false,
+  },
   typescript: {
     ignoreBuildErrors: true, // 忽略 TypeScript 检查
   },
